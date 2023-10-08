@@ -1,0 +1,37 @@
+import {StyleSheet} from 'react-native';
+import {
+  horizontalScale,
+  scaleFontSize,
+  verticalScale,
+} from '../../assets/styles/scaling';
+
+const CustomCardStyle = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderBottomColor: '#E0E0E0',
+    borderBottomWidth: 1,
+    height: verticalScale(55),
+    paddingLeft: horizontalScale(15),
+  },
+  title: {
+    marginLeft: horizontalScale(10),
+  },
+  arrow_container: {
+    position: 'absolute',
+    right: horizontalScale(25),
+  },
+  icon_image: {
+    width: scaleFontSize(25),
+    height: scaleFontSize(25),
+    tintColor: '#000000',
+  },
+  arrow_image: {
+    width: scaleFontSize(20),
+    height: scaleFontSize(20),
+    tintColor: '#A4A4A4',
+  },
+});
+
+export default CustomCardStyle;

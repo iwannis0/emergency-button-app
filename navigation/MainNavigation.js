@@ -1,0 +1,135 @@
+import React from 'react';
+import {Image} from 'react-native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {Routes} from './Routes';
+import HomeScreen from '../screens/HomeScreen/Homescreen';
+import AlertsScreen from '../screens/AlertsScreen/AlertsScreen';
+import MyHealthScreen from '../screens/MyHealthScreen/MyHealthScreen';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {scaleFontSize} from '../assets/styles/scaling';
+
+const ICON_SIZE = scaleFontSize(25);
+const INACTIVE_COLOR = '#A4A4A4';
+const ACTIVE_COLOR = '#33C3BB';
+
+const stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+
+export const NonAuthenticated = () => {
+  return (
+    <stack.Navigator
+      initialRouteName={Routes.Login}
+      screenOptions={{
+        header: () => null,
+        headerShown: false,
+      }}
+    />
+  );
+};
+
+export const MyHealthStack = () => {
+  return (
+    <stack.Navigator
+      initialRouteName={Routes.Home}
+      screenOptions={{
+        headerShown: true,
+        headerTransparent: true, // Set the background color to transparent
+      }}>
+      <stack.Screen name={Routes.MyHealth} component={MyHealthScreen} />
+      <stack.Screen name={Routes.Alerts} component={AlertsScreen} />
+    </stack.Navigator>
+  );
+};
+
+export const ServicesStack = () => {
+  return (
+    <stack.Navigator
+      initialRouteName={Routes.Home}
+      screenOptions={{
+        headerShown: true,
+        headerTransparent: true, // Set the background color to transparent
+      }}>
+      <stack.Screen name={Routes.MyHealth} component={MyHealthScreen} />
+      <stack.Screen name={Routes.Alerts} component={AlertsScreen} />
+    </stack.Navigator>
+  );
+};
+
+export const SettingsStack = () => {
+  return (
+    <stack.Navigator
+      initialRouteName={Routes.Home}
+      screenOptions={{
+        headerShown: true,
+        headerTransparent: true, // Set the background color to transparent
+      }}>
+      <stack.Screen name={Routes.MyHealth} component={MyHealthScreen} />
+      <stack.Screen name={Routes.Alerts} component={AlertsScreen} />
+    </stack.Navigator>
+  );
+};
+
+export const Authenticated = () => {
+  return (
+    <Tab.Navigator
+      tabBarOptions={{
+        activeTintColor: ACTIVE_COLOR, // Change the text color for focused tab
+        tintColor: INACTIVE_COLOR,
+        labelStyle: {
+          fontSize: 16, // Change the size of the text
+        },
+      }}>
+      <Tab.Screen
+        options={{
+          tabBarIcon: ({focused}) => (
+            <Image
+              source={require('../assets/images/forNavigation/myHealth.png')}
+              style={{
+                width: ICON_SIZE,
+                height: ICON_SIZE,
+                tintColor: focused ? ACTIVE_COLOR : INACTIVE_COLOR,
+              }}
+            />
+          ),
+          headerShown: false,
+        }}
+        name="MyHealth"
+        component={MyHealthStack}
+      />
+      <Tab.Screen
+        options={{
+          tabBarIcon: ({focused}) => (
+            <Image
+              source={require('../assets/images/forNavigation/Services.png')}
+              style={{
+                width: ICON_SIZE,
+                height: ICON_SIZE,
+                tintColor: focused ? ACTIVE_COLOR : INACTIVE_COLOR,
+              }}
+            />
+          ),
+          headerShown: false,
+        }}
+        name="Services"
+        component={ServicesStack}
+      />
+      <Tab.Screen
+        options={{
+          tabBarIcon: ({focused}) => (
+            <Image
+              source={require('../assets/images/forNavigation/Settings.png')}
+              style={{
+                width: ICON_SIZE,
+                height: ICON_SIZE,
+                tintColor: focused ? ACTIVE_COLOR : INACTIVE_COLOR,
+              }}
+            />
+          ),
+          headerShown: false,
+        }}
+        name="Settings"
+        component={SettingsStack}
+      />
+    </Tab.Navigator>
+  );
+};

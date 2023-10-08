@@ -1,0 +1,39 @@
+import React from 'react';
+import {Image, Pressable, Text, View} from 'react-native';
+import PropTypes from 'prop-types';
+import styles from './style';
+import globalStyle from '../../assets/styles/globalStyle';
+
+const NavigationButton = props => {
+  return (
+    <View>
+      <Pressable onPress={props.onPress}>
+        <View style={styles.container}>
+          {props.type === 'withIcon' && (
+            <Image style={styles.icon_image} source={props.image} />
+          )}
+          <Text style={[globalStyle.descriptionBlack, styles.title]}>
+            {props.title}
+          </Text>
+          {props.type === 'withArrow' && (
+            <View style={styles.arrow_container}>
+              <Image
+                style={styles.arrow_image}
+                source={require('../../assets/images/forNavigation/Arrow.png')}
+              />
+            </View>
+          )}
+        </View>
+      </Pressable>
+    </View>
+  );
+};
+
+NavigationButton.propTypes = {
+  type: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  image: PropTypes.any,
+  onPress: PropTypes.func.isRequired,
+};
+
+export default NavigationButton;
