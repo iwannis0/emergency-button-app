@@ -2,7 +2,6 @@ import React from 'react';
 import {Image} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Routes} from './Routes';
-import HomeScreen from '../screens/HomeScreen/Homescreen';
 import AlertsScreen from '../screens/AlertsScreen/AlertsScreen';
 import MyHealthScreen from '../screens/MyHealthScreen/MyHealthScreen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -35,7 +34,7 @@ export const MyHealthStack = () => {
         headerShown: true,
         headerTransparent: true, // Set the background color to transparent
       }}>
-      <stack.Screen name={Routes.MyHealth} component={MyHealthScreen} />
+      <stack.Screen name={Routes.Home} component={MyHealthScreen} />
       <stack.Screen name={Routes.Alerts} component={AlertsScreen} />
     </stack.Navigator>
   );
@@ -72,11 +71,12 @@ export const SettingsStack = () => {
 export const Authenticated = () => {
   return (
     <Tab.Navigator
-      tabBarOptions={{
+      screenOptions={{
+        tabBarActiveTintColor: ACTIVE_COLOR,
         activeTintColor: ACTIVE_COLOR, // Change the text color for focused tab
         tintColor: INACTIVE_COLOR,
-        labelStyle: {
-          fontSize: 16, // Change the size of the text
+        tabBarLabelStyle: {
+          fontSize: scaleFontSize(16),
         },
       }}>
       <Tab.Screen
