@@ -14,7 +14,7 @@ import globalStyle from '../../assets/styles/globalStyle';
 const MyHealthScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{position: 'absolute', top: 13, right: 13}}>
+      <View style={styles.ImageContainer}>
         <Pressable
           onPress={() => {
             navigation.navigate('Alerts');
@@ -22,17 +22,9 @@ const MyHealthScreen = ({navigation}) => {
           <Image
             tintColor={'#85CECA'}
             source={require('../../assets/images/Profile/default.png')}
-            style={{width: 35, height: 35}}
+            style={styles.ImageStyle}
           />
-          <Text
-            style={{
-              position: 'absolute',
-              top: 7,
-              left: 9,
-              color: '#00827B',
-            }}>
-            SV
-          </Text>
+          <Text style={styles.ImageInitials}>SV</Text>
         </Pressable>
       </View>
       <ScrollView style={globalStyle.marginTop60}>
