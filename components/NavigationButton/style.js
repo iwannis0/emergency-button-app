@@ -5,7 +5,7 @@ import {
   verticalScale,
 } from '../../assets/styles/scaling';
 
-const CustomCardStyle = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
@@ -34,4 +34,4 @@ const CustomCardStyle = StyleSheet.create({
   },
 });
 
-export default CustomCardStyle;
+export default styles;

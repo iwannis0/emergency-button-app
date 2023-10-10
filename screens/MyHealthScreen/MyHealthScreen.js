@@ -17,7 +17,7 @@ const MyHealthScreen = ({navigation}) => {
       <View style={styles.ImageContainer}>
         <Pressable
           onPress={() => {
-            navigation.navigate('Alerts');
+            navigation.navigate('Profile');
           }}>
           <Image
             tintColor={'#85CECA'}

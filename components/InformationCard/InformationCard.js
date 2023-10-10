@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import styles from './style';
 import PropTypes from 'prop-types';
-import Modalinfo from '../Modalinfo/Modalinfo';
 import data from '../../testing/dummydata/infocardDummy';
 import ModalComponent from '../ModalComponent/ModalComponent';
 import globalStyle from '../../assets/styles/globalStyle';
