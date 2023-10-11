@@ -2,11 +2,11 @@ import React from 'react';
 import {Image} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Routes} from './Routes';
-import HomeScreen from '../screens/HomeScreen/Homescreen';
 import AlertsScreen from '../screens/AlertsScreen/AlertsScreen';
 import MyHealthScreen from '../screens/MyHealthScreen/MyHealthScreen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {scaleFontSize} from '../assets/styles/scaling';
+import MedicalHistoryScreen from '../screens/MedicalHistoryScreen/MedicalHistoryScreen';
 
 const ICON_SIZE = scaleFontSize(25);
 const INACTIVE_COLOR = '#A4A4A4';
@@ -37,6 +37,10 @@ export const MyHealthStack = () => {
       }}>
       <stack.Screen name={Routes.MyHealth} component={MyHealthScreen} />
       <stack.Screen name={Routes.Alerts} component={AlertsScreen} />
+      <stack.Screen
+        name={Routes.MedicalHistory}
+        component={MedicalHistoryScreen}
+      />
     </stack.Navigator>
   );
 };
