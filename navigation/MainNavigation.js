@@ -7,6 +7,7 @@ import MyHealthScreen from '../screens/MyHealthScreen/MyHealthScreen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {scaleFontSize} from '../assets/styles/scaling';
 import MedicalHistoryScreen from '../screens/MedicalHistoryScreen/MedicalHistoryScreen';
+import ProfileScreen from '../screens/ProfileScreen/ProfileScreen';
 
 const ICON_SIZE = scaleFontSize(25);
 const INACTIVE_COLOR = '#A4A4A4';
@@ -40,6 +41,11 @@ export const MyHealthStack = () => {
       <stack.Screen
         name={Routes.MedicalHistory}
         component={MedicalHistoryScreen}
+      />
+      <stack.Screen
+        name={Routes.Profile}
+        component={ProfileScreen}
+        options={{headerShown: true, headerTitle: ''}}
       />
     </stack.Navigator>
   );
@@ -76,11 +82,12 @@ export const SettingsStack = () => {
 export const Authenticated = () => {
   return (
     <Tab.Navigator
-      tabBarOptions={{
+      screenOptions={{
+        tabBarActiveTintColor: ACTIVE_COLOR,
         activeTintColor: ACTIVE_COLOR, // Change the text color for focused tab
         tintColor: INACTIVE_COLOR,
-        labelStyle: {
-          fontSize: 16, // Change the size of the text
+        tabBarLabelStyle: {
+          fontSize: scaleFontSize(16),
         },
       }}>
       <Tab.Screen

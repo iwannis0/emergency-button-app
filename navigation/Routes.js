@@ -3,4 +3,5 @@ export const Routes = {
   Alerts: 'Alerts',
   MedicalHistory: 'Medical History',
   MyHealth: 'MyHealth',
+  Profile: 'Profile',
 };
