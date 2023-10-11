@@ -14,10 +14,16 @@ const globalStyle = StyleSheet.create({
   },
   descriptionGrey: {
     fontFamily: 'Inter',
-    fontWeight: '400',
+    fontWeight: '700',
     fontSize: scaleFontSize(16),
     lineHeight: scaleFontSize(20),
-    color: '#8F8F8F',
+    color: '#888888',
+  },
+  subtitleBox: {
+    width: 500,
+    height: 29,
+    marginTop: 20,
+    marginLeft: 17,
   },
   row: {
     width: horizontalScale(317),

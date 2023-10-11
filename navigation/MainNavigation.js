@@ -2,11 +2,11 @@ import React from 'react';
 import {Image} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Routes} from './Routes';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {scaleFontSize} from '../assets/styles/scaling';
-
 import AlertsScreen from '../screens/AlertsScreen/AlertsScreen';
 import MyHealthScreen from '../screens/MyHealthScreen/MyHealthScreen';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {scaleFontSize} from '../assets/styles/scaling';
+import MedicalHistoryScreen from '../screens/MedicalHistoryScreen/MedicalHistoryScreen';
 import ProfileScreen from '../screens/ProfileScreen/ProfileScreen';
 
 const ICON_SIZE = scaleFontSize(25);
@@ -36,8 +36,12 @@ export const MyHealthStack = () => {
         headerShown: true,
         headerTransparent: true, // Set the background color to transparent
       }}>
-      <stack.Screen name={Routes.Home} component={MyHealthScreen} />
+      <stack.Screen name={Routes.MyHealth} component={MyHealthScreen} />
       <stack.Screen name={Routes.Alerts} component={AlertsScreen} />
+      <stack.Screen
+        name={Routes.MedicalHistory}
+        component={MedicalHistoryScreen}
+      />
       <stack.Screen
         name={Routes.Profile}
         component={ProfileScreen}

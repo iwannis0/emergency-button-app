@@ -41,7 +41,7 @@ const MyHealthScreen = ({navigation}) => {
           title="Medical History"
           image={require('../../assets/images/forNavigation/Medical.png')}
           onPress={() => {
-            navigation.navigate('Medical');
+            navigation.navigate('Medical History');
           }}
         />
         <NavigationButton
@@ -49,7 +49,7 @@ const MyHealthScreen = ({navigation}) => {
           title="Clinical Examination"
           image={require('../../assets/images/forNavigation/Clinical.png')}
           onPress={() => {
-            navigation.navigate('Clinical');
+            navigation.navigate('Clinical Examination');
           }}
         />
         <NavigationButton
@@ -73,7 +73,7 @@ const MyHealthScreen = ({navigation}) => {
           title="Episodes of Care and Visits"
           image={require('../../assets/images/forNavigation/Episodes.png')}
           onPress={() => {
-            navigation.navigate('Episodes');
+            navigation.navigate('Episodes of Care and Visits');
           }}
         />
       </ScrollView>
