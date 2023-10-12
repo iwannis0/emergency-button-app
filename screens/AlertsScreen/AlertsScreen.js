@@ -4,14 +4,17 @@ import styles from './style';
 import InformationCard from '../../components/InformationCard/InformationCard';
 import Subtitle from '../../components/Subtitle/Subtitle';
 import globalStyle from '../../assets/styles/globalStyle';
+import {useTranslation} from 'react-i18next';
 
 const AlertsScreen = () => {
+  const {t} = useTranslation();
+
   return (
     <SafeAreaView>
       <ScrollView>
         <View style={styles.background}>
           <View style={globalStyle.marginTop60}>
-            <Subtitle title="Allergies" />
+            <Subtitle title={t('Allergies')} />
             <View
               style={[
                 globalStyle.backgroundWhite,
@@ -29,7 +32,7 @@ const AlertsScreen = () => {
             </View>
             {/*******************************************************/}
             <Subtitle
-              title="Major Medical Problems"
+              title={t('Major Medical Problems')}
               style={globalStyle.subtitleBox}
             />
             <View
@@ -56,7 +59,7 @@ const AlertsScreen = () => {
               />
             </View>
             {/*******************************************************/}
-            <Subtitle title="Procedures" style={globalStyle.subtitleBox} />
+            <Subtitle title={t('Procedures')} style={globalStyle.subtitleBox} />
             <View
               style={[
                 globalStyle.backgroundWhite,
@@ -70,7 +73,10 @@ const AlertsScreen = () => {
               />
             </View>
             {/*******************************************************/}
-            <Subtitle title="Medical Devices" style={globalStyle.subtitleBox} />
+            <Subtitle
+              title={t('Medical Devices')}
+              style={globalStyle.subtitleBox}
+            />
             <View
               style={[
                 globalStyle.backgroundWhite,

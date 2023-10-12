@@ -5,8 +5,10 @@ import NavigationButton from '../../components/NavigationButton/NavigationButton
 import styles from './style';
 import ModalComponent from '../../components/ModalComponent/ModalComponent';
 import data from '../../testing/dummydata/infocardDummy';
+import {useTranslation} from 'react-i18next';
 
 const ProfileScreen = ({navigation}) => {
+  const {t} = useTranslation();
   const [modaldata, setModalData] = useState();
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -40,7 +42,7 @@ const ProfileScreen = ({navigation}) => {
           />
           <NavigationButton
             type={'withArrow'}
-            title="Personal Information"
+            title={t('Personal Information')}
             borderwidth={0}
             onPress={() => {
               toggleModal();
@@ -48,21 +50,21 @@ const ProfileScreen = ({navigation}) => {
           />
           <NavigationButton
             type={'withArrow'}
-            title="Contact Info"
+            title={t('Contact Information')}
             onPress={() => {
               toggleModal();
             }}
           />
           <NavigationButton
             type={'withArrow'}
-            title="Emergency Contact"
+            title={t('Emergency Contact')}
             onPress={() => {
               toggleModal();
             }}
           />
           <NavigationButton
             type={'withArrow'}
-            title="General Practitioner"
+            title={t('General Practitioner')}
             onPress={() => {
               toggleModal();
             }}
