@@ -3,11 +3,13 @@ import {Image} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Routes} from './Routes';
 import AlertsScreen from '../screens/AlertsScreen/AlertsScreen';
-import MyHealthScreen from '../screens/MyHealthScreen/MyHealthScreen';
+import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {scaleFontSize} from '../assets/styles/scaling';
 import MedicalHistoryScreen from '../screens/MedicalHistoryScreen/MedicalHistoryScreen';
 import ProfileScreen from '../screens/ProfileScreen/ProfileScreen';
+import {useTranslation} from 'react-i18next';
+import {t} from 'i18next';
 
 const ICON_SIZE = scaleFontSize(25);
 const INACTIVE_COLOR = '#A4A4A4';
@@ -29,6 +31,7 @@ export const NonAuthenticated = () => {
 };
 
 export const MyHealthStack = () => {
+  const {t} = useTranslation();
   return (
     <stack.Navigator
       initialRouteName={Routes.Home}
@@ -36,11 +39,20 @@ export const MyHealthStack = () => {
         headerShown: true,
         headerTransparent: true, // Set the background color to transparent
       }}>
-      <stack.Screen name={Routes.MyHealth} component={MyHealthScreen} />
-      <stack.Screen name={Routes.Alerts} component={AlertsScreen} />
+      <stack.Screen
+        name={Routes.Home}
+        component={HomeScreen}
+        options={{headerShown: true, headerTitle: t('Home')}}
+      />
+      <stack.Screen
+        name={Routes.Alerts}
+        component={AlertsScreen}
+        options={{headerShown: true, headerTitle: t('Alerts')}}
+      />
       <stack.Screen
         name={Routes.MedicalHistory}
         component={MedicalHistoryScreen}
+        options={{headerShown: true, headerTitle: t('Medical History')}}
       />
       <stack.Screen
         name={Routes.Profile}
@@ -59,7 +71,7 @@ export const ServicesStack = () => {
         headerShown: true,
         headerTransparent: true, // Set the background color to transparent
       }}>
-      <stack.Screen name={Routes.MyHealth} component={MyHealthScreen} />
+      <stack.Screen name={Routes.Services} component={HomeScreen} />
       <stack.Screen name={Routes.Alerts} component={AlertsScreen} />
     </stack.Navigator>
   );
@@ -73,7 +85,7 @@ export const SettingsStack = () => {
         headerShown: true,
         headerTransparent: true, // Set the background color to transparent
       }}>
-      <stack.Screen name={Routes.MyHealth} component={MyHealthScreen} />
+      <stack.Screen name={Routes.Settings} component={HomeScreen} />
       <stack.Screen name={Routes.Alerts} component={AlertsScreen} />
     </stack.Navigator>
   );
@@ -92,6 +104,7 @@ export const Authenticated = () => {
       }}>
       <Tab.Screen
         options={{
+          tabBarLabel: t('MyHealth'),
           tabBarIcon: ({focused}) => (
             <Image
               source={require('../assets/images/forNavigation/myHealth.png')}
@@ -109,6 +122,7 @@ export const Authenticated = () => {
       />
       <Tab.Screen
         options={{
+          title: t('Services'),
           tabBarIcon: ({focused}) => (
             <Image
               source={require('../assets/images/forNavigation/Services.png')}
@@ -126,6 +140,7 @@ export const Authenticated = () => {
       />
       <Tab.Screen
         options={{
+          title: t('Settings'),
           tabBarIcon: ({focused}) => (
             <Image
               source={require('../assets/images/forNavigation/Settings.png')}
@@ -138,7 +153,7 @@ export const Authenticated = () => {
           ),
           headerShown: false,
         }}
-        name="Settings"
+        name={t('Settings')}
         component={SettingsStack}
       />
     </Tab.Navigator>

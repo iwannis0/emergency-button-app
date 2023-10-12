@@ -6,12 +6,17 @@ import {
   Text,
   Pressable,
   Image,
+  Button,
 } from 'react-native';
 import NavigationButton from '../../components/NavigationButton/NavigationButton';
 import styles from './style';
 import globalStyle from '../../assets/styles/globalStyle';
+import {useTranslation} from 'react-i18next';
+import i18n from '../../assets/translations/i18next';
 
 const MyHealthScreen = ({navigation}) => {
+  const {t} = useTranslation();
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.ImageContainer}>
@@ -30,7 +35,7 @@ const MyHealthScreen = ({navigation}) => {
       <ScrollView style={globalStyle.marginTop60}>
         <NavigationButton
           type={'withIcon'}
-          title="Alerts"
+          title={t('Alerts')}
           image={require('../../assets/images/forNavigation/Alert.png')}
           onPress={() => {
             navigation.navigate('Alerts');
@@ -38,7 +43,7 @@ const MyHealthScreen = ({navigation}) => {
         />
         <NavigationButton
           type={'withIcon'}
-          title="Medical History"
+          title={t('Medical History')}
           image={require('../../assets/images/forNavigation/Medical.png')}
           onPress={() => {
             navigation.navigate('Medical History');
@@ -46,7 +51,7 @@ const MyHealthScreen = ({navigation}) => {
         />
         <NavigationButton
           type={'withIcon'}
-          title="Clinical Examination"
+          title={t('Clinical Examination')}
           image={require('../../assets/images/forNavigation/Clinical.png')}
           onPress={() => {
             navigation.navigate('Clinical Examination');
@@ -54,7 +59,7 @@ const MyHealthScreen = ({navigation}) => {
         />
         <NavigationButton
           type={'withIcon'}
-          title="Laboratory"
+          title={t('Laboratory')}
           image={require('../../assets/images/forNavigation/Laboratory.png')}
           onPress={() => {
             navigation.navigate('Laboratory');
@@ -62,7 +67,7 @@ const MyHealthScreen = ({navigation}) => {
         />
         <NavigationButton
           type={'withIcon'}
-          title="Imaging"
+          title={t('Imaging')}
           image={require('../../assets/images/forNavigation/Imaging.png')}
           onPress={() => {
             navigation.navigate('Imaging');
@@ -70,12 +75,14 @@ const MyHealthScreen = ({navigation}) => {
         />
         <NavigationButton
           type={'withIcon'}
-          title="Episodes of Care and Visits"
+          title={t('Episodes of Care and Visits')}
           image={require('../../assets/images/forNavigation/Episodes.png')}
           onPress={() => {
             navigation.navigate('Episodes of Care and Visits');
           }}
         />
+
+        <Button title={'Test'} onPress={() => i18n.changeLanguage('gr')} />
       </ScrollView>
     </SafeAreaView>
   );
