@@ -12,7 +12,13 @@ const NavigationButton = props => {
           {props.type === 'withIcon' && (
             <Image style={styles.icon_image} source={props.image} />
           )}
-          <Text style={[globalStyle.descriptionBlack, styles.title]}>
+          <Text
+            style={[
+              globalStyle.descriptionBlack,
+              props.title === 'Logout' || props.title === 'Αποσύνδεση'
+                ? styles.red_title
+                : styles.title,
+            ]}>
             {props.title}
           </Text>
           {props.type === 'withArrow' && (
