@@ -1,12 +1,5 @@
-import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  Modal,
-  TouchableOpacity,
-  ScrollView,
-  FlatList,
-} from 'react-native';
+import React from 'react';
+import {View, Text, Modal, TouchableOpacity, FlatList} from 'react-native';
 import Modalinfo from '../Modalinfo/Modalinfo';
 import PropTypes from 'prop-types';
 import styles from './style';

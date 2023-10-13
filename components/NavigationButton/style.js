@@ -18,6 +18,10 @@ const styles = StyleSheet.create({
   title: {
     marginLeft: horizontalScale(10),
   },
+  red_title: {
+    color: '#FF0000',
+    marginLeft: horizontalScale(10),
+  },
   arrow_container: {
     position: 'absolute',
     right: horizontalScale(25),

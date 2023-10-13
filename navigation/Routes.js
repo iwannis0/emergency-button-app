@@ -1,7 +1,7 @@
 export const Routes = {
   Home: 'Home',
-  Services: 'Services',
-  Settings: 'Settings',
+  ServicesScreen: 'ServicesScreen',
+  SettingsScreen: 'SettingsScreen',
   Alerts: 'Alerts',
   MedicalHistory: 'Medical History',
   MyHealth: 'MyHealth',

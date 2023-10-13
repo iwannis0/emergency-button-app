@@ -82,7 +82,12 @@ const MyHealthScreen = ({navigation}) => {
           }}
         />
 
-        <Button title={'Test'} onPress={() => i18n.changeLanguage('gr')} />
+        <Button
+          title={'Testing Language'}
+          onPress={() => {
+            i18n.changeLanguage('gr');
+          }}
+        />
       </ScrollView>
     </SafeAreaView>
   );

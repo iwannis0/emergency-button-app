@@ -28,5 +28,14 @@
   "Gynecological History" : "Gynecological History",
   "Social History" : "Social History",
   "Immunization" : "Immunization",
-  "Plan of Care": "Plan of Care"
+  "Plan of Care": "Plan of Care",
+  "__________________________ServicesScreen__________________________" : "",
+  "Doctors Registry" : "Doctors' Registry", 
+  "Pharmacists Registry" : "Pharmacists' Registry",
+  "__________________________SettingsScreen__________________________" : "",
+  "Language" : "Language", 
+  "Terms of Use" : "Terms of Use",
+  "Privacy Policy" : "Privacy Policy",
+  "About" : "About",
+  "Logout" : "Logout"
 }

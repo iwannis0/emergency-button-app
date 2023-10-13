@@ -28,5 +28,14 @@
   "Gynecological History" : "Γυναικολογικό Ιστορικό",
   "Social History" : "Κοινωνικό Ιστορικό",
   "Immunization" : "Εμβολιασμοί",
-  "Plan of Care": "Σχέδιο Φροντίδας"
+  "Plan of Care": "Σχέδιο Φροντίδας",
+  "__________________________ServicesScreen__________________________" : "",
+  "Doctors Registry" : "Μητρώο Ιατρών", 
+  "Pharmacists Registry" : "Μητρώο Φαρμακοποιών",
+  "__________________________SettingsScreen__________________________" : "",
+  "Language" : "Γλώσσα", 
+  "Terms of Use" : "Όροι Χρήσης",
+  "Privacy Policy" : "Πολιτική Απορρήτου",
+  "About" : "Σχετικά",
+  "Logout" : "Αποσύνδεση"
 }

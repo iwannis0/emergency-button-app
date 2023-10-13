@@ -7,6 +7,8 @@ import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {scaleFontSize} from '../assets/styles/scaling';
 import MedicalHistoryScreen from '../screens/MedicalHistoryScreen/MedicalHistoryScreen';
+import ServicesScreen from '../screens/ServicesScreen/ServicesScreen';
+import SettingsScreen from '../screens/SettingsScreen/SettingsScreen';
 import ProfileScreen from '../screens/ProfileScreen/ProfileScreen';
 import {useTranslation} from 'react-i18next';
 import {t} from 'i18next';
@@ -32,6 +34,7 @@ export const NonAuthenticated = () => {
 
 export const MyHealthStack = () => {
   const {t} = useTranslation();
+
   return (
     <stack.Navigator
       initialRouteName={Routes.Home}
@@ -64,29 +67,37 @@ export const MyHealthStack = () => {
 };
 
 export const ServicesStack = () => {
+  const {t} = useTranslation();
   return (
     <stack.Navigator
-      initialRouteName={Routes.Home}
+      initialRouteName={Routes.ServicesScreen}
       screenOptions={{
         headerShown: true,
         headerTransparent: true, // Set the background color to transparent
       }}>
-      <stack.Screen name={Routes.Services} component={HomeScreen} />
-      <stack.Screen name={Routes.Alerts} component={AlertsScreen} />
+      <stack.Screen
+        name={Routes.ServicesScreen}
+        component={ServicesScreen}
+        options={{headerShown: true, headerTitle: t('Services')}}
+      />
     </stack.Navigator>
   );
 };
 
 export const SettingsStack = () => {
+  const {t} = useTranslation();
   return (
     <stack.Navigator
-      initialRouteName={Routes.Home}
+      initialRouteName={Routes.SettingsScreen}
       screenOptions={{
         headerShown: true,
         headerTransparent: true, // Set the background color to transparent
       }}>
-      <stack.Screen name={Routes.Settings} component={HomeScreen} />
-      <stack.Screen name={Routes.Alerts} component={AlertsScreen} />
+      <stack.Screen
+        name={Routes.SettingsScreen}
+        component={SettingsScreen}
+        options={{headerShown: true, headerTitle: t('Settings')}}
+      />
     </stack.Navigator>
   );
 };
@@ -153,7 +164,7 @@ export const Authenticated = () => {
           ),
           headerShown: false,
         }}
-        name={t('Settings')}
+        name="Settings"
         component={SettingsStack}
       />
     </Tab.Navigator>
