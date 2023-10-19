@@ -24,7 +24,7 @@ const AlertsScreen = () => {
                 type="Allergy"
                 title="Dust (substance)"
                 TopSubtitle="Environment"
-                BottomSubtitle="Allergic dispotition"
+                BottomSubtitle="Allergic disposition"
                 risk="High Risk"
                 status="Active"
                 onset="23/06/23"
