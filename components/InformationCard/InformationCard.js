@@ -94,7 +94,7 @@ const InformationCard = props => {
   }, [props.type]);
 
   return (
-    <View>
+    <View style={styles.informationCardContainer}>
       <ModalComponent
         data={data}
         visibility={modalVisible}
@@ -122,7 +122,7 @@ const InformationCard = props => {
             </View>
           )}
         </View>
-        {/* The second row is only for the Allergy Information and descripes the type of Allergy and status */}
+        {/* The second row is only for the Allergy Information and describes the type of Allergy and status */}
         {row2Flag && (
           <View style={[globalStyle.row, styles.marginTop5]}>
             <Text numberOfLines={1} style={globalStyle.descriptionGrey}>

@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {View, TouchableOpacity, Animated, Text, Image} from 'react-native';
 import styles from './style';
-import InformationCard from '../InformationCard/InformationCard';
 import globalStyle from '../../assets/styles/globalStyle';
 import PropTypes from 'prop-types';
+import Subtitle from '../Subtitle/Subtitle';
 
-const ExpandableContainer = ({expanded, no_items}) => {
+const ExpandableContainer = ({expanded, no_items, children}) => {
   const [height] = useState(new Animated.Value(0));
 
   useEffect(() => {
@@ -17,26 +17,9 @@ const ExpandableContainer = ({expanded, no_items}) => {
   }, [expanded, height, no_items]);
 
   return (
-    <Animated.View
-      style={[
-        globalStyle.backgroundWhite,
-        globalStyle.informationCardContainer,
-      ]}>
+    <Animated.View>
       {!expanded && ( // Conditional rendering
-        <>
-          <InformationCard
-            type="Procedure"
-            title="Test"
-            TopSubtitle="12nm mpla mpla adffasfad adsfadsfadsf dfafasd"
-            BottomSubtitle="36"
-          />
-          <InformationCard
-            type="Procedure"
-            title="Test2"
-            TopSubtitle="12nm mpla mpla adffasfad adsfadsfadsf dfafasd"
-            BottomSubtitle="36"
-          />
-        </>
+        <>{children}</>
       )}
     </Animated.View>
   );
@@ -67,13 +50,16 @@ const ExpandableView = props => {
           source={require('../../assets/images/forNavigation/Arrow.png')}
         />
       </View>
-      <ExpandableContainer expanded={isExpanded} no_items={2} />
+      <ExpandableContainer expanded={isExpanded} no_items={2}>
+        {props.children}
+      </ExpandableContainer>
     </View>
   );
 };
 
 ExpandableView.propTypes = {
   title: PropTypes.string.isRequired,
+  children: PropTypes.any,
 };
 
 export default ExpandableView;

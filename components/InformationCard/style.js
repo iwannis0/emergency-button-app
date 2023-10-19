@@ -6,6 +6,15 @@ import {
 } from '../../assets/styles/scaling';
 
 const styles = StyleSheet.create({
+  informationCardContainer: {
+    borderRadius: 10,
+    marginHorizontal: 7,
+    shadowOffset: {width: 1, height: 4, borderRadius: 20},
+    shadowColor: 'rgba(212, 212, 212)',
+    shadowOpacity: 0.75,
+    elevation: 5,
+    backgroundColor: '#FFFFFF',
+  },
   container: {
     height: verticalScale(80),
     borderRadius: horizontalScale(15),
@@ -37,6 +46,10 @@ const styles = StyleSheet.create({
   cirlce: {
     marginRight: horizontalScale(5),
     color: 'green',
+  },
+  horizontalLine: {
+    borderBottomColor: '#D4D4D4',
+    borderBottomWidth: 1,
   },
 });
 

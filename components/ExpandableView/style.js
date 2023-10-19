@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   },
   toggleText: {
     justifyContent: 'center',
-    marginLeft: horizontalScale(20),
+    marginLeft: horizontalScale(15),
     marginTop: verticalScale(15),
   },
   arrow_image: {
