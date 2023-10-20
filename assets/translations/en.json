@@ -39,5 +39,16 @@
   "Terms of Use" : "Terms of Use",
   "Privacy Policy" : "Privacy Policy",
   "About" : "About",
-  "Logout" : "Logout"
+  "Logout" : "Logout",
+  "__________________________LoadingComponent__________________________" : "",
+  "Loading..." : "Loading...",
+  "__________________________LoginScreen__________________________" : "",
+  "Login" : "Login",
+  "Username" : "Username",
+  "Password" : "Password",
+  "Incorrect username or password" : "Incorrect username or password",
+  "Sign In" : "Sign In",
+  "Forgot your Password?" : "Forgot your Password?",
+  "Don't have an account?" : "Don't have an account?",
+  "Join now" : "Join now"
 }

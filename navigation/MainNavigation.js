@@ -11,6 +11,7 @@ import ServicesScreen from '../screens/ServicesScreen/ServicesScreen';
 import SettingsScreen from '../screens/SettingsScreen/SettingsScreen';
 import ProfileScreen from '../screens/ProfileScreen/ProfileScreen';
 import {useTranslation} from 'react-i18next';
+import LoginScreen from '../screens/LoginScreen/LoginScreen';
 import {t} from 'i18next';
 
 const ICON_SIZE = scaleFontSize(25);
@@ -23,12 +24,13 @@ const Tab = createBottomTabNavigator();
 export const NonAuthenticated = () => {
   return (
     <stack.Navigator
-      initialRouteName={Routes.Login}
+      initialRouteName={Routes.LoginScreen}
       screenOptions={{
         header: () => null,
         headerShown: false,
-      }}
-    />
+      }}>
+      <stack.Screen name={Routes.LoginScreen} component={LoginScreen} />
+    </stack.Navigator>
   );
 };
 
