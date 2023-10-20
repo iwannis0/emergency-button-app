@@ -1,18 +1,18 @@
 import React, {useEffect} from 'react';
 import {View} from 'react-native';
 import InformationCard from '../../../../components/InformationCard/InformationCard';
-import {getDevices} from './api/medicalPersonalHistoryAPI';
+import {getFunctionalStatus} from './api/medicalPersonalHistoryAPI';
 import {getPatientId} from '../../../../common/features/tokenContext';
 import {getFullDateDayMonthYear} from '../../../../common/features/dateTransformations';
-import {IInitialDeviceAndImplants} from './interface/IDeviceAndImplants';
+import {IFunctionalStatus} from './interface/IFunctionalStatus';
 
-const DeviceAndImplants = () => {
+const FunctionalStatus = () => {
   const fetchData = async () => {
-    const data = await getDevices(getPatientId());
+    const data = await getFunctionalStatus(getPatientId());
     return data.data;
   };
 
-  const [data, setData] = React.useState<IInitialDeviceAndImplants[]>([]);
+  const [data, setData] = React.useState<IFunctionalStatus[]>([]);
 
   useEffect(() => {
     fetchData().then(data => {
@@ -27,21 +27,12 @@ const DeviceAndImplants = () => {
         data.map(item => {
           return (
             <InformationCard
-              type={'Device'}
+              type={'Procedure'}
               title={
-                item.device?.type?.snomedMedicalDevice?.at(0)?.display ||
-                item.device?.type?.ipsAbsentOrUnknownDevice?.at(0)?.code ||
-                '-'
+                item.value?.coding?.at(0)?.display || item.value?.text || '-'
               }
               TopSubtitle={
-                getFullDateDayMonthYear(
-                  item.procedures?.at(0)?.performed?.dateTime,
-                ) || '-'
-              }
-              BottomSubtitle={
-                getFullDateDayMonthYear(
-                  item.procedures?.at(1)?.performed?.dateTime,
-                ) || '-'
+                getFullDateDayMonthYear(item.effectiveDateTime) || '-'
               }
             />
           );
@@ -50,7 +41,7 @@ const DeviceAndImplants = () => {
   );
 };
 
-export default DeviceAndImplants;
+export default FunctionalStatus;
 
 const styles = {
   removeMargin: {

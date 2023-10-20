@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {ITravelHistoryType} from '../interface/ITravelHistoryType';
 import {IBackendResponse} from '../../../../../common/interfaces/IBackedResponse';
-import {getToken} from '../../../../../common/tokenContext';
+import {getToken} from '../../../../../common/features/tokenContext';
 
 export const getTravelHistory = async (
   param: string,

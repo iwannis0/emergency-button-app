@@ -5,11 +5,27 @@ const globalStyle = StyleSheet.create({
   backgroundWhite: {
     backgroundColor: '#FFFFFF',
   },
-  descriptionBlack: {
+  descriptionBlackL1: {
     fontFamily: 'Inter',
     fontWeight: '400',
     fontSize: scaleFontSize(18),
-    lineHeight: scaleFontSize(22),
+    lineHeight: scaleFontSize(25),
+    color: '#212121',
+  },
+  descriptionBlackL2: {
+    fontFamily: 'Inter',
+    fontWeight: '200',
+    fontSize: scaleFontSize(17),
+    lineHeight: scaleFontSize(20),
+    paddingLeft: verticalScale(5),
+    color: '#212121',
+  },
+  descriptionBlackL3: {
+    fontFamily: 'Inter',
+    fontWeight: '400',
+    fontSize: scaleFontSize(16),
+    lineHeight: scaleFontSize(16),
+    paddingLeft: verticalScale(10),
     color: '#212121',
   },
   descriptionGrey: {

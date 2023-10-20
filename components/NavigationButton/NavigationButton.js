@@ -14,7 +14,7 @@ const NavigationButton = props => {
           )}
           <Text
             style={[
-              globalStyle.descriptionBlack,
+              globalStyle.descriptionBlackL1,
               props.title === 'Logout' || props.title === 'Αποσύνδεση'
                 ? styles.red_title
                 : styles.title,

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, Image, ScrollView, SafeAreaView} from 'react-native';
+import {Image, SafeAreaView, ScrollView, Text, View} from 'react-native';
 import globalStyle from '../../assets/styles/globalStyle';
 import NavigationButton from '../../components/NavigationButton/NavigationButton';
 import styles from './style';
@@ -29,7 +29,7 @@ const ProfileScreen = ({navigation}) => {
             />
             <Text style={styles.ImageInitials}>SV</Text>
           </View>
-          <Text style={[globalStyle.descriptionBlack, styles.Name]}>
+          <Text style={[globalStyle.descriptionBlackL1, styles.Name]}>
             Stavri Charilaou
           </Text>
         </View>

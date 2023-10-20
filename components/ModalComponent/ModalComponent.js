@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Modal, TouchableOpacity, FlatList} from 'react-native';
+import {FlatList, Modal, Text, TouchableOpacity, View} from 'react-native';
 import Modalinfo from '../Modalinfo/Modalinfo';
 import PropTypes from 'prop-types';
 import styles from './style';
@@ -11,7 +11,7 @@ const ModalComponent = props => {
       <View style={[styles.centeredView, globalStyle.fullyCentered]}>
         <View style={[styles.modalView, globalStyle.backgroundWhite]}>
           <View style={[globalStyle.row, styles.modaltitle]}>
-            <Text style={[globalStyle.descriptionBlack, {fontWeight: 600}]}>
+            <Text style={[globalStyle.descriptionBlackL1, {fontWeight: 600}]}>
               Allergy
             </Text>
             <TouchableOpacity onPress={props.toggle}>
