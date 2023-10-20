@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {View, TouchableOpacity, Animated, Text, Image} from 'react-native';
+import {Animated, Image, Text, TouchableOpacity, View} from 'react-native';
 import styles from './style';
 import globalStyle from '../../assets/styles/globalStyle';
 import PropTypes from 'prop-types';
-import Subtitle from '../Subtitle/Subtitle';
+import {verticalScale} from '../../assets/styles/scaling';
 
-const ExpandableContainer = ({expanded, no_items, children}) => {
+const ExpandableContainer = ({expanded, no_items, expandLevel, children}) => {
   const [height] = useState(new Animated.Value(0));
 
   useEffect(() => {
@@ -17,7 +17,18 @@ const ExpandableContainer = ({expanded, no_items, children}) => {
   }, [expanded, height, no_items]);
 
   return (
-    <Animated.View>
+    <Animated.View
+      style={[
+        expandLevel === 1
+          ? {
+              backgroundColor: '#e8e8ea',
+            }
+          : expandLevel === 2
+          ? {
+              backgroundColor: '#d9d9da',
+            }
+          : {},
+      ]}>
       {!expanded && ( // Conditional rendering
         <>{children}</>
       )}
@@ -34,10 +45,35 @@ const ExpandableView = props => {
         onPress={() => {
           setIsExpanded(!isExpanded);
         }}
-        style={styles.toggle}>
-        <Text style={[globalStyle.descriptionBlack, styles.toggleText]}>
-          {props.title}
-        </Text>
+        style={[
+          styles.toggle,
+          props.expandLevel === 1
+            ? {
+                backgroundColor: '#e8e8ea',
+                height: verticalScale(42),
+              }
+            : props.expandLevel === 2
+            ? {
+                backgroundColor: '#d9d9da',
+                height: verticalScale(42),
+              }
+            : {},
+        ]}>
+        {props.expandLevel === 0 && (
+          <Text style={[globalStyle.descriptionBlackL1, styles.toggleText]}>
+            {props.title}
+          </Text>
+        )}
+        {props.expandLevel === 1 && (
+          <Text style={[globalStyle.descriptionBlackL2, styles.toggleText]}>
+            {props.title}
+          </Text>
+        )}
+        {props.expandLevel === 2 && (
+          <Text style={[globalStyle.descriptionBlackL3, styles.toggleText]}>
+            {props.title}
+          </Text>
+        )}
       </TouchableOpacity>
       <View style={styles.arrow_container}>
         <Image
@@ -50,7 +86,10 @@ const ExpandableView = props => {
           source={require('../../assets/images/forNavigation/Arrow.png')}
         />
       </View>
-      <ExpandableContainer expanded={isExpanded} no_items={2}>
+      <ExpandableContainer
+        expanded={isExpanded}
+        no_items={2}
+        expandLevel={props.expandLevel}>
         {props.children}
       </ExpandableContainer>
     </View>
@@ -60,6 +99,7 @@ const ExpandableView = props => {
 ExpandableView.propTypes = {
   title: PropTypes.string.isRequired,
   children: PropTypes.any,
+  expandLevel: PropTypes.number,
 };
 
 export default ExpandableView;

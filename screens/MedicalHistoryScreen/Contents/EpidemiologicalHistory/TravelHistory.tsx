@@ -5,16 +5,13 @@ import Subtitle from '../../../../components/Subtitle/Subtitle';
 import {ITravelHistoryType} from './interface/ITravelHistoryType';
 import {getTravelHistory} from './api/travelHistoryAPI';
 import {useTranslation} from 'react-i18next';
-import {getPatientId} from '../../../../common/tokenContext';
+import {getPatientId} from '../../../../common/features/tokenContext';
 
 const TravelHistory = () => {
   const {t} = useTranslation();
 
   const fetchData = async () => {
     const data = await getTravelHistory(getPatientId());
-
-    console.log(data.data);
-
     return data.data;
   };
 

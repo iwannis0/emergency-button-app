@@ -1,12 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Modal,
-  ScrollView,
-  FlatList,
-} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 import styles from './style';
 import PropTypes from 'prop-types';
 import data from '../../testing/dummydata/infocardDummy';
@@ -106,7 +99,7 @@ const InformationCard = props => {
         onPress={() => toggleModal()}>
         {/* The first row includes the item of discussion and also if applicable its risk factor */}
         <View style={[globalStyle.row, {marginTop: row1TopMargin}]}>
-          <Text numberOfLines={1} style={globalStyle.descriptionBlack}>
+          <Text numberOfLines={1} style={globalStyle.descriptionBlackL1}>
             {props.title.length < CHARACTER_LIMIT
               ? `${props.title}`
               : `${props.title.substring(0, CHARACTER_LIMIT)}...`}
