@@ -1,5 +1,5 @@
 import React from 'react';
-import {Authenticated} from './MainNavigation';
+import {Authenticated, NonAuthenticated} from './MainNavigation';
 
 const RootNavigation = () => {
   //const user = useSelector(state => state.user);

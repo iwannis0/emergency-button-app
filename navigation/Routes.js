@@ -1,4 +1,5 @@
 export const Routes = {
+  LoginScreen: 'LoginScreen',
   Home: 'Home',
   ServicesScreen: 'ServicesScreen',
   SettingsScreen: 'SettingsScreen',
