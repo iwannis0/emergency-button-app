@@ -27,16 +27,16 @@ const PregnancyHistory = () => {
 
   if (data && data.pregnancyOutcome && data.pregnancyOutcome.length > 0) {
     data.pregnancyOutcome.forEach(item => {
-      if (item.code?.code === '11640-0') {
-        totalBirths = totalBirths + 1;
+      if (item.code?.code === '11640-0' && item.value) {
+        totalBirths = totalBirths + item.value;
       }
 
-      if (item.code?.code === '11612-9') {
-        totalAbortions = totalAbortions + 1;
+      if (item.code?.code === '11612-9' && item.value) {
+        totalAbortions = totalAbortions + item.value;
       }
 
-      if (item.code?.code === '33065-4') {
-        totalEcotopicPregnancies = totalEcotopicPregnancies + 1;
+      if (item.code?.code === '33065-4' && item.value) {
+        totalEcotopicPregnancies = totalEcotopicPregnancies + item.value;
       }
     });
 
