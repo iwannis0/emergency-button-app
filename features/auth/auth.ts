@@ -39,21 +39,37 @@ const signIn = async (username: string, password: string) => {
             response.access_token,
             patientId,
           )
-            .then(() => {
-              return true;
+            .then(res => {
+              return {
+                status: true,
+                data: {
+                  id: patientId,
+                  name: res.data.name?.givenName[0],
+                  surname: res.data.name?.familyName,
+                  token: response.access_token,
+                  loggedIn: true,
+                },
+              };
             })
             .catch(() => {
-              return false;
+              return {
+                status: false,
+              };
             });
-
           return patientResponse;
         }
       })
       .catch((error: any) => {
         console.log('error', error);
+        return {
+          status: false,
+        };
       });
   } catch (error) {
     console.log('error', error);
+    return {
+      status: false,
+    };
   }
 };
 

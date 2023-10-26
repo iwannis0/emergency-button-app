@@ -14,9 +14,13 @@ import {useTranslation} from 'react-i18next';
 import Loading from '../../components/Loading/Loading';
 import i18n from '../../assets/translations/i18next';
 import {signIn} from '../../features/auth/auth';
+import {useRecoilState} from 'recoil';
+import {userState, User} from '../../features/recoil/User';
 
 const LoginScreen = ({navigation}) => {
   const {t} = useTranslation();
+  const [user, setUser] = useRecoilState(userState);
+
   const [loading, setLoading] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [incorrectPwd, setincorrectPwd] = useState(false);
@@ -26,9 +30,9 @@ const LoginScreen = ({navigation}) => {
   async function handleLogin() {
     const signingRepsonse = await signIn(username, password);
 
-    if (signingRepsonse) {
+    if (signingRepsonse.status) {
       setLoading(false);
-      navigation.navigate('Home');
+      setUser(signingRepsonse.data);
     } else {
       setLoading(false);
       setincorrectPwd(true);
