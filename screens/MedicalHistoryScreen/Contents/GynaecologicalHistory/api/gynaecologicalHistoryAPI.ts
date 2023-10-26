@@ -1,17 +1,14 @@
 import {IBackendResponse} from '../../../../../common/interfaces/IBackedResponse';
 import axios from 'axios/index';
 import {getToken} from '../../../../../common/features/tokenContext';
-import {
-  IGynaecologicalHistory,
-  IPregnancyOutcome,
-} from '../interface/IGynaecologicalHistory';
+import {IGynaecologicalHistory} from '../interface/IGynaecologicalHistory';
 
 export const getPregnancyOutcome = async (
   param: string,
   pageSize: number = 10,
   pageNumber: number = 1,
-): Promise<IBackendResponse<IPregnancyOutcome[]>> => {
-  const response = await axios.get<IBackendResponse<IPregnancyOutcome[]>>(
+): Promise<IBackendResponse<IGynaecologicalHistory>> => {
+  const response = await axios.get<IBackendResponse<IGynaecologicalHistory>>(
     `https://dev-api.ehealth4u.eu/api/Observation/PregnancyDetails/GetPregnancyDetailsForPatient`,
     {
       headers: {
@@ -25,7 +22,7 @@ export const getPregnancyOutcome = async (
     },
   );
 
-  console.log('response.data', response.data);
+  console.log('response.data', response.data.data);
 
   return response.data;
 };

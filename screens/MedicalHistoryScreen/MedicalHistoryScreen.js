@@ -9,6 +9,8 @@ import AllergiesAndIntolerances from './Contents/MedicalPersonalHistory/Allergie
 import DevicesAndImplants from './Contents/MedicalPersonalHistory/DevicesAndImplants';
 import MedicationSummary from './Contents/MedicalPersonalHistory/MedicationSummary';
 import ProblemsAndProcedures from './Contents/MedicalPersonalHistory/ProblemsAndProcedures';
+import PregnancyHistory from './Contents/GynaecologicalHistory/PregnancyHistory';
+import PregnancyOutcome from './Contents/GynaecologicalHistory/PregnancyOutcome';
 
 const MedicalHistoryScreen = () => {
   const {t} = useTranslation();
@@ -49,10 +51,14 @@ const MedicalHistoryScreen = () => {
                 <MedicationSummary />
               </ExpandableView>
             </ExpandableView>
-            <ExpandableView
-              title={t('Gynecological History')}
-              expandLevel={0}
-            />
+            <ExpandableView title={t('Gynecological History')} expandLevel={0}>
+              <ExpandableView title={t('Pregnancy Outcome')} expandLevel={1}>
+                <PregnancyOutcome />
+              </ExpandableView>
+              <ExpandableView title={t('Pregnancy History')} expandLevel={1}>
+                <PregnancyHistory />
+              </ExpandableView>
+            </ExpandableView>
             <ExpandableView title={t('Social History')} expandLevel={0} />
             <ExpandableView title={t('Immunization')} expandLevel={0} />
             <ExpandableView title={t('Plan of Care')} expandLevel={0} />
