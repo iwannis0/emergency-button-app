@@ -1,18 +1,8 @@
 import {atom} from 'recoil';
+import {IUser} from './interfaces/IUser';
+import {User} from './models/User';
 
-export interface User {
-  name: string;
-  username: string;
-  loggedIn: boolean;
-  token: string;
-}
-
-export const userState = atom<User>({
+export const userState = atom<IUser>({
   key: 'userState',
-  default: {
-    name: '',
-    username: '',
-    loggedIn: false,
-    token: '',
-  },
+  default: new User(),
 });
