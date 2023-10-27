@@ -6,23 +6,18 @@ import globalStyle from '../../assets/styles/globalStyle';
 import {useTranslation} from 'react-i18next';
 import {useResetRecoilState} from 'recoil';
 import {userState} from '../../features/recoil/atoms/User/userState';
+import {signOut} from '../../features/auth/auth';
 
 const SettingsScreen = ({navigation}) => {
   const {t} = useTranslation();
   const resetUser = useResetRecoilState(userState);
 
   async function handleLogout() {
-    resetUser();
+    const logoutResponse = await signOut();
+    if (logoutResponse === 'Success') {
+      resetUser();
+    }
     return;
-    // const signingRepsonse = await signIn(username, password);
-
-    // if (signingRepsonse.status) {
-    //   setLoading(false);
-    //   setUser(signingRepsonse.data);
-    // } else {
-    //   setLoading(false);
-    //   setincorrectPwd(true);
-    // }
   }
 
   return (
