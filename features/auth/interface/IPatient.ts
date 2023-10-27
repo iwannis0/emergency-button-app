@@ -35,7 +35,4 @@ export interface IPatient {
     address?: IAddress[];
     refOrganization?: string;
   };
-
-  // GENERAL PRACTITIONER INFORMATION
-  //?????
 }
