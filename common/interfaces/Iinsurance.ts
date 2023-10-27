@@ -1,4 +1,4 @@
-export interface Iinsurance {
+export interface IInsurance {
   organizationName: string;
   planIdentifier: string;
 }
