@@ -1,18 +1,15 @@
 import {IAddress} from '../../../common/interfaces/IAddress';
 import {ITelecom} from '../../../common/interfaces/ITelecom';
-import {Iinsurance} from '../../../common/interfaces/Iinsurance';
+import {IInsurance} from '../../../common/interfaces/IInsurance';
 
 export interface IPatient {
-  // IDENTIFICATION
   id: string;
   nationalIdentity?: {
     documentNumber?: string;
   };
 
-  //INSURANCE INFORMATION
-  insurance?: Iinsurance[];
+  insurance?: IInsurance[];
 
-  //PERSONAL INFORMATION
   name?: {
     givenName: string[];
     familyName: string;
@@ -20,11 +17,9 @@ export interface IPatient {
   birthDate: Date;
   gender: string;
 
-  // PERSONAL CONTACT INFORMATION
   address?: IAddress[];
   telecom?: ITelecom[];
 
-  //EMERGENCY CONTACT INFORMATION
   nextOfKinContact?: {
     relationship?: String;
     name?: {

@@ -41,7 +41,7 @@ const signIn = async (username: string, password: string) => {
           )
             .then(res => {
               return {
-                status: true,
+                status: 'Authorized',
                 data: {
                   id: patientId,
                   name: res.data.name?.givenName[0],
@@ -51,9 +51,10 @@ const signIn = async (username: string, password: string) => {
                 },
               };
             })
-            .catch(() => {
+            .catch((error: any) => {
+              console.log('error', error);
               return {
-                status: false,
+                status: 'Unauthorized',
               };
             });
           return patientResponse;
@@ -62,13 +63,13 @@ const signIn = async (username: string, password: string) => {
       .catch((error: any) => {
         console.log('error', error);
         return {
-          status: false,
+          status: 'Unauthorized',
         };
       });
   } catch (error) {
     console.log('error', error);
     return {
-      status: false,
+      status: 'Unauthorized',
     };
   }
 };

@@ -30,7 +30,7 @@ const LoginScreen = ({navigation}) => {
   async function handleLogin() {
     const signingRepsonse = await signIn(username, password);
 
-    if (signingRepsonse.status) {
+    if (signingRepsonse.status === 'Authorized') {
       setLoading(false);
       setUser(signingRepsonse.data);
     } else {
