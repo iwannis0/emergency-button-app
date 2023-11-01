@@ -74,4 +74,14 @@ const signIn = async (username: string, password: string) => {
   }
 };
 
-export {signIn};
+const signOut = async () => {
+  try {
+    await Keycloak.logout(keycloakConfig);
+    await Keychain.resetGenericPassword();
+    return 'Success';
+  } catch (error) {
+    console.log('error', error);
+    return 'Failed';
+  }
+};
+export {signIn, signOut};

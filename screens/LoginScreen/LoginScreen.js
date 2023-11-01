@@ -15,7 +15,7 @@ import Loading from '../../components/Loading/Loading';
 import i18n from '../../assets/translations/i18next';
 import {signIn} from '../../features/auth/auth';
 import {useRecoilState} from 'recoil';
-import {userState, User} from '../../features/recoil/User';
+import {userState, User} from '../../features/recoil/atoms/User/userState';
 
 const LoginScreen = ({navigation}) => {
   const {t} = useTranslation();
