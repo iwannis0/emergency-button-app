@@ -14,7 +14,11 @@ const keycloakConfig: any = {
   redirectUri: 'PATHeD://Home',
 };
 
-const signIn = async (username: string, password: string) => {
+const signIn = async (
+  username: string,
+  password: string,
+  keepLoggedIn: boolean,
+) => {
   try {
     return await Keycloak.login(
       keycloakConfig,
@@ -23,12 +27,15 @@ const signIn = async (username: string, password: string) => {
       'openid profile fhir email offline_access',
     )
       .then(async (response: IKeycloakResponse) => {
-        // User can be either patient or practitioner
         let user = jwt_decode<IKeycloakUser>(response.access_token);
 
-        // Save the credentials in the keychain
-        await Keychain.setGenericPassword(username, response.access_token);
-
+        // Keep Logged In Functionality
+        if (keepLoggedIn) {
+          await Keychain.setGenericPassword(username, password);
+        } else {
+          await Keychain.resetGenericPassword();
+        }
+        console.log(response.access_token);
         if (user.resource_access.fhir.roles.includes('Patients')) {
           let patientId = user.fhirResourceId
             ?.find(id => id.includes('Patient/'))
@@ -46,8 +53,9 @@ const signIn = async (username: string, password: string) => {
                   id: patientId,
                   name: res.data.name?.givenName[0],
                   surname: res.data.name?.familyName,
-                  token: response.access_token,
                   loggedIn: true,
+                  keepLoggedIn: keepLoggedIn,
+                  token: response.access_token,
                 },
               };
             })
@@ -84,4 +92,38 @@ const signOut = async () => {
     return 'Failed';
   }
 };
-export {signIn, signOut};
+
+const RefreshToken = async (keepLoggedIn: boolean) => {
+  try {
+    const response = await Keycloak.refreshToken();
+    return {
+      status: 'SuccesfulRefresh',
+      token: response.access_token,
+    };
+  } catch (error: any) {
+    const errorDescription = JSON.parse(error.message).error_description;
+
+    if (errorDescription === 'Token is not active' && keepLoggedIn) {
+      const credentials = await Keychain.getGenericPassword();
+      if (credentials) {
+        const login = await signIn(
+          credentials.username,
+          credentials.password,
+          true,
+        );
+        return login.status === 'Authorized'
+          ? {status: 'SuccesfulRefresh', token: login.data.token}
+          : {status: 'LoggoutAlert'};
+      }
+    }
+
+    if (errorDescription === 'Token is not active' || !keepLoggedIn) {
+      return {status: 'LoggoutAlert'};
+    }
+
+    console.log('error', error);
+    return {status: 'Failed', error};
+  }
+};
+
+export {signIn, signOut, RefreshToken};

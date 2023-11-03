@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   },
   login: {
     fontWeight: '700',
-    marginTop: verticalScale(45),
+    marginTop: verticalScale(30),
     marginLeft: horizontalScale(24),
   },
   input: {
@@ -75,6 +75,12 @@ const styles = StyleSheet.create({
     marginLeft: horizontalScale(25),
     marginTop: verticalScale(10),
     fontSize: scaleFontSize(16),
+  },
+  keepLoggedInContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: horizontalScale(20),
+    marginTop: verticalScale(10),
   },
 });
 

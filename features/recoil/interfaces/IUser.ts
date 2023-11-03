@@ -1,6 +1,8 @@
 export interface IUser {
+  id: string;
   name: string;
-  username: string;
+  surname: string;
   loggedIn: boolean;
+  keepLoggedIn: boolean;
   token: string;
 }
