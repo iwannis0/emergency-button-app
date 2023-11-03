@@ -56,5 +56,9 @@
   "Sign In" : "Sign In",
   "Forgot your Password?" : "Forgot your Password?",
   "Don't have an account?" : "Don't have an account?",
-  "Join now" : "Join now"
+  "Join now" : "Join now",
+  "keep-me-logged-in" : "Keep me logged in",
+  "__________________________TokenManager__________________________" : "",
+  "Alert-Title" : "Session Expired",
+  "Alert-Description" : "Please login again to continue"
 }

@@ -7,6 +7,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
   Button,
+  Switch,
 } from 'react-native';
 import globalStyle from '../../assets/styles/globalStyle';
 import styles from './style';
@@ -20,22 +21,22 @@ import {userState, User} from '../../features/recoil/atoms/User/userState';
 const LoginScreen = ({navigation}) => {
   const {t} = useTranslation();
   const [user, setUser] = useRecoilState(userState);
-
   const [loading, setLoading] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const [incorrectPwd, setincorrectPwd] = useState(false);
+  const [incorrectPwd, setIncorrectPassword] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [keepLoggedIn, setKeepLoggedIn] = useState(false);
+  const AUTHORIZED = 'Authorized';
 
   async function handleLogin() {
-    const signingRepsonse = await signIn(username, password);
-
-    if (signingRepsonse.status === 'Authorized') {
+    const signingRepsonse = await signIn(username, password, keepLoggedIn);
+    if (signingRepsonse.status === AUTHORIZED) {
       setLoading(false);
       setUser(signingRepsonse.data);
     } else {
       setLoading(false);
-      setincorrectPwd(true);
+      setIncorrectPassword(true);
     }
   }
 
@@ -80,6 +81,18 @@ const LoginScreen = ({navigation}) => {
             {t('Incorrect username or password')}
           </Text>
         )}
+
+        <View style={styles.keepLoggedInContainer}>
+          <Switch
+            trackColor={{true: '497C79'}}
+            thumbColor={keepLoggedIn ? '#497C79' : '#f4f3f4'}
+            onValueChange={() => setKeepLoggedIn(!keepLoggedIn)}
+            value={keepLoggedIn}
+          />
+          <Text style={[globalStyle.descriptionBlack]}>
+            {t('keep-me-logged-in')}
+          </Text>
+        </View>
 
         {/* Sign In Button */}
         <TouchableOpacity
