@@ -1,19 +1,24 @@
-const TOKEN_REFRESH_INTERVAL = 5000; // five minutes
-const TOKEN_REFRESH_THRESHOLD = 20;
-const LOGOUT = 'Logout';
-const AUTHENTICATION = 'Authentication';
-import {TokensUtils, TokenStorage} from 'react-native-keycloak-plugin';
-import {RefreshToken} from '../../features/auth/auth';
-import {useRecoilValue, useSetRecoilState} from 'recoil';
-import {tokenSelector} from '../../features/recoil/selectors/userSelectors';
-import {keepLoggedInSelector} from '../../features/recoil/selectors/UserPreferencesSelectors';
+// Basics
 import {useEffect} from 'react';
 import {Alert} from 'react-native';
-import {useResetRecoilState} from 'recoil';
-import {userState} from '../../features/recoil/atoms/User/userState';
-import {signOut} from '../../features/auth/auth';
 import {useState, useCallback} from 'react';
 import {useTranslation} from 'react-i18next';
+
+// Constants
+const LOGOUT = 'Logout';
+const AUTHENTICATION = 'Authentication';
+const TOKEN_REFRESH_THRESHOLD = 20;
+const TOKEN_REFRESH_INTERVAL = 5000; // five minutes
+
+// Values
+import {useRecoilState} from 'recoil';
+import {useResetRecoilState} from 'recoil';
+import {userState} from '../../features/recoil/atoms/User/userState';
+import {UserPreferencesState} from '../recoil/atoms/UserPreferences/UserPreferencesState';
+
+// Functions
+import {TokensUtils} from 'react-native-keycloak-plugin';
+import {signOut, RefreshToken} from '../../features/auth/auth';
 
 async function handleLogout(resetUser, resetKeychain) {
   const logoutResponse = await signOut(resetKeychain);
@@ -42,11 +47,10 @@ async function refreshableFetch(keepLoggedIn, token) {
 
 const TokenManager = () => {
   const {t} = useTranslation();
-  const token = useRecoilValue(tokenSelector);
-  const setToken = useSetRecoilState(tokenSelector);
-  const keepLoggedIn = useRecoilValue(keepLoggedInSelector);
-  const resetUser = useResetRecoilState(userState);
   const [isPaused, setIsPaused] = useState(false);
+  const [user, setUser] = useRecoilState(userState);
+  const resetUser = useResetRecoilState(userState);
+  const userPreferences = useRecoilState(UserPreferencesState);
 
   const showAlert = useCallback(
     alertType => {
@@ -73,7 +77,10 @@ const TokenManager = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const message = await refreshableFetch(keepLoggedIn, token);
+      const message = await refreshableFetch(
+        userPreferences.keepLoggedIn,
+        user.token,
+      );
       console.log(message);
       if (message.status === 'LoggoutAlert') {
         setIsPaused(true);
@@ -82,7 +89,10 @@ const TokenManager = () => {
         setIsPaused(true);
         showAlert(AUTHENTICATION);
       } else if (message.status === 'SuccesfulRefresh') {
-        setToken(message.token);
+        setUser(currentUser => ({
+          ...currentUser,
+          token: message.token,
+        }));
       }
     };
 
@@ -96,7 +106,7 @@ const TokenManager = () => {
         clearInterval(intervalId);
       };
     }
-  }, [setToken, keepLoggedIn, resetUser, isPaused, showAlert, token]);
+  }, [userPreferences, isPaused, showAlert, user, setUser, resetUser]);
 };
 
 export default TokenManager;

@@ -4,7 +4,7 @@ import {UserPreferences} from './UserPreferences';
 import {persistAtom} from '../../persistAtom';
 
 export const UserPreferencesState = atom<IUserPreferences>({
-  key: 'keepLoggedInState',
+  key: 'userPreferencesState',
   default: new UserPreferences(false, 'English'),
   effects_UNSTABLE: [persistAtom('keepLoggedInPersistened')],
 });

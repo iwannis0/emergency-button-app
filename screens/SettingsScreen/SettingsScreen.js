@@ -1,23 +1,36 @@
+// Basics
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {SafeAreaView, ScrollView, View} from 'react-native';
-import NavigationButton from '../../components/NavigationButton/NavigationButton';
+
+// Styles
 import styles from './style';
 import globalStyle from '../../assets/styles/globalStyle';
-import {useTranslation} from 'react-i18next';
-import {useResetRecoilState, useSetRecoilState} from 'recoil';
+
+// Components
+import NavigationButton from '../../components/NavigationButton/NavigationButton';
+
+// Values
+import {useRecoilState, useResetRecoilState} from 'recoil';
 import {userState} from '../../features/recoil/atoms/User/userState';
+import {UserPreferencesState} from '../../features/recoil/atoms/UserPreferences/UserPreferencesState';
+
+// Functions
 import {signOut} from '../../features/auth/auth';
-import {keepLoggedInSelector} from '../../features/recoil/selectors/UserPreferencesSelectors';
 
 const SettingsScreen = ({navigation}) => {
   const {t} = useTranslation();
+  const [userPreferences, setUserPreferences] =
+    useRecoilState(UserPreferencesState);
   const resetUser = useResetRecoilState(userState);
-  const setKeepLoggedIn = useSetRecoilState(keepLoggedInSelector);
 
   async function handleLogout() {
     const logoutResponse = await signOut(true);
     if (logoutResponse === 'Success') {
-      setKeepLoggedIn(false);
+      setUserPreferences(currentUserPreferences => ({
+        ...currentUserPreferences,
+        keepLoggedIn: false,
+      }));
       resetUser();
     }
     return;

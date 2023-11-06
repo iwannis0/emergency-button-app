@@ -1,3 +1,4 @@
+// Basics
 import React, {useState, useEffect} from 'react';
 import {
   View,
@@ -9,24 +10,35 @@ import {
   Button,
   Switch,
 } from 'react-native';
-import globalStyle from '../../assets/styles/globalStyle';
-import styles from './style';
 import {useTranslation} from 'react-i18next';
-import Loading from '../../components/Loading/Loading';
 import i18n from '../../assets/translations/i18next';
-import {signIn} from '../../features/auth/auth';
+
+// Styles
+import styles from './style';
+import globalStyle from '../../assets/styles/globalStyle';
+
+// Components
+import Loading from '../../components/Loading/Loading';
+
+// Constants
+const AUTHORIZED = 'Authorized';
+
+// Values
 import {useRecoilState} from 'recoil';
-import {userState, User} from '../../features/recoil/atoms/User/userState';
+import {userState} from '../../features/recoil/atoms/User/userState';
+import {UserPreferencesState} from '../../features/recoil/atoms/UserPreferences/UserPreferencesState';
+
+// Functions
+import {signIn} from '../../features/auth/auth';
 import {useIsFocused} from '@react-navigation/native';
-import {keepLoggedInSelector} from '../../features/recoil/selectors/UserPreferencesSelectors';
 
 const LoginScreen = ({navigation}) => {
   const {t} = useTranslation();
-  const AUTHORIZED = 'Authorized';
   const isFocused = useIsFocused();
 
   const [user, setUser] = useRecoilState(userState);
-  const [keepLoggedIn, setKeepLoggedIn] = useRecoilState(keepLoggedInSelector);
+  const [userPreferences, setUserPreferences] =
+    useRecoilState(UserPreferencesState);
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -36,20 +48,24 @@ const LoginScreen = ({navigation}) => {
   const [keepLoggedInSwitch, setKeepLoggedInSwitch] = useState(false);
 
   useEffect(() => {
-    if (isFocused && keepLoggedIn) {
+    if (isFocused && userPreferences.keepLoggedIn) {
       // Authenticate User
       // If true Refresh Token and set userState
       // WILL BE DONE IN NEXT PR
       console.log('Updating User');
     }
-  }, [isFocused, keepLoggedIn]); // The effect depends on the focused state
+  }, [isFocused, userPreferences]); // The effect depends on the focused state
 
   async function handleLogin() {
     const signingRepsonse = await signIn(username, password);
     if (signingRepsonse.status === AUTHORIZED) {
       setLoading(false);
       setUser(signingRepsonse.data);
-      setKeepLoggedIn(keepLoggedInSwitch);
+      setUserPreferences(currentUserPreferences => ({
+        ...currentUserPreferences,
+        keepLoggedIn: keepLoggedInSwitch,
+      }));
+      console.log(user.loggedIn);
     } else {
       setLoading(false);
       setIncorrectPassword(true);
