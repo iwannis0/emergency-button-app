@@ -59,6 +59,8 @@
   "Join now" : "Join now",
   "keep-me-logged-in" : "Keep me logged in",
   "__________________________TokenManager__________________________" : "",
-  "Alert-Title" : "Session Expired",
-  "Alert-Description" : "Please login again to continue"
+  "alert-title" : "Session Expired",
+  "alert-description" : "Your session is expired. By pressing \"Continue\" you will be redirected back to the Login Screen",
+  "authentication-description" : "Your session is expired. By pressing \"Continue\" you be asked to authenticate yourself in order to login back to the application",
+  "alert-continue": "Continue"
 }

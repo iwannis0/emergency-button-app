@@ -1,12 +1,12 @@
 const TOKEN_REFRESH_INTERVAL = 5000; // five minutes
 const TOKEN_REFRESH_THRESHOLD = 20;
+const LOGOUT = 'Logout';
+const AUTHENTICATION = 'Authentication';
 import {TokensUtils, TokenStorage} from 'react-native-keycloak-plugin';
 import {RefreshToken} from '../../features/auth/auth';
 import {useRecoilValue, useSetRecoilState} from 'recoil';
-import {
-  tokenSelector,
-  keepLoggedInSelector,
-} from '../../features/recoil/selectors/userSelectors';
+import {tokenSelector} from '../../features/recoil/selectors/userSelectors';
+import {keepLoggedInSelector} from '../../features/recoil/selectors/UserPreferencesSelectors';
 import {useEffect} from 'react';
 import {Alert} from 'react-native';
 import {useResetRecoilState} from 'recoil';
@@ -15,16 +15,16 @@ import {signOut} from '../../features/auth/auth';
 import {useState, useCallback} from 'react';
 import {useTranslation} from 'react-i18next';
 
-async function handleLogout(resetUser) {
-  const logoutResponse = await signOut();
+async function handleLogout(resetUser, resetKeychain) {
+  const logoutResponse = await signOut(resetKeychain);
   if (logoutResponse === 'Success') {
     resetUser();
   }
   return;
 }
 
-async function refreshableFetch(keepLoggedIn) {
-  if ((await TokenStorage.getTokens()) === undefined) {
+async function refreshableFetch(keepLoggedIn, token) {
+  if (token === '') {
     return 'Logged Out';
   }
   try {
@@ -42,32 +42,46 @@ async function refreshableFetch(keepLoggedIn) {
 
 const TokenManager = () => {
   const {t} = useTranslation();
+  const token = useRecoilValue(tokenSelector);
   const setToken = useSetRecoilState(tokenSelector);
   const keepLoggedIn = useRecoilValue(keepLoggedInSelector);
   const resetUser = useResetRecoilState(userState);
   const [isPaused, setIsPaused] = useState(false);
 
-  const showLogoutAlert = useCallback(() => {
-    Alert.alert(t('Alert-Title'), t('Alert-Description'), [
-      {
-        text: 'OK',
-        onPress: () => {
-          handleLogout(resetUser);
-          setIsPaused(false);
+  const showAlert = useCallback(
+    alertType => {
+      let description = '';
+      let resetKeycloak = true;
+      if (alertType === LOGOUT) {
+        description = t('alert-description');
+      } else if (alertType === AUTHENTICATION) {
+        description = t('authentication-description');
+        resetKeycloak = false;
+      }
+      Alert.alert(t('alert-title'), description, [
+        {
+          text: t('alert-continue'),
+          onPress: () => {
+            handleLogout(resetUser, resetKeycloak);
+            setIsPaused(false);
+          },
         },
-      },
-    ]);
-  }, [resetUser, t]);
+      ]);
+    },
+    [resetUser, t],
+  );
 
   useEffect(() => {
     const fetchData = async () => {
-      const message = await refreshableFetch(keepLoggedIn);
+      const message = await refreshableFetch(keepLoggedIn, token);
       console.log(message);
       if (message.status === 'LoggoutAlert') {
         setIsPaused(true);
-        showLogoutAlert();
+        showAlert(LOGOUT);
+      } else if (message.status === 'AuthenticationAlert') {
+        setIsPaused(true);
+        showAlert(AUTHENTICATION);
       } else if (message.status === 'SuccesfulRefresh') {
-        // Fingerprint
         setToken(message.token);
       }
     };
@@ -82,7 +96,7 @@ const TokenManager = () => {
         clearInterval(intervalId);
       };
     }
-  }, [setToken, keepLoggedIn, resetUser, isPaused, showLogoutAlert]);
+  }, [setToken, keepLoggedIn, resetUser, isPaused, showAlert, token]);
 };
 
 export default TokenManager;
