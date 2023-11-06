@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -17,23 +17,39 @@ import i18n from '../../assets/translations/i18next';
 import {signIn} from '../../features/auth/auth';
 import {useRecoilState} from 'recoil';
 import {userState, User} from '../../features/recoil/atoms/User/userState';
+import {useIsFocused} from '@react-navigation/native';
+import {keepLoggedInSelector} from '../../features/recoil/selectors/UserPreferencesSelectors';
 
 const LoginScreen = ({navigation}) => {
   const {t} = useTranslation();
+  const AUTHORIZED = 'Authorized';
+  const isFocused = useIsFocused();
+
   const [user, setUser] = useRecoilState(userState);
-  const [loading, setLoading] = useState(false);
-  const [passwordVisible, setPasswordVisible] = useState(false);
-  const [incorrectPwd, setIncorrectPassword] = useState(false);
+  const [keepLoggedIn, setKeepLoggedIn] = useRecoilState(keepLoggedInSelector);
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [keepLoggedIn, setKeepLoggedIn] = useState(false);
-  const AUTHORIZED = 'Authorized';
+  const [loading, setLoading] = useState(false);
+  const [incorrectPwd, setIncorrectPassword] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [keepLoggedInSwitch, setKeepLoggedInSwitch] = useState(false);
+
+  useEffect(() => {
+    if (isFocused && keepLoggedIn) {
+      // Authenticate User
+      // If true Refresh Token and set userState
+      // WILL BE DONE IN NEXT PR
+      console.log('Updating User');
+    }
+  }, [isFocused, keepLoggedIn]); // The effect depends on the focused state
 
   async function handleLogin() {
-    const signingRepsonse = await signIn(username, password, keepLoggedIn);
+    const signingRepsonse = await signIn(username, password);
     if (signingRepsonse.status === AUTHORIZED) {
       setLoading(false);
       setUser(signingRepsonse.data);
+      setKeepLoggedIn(keepLoggedInSwitch);
     } else {
       setLoading(false);
       setIncorrectPassword(true);
@@ -85,9 +101,9 @@ const LoginScreen = ({navigation}) => {
         <View style={styles.keepLoggedInContainer}>
           <Switch
             trackColor={{true: '497C79'}}
-            thumbColor={keepLoggedIn ? '#497C79' : '#f4f3f4'}
-            onValueChange={() => setKeepLoggedIn(!keepLoggedIn)}
-            value={keepLoggedIn}
+            thumbColor={keepLoggedInSwitch ? '#497C79' : '#f4f3f4'}
+            onValueChange={() => setKeepLoggedInSwitch(!keepLoggedInSwitch)}
+            value={keepLoggedInSwitch}
           />
           <Text style={[globalStyle.descriptionBlack]}>
             {t('keep-me-logged-in')}

@@ -3,6 +3,5 @@ export interface IUser {
   name: string;
   surname: string;
   loggedIn: boolean;
-  keepLoggedIn: boolean;
   token: string;
 }

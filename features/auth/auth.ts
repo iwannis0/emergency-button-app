@@ -54,7 +54,6 @@ const signIn = async (
                   name: res.data.name?.givenName[0],
                   surname: res.data.name?.familyName,
                   loggedIn: true,
-                  keepLoggedIn: keepLoggedIn,
                   token: response.access_token,
                 },
               };
@@ -82,10 +81,12 @@ const signIn = async (
   }
 };
 
-const signOut = async () => {
+const signOut = async (resetKeychain: boolean) => {
   try {
     await Keycloak.logout(keycloakConfig);
-    await Keychain.resetGenericPassword();
+    if (resetKeychain) {
+      await Keychain.resetGenericPassword();
+    }
     return 'Success';
   } catch (error) {
     console.log('error', error);
@@ -104,17 +105,7 @@ const RefreshToken = async (keepLoggedIn: boolean) => {
     const errorDescription = JSON.parse(error.message).error_description;
 
     if (errorDescription === 'Token is not active' && keepLoggedIn) {
-      const credentials = await Keychain.getGenericPassword();
-      if (credentials) {
-        const login = await signIn(
-          credentials.username,
-          credentials.password,
-          true,
-        );
-        return login.status === 'Authorized'
-          ? {status: 'SuccesfulRefresh', token: login.data.token}
-          : {status: 'LoggoutAlert'};
-      }
+      return {status: 'AuthenticationAlert'};
     }
 
     if (errorDescription === 'Token is not active' || !keepLoggedIn) {
@@ -126,4 +117,23 @@ const RefreshToken = async (keepLoggedIn: boolean) => {
   }
 };
 
-export {signIn, signOut, RefreshToken};
+const autoLogin = async () => {
+  try {
+    const credentials = await Keychain.getGenericPassword();
+    if (credentials) {
+      const login = await signIn(
+        credentials.username,
+        credentials.password,
+        true,
+      );
+      return login.status === 'Authorized'
+        ? {status: 'Success', token: login.data.token}
+        : {status: 'Failed'};
+    }
+  } catch (error: any) {
+    console.log('error', error);
+    return {status: 'Failed', error};
+  }
+};
+
+export {signIn, signOut, RefreshToken, autoLogin};

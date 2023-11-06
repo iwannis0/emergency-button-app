@@ -10,14 +10,6 @@ export const loggedInSelector = selector({
   },
 });
 
-export const keepLoggedInSelector = selector({
-  key: 'keepLoggedInSelector',
-  get: ({get}) => {
-    const user = get(userState);
-    return user.keepLoggedIn;
-  },
-});
-
 export const idSelector = selector({
   key: 'idSelector',
   get: ({get}) => {
