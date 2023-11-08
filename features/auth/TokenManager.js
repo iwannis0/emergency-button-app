@@ -50,7 +50,8 @@ const TokenManager = () => {
   const [isPaused, setIsPaused] = useState(false);
   const [user, setUser] = useRecoilState(userState);
   const resetUser = useResetRecoilState(userState);
-  const userPreferences = useRecoilState(UserPreferencesState);
+  const [userPreferences, setUserPreferences] =
+    useRecoilState(UserPreferencesState);
 
   const showAlert = useCallback(
     alertType => {
@@ -81,7 +82,6 @@ const TokenManager = () => {
         userPreferences.keepLoggedIn,
         user.token,
       );
-      console.log(message);
       if (message.status === 'LoggoutAlert') {
         setIsPaused(true);
         showAlert(LOGOUT);

@@ -58,9 +58,15 @@
   "Don't have an account?" : "Don't have an account?",
   "Join now" : "Join now",
   "keep-me-logged-in" : "Keep me logged in",
+  "login-alert-title": "Disabled Feature",
+  "login-alert-description": "You cannot use this feature because your phone is not secured. To secure your phone visit the Settings of your phone, and in the Security tab, choose a screen lock or add biometric authentication.",
+  "login-alert-continue": "Continue",
   "__________________________TokenManager__________________________" : "",
   "alert-title" : "Session Expired",
   "alert-description" : "Your session is expired. By pressing \"Continue\" you will be redirected back to the Login Screen",
   "authentication-description" : "Your session is expired. By pressing \"Continue\" you be asked to authenticate yourself in order to login back to the application",
-  "alert-continue": "Continue"
+  "alert-continue": "Continue",
+  "__________________________BiometricsManager__________________________" : "",
+  "Instruction" : "Confirm your identity to reconnect",
+  "error" : "Wrond Credentials, Please try again"
 }
