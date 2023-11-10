@@ -7,9 +7,9 @@ import {
   TextInput,
   SafeAreaView,
   TouchableOpacity,
-  Button,
   Switch,
   Alert,
+  ScrollView,
 } from 'react-native';
 import {useTranslation} from 'react-i18next';
 import i18n from '../../assets/translations/i18next';
@@ -20,6 +20,8 @@ import globalStyle from '../../assets/styles/globalStyle';
 
 // Components
 import Loading from '../../components/Loading/Loading';
+import ModalComponent from '../../components/ModalComponent/ModalComponent';
+import NavigationButton from '../../components/NavigationButton/NavigationButton';
 
 // Constants
 const AUTHORIZED = 'Authorized';
@@ -53,6 +55,12 @@ const LoginScreen = ({navigation}) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [keepLoggedInSwitch, setKeepLoggedInSwitch] = useState(false);
   const [isPhoneSecured, setIsPhoneSecured] = useState(true);
+  const [LanguageModalVisible, setLanguageModalVisible] = React.useState(false);
+
+  const images = {
+    English: require('../../assets/images/Languages/english.png'),
+    Greek: require('../../assets/images/Languages/greek.png'),
+  };
 
   useEffect(() => {
     async function checkBiometricsAndRefresh() {
@@ -70,9 +78,22 @@ const LoginScreen = ({navigation}) => {
         setIsPhoneSecured(await isPhoneSecuredCheck());
       }
     }
-
     checkBiometricsAndRefresh();
   }, [isFocused, userPreferences, setUser, t]);
+
+  useEffect(() => {
+    async function checkLanguage() {
+      if (isFocused) {
+        if (userPreferences.language === 'English') {
+          i18n.changeLanguage('en');
+        } else {
+          i18n.changeLanguage('gr');
+        }
+      }
+    }
+
+    checkLanguage();
+  }, [isFocused, userPreferences]);
 
   async function handleLogin() {
     const signingRepsonse = await signIn(
@@ -103,6 +124,53 @@ const LoginScreen = ({navigation}) => {
 
   return (
     <SafeAreaView style={[{flex: 1, backgroundColor: '#E0EDF2'}]}>
+      <ModalComponent
+        title={t('Language')}
+        visibility={LanguageModalVisible}
+        onClose={() => setLanguageModalVisible(false)}>
+        <ScrollView>
+          <NavigationButton
+            type={'withIcon'}
+            image={require('../../assets/images/Languages/english.png')}
+            title={t('English')}
+            onPress={() => {
+              i18n.changeLanguage('en');
+              setUserPreferences(currentUserPreferences => ({
+                ...currentUserPreferences,
+                language: 'English',
+              }));
+              setLanguageModalVisible(false);
+            }}
+          />
+          <NavigationButton
+            type={'withIcon'}
+            image={require('../../assets/images/Languages/greek.png')}
+            title={t('Greek')}
+            onPress={() => {
+              i18n.changeLanguage('gr');
+              setUserPreferences(currentUserPreferences => ({
+                ...currentUserPreferences,
+                language: 'Greek',
+              }));
+              setLanguageModalVisible(false);
+            }}
+          />
+        </ScrollView>
+      </ModalComponent>
+
+      <TouchableOpacity
+        style={styles.changeLanguageContainer}
+        onPress={() => {
+          setLanguageModalVisible(true);
+        }}>
+        <Text style={globalStyle.descriptionBlackL3}>
+          {t('change-language')}
+        </Text>
+        <Image
+          style={styles.changeLanguageImage}
+          source={images[userPreferences.language]}
+        />
+      </TouchableOpacity>
       <View style={[styles.ImageContainer, globalStyle.fullyCentered]}>
         <Image source={require('../../assets/images/Login/logo.png')} />
       </View>
@@ -187,12 +255,6 @@ const LoginScreen = ({navigation}) => {
         </TouchableOpacity>
       </View>
 
-      <Button
-        title={'Testing Language'}
-        onPress={() => {
-          i18n.changeLanguage('gr');
-        }}
-      />
       {/* Loading Animation */}
       {loading && <Loading />}
     </SafeAreaView>
