@@ -172,7 +172,10 @@ const LoginScreen = ({navigation}) => {
         />
       </TouchableOpacity>
       <View style={[styles.ImageContainer, globalStyle.fullyCentered]}>
-        <Image source={require('../../assets/images/Login/logo.png')} />
+        <Image
+          style={styles.logo}
+          source={require('../../assets/images/Login/logo.png')}
+        />
       </View>
       <View
         style={[styles.LoginContainer, globalStyle.backgroundWhite, {flex: 1}]}>

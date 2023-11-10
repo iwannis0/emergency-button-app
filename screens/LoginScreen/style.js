@@ -94,6 +94,11 @@ const styles = StyleSheet.create({
     height: scaleFontSize(30),
     marginLeft: horizontalScale(5),
   },
+  logo: {
+    marginTop: verticalScale(20),
+    width: horizontalScale(150),
+    height: verticalScale(150),
+  },
 });
 
 export default styles;
