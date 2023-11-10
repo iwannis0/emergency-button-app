@@ -1,32 +1,33 @@
+//Basics
 import React from 'react';
-import {FlatList, Modal, Text, TouchableOpacity, View} from 'react-native';
-import Modalinfo from '../Modalinfo/Modalinfo';
+import {Image, Modal, Text, TouchableOpacity, View} from 'react-native';
 import PropTypes from 'prop-types';
+
+// Styles
 import styles from './style';
 import globalStyle from '../../assets/styles/globalStyle';
 
 const ModalComponent = props => {
   return (
-    <Modal visible={props.visibility} animationType="fade" transparent={true}>
+    <Modal
+      visible={props.visibility}
+      animationType="fade"
+      transparent={true}
+      onRequestClose={props.onClose}>
       <View style={[styles.centeredView, globalStyle.fullyCentered]}>
         <View style={[styles.modalView, globalStyle.backgroundWhite]}>
           <View style={[globalStyle.row, styles.modaltitle]}>
             <Text style={[globalStyle.descriptionBlackL1, {fontWeight: 600}]}>
-              Allergy
+              {props.title}
             </Text>
-            <TouchableOpacity onPress={props.toggle}>
-              <Text>X</Text>
+            <TouchableOpacity onPress={props.onClose}>
+              <Image
+                source={require('../../assets/images/forNavigation/close.png')}
+                style={{width: 15, height: 15, tintColor: '#777777'}}
+              />
             </TouchableOpacity>
           </View>
-          <FlatList
-            style={styles.modalInformation}
-            data={props.data}
-            showsVerticalScrollIndicator={false}
-            keyExtractor={item => item.id.toString()}
-            renderItem={({item}) => (
-              <Modalinfo placeholder={item.onset} value={item.title} />
-            )}
-          />
+          {props.children}
         </View>
       </View>
     </Modal>
@@ -34,8 +35,9 @@ const ModalComponent = props => {
 };
 
 ModalComponent.propTypes = {
-  data: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired,
   visibility: PropTypes.bool.isRequired,
-  toggle: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
+  children: PropTypes.node,
 };
 export default ModalComponent;
