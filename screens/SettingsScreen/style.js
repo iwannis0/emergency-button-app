@@ -7,7 +7,7 @@ const myHealthDashboardStyle = StyleSheet.create({
     backgroundColor: '#ffffff',
   },
   modalInformation: {
-    marginLeft: horizontalScale(20),
+    marginLeft: horizontalScale(21),
     marginRight: horizontalScale(30),
   },
 });
