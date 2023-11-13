@@ -6,7 +6,7 @@ import {getPregnancyOutcome} from './api/gynaecologicalHistoryAPI';
 import {IGynaecologicalHistory} from './interface/IGynaecologicalHistory';
 import {getFullDateDayMonthYear} from '../../../../common/features/dateTransformations';
 
-const PregnancyHistory = () => {
+const PregnancyOutcome = () => {
   let totalBirths = 0;
   let totalAbortions = 0;
   let totalEcotopicPregnancies = 0;
@@ -48,7 +48,7 @@ const PregnancyHistory = () => {
   }
 
   return (
-    <View style={styles.removeMargin}>
+    <View style={styles.spaceBetween}>
       {data && data.pregnancyOutcome && data.pregnancyOutcome.length > 0 && (
         <InformationCard
           type={'Allergies and Intolerances'}
@@ -66,10 +66,10 @@ const PregnancyHistory = () => {
   );
 };
 
-export default PregnancyHistory;
+export default PregnancyOutcome;
 
 const styles = {
-  removeMargin: {
+  spaceBetween: {
     marginBottom: 5,
   },
 };

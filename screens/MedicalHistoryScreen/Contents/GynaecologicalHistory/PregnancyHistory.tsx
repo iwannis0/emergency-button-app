@@ -21,7 +21,7 @@ const PregnancyHistory = () => {
   }, []);
 
   return (
-    <View style={styles.removeMargin}>
+    <View style={styles.spaceBetween}>
       {data &&
         data.pregnancyStatus &&
         data.pregnancyStatus.length > 0 &&
@@ -46,7 +46,7 @@ const PregnancyHistory = () => {
 export default PregnancyHistory;
 
 const styles = {
-  removeMargin: {
+  spaceBetween: {
     marginBottom: 5,
   },
 };
