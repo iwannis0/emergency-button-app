@@ -5,19 +5,25 @@ import Subtitle from '../../../../components/Subtitle/Subtitle';
 import {ITravelHistoryType} from './interface/ITravelHistoryType';
 import {getTravelHistory} from './api/travelHistoryAPI';
 import {useTranslation} from 'react-i18next';
-import {getPatientId} from '../../../../common/features/tokenContext';
+import {useRecoilValue} from 'recoil';
+import {
+  idSelector,
+  tokenSelector,
+} from '../../../../features/recoil/selectors/userSelectors';
 import DataLoader from '../../../../components/DataLoader/DataLoader';
 
 const TravelHistory = () => {
   const [loading, setLoading] = useState(true);
   const {t} = useTranslation();
+  const patientId = useRecoilValue(idSelector);
+  const token = useRecoilValue(tokenSelector);
 
   const fetchData = async () => {
-    const data = await getTravelHistory(getPatientId());
+    const data = await getTravelHistory('', 10, 1, patientId, token);
     return data.data;
   };
 
-  const [data, setData] = useState<ITravelHistoryType[]>([]);
+  const [data, setData] = React.useState<ITravelHistoryType[]>([]);
 
   useEffect(() => {
     fetchData().then(data => {

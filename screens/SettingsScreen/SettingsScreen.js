@@ -4,9 +4,24 @@ import NavigationButton from '../../components/NavigationButton/NavigationButton
 import styles from './style';
 import globalStyle from '../../assets/styles/globalStyle';
 import {useTranslation} from 'react-i18next';
+import {useResetRecoilState, useSetRecoilState} from 'recoil';
+import {userState} from '../../features/recoil/atoms/User/userState';
+import {signOut} from '../../features/auth/auth';
+import {keepLoggedInSelector} from '../../features/recoil/selectors/UserPreferencesSelectors';
 
 const SettingsScreen = ({navigation}) => {
   const {t} = useTranslation();
+  const resetUser = useResetRecoilState(userState);
+  const setKeepLoggedIn = useSetRecoilState(keepLoggedInSelector);
+
+  async function handleLogout() {
+    const logoutResponse = await signOut(true);
+    if (logoutResponse === 'Success') {
+      setKeepLoggedIn(false);
+      resetUser();
+    }
+    return;
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -44,7 +59,7 @@ const SettingsScreen = ({navigation}) => {
           type={'withArrow'}
           title={t('Logout')}
           onPress={() => {
-            navigation.navigate('Alerts'); // TO BE IMPLEMENTED
+            handleLogout();
           }}
         />
       </ScrollView>
