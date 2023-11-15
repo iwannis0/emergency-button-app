@@ -1,24 +1,18 @@
-// Basics
 import {useEffect} from 'react';
 import {Alert} from 'react-native';
 import {useState, useCallback} from 'react';
 import {useTranslation} from 'react-i18next';
+import {useRecoilState} from 'recoil';
+import {useResetRecoilState} from 'recoil';
+import {userState} from '../recoil/atoms/User/userState';
+import {UserPreferencesState} from '../recoil/atoms/UserPreferences/UserPreferencesState';
+import {TokensUtils} from 'react-native-keycloak-plugin';
+import {signOut, RefreshToken} from './auth';
 
-// Constants
 const LOGOUT = 'Logout';
 const AUTHENTICATION = 'Authentication';
 const TOKEN_REFRESH_THRESHOLD = 20;
-const TOKEN_REFRESH_INTERVAL = 5000; // five minutes
-
-// Values
-import {useRecoilState} from 'recoil';
-import {useResetRecoilState} from 'recoil';
-import {userState} from '../../features/recoil/atoms/User/userState';
-import {UserPreferencesState} from '../recoil/atoms/UserPreferences/UserPreferencesState';
-
-// Functions
-import {TokensUtils} from 'react-native-keycloak-plugin';
-import {signOut, RefreshToken} from '../../features/auth/auth';
+const TOKEN_REFRESH_INTERVAL = 5000;
 
 async function handleLogout(resetUser, resetKeychain) {
   const logoutResponse = await signOut(resetKeychain);

@@ -1,4 +1,3 @@
-// Basics
 import React, {useState, useEffect} from 'react';
 import {
   View,
@@ -13,15 +12,10 @@ import {
 } from 'react-native';
 import {useTranslation} from 'react-i18next';
 import i18n from '../../assets/translations/i18next';
-
-// Styles
 import styles from './style';
 import globalStyle from '../../assets/styles/globalStyle';
-
-// Components
 import Loading from '../../components/Loading/Loading';
 
-// Constants
 const AUTHORIZED = 'Authorized';
 const SUCCESS = 'Success';
 
