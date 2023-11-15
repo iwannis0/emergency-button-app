@@ -1,23 +1,12 @@
-// Basics
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {SafeAreaView, ScrollView, View, Text} from 'react-native';
-import i18n from '../../assets/translations/i18next';
-
-// Styles
 import styles from './style';
 import globalStyle from '../../assets/styles/globalStyle';
-
-// Components
 import NavigationButton from '../../components/NavigationButton/NavigationButton';
-import ModalComponent from '../../components/ModalComponent/ModalComponent';
-
-// Values
 import {useRecoilState, useResetRecoilState} from 'recoil';
 import {userState} from '../../features/recoil/atoms/User/userState';
 import {UserPreferencesState} from '../../features/recoil/atoms/UserPreferences/UserPreferencesState';
-
-// Functions
 import {signOut} from '../../features/auth/auth';
 
 const SettingsScreen = ({navigation}) => {
