@@ -1,25 +1,16 @@
-// Basics
 import React, {useEffect} from 'react';
 import {View} from 'react-native';
 import {useTranslation} from 'react-i18next';
-
-// Components
 import InformationCard from '../../../../components/InformationCard/InformationCard';
 import Subtitle from '../../../../components/Subtitle/Subtitle';
-
-// Values
 import {useRecoilState} from 'recoil';
 import {userState} from '../../../../features/recoil/atoms/User/userState';
-
-// Interfaces
 import {ITravelHistoryType} from './interface/ITravelHistoryType';
-
-// APIs
 import {getTravelHistory} from './api/travelHistoryAPI';
 
 const TravelHistory = () => {
   const {t} = useTranslation();
-  const [user, setUser] = useRecoilState(userState);
+  const [user, _] = useRecoilState(userState);
   const [data, setData] = React.useState<ITravelHistoryType[]>([]);
 
   const fetchData = async () => {
