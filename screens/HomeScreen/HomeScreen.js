@@ -11,9 +11,12 @@ import NavigationButton from '../../components/NavigationButton/NavigationButton
 import styles from './style';
 import globalStyle from '../../assets/styles/globalStyle';
 import {useTranslation} from 'react-i18next';
+import {useRecoilState} from 'recoil';
+import {userState} from '../../features/recoil/atoms/User/userState';
 
 const MyHealthScreen = ({navigation}) => {
   const {t} = useTranslation();
+  const [user, setUser] = useRecoilState(userState);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -27,7 +30,10 @@ const MyHealthScreen = ({navigation}) => {
             source={require('../../assets/images/Profile/default.png')}
             style={styles.ImageStyle}
           />
-          <Text style={styles.ImageInitials}>SV</Text>
+          <Text style={styles.ImageInitials}>
+            {user.name[0]}
+            {user.surname[0]}
+          </Text>
         </Pressable>
       </View>
       <ScrollView style={globalStyle.marginTop60}>
