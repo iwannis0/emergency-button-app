@@ -6,13 +6,11 @@ import {
   Text,
   Pressable,
   Image,
-  Button,
 } from 'react-native';
 import NavigationButton from '../../components/NavigationButton/NavigationButton';
 import styles from './style';
 import globalStyle from '../../assets/styles/globalStyle';
 import {useTranslation} from 'react-i18next';
-import i18n from '../../assets/translations/i18next';
 
 const MyHealthScreen = ({navigation}) => {
   const {t} = useTranslation();
@@ -79,13 +77,6 @@ const MyHealthScreen = ({navigation}) => {
           image={require('../../assets/images/forNavigation/Episodes.png')}
           onPress={() => {
             navigation.navigate('Episodes of Care and Visits');
-          }}
-        />
-
-        <Button
-          title={'Testing Language'}
-          onPress={() => {
-            i18n.changeLanguage('gr');
           }}
         />
       </ScrollView>

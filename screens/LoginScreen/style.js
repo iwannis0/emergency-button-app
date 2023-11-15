@@ -82,6 +82,23 @@ const styles = StyleSheet.create({
     marginLeft: horizontalScale(20),
     marginTop: verticalScale(10),
   },
+  changeLanguageContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    position: 'absolute',
+    top: verticalScale(15),
+    right: horizontalScale(10),
+  },
+  changeLanguageImage: {
+    width: scaleFontSize(30),
+    height: scaleFontSize(30),
+    marginLeft: horizontalScale(5),
+  },
+  logo: {
+    marginTop: verticalScale(20),
+    width: horizontalScale(150),
+    height: verticalScale(150),
+  },
 });
 
 export default styles;

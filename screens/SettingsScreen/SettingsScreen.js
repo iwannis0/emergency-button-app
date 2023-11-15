@@ -1,6 +1,6 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
-import {SafeAreaView, ScrollView, View} from 'react-native';
+import {SafeAreaView, ScrollView, View, Text} from 'react-native';
 import styles from './style';
 import globalStyle from '../../assets/styles/globalStyle';
 import NavigationButton from '../../components/NavigationButton/NavigationButton';
@@ -15,6 +15,7 @@ const SettingsScreen = ({navigation}) => {
     useRecoilState(UserPreferencesState);
   const resetUser = useResetRecoilState(userState);
 
+  const [LanguageModalVisible, setLanguageModalVisible] = React.useState(false);
   const [TermsModalVisible, setTermsModalVisible] = React.useState(false);
   const [PrivacyModalVisible, setPrivacyModalVisible] = React.useState(false);
   const [AboutModalVisible, setAboutModalVisible] = React.useState(false);
@@ -36,11 +37,45 @@ const SettingsScreen = ({navigation}) => {
       <View style={styles.ImageContainer} />
       <ScrollView style={globalStyle.marginTop60}>
         {/* Change Language */}
+        <ModalComponent
+          title={t('Language')}
+          visibility={LanguageModalVisible}
+          onClose={() => setLanguageModalVisible(false)}>
+          <ScrollView>
+            <NavigationButton
+              type={'withIcon'}
+              image={require('../../assets/images/Languages/english.png')}
+              title={t('English')}
+              onPress={() => {
+                i18n.changeLanguage('en');
+                setUserPreferences(currentUserPreferences => ({
+                  ...currentUserPreferences,
+                  language: 'English',
+                }));
+                setLanguageModalVisible(false);
+              }}
+            />
+            <NavigationButton
+              type={'withIcon'}
+              image={require('../../assets/images/Languages/greek.png')}
+              title={t('Greek')}
+              onPress={() => {
+                i18n.changeLanguage('gr');
+                setUserPreferences(currentUserPreferences => ({
+                  ...currentUserPreferences,
+                  language: 'Greek',
+                }));
+                setLanguageModalVisible(false);
+              }}
+            />
+          </ScrollView>
+        </ModalComponent>
+
         <NavigationButton
           type={'withArrow'}
           title={t('Language')}
           onPress={() => {
-            navigation.navigate('Alerts'); // TO BE IMPLEMENTED
+            setLanguageModalVisible(true);
           }}
         />
 
