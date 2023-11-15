@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Button,
   Switch,
+  Alert,
 } from 'react-native';
 import {useTranslation} from 'react-i18next';
 import i18n from '../../assets/translations/i18next';
@@ -16,6 +17,7 @@ import globalStyle from '../../assets/styles/globalStyle';
 import Loading from '../../components/Loading/Loading';
 
 const AUTHORIZED = 'Authorized';
+const SUCCESS = 'Success';
 
 // Values
 import {useRecoilState} from 'recoil';
@@ -23,8 +25,12 @@ import {userState} from '../../features/recoil/atoms/User/userState';
 import {UserPreferencesState} from '../../features/recoil/atoms/UserPreferences/UserPreferencesState';
 
 // Functions
-import {signIn} from '../../features/auth/auth';
+import {autoLogin, signIn} from '../../features/auth/auth';
 import {useIsFocused} from '@react-navigation/native';
+import {
+  checkBiometrics,
+  isPhoneSecuredCheck,
+} from '../../features/auth/BiometricsManager';
 
 const LoginScreen = ({navigation}) => {
   const {t} = useTranslation();
@@ -40,18 +46,34 @@ const LoginScreen = ({navigation}) => {
   const [incorrectPwd, setIncorrectPassword] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [keepLoggedInSwitch, setKeepLoggedInSwitch] = useState(false);
+  const [isPhoneSecured, setIsPhoneSecured] = useState(true);
 
   useEffect(() => {
-    if (isFocused && userPreferences.keepLoggedIn) {
-      // Authenticate User
-      // If true Refresh Token and set userState
-      // WILL BE DONE IN NEXT PR
-      console.log('Updating User');
+    async function checkBiometricsAndRefresh() {
+      if (isFocused && userPreferences.keepLoggedIn) {
+        const biometricAuth = await checkBiometrics(t('Instruction'));
+        if (biometricAuth.status === SUCCESS) {
+          setLoading(true);
+          const signingResponse = await autoLogin();
+          if (signingResponse.status === AUTHORIZED) {
+            setLoading(false);
+            setUser(signingResponse.data);
+          }
+        }
+      } else {
+        setIsPhoneSecured(await isPhoneSecuredCheck());
+      }
     }
-  }, [isFocused, userPreferences]); // The effect depends on the focused state
+
+    checkBiometricsAndRefresh();
+  }, [isFocused, userPreferences, setUser, t]);
 
   async function handleLogin() {
-    const signingRepsonse = await signIn(username, password);
+    const signingRepsonse = await signIn(
+      username,
+      password,
+      keepLoggedInSwitch,
+    );
     if (signingRepsonse.status === AUTHORIZED) {
       setLoading(false);
       setUser(signingRepsonse.data);
@@ -59,12 +81,19 @@ const LoginScreen = ({navigation}) => {
         ...currentUserPreferences,
         keepLoggedIn: keepLoggedInSwitch,
       }));
-      console.log(user.loggedIn);
     } else {
       setLoading(false);
       setIncorrectPassword(true);
     }
   }
+
+  const SwitchAlert = () => {
+    if (!isPhoneSecured) {
+      Alert.alert(t('login-alert-title'), t('login-alert-description'), [
+        {text: t('login-alert-continue')},
+      ]);
+    }
+  };
 
   return (
     <SafeAreaView style={[{flex: 1, backgroundColor: '#E0EDF2'}]}>
@@ -108,8 +137,11 @@ const LoginScreen = ({navigation}) => {
           </Text>
         )}
 
-        <View style={styles.keepLoggedInContainer}>
+        <TouchableOpacity
+          style={styles.keepLoggedInContainer}
+          onPress={SwitchAlert}>
           <Switch
+            disabled={!isPhoneSecured}
             trackColor={{true: '497C79'}}
             thumbColor={keepLoggedInSwitch ? '#497C79' : '#f4f3f4'}
             onValueChange={() => setKeepLoggedInSwitch(!keepLoggedInSwitch)}
@@ -118,7 +150,7 @@ const LoginScreen = ({navigation}) => {
           <Text style={[globalStyle.descriptionBlack]}>
             {t('keep-me-logged-in')}
           </Text>
-        </View>
+        </TouchableOpacity>
 
         {/* Sign In Button */}
         <TouchableOpacity

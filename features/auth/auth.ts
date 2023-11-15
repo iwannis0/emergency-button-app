@@ -35,7 +35,7 @@ const signIn = async (
         } else {
           await Keychain.resetGenericPassword();
         }
-        console.log(response.access_token);
+
         if (user.resource_access.fhir.roles.includes('Patients')) {
           let patientId = user.fhirResourceId
             ?.find(id => id.includes('Patient/'))
@@ -103,12 +103,11 @@ const RefreshToken = async (keepLoggedIn: boolean) => {
     };
   } catch (error: any) {
     const errorDescription = JSON.parse(error.message).error_description;
-
     if (errorDescription === 'Token is not active' && keepLoggedIn) {
       return {status: 'AuthenticationAlert'};
     }
 
-    if (errorDescription === 'Token is not active' || !keepLoggedIn) {
+    if (errorDescription === 'Token is not active' && !keepLoggedIn) {
       return {status: 'LoggoutAlert'};
     }
 
@@ -121,14 +120,12 @@ const autoLogin = async () => {
   try {
     const credentials = await Keychain.getGenericPassword();
     if (credentials) {
-      const login = await signIn(
+      const response = await signIn(
         credentials.username,
         credentials.password,
         true,
       );
-      return login.status === 'Authorized'
-        ? {status: 'Success', token: login.data.token}
-        : {status: 'Failed'};
+      return response;
     }
   } catch (error: any) {
     console.log('error', error);
