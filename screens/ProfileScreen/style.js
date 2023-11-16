@@ -8,6 +8,8 @@ import {
 const styles = StyleSheet.create({
   ProfileContainer: {
     alignItems: 'center',
+    marginTop: verticalScale(30),
+    marginBottom: verticalScale(30),
   },
   ImageContainer: {
     flexDirection: 'row',
@@ -26,7 +28,8 @@ const styles = StyleSheet.create({
   Name: {
     fontWeight: '700',
     fontSize: scaleFontSize(20),
-    marginTop: verticalScale(10),
+    marginTop: verticalScale(5),
+    marginBottom: verticalScale(10),
     justifyContent: 'center',
   },
   ButtonContainer: {
@@ -37,32 +40,23 @@ const styles = StyleSheet.create({
     marginLeft: horizontalScale(20),
   },
   descriptions: {
-    color: '#00827B',
+    color: '#000000',
     fontSize: scaleFontSize(16),
     fontWeight: '600',
     marginBottom: verticalScale(10),
+    marginLeft: horizontalScale(20),
   },
   sections: {
-    borderBottomWidth: 1,
-    borderBottomEndRadius: horizontalScale(30),
-    borderColor: 'rgba(0, 130, 123, 0.15)',
-    marginBottom: verticalScale(15),
+    marginBottom: verticalScale(35),
   },
-  combinedsections: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+  informationBox: {
+    height: horizontalScale(50),
+    borderBottomWidth: scaleFontSize(1),
+    borderColor: '#E2E2E2',
+    justifyContent: 'space-evenly',
   },
-  row: {
-    flexDirection: 'row',
-  },
-  width220: {
-    width: verticalScale(190),
-  },
-  width150: {
-    width: verticalScale(130),
-  },
-  marginTop30: {
-    marginTop: verticalScale(30),
+  marginLeft20: {
+    marginLeft: horizontalScale(20),
   },
 });
 
