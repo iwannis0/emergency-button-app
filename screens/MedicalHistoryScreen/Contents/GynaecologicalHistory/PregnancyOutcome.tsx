@@ -6,6 +6,11 @@ import {IGynaecologicalHistory} from './interface/IGynaecologicalHistory';
 import {getFullDateDayMonthYear} from '../../../../common/features/dateTransformations';
 import {useRecoilState} from 'recoil';
 import {userState} from '../../../../features/recoil/atoms/User/userState';
+import {
+  BIRTHS,
+  ABORTIONS,
+  ECTOPIC_PREGNANCIES,
+} from './constants/PragnancyOutcomeCodes';
 
 const PregnancyOutcome = () => {
   const [user, _] = useRecoilState(userState);
@@ -30,15 +35,15 @@ const PregnancyOutcome = () => {
 
   if (data && data.pregnancyOutcome && data.pregnancyOutcome.length > 0) {
     data.pregnancyOutcome.forEach(item => {
-      if (item.code?.code === '11640-0' && item.value) {
+      if (item.code?.code === BIRTHS && item.value) {
         totalBirths = totalBirths + item.value;
       }
 
-      if (item.code?.code === '11612-9' && item.value) {
+      if (item.code?.code === ABORTIONS && item.value) {
         totalAbortions = totalAbortions + item.value;
       }
 
-      if (item.code?.code === '33065-4' && item.value) {
+      if (item.code?.code === ECTOPIC_PREGNANCIES && item.value) {
         totalEctopicPregnancies = totalEctopicPregnancies + item.value;
       }
     });
