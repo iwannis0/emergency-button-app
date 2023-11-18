@@ -6,27 +6,41 @@ import {
   TextInput,
   SafeAreaView,
   TouchableOpacity,
-  Button,
   Switch,
+  Alert,
+  ScrollView,
 } from 'react-native';
-import globalStyle from '../../assets/styles/globalStyle';
-import styles from './style';
 import {useTranslation} from 'react-i18next';
-import Loading from '../../components/Loading/Loading';
 import i18n from '../../assets/translations/i18next';
-import {signIn} from '../../features/auth/auth';
+import styles from './style';
+import globalStyle from '../../assets/styles/globalStyle';
+import Loading from '../../components/Loading/Loading';
+import ModalComponent from '../../components/ModalComponent/ModalComponent';
+import NavigationButton from '../../components/NavigationButton/NavigationButton';
+
+const AUTHORIZED = 'Authorized';
+const SUCCESS = 'Success';
+
+// Values
 import {useRecoilState} from 'recoil';
-import {userState, User} from '../../features/recoil/atoms/User/userState';
+import {userState} from '../../features/recoil/atoms/User/userState';
+import {UserPreferencesState} from '../../features/recoil/atoms/UserPreferences/UserPreferencesState';
+
+// Functions
+import {autoLogin, signIn} from '../../features/auth/auth';
 import {useIsFocused} from '@react-navigation/native';
-import {keepLoggedInSelector} from '../../features/recoil/selectors/UserPreferencesSelectors';
+import {
+  checkBiometrics,
+  isPhoneSecuredCheck,
+} from '../../features/auth/BiometricsManager';
 
 const LoginScreen = ({navigation}) => {
   const {t} = useTranslation();
-  const AUTHORIZED = 'Authorized';
   const isFocused = useIsFocused();
 
   const [user, setUser] = useRecoilState(userState);
-  const [keepLoggedIn, setKeepLoggedIn] = useRecoilState(keepLoggedInSelector);
+  const [userPreferences, setUserPreferences] =
+    useRecoilState(UserPreferencesState);
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -34,32 +48,128 @@ const LoginScreen = ({navigation}) => {
   const [incorrectPwd, setIncorrectPassword] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [keepLoggedInSwitch, setKeepLoggedInSwitch] = useState(false);
+  const [isPhoneSecured, setIsPhoneSecured] = useState(true);
+  const [LanguageModalVisible, setLanguageModalVisible] = React.useState(false);
+
+  const images = {
+    English: require('../../assets/images/Languages/english.png'),
+    Greek: require('../../assets/images/Languages/greek.png'),
+  };
 
   useEffect(() => {
-    if (isFocused && keepLoggedIn) {
-      // Authenticate User
-      // If true Refresh Token and set userState
-      // WILL BE DONE IN NEXT PR
-      console.log('Updating User');
+    async function checkBiometricsAndRefresh() {
+      if (isFocused && userPreferences.keepLoggedIn) {
+        const biometricAuth = await checkBiometrics(t('Instruction'));
+        if (biometricAuth.status === SUCCESS) {
+          setLoading(true);
+          const signingResponse = await autoLogin();
+          if (signingResponse.status === AUTHORIZED) {
+            setLoading(false);
+            setUser(signingResponse.data);
+          }
+        }
+      } else {
+        setIsPhoneSecured(await isPhoneSecuredCheck());
+      }
     }
-  }, [isFocused, keepLoggedIn]); // The effect depends on the focused state
+    checkBiometricsAndRefresh();
+  }, [isFocused, userPreferences, setUser, t]);
+
+  useEffect(() => {
+    async function checkLanguage() {
+      if (isFocused) {
+        if (userPreferences.language === 'English') {
+          i18n.changeLanguage('en');
+        } else {
+          i18n.changeLanguage('gr');
+        }
+      }
+    }
+
+    checkLanguage();
+  }, [isFocused, userPreferences]);
 
   async function handleLogin() {
-    const signingRepsonse = await signIn(username, password);
+    const signingRepsonse = await signIn(
+      username,
+      password,
+      keepLoggedInSwitch,
+    );
     if (signingRepsonse.status === AUTHORIZED) {
       setLoading(false);
       setUser(signingRepsonse.data);
-      setKeepLoggedIn(keepLoggedInSwitch);
+      setUserPreferences(currentUserPreferences => ({
+        ...currentUserPreferences,
+        keepLoggedIn: keepLoggedInSwitch,
+      }));
     } else {
       setLoading(false);
       setIncorrectPassword(true);
     }
   }
 
+  const SwitchAlert = () => {
+    if (!isPhoneSecured) {
+      Alert.alert(t('login-alert-title'), t('login-alert-description'), [
+        {text: t('login-alert-continue')},
+      ]);
+    }
+  };
+
   return (
     <SafeAreaView style={[{flex: 1, backgroundColor: '#E0EDF2'}]}>
+      <ModalComponent
+        title={t('Language')}
+        visibility={LanguageModalVisible}
+        onClose={() => setLanguageModalVisible(false)}>
+        <ScrollView>
+          <NavigationButton
+            type={'withIcon'}
+            image={require('../../assets/images/Languages/english.png')}
+            title={t('English')}
+            onPress={() => {
+              i18n.changeLanguage('en');
+              setUserPreferences(currentUserPreferences => ({
+                ...currentUserPreferences,
+                language: 'English',
+              }));
+              setLanguageModalVisible(false);
+            }}
+          />
+          <NavigationButton
+            type={'withIcon'}
+            image={require('../../assets/images/Languages/greek.png')}
+            title={t('Greek')}
+            onPress={() => {
+              i18n.changeLanguage('gr');
+              setUserPreferences(currentUserPreferences => ({
+                ...currentUserPreferences,
+                language: 'Greek',
+              }));
+              setLanguageModalVisible(false);
+            }}
+          />
+        </ScrollView>
+      </ModalComponent>
+
+      <TouchableOpacity
+        style={styles.changeLanguageContainer}
+        onPress={() => {
+          setLanguageModalVisible(true);
+        }}>
+        <Text style={globalStyle.descriptionBlackL3}>
+          {t('change-language')}
+        </Text>
+        <Image
+          style={styles.changeLanguageImage}
+          source={images[userPreferences.language]}
+        />
+      </TouchableOpacity>
       <View style={[styles.ImageContainer, globalStyle.fullyCentered]}>
-        <Image source={require('../../assets/images/Login/logo.png')} />
+        <Image
+          style={styles.logo}
+          source={require('../../assets/images/Login/logo.png')}
+        />
       </View>
       <View
         style={[styles.LoginContainer, globalStyle.backgroundWhite, {flex: 1}]}>
@@ -98,8 +208,11 @@ const LoginScreen = ({navigation}) => {
           </Text>
         )}
 
-        <View style={styles.keepLoggedInContainer}>
+        <TouchableOpacity
+          style={styles.keepLoggedInContainer}
+          onPress={SwitchAlert}>
           <Switch
+            disabled={!isPhoneSecured}
             trackColor={{true: '497C79'}}
             thumbColor={keepLoggedInSwitch ? '#497C79' : '#f4f3f4'}
             onValueChange={() => setKeepLoggedInSwitch(!keepLoggedInSwitch)}
@@ -108,7 +221,7 @@ const LoginScreen = ({navigation}) => {
           <Text style={[globalStyle.descriptionBlack]}>
             {t('keep-me-logged-in')}
           </Text>
-        </View>
+        </TouchableOpacity>
 
         {/* Sign In Button */}
         <TouchableOpacity
@@ -139,12 +252,6 @@ const LoginScreen = ({navigation}) => {
         </TouchableOpacity>
       </View>
 
-      <Button
-        title={'Testing Language'}
-        onPress={() => {
-          i18n.changeLanguage('gr');
-        }}
-      />
       {/* Loading Animation */}
       {loading && <Loading />}
     </SafeAreaView>

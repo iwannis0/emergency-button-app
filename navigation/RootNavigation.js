@@ -1,11 +1,11 @@
 import React from 'react';
 import {Authenticated, NonAuthenticated} from './MainNavigation';
-import {useRecoilValue} from 'recoil';
-import {loggedInSelector} from '../features/recoil/selectors/userSelectors';
+import {useRecoilState} from 'recoil';
+import {userState} from '../features/recoil/atoms/User/userState';
 
 const RootNavigation = () => {
-  const isLoggedIn = useRecoilValue(loggedInSelector);
-  return isLoggedIn ? <Authenticated /> : <NonAuthenticated />;
+  const [user, _] = useRecoilState(userState);
+  return user.loggedIn ? <Authenticated /> : <NonAuthenticated />;
 };
 
 export default RootNavigation;

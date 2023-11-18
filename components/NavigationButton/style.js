@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
   icon_image: {
     width: scaleFontSize(25),
     height: scaleFontSize(25),
-    tintColor: '#000000',
   },
   arrow_image: {
     width: scaleFontSize(20),
