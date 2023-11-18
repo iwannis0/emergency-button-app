@@ -23,20 +23,56 @@
   "Procedures" : "Επεμβάσεις",
   "Medical Devices" : "Ιατρικές Συσκευές",
   "__________________________MedicalHistoryScreen__________________________" : "",
-  "Epidimiological History" : "Επιδημιολογικό Ιστορικό",
-  "Travel History" : "Ιστορικό Ταξιδιού",
-  "Medical Personal History" : "Ιατρικό Προσωπικό Ιστορικό",
-  "Allergies and Intolerances": "Αλλεργίες και Δυσανεξίες",
-  "Problems and Procedures": "Προβλήματα και Επεμβάσεις",
-  "Current Problems": "Τρέχοντα Προβλήματα",
-  "Resolved or Inactive Problems": "Επιλυμένα ή Ανενεργά Προβλήματα",
-  "Functional Status" : "Λειτουργική Κατάσταση",
-  "Devices and Implants": "Συσκευές και Εμφυτεύματα",
-  "Medication Summary" : "Περίληψη Συνταγογραφούμενων Φαρμάκων",
-  "Gynecological History" : "Γυναικολογικό Ιστορικό",
-  "Social History" : "Κοινωνικό Ιστορικό",
-  "Immunization" : "Εμβολιασμοί",
-  "Plan of Care": "Σχέδιο Φροντίδας",
+  "medicalHistory": {
+    "epidemiologicalHistory": {
+      "title": "Επιδημιολογικό Ιστορικό"
+    },
+    "travelHistory": {
+      "title": "Ιστορικό Ταξιδιού"
+    },
+    "medicalPersonalHistory": {
+      "title": "Ιατρικό Προσωπικό Ιστορικό"
+    },
+    "allergiesAndIntolerances": {
+      "title": "Αλλεργίες και Δυσανεξίες"
+    },
+    "problemsAndProcedures": {
+      "title": "Προβλήματα και Επεμβάσεις"
+    },
+    "currentProblems": {
+      "title": "Τρέχοντα Προβλήματα"
+    },
+    "resolvedOrInactiveProblems": {
+      "title": "Επιλυμένα ή Ανενεργά Προβλήματα"
+    },
+    "functionalStatus": {
+      "title": "Λειτουργική Κατάσταση"
+    },
+    "devicesAndImplants": {
+      "title": "Συσκευές και Εμφυτεύματα"
+    },
+    "medicationSummary": {
+      "title": "Περίληψη Συνταγογραφούμενων Φαρμάκων"
+    },
+    "gynecologicalHistory": {
+      "title": "Γυναικολογικό Ιστορικό"
+    },
+    "pregnancyHistory": {
+      "title": "Ιστορικό Εγκυμοσύνης"
+    },
+    "pregnancyOutcome": {
+      "title": "Αποτέλεσμα Εγκυμοσύνης"
+    },
+    "socialHistory": {
+      "title": "Κοινωνικό Ιστορικό"
+    },
+    "immunization": {
+      "title": "Εμβολιασμοί"
+    },
+    "planOfCare": {
+      "title": "Σχέδιο Φροντίδας"
+    }
+  },
   "__________________________ServicesScreen__________________________" : "",
   "Doctors Registry" : "Μητρώο Ιατρών",
   "Pharmacists Registry" : "Μητρώο Φαρμακοποιών",
@@ -60,7 +96,7 @@
   "Incorrect username or password" : "Λάθος όνομα χρήστη ή κωδικός πρόσβασης",
   "Sign In" : "Σύνδεση",
   "Forgot your Password?" : "Ξεχάσατε τον κωδικό σας;",
-  "Don't have an account?" : "Δεν έχετε λογαριασμό;",	
+  "Don't have an account?" : "Δεν έχετε λογαριασμό;",
   "Join now" : "Εγγραφή τώρα",
   "keep-me-logged-in" : "Μείνε συνδεδεμένος",
   "login-alert-title": "Απενεργοποιημένη Λειτουργία",

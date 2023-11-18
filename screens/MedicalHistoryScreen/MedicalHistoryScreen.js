@@ -26,42 +26,61 @@ const MedicalHistoryScreen = () => {
           <ScrollView>
             {showTravelHistory && (
               <ExpandableView
-                title={t('Epidimiological History')}
+                title={t('medicalHistory.epidemiologicalHistory.title')}
                 expandLevel={0}>
                 <TravelHistory />
               </ExpandableView>
             )}
             <ExpandableView
-              title={t('Medical Personal History')}
+              title={t('medicalHistory.medicalPersonalHistory.title')}
               expandLevel={0}>
               <ExpandableView
-                title={t('Allergies and Intolerances')}
+                title={t('medicalHistory.allergiesAndIntolerances.title')}
                 expandLevel={1}>
                 <AllergiesAndIntolerances />
               </ExpandableView>
               <ExpandableView
-                title={t('Problems and Procedures')}
+                title={t('medicalHistory.problemsAndProcedures.title')}
                 expandLevel={1}>
                 <ProblemsAndProcedures />
               </ExpandableView>
-              <ExpandableView title={t('Devices and Implants')} expandLevel={1}>
+              <ExpandableView
+                title={t('medicalHistory.devicesAndImplants.title')}
+                expandLevel={1}>
                 <DevicesAndImplants />
               </ExpandableView>
-              <ExpandableView title={t('Medication Summary')} expandLevel={1}>
+              <ExpandableView
+                title={t('medicalHistory.medicationSummary.title')}
+                expandLevel={1}>
                 <MedicationSummary />
               </ExpandableView>
             </ExpandableView>
-            <ExpandableView title={t('Gynecological History')} expandLevel={0}>
-              <ExpandableView title={t('Pregnancy Outcome')} expandLevel={1}>
+            <ExpandableView
+              title={t('medicalHistory.gynecologicalHistory.title')}
+              expandLevel={0}>
+              <ExpandableView
+                title={t('medicalHistory.pregnancyOutcome.title')}
+                expandLevel={1}>
                 <PregnancyOutcome />
               </ExpandableView>
-              <ExpandableView title={t('Pregnancy History')} expandLevel={1}>
+              <ExpandableView
+                title={t('medicalHistory.pregnancyHistory.title')}
+                expandLevel={1}>
                 <PregnancyHistory />
               </ExpandableView>
             </ExpandableView>
-            <ExpandableView title={t('Social History')} expandLevel={0} />
-            <ExpandableView title={t('Immunization')} expandLevel={0} />
-            <ExpandableView title={t('Plan of Care')} expandLevel={0} />
+            <ExpandableView
+              title={t('medicalHistory.socialHistory.title')}
+              expandLevel={0}
+            />
+            <ExpandableView
+              title={t('medicalHistory.immunization.title')}
+              expandLevel={0}
+            />
+            <ExpandableView
+              title={t('medicalHistory.planOfCare.title')}
+              expandLevel={0}
+            />
           </ScrollView>
         </View>
       </View>
