@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import InformationCard from '../../../../components/InformationCard/InformationCard';
 import {getPregnancyOutcome} from './api/gynaecologicalHistoryAPI';
 import {IGynaecologicalHistory} from './interface/IGynaecologicalHistory';
@@ -7,12 +7,14 @@ import {getFullDateDayMonthYear} from '../../../../common/features/dateTransform
 import {useRecoilState} from 'recoil';
 import {userState} from '../../../../features/recoil/atoms/User/userState';
 import {
-  BIRTHS,
   ABORTIONS,
+  BIRTHS,
   ECTOPIC_PREGNANCIES,
 } from './constants/PragnancyOutcomeCodes';
 
 const PregnancyOutcome = () => {
+  const [data, setData] = React.useState<IGynaecologicalHistory>();
+  const [error, setError] = React.useState(false);
   const [user, _] = useRecoilState(userState);
 
   let totalBirths = 0;
@@ -21,15 +23,22 @@ const PregnancyOutcome = () => {
   let lastExaminationDate = '';
 
   const fetchData = async () => {
-    const data = await getPregnancyOutcome(user.token, user.id);
-    return data.data;
+    return await getPregnancyOutcome(user.token, user.id)
+      .then(data => {
+        return data;
+      })
+      .catch(error => {
+        console.log(error);
+        setError(true);
+        return null;
+      });
   };
-
-  const [data, setData] = React.useState<IGynaecologicalHistory>();
 
   useEffect(() => {
     fetchData().then(data => {
-      setData(data);
+      if (data) {
+        setData(data.data);
+      }
     });
   }, []);
 
@@ -57,7 +66,7 @@ const PregnancyOutcome = () => {
 
   return (
     <View style={styles.spaceBetween}>
-      {data && data.pregnancyOutcome && data.pregnancyOutcome.length > 0 && (
+      {data && data.pregnancyOutcome && data.pregnancyOutcome.length > 0 ? (
         <InformationCard
           type={'Allergies and Intolerances'}
           title={lastExaminationDate || '-'}
@@ -69,6 +78,12 @@ const PregnancyOutcome = () => {
             totalEctopicPregnancies.toString() || '-'
           }`}
         />
+      ) : (
+        error && (
+          <Text style={styles.error}>
+            There was an error while fetching data
+          </Text>
+        )
       )}
     </View>
   );
@@ -76,8 +91,12 @@ const PregnancyOutcome = () => {
 
 export default PregnancyOutcome;
 
-const styles = {
+const styles = StyleSheet.create({
   spaceBetween: {
     marginBottom: 5,
   },
-};
+  error: {
+    textAlign: 'center',
+    color: 'red',
+  },
+});
