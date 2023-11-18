@@ -1,52 +1,50 @@
 import {IBackendResponse} from '../../../../../common/interfaces/IBackedResponse';
 import axios from 'axios/index';
-import {getToken} from '../../../../../common/features/tokenContext';
 import {IGynaecologicalHistory} from '../interface/IGynaecologicalHistory';
+import {BACKEND_API_URL} from '@env';
 
 export const getPregnancyOutcome = async (
-  param: string,
+  token: string,
+  patientId: string,
   pageSize: number = 10,
   pageNumber: number = 1,
 ): Promise<IBackendResponse<IGynaecologicalHistory>> => {
   const response = await axios.get<IBackendResponse<IGynaecologicalHistory>>(
-    `https://dev-api.ehealth4u.eu/api/Observation/PregnancyDetails/GetPregnancyDetailsForPatient`,
+    `${BACKEND_API_URL}/Observation/PregnancyDetails/GetPregnancyDetailsForPatient`,
     {
       headers: {
-        Authorization: `Bearer ${getToken()}`,
+        Authorization: `Bearer ${token}`,
       },
       params: {
-        patientId: param,
+        patientId: patientId,
         pageSize: pageSize,
         pageNumber: pageNumber,
       },
     },
   );
-
-  console.log('response.data', response.data.data);
 
   return response.data;
 };
 
 export const getPregnancyHistory = async (
-  param: string,
+  token: string,
+  patientId: string,
   pageSize: number = 10,
   pageNumber: number = 1,
 ): Promise<IBackendResponse<IGynaecologicalHistory>> => {
   const response = await axios.get<IBackendResponse<IGynaecologicalHistory>>(
-    `https://dev-api.ehealth4u.eu/api/Observation/PregnancyDetails/GetPregnancyDetailsForPatient`,
+    `${BACKEND_API_URL}/Observation/PregnancyDetails/GetPregnancyDetailsForPatient`,
     {
       headers: {
-        Authorization: `Bearer ${getToken()}`,
+        Authorization: `Bearer ${token}`,
       },
       params: {
-        patientId: param,
+        patientId: patientId,
         pageSize: pageSize,
         pageNumber: pageNumber,
       },
     },
   );
-
-  console.log('response.data', response.data.data);
 
   return response.data;
 };

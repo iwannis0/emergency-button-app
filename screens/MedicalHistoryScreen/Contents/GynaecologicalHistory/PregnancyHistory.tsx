@@ -1,14 +1,17 @@
 import React, {useEffect} from 'react';
 import {View} from 'react-native';
 import InformationCard from '../../../../components/InformationCard/InformationCard';
-import {getPatientId} from '../../../../common/features/tokenContext';
 import {getFullDateDayMonthYear} from '../../../../common/features/dateTransformations';
 import {getPregnancyHistory} from './api/gynaecologicalHistoryAPI';
 import {IGynaecologicalHistory} from './interface/IGynaecologicalHistory';
+import {useRecoilState} from 'recoil';
+import {userState} from '../../../../features/recoil/atoms/User/userState';
 
 const PregnancyHistory = () => {
+  const [user, _] = useRecoilState(userState);
+
   const fetchData = async () => {
-    const data = await getPregnancyHistory(getPatientId());
+    const data = await getPregnancyHistory(user.token, user.id);
     return data.data;
   };
 

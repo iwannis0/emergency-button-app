@@ -1,19 +1,22 @@
 import React, {useEffect} from 'react';
 import {View} from 'react-native';
 import InformationCard from '../../../../components/InformationCard/InformationCard';
-import {getPatientId} from '../../../../common/features/tokenContext';
 import {getPregnancyOutcome} from './api/gynaecologicalHistoryAPI';
 import {IGynaecologicalHistory} from './interface/IGynaecologicalHistory';
 import {getFullDateDayMonthYear} from '../../../../common/features/dateTransformations';
+import {useRecoilState} from 'recoil';
+import {userState} from '../../../../features/recoil/atoms/User/userState';
 
 const PregnancyOutcome = () => {
+  const [user, _] = useRecoilState(userState);
+
   let totalBirths = 0;
   let totalAbortions = 0;
-  let totalEcotopicPregnancies = 0;
+  let totalEctopicPregnancies = 0;
   let lastExaminationDate = '';
 
   const fetchData = async () => {
-    const data = await getPregnancyOutcome(getPatientId());
+    const data = await getPregnancyOutcome(user.token, user.id);
     return data.data;
   };
 
@@ -36,7 +39,7 @@ const PregnancyOutcome = () => {
       }
 
       if (item.code?.code === '33065-4' && item.value) {
-        totalEcotopicPregnancies = totalEcotopicPregnancies + item.value;
+        totalEctopicPregnancies = totalEctopicPregnancies + item.value;
       }
     });
 
@@ -57,8 +60,8 @@ const PregnancyOutcome = () => {
           BottomSubtitle={`Total Abortions: ${
             totalAbortions.toString() || '-'
           }`}
-          risk={`Total Ecotopic Pregnancies: ${
-            totalEcotopicPregnancies.toString() || '-'
+          risk={`Total Ectopic Pregnancies: ${
+            totalEctopicPregnancies.toString() || '-'
           }`}
         />
       )}
