@@ -1,5 +1,4 @@
 import {ICoding} from '../../../../../common/interfaces/ICoding';
-import {IResourceReference} from '../../../../../common/interfaces/IResourceReference';
 
 export interface IGynaecologicalHistory {
   expectedDeliveries?: ExpectedDeliveryDto[];
@@ -10,22 +9,10 @@ export interface IGynaecologicalHistory {
 export interface IPregnancyStatus {
   examinationDate?: Date;
   value?: ICoding;
-  expectedDeliveryReference?: IResourceReference[];
   expectedDeliveryData?: {
     examinationDate?: Date;
     code: ICoding;
   }[];
-}
-
-export interface IPregnancyStatusMain {
-  code?: ICoding;
-  value?: ICoding;
-  effective?: Date;
-  hasMember?: IResourceReference[];
-  refSubjectCyPatient?: string;
-  refSubjectDevice?: string;
-  refSubjectLocation?: string;
-  refSubjectGroup?: string;
 }
 
 export interface ExpectedDeliveryDto {
