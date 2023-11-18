@@ -3,12 +3,15 @@ import {View} from 'react-native';
 import InformationCard from '../../../../components/InformationCard/InformationCard';
 import {getAllergyIntolerance} from './api/medicalPersonalHistoryAPI';
 import {IAllergyType} from './interface/IAllergiesAndIntolerances';
-import {getPatientId} from '../../../../common/features/tokenContext';
 import {getFullDateDayMonthYear} from '../../../../common/features/dateTransformations';
+import {useRecoilState} from 'recoil';
+import {userState} from '../../../../features/recoil/atoms/User/userState';
 
 const AllergiesAndIntolerances = () => {
+  const [user, _] = useRecoilState(userState);
+
   const fetchData = async () => {
-    const data = await getAllergyIntolerance(getPatientId());
+    const data = await getAllergyIntolerance(user.token, user.id);
     return data.data;
   };
 
