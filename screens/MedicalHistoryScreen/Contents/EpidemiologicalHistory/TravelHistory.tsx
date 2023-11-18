@@ -3,10 +3,10 @@ import {View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import InformationCard from '../../../../components/InformationCard/InformationCard';
 import Subtitle from '../../../../components/Subtitle/Subtitle';
-import {useRecoilState} from 'recoil';
-import {userState} from '../../../../features/recoil/atoms/User/userState';
 import {ITravelHistoryType} from './interface/ITravelHistoryType';
 import {getTravelHistory} from './api/travelHistoryAPI';
+import {useRecoilState} from 'recoil';
+import {userState} from '../../../../features/recoil/atoms/User/userState';
 
 const TravelHistory = () => {
   const {t} = useTranslation();
@@ -14,7 +14,7 @@ const TravelHistory = () => {
   const [data, setData] = React.useState<ITravelHistoryType[]>([]);
 
   const fetchData = async () => {
-    const data = await getTravelHistory('', 10, 1, user.id, user.token);
+    const data = await getTravelHistory(user.token, user.id, 10, 1);
     return data.data;
   };
 
