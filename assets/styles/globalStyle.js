@@ -53,6 +53,19 @@ const globalStyle = StyleSheet.create({
   marginTop60: {
     marginTop: verticalScale(60),
   },
+  Button: {
+    width: horizontalScale(300),
+    height: verticalScale(50),
+    backgroundColor: '#0C6C79',
+    borderRadius: scaleFontSize(10),
+    marginTop: verticalScale(20),
+    marginLeft: horizontalScale(25),
+  },
+  buttonText: {
+    color: '#FFFFFF',
+    fontWeight: '500',
+    fontSize: scaleFontSize(18),
+  },
 });
 
 export default globalStyle;

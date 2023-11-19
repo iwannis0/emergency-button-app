@@ -37,19 +37,6 @@ const styles = StyleSheet.create({
     right: horizontalScale(45),
     top: verticalScale(10),
   },
-  Button: {
-    width: horizontalScale(300),
-    height: verticalScale(50),
-    backgroundColor: '#0C6C79',
-    borderRadius: scaleFontSize(10),
-    marginTop: verticalScale(20),
-    marginLeft: horizontalScale(25),
-  },
-  buttonText: {
-    color: '#FFFFFF',
-    fontWeight: '600',
-    fontSize: scaleFontSize(18),
-  },
   forgot: {
     color: '#497C79',
     marginTop: verticalScale(15),
