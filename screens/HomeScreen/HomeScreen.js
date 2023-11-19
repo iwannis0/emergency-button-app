@@ -31,8 +31,8 @@ const MyHealthScreen = ({navigation}) => {
             style={styles.ImageStyle}
           />
           <Text style={styles.ImageInitials}>
-            {user.name[0]}
-            {user.surname[0]}
+            {user && user.name ? user.name[0] : 'N'}
+            {user && user.surname ? user.surname[0] : 'A'}
           </Text>
         </Pressable>
       </View>

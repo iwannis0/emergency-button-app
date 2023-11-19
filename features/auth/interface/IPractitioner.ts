@@ -3,7 +3,7 @@ import {ITelecom} from '../../../common/interfaces/ITelecom';
 
 export interface IPractitioner {
   name: {
-    test: string;
+    text: string;
   };
   telecom?: ITelecom[];
   address?: IAddress[];

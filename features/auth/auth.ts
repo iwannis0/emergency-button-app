@@ -51,7 +51,7 @@ const signIn = async (
                 status: 'Authorized',
                 data: {
                   id: patientId,
-                  name: res.data.patient.name?.givenName[0],
+                  name: res.data.patient.name?.givenName.at(0),
                   surname: res.data.patient.name?.familyName,
                   loggedIn: true,
                   token: response.access_token,
