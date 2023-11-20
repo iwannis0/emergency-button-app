@@ -92,6 +92,8 @@ const InformationCard = props => {
         data={data}
         visibility={modalVisible}
         toggle={toggleModal}
+        onClose={() => setModalVisible(false)}
+        title={props.title}
       />
 
       <TouchableOpacity

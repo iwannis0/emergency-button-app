@@ -2,13 +2,16 @@ import React, {useEffect} from 'react';
 import {View} from 'react-native';
 import InformationCard from '../../../../components/InformationCard/InformationCard';
 import {getFunctionalStatus} from './api/medicalPersonalHistoryAPI';
-import {getPatientId} from '../../../../common/features/tokenContext';
 import {getFullDateDayMonthYear} from '../../../../common/features/dateTransformations';
 import {IFunctionalStatus} from './interface/IFunctionalStatus';
+import {useRecoilState} from 'recoil';
+import {userState} from '../../../../features/recoil/atoms/User/userState';
 
 const FunctionalStatus = () => {
+  const [user, _] = useRecoilState(userState);
+
   const fetchData = async () => {
-    const data = await getFunctionalStatus(getPatientId());
+    const data = await getFunctionalStatus(user.token, user.id);
     return data.data;
   };
 

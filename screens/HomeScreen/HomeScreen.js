@@ -16,7 +16,7 @@ import {userState} from '../../features/recoil/atoms/User/userState';
 
 const MyHealthScreen = ({navigation}) => {
   const {t} = useTranslation();
-  const [user, setUser] = useRecoilState(userState);
+  const [user, _] = useRecoilState(userState);
 
   return (
     <SafeAreaView style={styles.container}>

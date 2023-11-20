@@ -1,17 +1,25 @@
 import Keycloak from 'react-native-keycloak-plugin';
+import Keychain from 'react-native-keychain';
 import jwt_decode from 'jwt-decode';
 import {IKeycloakResponse} from './interface/IKeycloakResponse';
 import {IKeycloakUser} from './interface/IKeycloakUser';
 import {getPatientProfile} from './api/patientLoginServiceAPI';
-import Keychain from 'react-native-keychain';
+import {
+  KEYCLOAK_APPSITE_URI,
+  KEYCLOAK_AUTH_SERVER_URL,
+  KEYCLOAK_REALM,
+  KEYCLOAK_REDIRECT_URI,
+  KEYCLOAK_RESOURCE,
+  KEYCLOAK_RESPONSE_TYPE,
+} from '@env';
 
 const keycloakConfig: any = {
-  'auth-server-url': 'https://auth.3ahealth.com/',
-  realm: 'ehealth4u',
-  resource: 'ehealth4upathed',
-  responseType: 'code',
-  appsiteUri: 'PATHeD',
-  redirectUri: 'PATHeD://Home',
+  'auth-server-url': KEYCLOAK_AUTH_SERVER_URL,
+  realm: KEYCLOAK_REALM,
+  resource: KEYCLOAK_RESOURCE,
+  responseType: KEYCLOAK_RESPONSE_TYPE,
+  appsiteUri: KEYCLOAK_APPSITE_URI,
+  redirectUri: KEYCLOAK_REDIRECT_URI,
 };
 
 const signIn = async (
@@ -42,10 +50,7 @@ const signIn = async (
             ?.split('/')[1];
 
           // load the patient profile using IPatient interface
-          let patientResponse = await getPatientProfile(
-            response.access_token,
-            patientId,
-          )
+          return await getPatientProfile(response.access_token, patientId)
             .then(res => {
               return {
                 status: 'Authorized',
@@ -64,7 +69,6 @@ const signIn = async (
                 status: 'Unauthorized',
               };
             });
-          return patientResponse;
         }
       })
       .catch((error: any) => {
@@ -120,12 +124,7 @@ const autoLogin = async () => {
   try {
     const credentials = await Keychain.getGenericPassword();
     if (credentials) {
-      const response = await signIn(
-        credentials.username,
-        credentials.password,
-        true,
-      );
-      return response;
+      return await signIn(credentials.username, credentials.password, true);
     }
   } catch (error: any) {
     console.log('error', error);
