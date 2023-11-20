@@ -8,29 +8,34 @@ import {IPatient} from '../../features/auth/interface/IPatient';
 import {getPatientProfile} from '../../features/auth/api/patientLoginServiceAPI';
 import {useRecoilState} from 'recoil';
 import {userState} from '../../features/recoil/atoms/User/userState';
-import {format} from 'date-fns';
 import {ScrollView} from 'react-native-gesture-handler';
 import {IAddress} from '../../common/interfaces/IAddress';
 import {IInsurance} from '../../common/interfaces/IInsurance';
 import {ITelecom} from '../../common/interfaces/ITelecom';
-
-const EMAIL = 'Email';
-const PHONE = 'Phone';
-const PATIENT = 'Patient';
-const NOK = 'NOK';
-const PRACTITIONER = 'Practitioner';
+import {
+  EMAIL,
+  PHONE,
+  PATIENT,
+  NOK,
+  PRACTITIONER,
+  DATE_FORMAT,
+} from '../../common/constants/constants';
+import dayjs from 'dayjs';
 
 const ProfileScreen = () => {
   const {t} = useTranslation();
   const [user, _] = useRecoilState(userState);
   const [data, setData] = React.useState<IPatient>();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
-    setLoading(true);
-    const response = await getPatientProfile(user.token, user.id);
-    setLoading(false);
-    return response.data;
+    try {
+      const response = await getPatientProfile(user.token, user.id);
+      setLoading(false);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -106,7 +111,7 @@ const ProfileScreen = () => {
   };
 
   const formatGeneralPractitioner = (gp: any) => {
-    return gp ? gp.practitioner.name[0]?.text : null;
+    return gp ? gp.practitioner.name?.at(0)?.text : null;
   };
 
   return (
@@ -121,8 +126,8 @@ const ProfileScreen = () => {
               style={styles.ImageStyle}
             />
             <Text style={styles.ImageInitials}>
-              {data?.patient.name?.givenName[0][0]}
-              {data?.patient.name?.familyName[0]}
+              {data?.patient.name?.givenName?.at(0)?.at(0) ?? 'N'}
+              {data?.patient.name?.familyName?.at(0) ?? 'A'}
             </Text>
           </View>
           <Text style={[globalStyle.descriptionBlackL1, styles.Name]}>
@@ -144,7 +149,7 @@ const ProfileScreen = () => {
             labelKey="profileScreen.birth-date"
             value={
               data?.patient.birthDate
-                ? format(new Date(data.patient.birthDate), 'dd MMMM yyyy')
+                ? dayjs(new Date(data.patient.birthDate)).format(DATE_FORMAT)
                 : null
             }
           />
@@ -169,7 +174,7 @@ const ProfileScreen = () => {
           />
           <InformationBox
             labelKey="profileScreen.address"
-            value={formatAddress(data?.patient.address[0])}
+            value={formatAddress(data?.patient.address?.at(0))}
           />
         </View>
 

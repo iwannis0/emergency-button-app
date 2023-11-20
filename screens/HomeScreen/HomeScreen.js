@@ -16,7 +16,7 @@ import {userState} from '../../features/recoil/atoms/User/userState';
 
 const MyHealthScreen = ({navigation}) => {
   const {t} = useTranslation();
-  const [user, setUser] = useRecoilState(userState);
+  const [user, _] = useRecoilState(userState);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -31,8 +31,8 @@ const MyHealthScreen = ({navigation}) => {
             style={styles.ImageStyle}
           />
           <Text style={styles.ImageInitials}>
-            {user.name[0]}
-            {user.surname[0]}
+            {user && user.name ? user.name[0] : 'N'}
+            {user && user.surname ? user.surname[0] : 'A'}
           </Text>
         </Pressable>
       </View>

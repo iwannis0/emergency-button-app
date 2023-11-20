@@ -1,27 +1,28 @@
 import axios from 'axios';
 import {IAllergyType} from '../interface/IAllergiesAndIntolerances';
 import {IBackendResponse} from '../../../../../common/interfaces/IBackedResponse';
-import {getToken} from '../../../../../common/features/tokenContext';
 import {IInitialDeviceAndImplants} from '../interface/IDeviceAndImplants';
 import {IMedicationSummary} from '../interface/IMedicationSummary';
 import {IProcedure} from '../interface/IProcedure';
 import {ICurrentProblems} from '../interface/ICurrentProblems';
 import {IResolvedProblems} from '../interface/IResolvedProblems';
 import {IFunctionalStatus} from '../interface/IFunctionalStatus';
+import {BACKEND_API_URL} from '@env';
 
 export const getAllergyIntolerance = async (
-  param: string,
+  token: string,
+  patientId: string,
   pageSize: number = 10,
   pageNumber: number = 1,
 ): Promise<IBackendResponse<IAllergyType[]>> => {
   const response = await axios.get<IBackendResponse<IAllergyType[]>>(
-    `https://dev-api.ehealth4u.eu/api/AllergyIntolerance/GetAllergyIntolerancesByPatientId`,
+    `${BACKEND_API_URL}/AllergyIntolerance/GetAllergyIntolerancesByPatientId`,
     {
       headers: {
-        Authorization: `Bearer ${getToken()}`,
+        Authorization: `Bearer ${token}`,
       },
       params: {
-        patientId: param,
+        patientId: patientId,
         pageSize: pageSize,
         pageNumber: pageNumber,
       },
@@ -32,18 +33,19 @@ export const getAllergyIntolerance = async (
 };
 
 export const getDevices = async (
-  param: string,
+  token: string,
+  patientId: string,
   pageSize: number = 10,
   pageNumber: number = 1,
 ): Promise<IBackendResponse<IInitialDeviceAndImplants[]>> => {
   const response = await axios.get<
     IBackendResponse<IInitialDeviceAndImplants[]>
-  >(`https://dev-api.ehealth4u.eu/api/Device/GetDevicesForPatient`, {
+  >(`${BACKEND_API_URL}/Device/GetDevicesForPatient`, {
     headers: {
-      Authorization: `Bearer ${getToken()}`,
+      Authorization: `Bearer ${token}`,
     },
     params: {
-      patientId: param,
+      patientId: patientId,
       pageSize: pageSize,
       pageNumber: pageNumber,
     },
@@ -53,18 +55,19 @@ export const getDevices = async (
 };
 
 export const getMedicationSummary = async (
-  param: string,
+  token: string,
+  patientId: string,
   pageSize: number = 100,
   pageNumber: number = 1,
 ): Promise<IBackendResponse<IMedicationSummary[]>> => {
   const response = await axios.get<IBackendResponse<IMedicationSummary[]>>(
-    `https://dev-api.ehealth4u.eu/api/MedicationStatementSummary/GetMedicationStatementSummaryForPatient`,
+    `${BACKEND_API_URL}/MedicationStatementSummary/GetMedicationStatementSummaryForPatient`,
     {
       headers: {
-        Authorization: `Bearer ${getToken()}`,
+        Authorization: `Bearer ${token}`,
       },
       params: {
-        patientId: param,
+        patientId: patientId,
         pageSize: pageSize,
         pageNumber: pageNumber,
       },
@@ -75,18 +78,19 @@ export const getMedicationSummary = async (
 };
 
 export const getCurrentProblems = async (
-  param: string,
+  token: string,
+  patientId: string,
   pageSize: number = 100,
   pageNumber: number = 1,
 ): Promise<IBackendResponse<ICurrentProblems[]>> => {
   const response = await axios.get<IBackendResponse<ICurrentProblems[]>>(
-    `https://dev-api.ehealth4u.eu/api/ConditionDiagnosis/GetCurrentConditionProblemsByPatientId`,
+    `${BACKEND_API_URL}/ConditionDiagnosis/GetCurrentConditionProblemsByPatientId`,
     {
       headers: {
-        Authorization: `Bearer ${getToken()}`,
+        Authorization: `Bearer ${token}`,
       },
       params: {
-        patientId: param,
+        patientId: patientId,
         pageSize: pageSize,
         pageNumber: pageNumber,
       },
@@ -97,18 +101,19 @@ export const getCurrentProblems = async (
 };
 
 export const getResolvedProblems = async (
-  param: string,
+  token: string,
+  patientId: string,
   pageSize: number = 100,
   pageNumber: number = 1,
 ): Promise<IBackendResponse<IResolvedProblems[]>> => {
   const response = await axios.get<IBackendResponse<IResolvedProblems[]>>(
-    `https://dev-api.ehealth4u.eu/api/Condition/GetResolvedConditionProblemsByPatientId`,
+    `${BACKEND_API_URL}/Condition/GetResolvedConditionProblemsByPatientId`,
     {
       headers: {
-        Authorization: `Bearer ${getToken()}`,
+        Authorization: `Bearer ${token}`,
       },
       params: {
-        patientId: param,
+        patientId: patientId,
         pageSize: pageSize,
         pageNumber: pageNumber,
       },
@@ -119,18 +124,19 @@ export const getResolvedProblems = async (
 };
 
 export const getProcedures = async (
-  param: string,
+  token: string,
+  patientId: string,
   pageSize: number = 100,
   pageNumber: number = 1,
 ): Promise<IBackendResponse<IProcedure[]>> => {
   const response = await axios.get<IBackendResponse<IProcedure[]>>(
-    `https://dev-api.ehealth4u.eu/api/Procedure/GetProceduresByPatientId`,
+    `${BACKEND_API_URL}/Procedure/GetProceduresByPatientId`,
     {
       headers: {
-        Authorization: `Bearer ${getToken()}`,
+        Authorization: `Bearer ${token}`,
       },
       params: {
-        patientId: param,
+        patientId: patientId,
         pageSize: pageSize,
         pageNumber: pageNumber,
       },
@@ -141,20 +147,21 @@ export const getProcedures = async (
 };
 
 export const getFunctionalStatus = async (
-  param: string,
+  token: string,
+  refPatient: string,
   pageSize: number = 100,
   pageNumber: number = 1,
 ): Promise<IBackendResponse<IFunctionalStatus[]>> => {
   const response = await axios.post<IBackendResponse<IFunctionalStatus[]>>(
-    `https://dev-api.ehealth4u.eu/api/Observation/FunctionalStatus/GetFunctionalStatus`,
+    `${BACKEND_API_URL}/Observation/FunctionalStatus/GetFunctionalStatus`,
     {
       searchObservationParamsDto: {
-        refPatient: 249867,
+        refPatient: refPatient,
       },
     },
     {
       headers: {
-        Authorization: `Bearer ${getToken()}`,
+        Authorization: `Bearer ${token}`,
       },
       params: {
         pageNumber: pageNumber,

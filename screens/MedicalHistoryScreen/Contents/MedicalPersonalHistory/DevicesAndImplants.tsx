@@ -2,13 +2,16 @@ import React, {useEffect} from 'react';
 import {View} from 'react-native';
 import InformationCard from '../../../../components/InformationCard/InformationCard';
 import {getDevices} from './api/medicalPersonalHistoryAPI';
-import {getPatientId} from '../../../../common/features/tokenContext';
 import {getFullDateDayMonthYear} from '../../../../common/features/dateTransformations';
 import {IInitialDeviceAndImplants} from './interface/IDeviceAndImplants';
+import {useRecoilState} from 'recoil';
+import {userState} from '../../../../features/recoil/atoms/User/userState';
 
 const DeviceAndImplants = () => {
+  const [user, _] = useRecoilState(userState);
+
   const fetchData = async () => {
-    const data = await getDevices(getPatientId());
+    const data = await getDevices(user.token, user.id);
     return data.data;
   };
 

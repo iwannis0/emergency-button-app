@@ -1,16 +1,16 @@
 import axios from 'axios';
 import {ITravelHistoryType} from '../interface/ITravelHistoryType';
 import {IBackendResponse} from '../../../../../common/interfaces/IBackedResponse';
+import {BACKEND_API_URL} from '@env';
 
 export const getTravelHistory = async (
-  param: string,
+  token: string,
+  patientId: string,
   pageSize: number = 10,
   pageNumber: number = 1,
-  patientId: string,
-  token: string,
 ): Promise<IBackendResponse<ITravelHistoryType[]>> => {
   const response = await axios.post<IBackendResponse<ITravelHistoryType[]>>(
-    'https://dev-api.ehealth4u.eu/api/Observation/TravelHistory/GetTravelHistory',
+    `${BACKEND_API_URL}/Observation/TravelHistory/GetTravelHistory`,
     {
       searchObservationParamsDto: {
         refPatient: patientId,
