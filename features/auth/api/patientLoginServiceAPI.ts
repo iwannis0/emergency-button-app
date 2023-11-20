@@ -8,13 +8,13 @@ export const getPatientProfile = async (
   patientId?: string,
 ): Promise<IBackendResponse<IPatient>> => {
   const response = await axios.get<IBackendResponse<IPatient>>(
-    `${BACKEND_API_URL}/Patient/Get`,
+    `${BACKEND_API_URL}/Patient/GetInitialPatientData`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
       },
       params: {
-        id: patientId,
+        patientId: patientId,
       },
     },
   );
