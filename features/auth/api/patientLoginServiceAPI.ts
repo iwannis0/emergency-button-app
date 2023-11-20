@@ -7,13 +7,13 @@ export const getPatientProfile = async (
   patientId?: string,
 ): Promise<IBackendResponse<IPatient>> => {
   const response = await axios.get<IBackendResponse<IPatient>>(
-    'https://dev-api.ehealth4u.eu/api/Patient/Get',
+    'https://dev-api.ehealth4u.eu/api/Patient/GetInitialPatientData',
     {
       headers: {
         Authorization: `Bearer ${token}`,
       },
       params: {
-        id: patientId,
+        patientId: patientId,
       },
     },
   );

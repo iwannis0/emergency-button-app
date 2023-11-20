@@ -1,9 +1,11 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {SafeAreaView, ScrollView, View, Text} from 'react-native';
+import i18n from '../../assets/translations/i18next';
 import styles from './style';
 import globalStyle from '../../assets/styles/globalStyle';
 import NavigationButton from '../../components/NavigationButton/NavigationButton';
+import ModalComponent from '../../components/ModalComponent/ModalComponent';
 import {useRecoilState, useResetRecoilState} from 'recoil';
 import {userState} from '../../features/recoil/atoms/User/userState';
 import {UserPreferencesState} from '../../features/recoil/atoms/UserPreferences/UserPreferencesState';
