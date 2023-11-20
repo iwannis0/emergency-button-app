@@ -6,9 +6,6 @@ import {
 } from '../../assets/styles/scaling';
 
 const styles = StyleSheet.create({
-  marginTop5: {
-    marginTop: verticalScale(5),
-  },
   button: {
     width: horizontalScale(130),
     height: verticalScale(25),
@@ -31,6 +28,14 @@ const styles = StyleSheet.create({
   background: {
     backgroundColor: '#F5F5F7',
     height: '100%',
+  },
+  pinContainer: {
+    marginTop: verticalScale(10),
+    fontSize: scaleFontSize(20),
+    borderWidth: scaleFontSize(1),
+    padding: horizontalScale(4),
+    backgroundColor: 'rgba(12, 108, 121, 0.09)',
+    borderRadius: scaleFontSize(5),
   },
 });
 

@@ -35,6 +35,7 @@ const MedicalHistoryScreen = () => {
   const {t} = useTranslation();
   const [modalVisible, setModalVisible] = React.useState(false);
   const [shl, setShl] = React.useState(null);
+  const [pin, setPin] = React.useState(null);
 
   // ***** KEEP FUTURE REFERENCE FOR MODULARITY *****
   // USER SETTINGS WILL DEFINE WHAT THE USER SEES
@@ -86,16 +87,18 @@ const MedicalHistoryScreen = () => {
           title={''}
           visibility={modalVisible}
           onClose={() => setModalVisible(false)}>
-          <View style={[globalStyle.fullyCentered, styles.marginTop5]}>
+          <View style={globalStyle.fullyCentered}>
             <View>
               <QRCode
                 value={shl}
-                size={horizontalScale(275)}
+                size={horizontalScale(240)}
                 logo={require('../../assets/images/smart-logo.png')}
-                logoSize={horizontalScale(50)}
+                logoSize={horizontalScale(45)}
               />
             </View>
-
+            <Text style={[globalStyle.descriptionBlackL1, styles.pinContainer]}>
+              Access Code: {pin}
+            </Text>
             <View style={styles.buttonsRow}>
               <TouchableOpacity
                 style={[styles.button, globalStyle.fullyCentered]}
@@ -142,7 +145,9 @@ const MedicalHistoryScreen = () => {
         <TouchableOpacity
           style={[globalStyle.Button, globalStyle.fullyCentered]}
           onPress={() => {
-            setShl(generateSHL());
+            const result = generateSHL();
+            setShl(result.shlink);
+            setPin(result.pin);
             setModalVisible(true);
           }}>
           <Text style={globalStyle.buttonText}>Share Patient Summary</Text>
