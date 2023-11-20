@@ -18,7 +18,7 @@ import ProblemsAndProcedures from './Contents/MedicalPersonalHistory/ProblemsAnd
 import {
   copyToClipboard,
   generateSHL,
-  openURL,
+  sendEmail,
   showAlertAndOpenURL,
 } from '../../features/SHL/shl';
 import ModalComponent from '../../components/ModalComponent/ModalComponent';
@@ -103,8 +103,11 @@ const MedicalHistoryScreen = () => {
               <TouchableOpacity
                 style={[styles.button, globalStyle.fullyCentered]}
                 onPress={() => {
-                  setShl(generateSHL());
-                  setModalVisible(true);
+                  sendEmail(
+                    '',
+                    'Share my Patient Summary',
+                    'I attached the link here:\n\n' + shl,
+                  );
                 }}>
                 <FontAwesomeIcon
                   icon={faShareNodes}
