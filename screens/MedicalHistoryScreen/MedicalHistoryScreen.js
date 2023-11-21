@@ -32,9 +32,12 @@ import {
   faCopy,
   faUpRightFromSquare,
 } from '@fortawesome/free-solid-svg-icons';
+import {useRecoilState} from 'recoil';
+import {userState} from '../../features/recoil/atoms/User/userState';
 
 const MedicalHistoryScreen = () => {
   const {t} = useTranslation();
+  const [user, _] = useRecoilState(userState);
   const [modalVisible, setModalVisible] = React.useState(false);
   const [shl, setShl] = React.useState(null);
   const [pin, setPin] = React.useState(null);
@@ -131,7 +134,12 @@ const MedicalHistoryScreen = () => {
                   sendEmail(
                     '',
                     t('medicalHistory.smartlinks.emai-subject'),
-                    t('medicalHistory.smartlinks.email-body') + '\n\n' + shl,
+                    t('medicalHistory.smartlinks.email-body-partA') +
+                      shl +
+                      t('medicalHistory.smartlinks.email-body-partB') +
+                      user.surname +
+                      ' ' +
+                      user.name,
                   );
                 }}>
                 <FontAwesomeIcon

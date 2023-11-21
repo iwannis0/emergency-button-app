@@ -37,7 +37,8 @@
       "open-alert-continue": "Continue",
       "open-alert-cancel": "Cancel",
       "emai-subject": "Share my Patient Symmary",
-      "email-body": "Please click the link below to access my Patient Summary"
+      "email-body-partA": "Greetings,\n\nI would like to share with you my Patient Summary. Please find the link below:\n\n",
+      "email-body-partB": "\n\nFeel free to contact me for any further information.\n\nBest Regards,\n"
     },
     "epidemiologicalHistory": {
       "title": "Epidemiological History"
