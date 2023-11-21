@@ -1,7 +1,13 @@
 import React from 'react';
-import {SafeAreaView, ScrollView, View} from 'react-native';
+import {
+  SafeAreaView,
+  ScrollView,
+  TouchableOpacity,
+  View,
+  Text,
+} from 'react-native';
 import ExpandableView from '../../components/ExpandableView/ExpandableView';
-import styles from '../AlertsScreen/style';
+import styles from './style';
 import globalStyle from '../../assets/styles/globalStyle';
 import {useTranslation} from 'react-i18next';
 import TravelHistory from './Contents/EpidemiologicalHistory/TravelHistory';
@@ -11,9 +17,30 @@ import MedicationSummary from './Contents/MedicalPersonalHistory/MedicationSumma
 import ProblemsAndProcedures from './Contents/MedicalPersonalHistory/ProblemsAndProcedures';
 import PregnancyHistory from './Contents/GynaecologicalHistory/PregnancyHistory';
 import PregnancyOutcome from './Contents/GynaecologicalHistory/PregnancyOutcome';
+import {
+  copyToClipboard,
+  generateSHL,
+  sendEmail,
+  showAlertAndOpenURL,
+} from '../../features/SHL/shl';
+import ModalComponent from '../../components/ModalComponent/ModalComponent';
+import QRCode from 'react-native-qrcode-svg';
+import {horizontalScale} from '../../assets/styles/scaling';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {
+  faShareNodes,
+  faCopy,
+  faUpRightFromSquare,
+} from '@fortawesome/free-solid-svg-icons';
+import {useRecoilState} from 'recoil';
+import {userState} from '../../features/recoil/atoms/User/userState';
 
 const MedicalHistoryScreen = () => {
   const {t} = useTranslation();
+  const [user, _] = useRecoilState(userState);
+  const [modalVisible, setModalVisible] = React.useState(false);
+  const [shl, setShl] = React.useState(null);
+  const [pin, setPin] = React.useState(null);
 
   // ***** KEEP FUTURE REFERENCE FOR MODULARITY *****
   // USER SETTINGS WILL DEFINE WHAT THE USER SEES
@@ -83,6 +110,102 @@ const MedicalHistoryScreen = () => {
             />
           </ScrollView>
         </View>
+
+        <ModalComponent
+          title={''}
+          visibility={modalVisible}
+          onClose={() => setModalVisible(false)}>
+          <View style={globalStyle.fullyCentered}>
+            <View>
+              <QRCode
+                value={shl}
+                size={horizontalScale(240)}
+                logo={require('../../assets/images/smart-logo.png')}
+                logoSize={horizontalScale(45)}
+              />
+            </View>
+            <Text style={[globalStyle.descriptionBlackL1, styles.pinContainer]}>
+              {t('medicalHistory.smartlinks.pin')} {pin}
+            </Text>
+            <View style={styles.buttonsRow}>
+              <TouchableOpacity
+                style={[styles.button, globalStyle.fullyCentered]}
+                onPress={() => {
+                  sendEmail(
+                    '',
+                    t('medicalHistory.smartlinks.emai-subject'),
+                    t('medicalHistory.smartlinks.email-body-partA') +
+                      shl +
+                      t('medicalHistory.smartlinks.email-body-partB') +
+                      user.surname +
+                      ' ' +
+                      user.name,
+                  );
+                }}>
+                <FontAwesomeIcon
+                  icon={faShareNodes}
+                  color="#FFFFFF"
+                  size={horizontalScale(18)}
+                />
+                <Text style={styles.buttonText}>
+                  {t('medicalHistory.smartlinks.share')}
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={[styles.button, globalStyle.fullyCentered]}
+                onPress={() => {
+                  copyToClipboard(
+                    shl,
+                    t('medicalHistory.smartlinks.copy-alert'),
+                    t('medicalHistory.smartlinks.copy-alert-continue'),
+                  );
+                }}>
+                <FontAwesomeIcon
+                  icon={faCopy}
+                  color="#FFFFFF"
+                  size={horizontalScale(18)}
+                />
+                <Text style={styles.buttonText}>
+                  {t('medicalHistory.smartlinks.copy')}
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <TouchableOpacity
+              style={[styles.button, globalStyle.fullyCentered]}
+              onPress={() => {
+                showAlertAndOpenURL(
+                  shl,
+                  t('medicalHistory.smartlinks.open-alert-title'),
+                  t('medicalHistory.smartlinks.open-alert-description'),
+                  t('medicalHistory.smartlinks.open-alert-cancel'),
+                  t('medicalHistory.smartlinks.open-alert-continue'),
+                );
+              }}>
+              <FontAwesomeIcon
+                icon={faUpRightFromSquare}
+                color="#FFFFFF"
+                size={horizontalScale(18)}
+              />
+              <Text style={styles.buttonText}>
+                {t('medicalHistory.smartlinks.open')}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </ModalComponent>
+
+        <TouchableOpacity
+          style={[globalStyle.Button, globalStyle.fullyCentered]}
+          onPress={() => {
+            const result = generateSHL();
+            setShl(result.shlink);
+            setPin(result.pin);
+            setModalVisible(true);
+          }}>
+          <Text style={globalStyle.buttonText}>
+            {t('medicalHistory.smartlinks.main-button')}
+          </Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
