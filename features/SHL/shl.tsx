@@ -27,22 +27,32 @@ export function generateSHL() {
   return {shlink, pin};
 }
 
-export const copyToClipboard = (url: string) => {
+export const copyToClipboard = (
+  url: string,
+  alertTitle: string,
+  alertContinue: string,
+) => {
   Clipboard.setString(url);
-  Alert.alert('Copied to Clipboard!');
+  Alert.alert(alertTitle, '', [{text: alertContinue}]);
 };
 
 const openURL = (url: string) => {
   Linking.openURL(url).catch(err => console.error('Failed to open URL:', err));
 };
 
-export function showAlertAndOpenURL(url: string) {
+export function showAlertAndOpenURL(
+  url: string,
+  title: string,
+  message: string,
+  cancel: string,
+  ok: string,
+) {
   Alert.alert(
-    'Open Link',
-    'Do you want to open the link in your browser?',
+    title,
+    message,
     [
-      {text: 'Cancel', style: 'cancel'},
-      {text: 'OK', onPress: () => openURL(url)},
+      {text: cancel, style: 'cancel'},
+      {text: ok, onPress: () => openURL(url)},
     ],
     {cancelable: true},
   );

@@ -22,8 +22,23 @@
   "Major Medical Problems" : "Major Medical Problems",
   "Procedures" : "Procedures",
   "Medical Devices" : "Medical Devices",
-  "__________________________MedicalHistoryScreen__________________________" : "",
   "medicalHistory": {
+    "smartlinks":{
+      "main-button": "Share Patient Summary",
+      "pin": "Access Code:",
+      "share": "Share",
+      "copy": "Copy",
+      "copy-alert": "Link copied to clipboard",
+      "copy-alert-continue": "Continue",
+      "alert-cancel": "Cancel",
+      "open": "Open",
+      "open-alert-title": "Open Link",
+      "open-alert-description": "You are about to open a link in your browser to your Patient Summary. Do you want to continue?",
+      "open-alert-continue": "Continue",
+      "open-alert-cancel": "Cancel",
+      "emai-subject": "Share my Patient Symmary",
+      "email-body": "Please click the link below to access my Patient Summary"
+    },
     "epidemiologicalHistory": {
       "title": "Epidemiological History"
     },

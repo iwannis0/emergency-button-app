@@ -122,7 +122,7 @@ const MedicalHistoryScreen = () => {
               />
             </View>
             <Text style={[globalStyle.descriptionBlackL1, styles.pinContainer]}>
-              Access Code: {pin}
+              {t('medicalHistory.smartlinks.pin')} {pin}
             </Text>
             <View style={styles.buttonsRow}>
               <TouchableOpacity
@@ -130,8 +130,8 @@ const MedicalHistoryScreen = () => {
                 onPress={() => {
                   sendEmail(
                     '',
-                    'Share my Patient Summary',
-                    'I attached the link here:\n\n' + shl,
+                    t('medicalHistory.smartlinks.emai-subject'),
+                    t('medicalHistory.smartlinks.email-body') + '\n\n' + shl,
                   );
                 }}>
                 <FontAwesomeIcon
@@ -139,33 +139,49 @@ const MedicalHistoryScreen = () => {
                   color="#FFFFFF"
                   size={horizontalScale(18)}
                 />
-                <Text style={styles.buttonText}>Share</Text>
+                <Text style={styles.buttonText}>
+                  {t('medicalHistory.smartlinks.share')}
+                </Text>
               </TouchableOpacity>
 
               <TouchableOpacity
                 style={[styles.button, globalStyle.fullyCentered]}
                 onPress={() => {
-                  copyToClipboard(shl);
+                  copyToClipboard(
+                    shl,
+                    t('medicalHistory.smartlinks.copy-alert'),
+                    t('medicalHistory.smartlinks.copy-alert-continue'),
+                  );
                 }}>
                 <FontAwesomeIcon
                   icon={faCopy}
                   color="#FFFFFF"
                   size={horizontalScale(18)}
                 />
-                <Text style={styles.buttonText}>Αντιγραφή</Text>
+                <Text style={styles.buttonText}>
+                  {t('medicalHistory.smartlinks.copy')}
+                </Text>
               </TouchableOpacity>
             </View>
             <TouchableOpacity
               style={[styles.button, globalStyle.fullyCentered]}
               onPress={() => {
-                showAlertAndOpenURL(shl);
+                showAlertAndOpenURL(
+                  shl,
+                  t('medicalHistory.smartlinks.open-alert-title'),
+                  t('medicalHistory.smartlinks.open-alert-description'),
+                  t('medicalHistory.smartlinks.open-alert-cancel'),
+                  t('medicalHistory.smartlinks.open-alert-continue'),
+                );
               }}>
               <FontAwesomeIcon
                 icon={faUpRightFromSquare}
                 color="#FFFFFF"
                 size={horizontalScale(18)}
               />
-              <Text style={styles.buttonText}>Άνοιγμα</Text>
+              <Text style={styles.buttonText}>
+                {t('medicalHistory.smartlinks.open')}
+              </Text>
             </TouchableOpacity>
           </View>
         </ModalComponent>
@@ -178,7 +194,9 @@ const MedicalHistoryScreen = () => {
             setPin(result.pin);
             setModalVisible(true);
           }}>
-          <Text style={globalStyle.buttonText}>Share Patient Summary</Text>
+          <Text style={globalStyle.buttonText}>
+            {t('medicalHistory.smartlinks.main-button')}
+          </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
