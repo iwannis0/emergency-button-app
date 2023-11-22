@@ -6,7 +6,7 @@ import {
 } from '../../assets/styles/scaling';
 
 const styles = StyleSheet.create({
-  button: {
+  actionButtonsSHL: {
     width: horizontalScale(130),
     height: verticalScale(25),
     backgroundColor: '#0C6C79',
@@ -14,20 +14,16 @@ const styles = StyleSheet.create({
     marginTop: verticalScale(10),
     flexDirection: 'row',
   },
-  buttonText: {
+  actionButtonText: {
     color: '#FFFFFF',
     fontWeight: '400',
     fontSize: scaleFontSize(16),
     marginLeft: horizontalScale(5),
   },
-  buttonsRow: {
+  actionButtonRow: {
     flexDirection: 'row',
     width: horizontalScale(270),
     justifyContent: 'space-between',
-  },
-  background: {
-    backgroundColor: '#F5F5F7',
-    height: '100%',
   },
   pinContainer: {
     marginTop: verticalScale(10),
@@ -36,6 +32,14 @@ const styles = StyleSheet.create({
     padding: horizontalScale(4),
     backgroundColor: 'rgba(12, 108, 121, 0.09)',
     borderRadius: scaleFontSize(5),
+  },
+  PersonalHistoryContainer: {
+    width: '90%',
+    marginLeft: horizontalScale(35),
+  },
+  PersonalHistoryTitle: {
+    marginTop: verticalScale(15),
+    marginLeft: horizontalScale(-10),
   },
 });
 

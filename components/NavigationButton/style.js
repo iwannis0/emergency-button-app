@@ -10,8 +10,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    borderBottomColor: '#E0E0E0',
-    borderBottomWidth: 1,
     height: verticalScale(55),
     paddingLeft: horizontalScale(15),
   },

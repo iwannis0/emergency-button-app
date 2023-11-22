@@ -66,6 +66,15 @@ const globalStyle = StyleSheet.create({
     fontWeight: '500',
     fontSize: scaleFontSize(18),
   },
+  bottomBorderL1: {
+    borderBottomWidth: scaleFontSize(3),
+    borderBottomColor: '#D2D2D2',
+  },
+  bottomBorderL2: {
+    borderBottomWidth: scaleFontSize(2),
+    borderBottomColor: '#E2E2E2',
+    borderBottomStartRadius: scaleFontSize(40),
+  },
 });
 
 export default globalStyle;

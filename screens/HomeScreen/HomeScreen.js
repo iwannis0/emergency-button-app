@@ -44,6 +44,8 @@ const MyHealthScreen = ({navigation}) => {
           onPress={() => {
             navigation.navigate('Alerts');
           }}
+          bottomBorderStyle={globalStyle.bottomBorderL1}
+          titleStyle={globalStyle.descriptionBlackL1}
         />
         <NavigationButton
           type={'withIcon'}
@@ -52,6 +54,8 @@ const MyHealthScreen = ({navigation}) => {
           onPress={() => {
             navigation.navigate('Medical History');
           }}
+          bottomBorderStyle={globalStyle.bottomBorderL1}
+          titleStyle={globalStyle.descriptionBlackL1}
         />
         <NavigationButton
           type={'withIcon'}
@@ -60,6 +64,8 @@ const MyHealthScreen = ({navigation}) => {
           onPress={() => {
             navigation.navigate('Clinical Examination');
           }}
+          bottomBorderStyle={globalStyle.bottomBorderL1}
+          titleStyle={globalStyle.descriptionBlackL1}
         />
         <NavigationButton
           type={'withIcon'}
@@ -68,6 +74,8 @@ const MyHealthScreen = ({navigation}) => {
           onPress={() => {
             navigation.navigate('Laboratory');
           }}
+          bottomBorderStyle={globalStyle.bottomBorderL1}
+          titleStyle={globalStyle.descriptionBlackL1}
         />
         <NavigationButton
           type={'withIcon'}
@@ -76,6 +84,8 @@ const MyHealthScreen = ({navigation}) => {
           onPress={() => {
             navigation.navigate('Imaging');
           }}
+          bottomBorderStyle={globalStyle.bottomBorderL1}
+          titleStyle={globalStyle.descriptionBlackL1}
         />
         <NavigationButton
           type={'withIcon'}
@@ -84,6 +94,7 @@ const MyHealthScreen = ({navigation}) => {
           onPress={() => {
             navigation.navigate('Episodes of Care and Visits');
           }}
+          titleStyle={globalStyle.descriptionBlackL1}
         />
       </ScrollView>
     </SafeAreaView>

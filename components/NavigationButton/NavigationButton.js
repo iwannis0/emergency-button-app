@@ -8,13 +8,13 @@ const NavigationButton = props => {
   return (
     <View>
       <Pressable onPress={props.onPress}>
-        <View style={styles.container}>
+        <View style={[styles.container, props.bottomBorderStyle]}>
           {props.type === 'withIcon' && (
             <Image style={styles.icon_image} source={props.image} />
           )}
           <Text
             style={[
-              globalStyle.descriptionBlackL1,
+              props.titleStyle,
               props.title === 'Logout' || props.title === 'Αποσύνδεση'
                 ? styles.red_title
                 : styles.title,
@@ -40,6 +40,8 @@ NavigationButton.propTypes = {
   title: PropTypes.string.isRequired,
   image: PropTypes.any,
   onPress: PropTypes.func.isRequired,
+  bottomBorderStyle: PropTypes.any,
+  titleStyle: PropTypes.any,
 };
 
 export default NavigationButton;

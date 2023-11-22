@@ -13,8 +13,7 @@ import {signOut} from '../../features/auth/auth';
 
 const SettingsScreen = ({navigation}) => {
   const {t} = useTranslation();
-  const [userPreferences, setUserPreferences] =
-    useRecoilState(UserPreferencesState);
+  const [_, setUserPreferences] = useRecoilState(UserPreferencesState);
   const resetUser = useResetRecoilState(userState);
 
   const [LanguageModalVisible, setLanguageModalVisible] = React.useState(false);
@@ -69,6 +68,8 @@ const SettingsScreen = ({navigation}) => {
                 }));
                 setLanguageModalVisible(false);
               }}
+              bottomBorderStyle={globalStyle.bottomBorderL1}
+              titleStyle={globalStyle.descriptionBlackL1}
             />
           </ScrollView>
         </ModalComponent>
@@ -79,6 +80,8 @@ const SettingsScreen = ({navigation}) => {
           onPress={() => {
             setLanguageModalVisible(true);
           }}
+          bottomBorderStyle={globalStyle.bottomBorderL1}
+          titleStyle={globalStyle.descriptionBlackL1}
         />
 
         {/* Terms of use */}
@@ -99,6 +102,8 @@ const SettingsScreen = ({navigation}) => {
           onPress={() => {
             setTermsModalVisible(true);
           }}
+          bottomBorderStyle={globalStyle.bottomBorderL1}
+          titleStyle={globalStyle.descriptionBlackL1}
         />
 
         {/* Privacy Policy */}
@@ -119,6 +124,8 @@ const SettingsScreen = ({navigation}) => {
           onPress={() => {
             setPrivacyModalVisible(true);
           }}
+          bottomBorderStyle={globalStyle.bottomBorderL1}
+          titleStyle={globalStyle.descriptionBlackL1}
         />
 
         {/* About */}
@@ -137,6 +144,8 @@ const SettingsScreen = ({navigation}) => {
           onPress={() => {
             setAboutModalVisible(true);
           }}
+          bottomBorderStyle={globalStyle.bottomBorderL1}
+          titleStyle={globalStyle.descriptionBlackL1}
         />
 
         {/* Logout */}
@@ -146,6 +155,8 @@ const SettingsScreen = ({navigation}) => {
           onPress={() => {
             handleLogout();
           }}
+          bottomBorderStyle={globalStyle.bottomBorderL1}
+          titleStyle={globalStyle.descriptionBlackL1}
         />
       </ScrollView>
     </SafeAreaView>
