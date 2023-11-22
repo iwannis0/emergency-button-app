@@ -67,13 +67,17 @@ const globalStyle = StyleSheet.create({
     fontSize: scaleFontSize(18),
   },
   bottomBorderL1: {
-    borderBottomWidth: scaleFontSize(3),
+    borderBottomWidth: scaleFontSize(2),
     borderBottomColor: '#D2D2D2',
   },
   bottomBorderL2: {
     borderBottomWidth: scaleFontSize(2),
     borderBottomColor: '#E2E2E2',
     borderBottomStartRadius: scaleFontSize(40),
+  },
+  bottomBorderL3: {
+    borderBottomWidth: scaleFontSize(1),
+    borderBottomColor: '#C2C2C2',
   },
 });
 

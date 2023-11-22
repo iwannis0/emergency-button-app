@@ -44,7 +44,7 @@ const MyHealthScreen = ({navigation}) => {
           onPress={() => {
             navigation.navigate('Alerts');
           }}
-          bottomBorderStyle={globalStyle.bottomBorderL1}
+          bottomBorderStyle={globalStyle.bottomBorderL3}
           titleStyle={globalStyle.descriptionBlackL1}
         />
         <NavigationButton
@@ -54,7 +54,7 @@ const MyHealthScreen = ({navigation}) => {
           onPress={() => {
             navigation.navigate('Medical History');
           }}
-          bottomBorderStyle={globalStyle.bottomBorderL1}
+          bottomBorderStyle={globalStyle.bottomBorderL3}
           titleStyle={globalStyle.descriptionBlackL1}
         />
         <NavigationButton
@@ -64,7 +64,7 @@ const MyHealthScreen = ({navigation}) => {
           onPress={() => {
             navigation.navigate('Clinical Examination');
           }}
-          bottomBorderStyle={globalStyle.bottomBorderL1}
+          bottomBorderStyle={globalStyle.bottomBorderL3}
           titleStyle={globalStyle.descriptionBlackL1}
         />
         <NavigationButton
@@ -74,7 +74,7 @@ const MyHealthScreen = ({navigation}) => {
           onPress={() => {
             navigation.navigate('Laboratory');
           }}
-          bottomBorderStyle={globalStyle.bottomBorderL1}
+          bottomBorderStyle={globalStyle.bottomBorderL3}
           titleStyle={globalStyle.descriptionBlackL1}
         />
         <NavigationButton
@@ -84,7 +84,7 @@ const MyHealthScreen = ({navigation}) => {
           onPress={() => {
             navigation.navigate('Imaging');
           }}
-          bottomBorderStyle={globalStyle.bottomBorderL1}
+          bottomBorderStyle={globalStyle.bottomBorderL3}
           titleStyle={globalStyle.descriptionBlackL1}
         />
         <NavigationButton

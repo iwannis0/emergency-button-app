@@ -55,6 +55,8 @@ const SettingsScreen = ({navigation}) => {
                 }));
                 setLanguageModalVisible(false);
               }}
+              bottomBorderStyle={globalStyle.bottomBorderL3}
+              titleStyle={globalStyle.descriptionBlackL1}
             />
             <NavigationButton
               type={'withIcon'}
@@ -68,7 +70,6 @@ const SettingsScreen = ({navigation}) => {
                 }));
                 setLanguageModalVisible(false);
               }}
-              bottomBorderStyle={globalStyle.bottomBorderL1}
               titleStyle={globalStyle.descriptionBlackL1}
             />
           </ScrollView>
@@ -80,7 +81,7 @@ const SettingsScreen = ({navigation}) => {
           onPress={() => {
             setLanguageModalVisible(true);
           }}
-          bottomBorderStyle={globalStyle.bottomBorderL1}
+          bottomBorderStyle={globalStyle.bottomBorderL3}
           titleStyle={globalStyle.descriptionBlackL1}
         />
 
@@ -102,7 +103,7 @@ const SettingsScreen = ({navigation}) => {
           onPress={() => {
             setTermsModalVisible(true);
           }}
-          bottomBorderStyle={globalStyle.bottomBorderL1}
+          bottomBorderStyle={globalStyle.bottomBorderL3}
           titleStyle={globalStyle.descriptionBlackL1}
         />
 
@@ -124,7 +125,7 @@ const SettingsScreen = ({navigation}) => {
           onPress={() => {
             setPrivacyModalVisible(true);
           }}
-          bottomBorderStyle={globalStyle.bottomBorderL1}
+          bottomBorderStyle={globalStyle.bottomBorderL3}
           titleStyle={globalStyle.descriptionBlackL1}
         />
 
@@ -144,7 +145,7 @@ const SettingsScreen = ({navigation}) => {
           onPress={() => {
             setAboutModalVisible(true);
           }}
-          bottomBorderStyle={globalStyle.bottomBorderL1}
+          bottomBorderStyle={globalStyle.bottomBorderL3}
           titleStyle={globalStyle.descriptionBlackL1}
         />
 
@@ -155,7 +156,6 @@ const SettingsScreen = ({navigation}) => {
           onPress={() => {
             handleLogout();
           }}
-          bottomBorderStyle={globalStyle.bottomBorderL1}
           titleStyle={globalStyle.descriptionBlackL1}
         />
       </ScrollView>

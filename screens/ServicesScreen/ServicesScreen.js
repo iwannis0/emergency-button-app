@@ -19,7 +19,7 @@ const ServicesScreen = ({navigation}) => {
           onPress={() => {
             navigation.navigate('Alerts'); // TO BE IMPLEMENTED
           }}
-          bottomBorderStyle={globalStyle.bottomBorderL1}
+          bottomBorderStyle={globalStyle.bottomBorderL3}
           titleStyle={globalStyle.descriptionBlackL1}
         />
         <NavigationButton
@@ -29,7 +29,6 @@ const ServicesScreen = ({navigation}) => {
           onPress={() => {
             navigation.navigate('Alerts'); // TO BE IMPLEMENTED
           }}
-          bottomBorderStyle={globalStyle.bottomBorderL1}
           titleStyle={globalStyle.descriptionBlackL1}
         />
       </ScrollView>
