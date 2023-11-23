@@ -1,17 +1,9 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  View,
-  Text,
-  Pressable,
-  Image,
-} from 'react-native';
+import {SafeAreaView, ScrollView, View} from 'react-native';
 import NavigationButton from '../../components/NavigationButton/NavigationButton';
 import styles from './style';
 import globalStyle from '../../assets/styles/globalStyle';
 import {useTranslation} from 'react-i18next';
-import i18n from '../../assets/translations/i18next';
 
 const ServicesScreen = ({navigation}) => {
   const {t} = useTranslation();
@@ -27,6 +19,8 @@ const ServicesScreen = ({navigation}) => {
           onPress={() => {
             navigation.navigate('Alerts'); // TO BE IMPLEMENTED
           }}
+          bottomBorderStyle={globalStyle.bottomBorderL3}
+          titleStyle={globalStyle.descriptionBlackL1}
         />
         <NavigationButton
           type={'withIcon'}
@@ -35,6 +29,7 @@ const ServicesScreen = ({navigation}) => {
           onPress={() => {
             navigation.navigate('Alerts'); // TO BE IMPLEMENTED
           }}
+          titleStyle={globalStyle.descriptionBlackL1}
         />
       </ScrollView>
     </SafeAreaView>

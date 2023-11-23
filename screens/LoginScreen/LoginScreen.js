@@ -135,6 +135,8 @@ const LoginScreen = ({navigation}) => {
               }));
               setLanguageModalVisible(false);
             }}
+            bottomBorderStyle={globalStyle.bottomBorderL3}
+            titleStyle={globalStyle.descriptionBlackL1}
           />
           <NavigationButton
             type={'withIcon'}
@@ -148,6 +150,7 @@ const LoginScreen = ({navigation}) => {
               }));
               setLanguageModalVisible(false);
             }}
+            titleStyle={globalStyle.descriptionBlackL1}
           />
         </ScrollView>
       </ModalComponent>

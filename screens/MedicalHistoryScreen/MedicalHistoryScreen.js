@@ -6,17 +6,9 @@ import {
   View,
   Text,
 } from 'react-native';
-import ExpandableView from '../../components/ExpandableView/ExpandableView';
 import styles from './style';
 import globalStyle from '../../assets/styles/globalStyle';
 import {useTranslation} from 'react-i18next';
-import TravelHistory from './Contents/EpidemiologicalHistory/TravelHistory';
-import AllergiesAndIntolerances from './Contents/MedicalPersonalHistory/AllergiesAndIntolerances';
-import DevicesAndImplants from './Contents/MedicalPersonalHistory/DevicesAndImplants';
-import MedicationSummary from './Contents/MedicalPersonalHistory/MedicationSummary';
-import ProblemsAndProcedures from './Contents/MedicalPersonalHistory/ProblemsAndProcedures';
-import PregnancyHistory from './Contents/GynaecologicalHistory/PregnancyHistory';
-import PregnancyOutcome from './Contents/GynaecologicalHistory/PregnancyOutcome';
 import {
   copyToClipboard,
   generateSHL,
@@ -34,79 +26,101 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import {useRecoilState} from 'recoil';
 import {userState} from '../../features/recoil/atoms/User/userState';
+import NavigationButton from '../../components/NavigationButton/NavigationButton';
 
-const MedicalHistoryScreen = () => {
+const MedicalHistoryScreen = navigation => {
   const {t} = useTranslation();
   const [user, _] = useRecoilState(userState);
   const [modalVisible, setModalVisible] = React.useState(false);
   const [shl, setShl] = React.useState(null);
   const [pin, setPin] = React.useState(null);
 
-  // ***** KEEP FUTURE REFERENCE FOR MODULARITY *****
-  // USER SETTINGS WILL DEFINE WHAT THE USER SEES
-  const showTravelHistory = true;
-
   return (
     <SafeAreaView>
-      <View style={styles.background}>
+      <View style={globalStyle.backgroundWhite}>
         <View style={globalStyle.marginTop60}>
           <ScrollView>
-            {showTravelHistory && (
-              <ExpandableView
-                title={t('medicalHistory.epidemiologicalHistory.title')}
-                expandLevel={0}>
-                <TravelHistory />
-              </ExpandableView>
-            )}
-            <ExpandableView
-              title={t('medicalHistory.medicalPersonalHistory.title')}
-              expandLevel={0}>
-              <ExpandableView
-                title={t('medicalHistory.allergiesAndIntolerances.title')}
-                expandLevel={1}>
-                <AllergiesAndIntolerances />
-              </ExpandableView>
-              <ExpandableView
-                title={t('medicalHistory.problemsAndProcedures.title')}
-                expandLevel={1}>
-                <ProblemsAndProcedures />
-              </ExpandableView>
-              <ExpandableView
-                title={t('medicalHistory.devicesAndImplants.title')}
-                expandLevel={1}>
-                <DevicesAndImplants />
-              </ExpandableView>
-              <ExpandableView
-                title={t('medicalHistory.medicationSummary.title')}
-                expandLevel={1}>
-                <MedicationSummary />
-              </ExpandableView>
-            </ExpandableView>
-            <ExpandableView
-              title={t('medicalHistory.gynecologicalHistory.title')}
-              expandLevel={0}>
-              <ExpandableView
-                title={t('medicalHistory.pregnancyOutcome.title')}
-                expandLevel={1}>
-                <PregnancyOutcome />
-              </ExpandableView>
-              <ExpandableView
-                title={t('medicalHistory.pregnancyHistory.title')}
-                expandLevel={1}>
-                <PregnancyHistory />
-              </ExpandableView>
-            </ExpandableView>
-            <ExpandableView
+            <NavigationButton
+              type={'withArrow'}
+              title={t('medicalHistory.epidemiologicalHistory.title')}
+              onPress={() => {
+                navigation.navigate('EpidemiologicalHistoryScreen');
+              }}
+              bottomBorderStyle={globalStyle.bottomBorderL1}
+              titleStyle={globalStyle.descriptionBlackL1}
+            />
+            <View style={globalStyle.bottomBorderL1}>
+              <View style={styles.PersonalHistoryContainer}>
+                <Text
+                  style={[
+                    globalStyle.descriptionBlackL1,
+                    styles.PersonalHistoryTitle,
+                  ]}>
+                  {t('medicalHistory.medicalPersonalHistory.title')}
+                </Text>
+                <NavigationButton
+                  type={'withArrow'}
+                  title={t('medicalHistory.allergiesAndIntolerances.title')}
+                  onPress={() => {
+                    navigation.navigate('AllergiesScreen');
+                  }}
+                  bottomBorderStyle={globalStyle.bottomBorderL2}
+                  titleStyle={globalStyle.descriptionBlackL2}
+                />
+                <NavigationButton
+                  type={'withArrow'}
+                  title={t('medicalHistory.problemsAndProcedures.title')}
+                  onPress={() => {
+                    navigation.navigate('ProblemsScreen');
+                  }}
+                  bottomBorderStyle={globalStyle.bottomBorderL2}
+                  titleStyle={globalStyle.descriptionBlackL2}
+                />
+                <NavigationButton
+                  type={'withArrow'}
+                  title={t('medicalHistory.devicesAndImplants.title')}
+                  onPress={() => {
+                    navigation.navigate('DevicesScreen');
+                  }}
+                  bottomBorderStyle={globalStyle.bottomBorderL2}
+                  titleStyle={globalStyle.descriptionBlackL2}
+                />
+                <NavigationButton
+                  type={'withArrow'}
+                  title={t('medicalHistory.medicationSummary.title')}
+                  onPress={() => {
+                    navigation.navigate('MedicationSummaryScreen');
+                  }}
+                  titleStyle={globalStyle.descriptionBlackL2}
+                />
+              </View>
+            </View>
+
+            <NavigationButton
+              type={'withArrow'}
               title={t('medicalHistory.socialHistory.title')}
-              expandLevel={0}
+              onPress={() => {
+                navigation.navigate('SocialHistoryScreen');
+              }}
+              bottomBorderStyle={globalStyle.bottomBorderL1}
+              titleStyle={globalStyle.descriptionBlackL1}
             />
-            <ExpandableView
+            <NavigationButton
+              type={'withArrow'}
               title={t('medicalHistory.immunization.title')}
-              expandLevel={0}
+              onPress={() => {
+                navigation.navigate('ImmunizationScreen');
+              }}
+              bottomBorderStyle={globalStyle.bottomBorderL1}
+              titleStyle={globalStyle.descriptionBlackL1}
             />
-            <ExpandableView
+            <NavigationButton
+              type={'withArrow'}
               title={t('medicalHistory.planOfCare.title')}
-              expandLevel={0}
+              onPress={() => {
+                navigation.navigate('PlanOfCareScreen');
+              }}
+              titleStyle={globalStyle.descriptionBlackL1}
             />
           </ScrollView>
         </View>
@@ -127,9 +141,9 @@ const MedicalHistoryScreen = () => {
             <Text style={[globalStyle.descriptionBlackL1, styles.pinContainer]}>
               {t('medicalHistory.smartlinks.pin')} {pin}
             </Text>
-            <View style={styles.buttonsRow}>
+            <View style={styles.actionButtonRow}>
               <TouchableOpacity
-                style={[styles.button, globalStyle.fullyCentered]}
+                style={[styles.actionButtonsSHL, globalStyle.fullyCentered]}
                 onPress={() => {
                   sendEmail(
                     '',
@@ -147,13 +161,13 @@ const MedicalHistoryScreen = () => {
                   color="#FFFFFF"
                   size={horizontalScale(18)}
                 />
-                <Text style={styles.buttonText}>
+                <Text style={styles.actionButtonText}>
                   {t('medicalHistory.smartlinks.share')}
                 </Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={[styles.button, globalStyle.fullyCentered]}
+                style={[styles.actionButtonsSHL, globalStyle.fullyCentered]}
                 onPress={() => {
                   copyToClipboard(
                     shl,
@@ -166,13 +180,13 @@ const MedicalHistoryScreen = () => {
                   color="#FFFFFF"
                   size={horizontalScale(18)}
                 />
-                <Text style={styles.buttonText}>
+                <Text style={styles.actionButtonText}>
                   {t('medicalHistory.smartlinks.copy')}
                 </Text>
               </TouchableOpacity>
             </View>
             <TouchableOpacity
-              style={[styles.button, globalStyle.fullyCentered]}
+              style={[styles.actionButtonsSHL, globalStyle.fullyCentered]}
               onPress={() => {
                 showAlertAndOpenURL(
                   shl,
@@ -187,7 +201,7 @@ const MedicalHistoryScreen = () => {
                 color="#FFFFFF"
                 size={horizontalScale(18)}
               />
-              <Text style={styles.buttonText}>
+              <Text style={styles.actionButtonText}>
                 {t('medicalHistory.smartlinks.open')}
               </Text>
             </TouchableOpacity>
