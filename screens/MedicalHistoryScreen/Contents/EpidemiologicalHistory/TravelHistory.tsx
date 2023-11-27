@@ -1,44 +1,76 @@
-import React, {useEffect} from 'react';
-import {View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View, FlatList} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import InformationCard from '../../../../components/InformationCard/InformationCard';
-import Subtitle from '../../../../components/Subtitle/Subtitle';
 import {ITravelHistoryType} from './interface/ITravelHistoryType';
 import {getTravelHistory} from './api/travelHistoryAPI';
 import {useRecoilState} from 'recoil';
 import {userState} from '../../../../features/recoil/atoms/User/userState';
+import {DATE_FORMAT} from '../../../../common/constants/constants';
+import dayjs from 'dayjs';
+import Loading from '../../../../components/Loading/Loading';
 
 const TravelHistory = () => {
   const {t} = useTranslation();
   const [user, _] = useRecoilState(userState);
+
+  const [page, setPage] = useState(1);
   const [data, setData] = React.useState<ITravelHistoryType[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [noExtraData, setNoExtraData] = useState(false);
 
   const fetchData = async () => {
-    const data = await getTravelHistory(user.token, user.id, 10, 1);
-    return data.data;
+    try {
+      const newData = await getTravelHistory(user.token, user.id, 10, page);
+      if (newData.data.length === 0) {
+        setNoExtraData(true);
+      }
+      return newData.data;
+    } catch (error) {
+      console.error(error);
+      return [];
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
-    fetchData().then(data => {
-      setData(data);
+    fetchData().then(newData => {
+      setData(newData);
     });
   }, []);
 
+  const handleEndReached = async () => {
+    if (noExtraData) {
+      return;
+    }
+    setPage(prevPage => prevPage + 1);
+    const newData = await fetchData();
+    setData(prevData => [...prevData, ...newData]);
+  };
+
   return (
-    <View style={styles.removeMargin}>
-      <Subtitle title={t('Travel History')} />
-      {data &&
-        data.length > 0 &&
-        data.map(item => {
-          return (
-            <InformationCard
-              type={'Travel History'}
-              title={item.value.display}
-              TopSubtitle={item.effectivePeriod.start}
-              BottomSubtitle={item.effectivePeriod.end}
-            />
-          );
-        })}
+    <View style={styles.containerHeight}>
+      <FlatList
+        onEndReachedThreshold={0.5}
+        onEndReached={handleEndReached}
+        keyExtractor={(_, index) => index.toString()}
+        data={data}
+        renderItem={({item}) => (
+          <InformationCard
+            type={'Travel'}
+            hasModal={false}
+            title={item.value.display}
+            TopSubtitle={dayjs(new Date(item.effectivePeriod.start)).format(
+              DATE_FORMAT,
+            )}
+            BottomSubtitle={dayjs(new Date(item.effectivePeriod.end)).format(
+              DATE_FORMAT,
+            )}
+          />
+        )}
+      />
+      {loading && <Loading />}
     </View>
   );
 };
@@ -46,8 +78,7 @@ const TravelHistory = () => {
 export default TravelHistory;
 
 const styles = {
-  removeMargin: {
-    marginTop: -20,
-    marginBottom: 5,
+  containerHeight: {
+    height: '100%',
   },
 };

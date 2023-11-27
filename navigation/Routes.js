@@ -5,6 +5,7 @@ export const Routes = {
   SettingsScreen: 'SettingsScreen',
   Alerts: 'Alerts',
   MedicalHistory: 'Medical History',
+  EpidemiologicalHistoryScreen: 'EpidemiologicalHistoryScreen',
   MyHealth: 'MyHealth',
   Profile: 'Profile',
 };
