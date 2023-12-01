@@ -35,7 +35,7 @@ const InformationCard = props => {
       setrow2Flag(false);
       setrow1TopMargin(20);
       setrow3TopMargin(10);
-    } else if (props.type === 'Procedure') {
+    } else if (props.type === 'Procedure' || props.type === 'Travel') {
       setCHARACTER_LIMIT(40);
       setRiskFlag(false);
       setstatusFlag(false);
@@ -97,6 +97,7 @@ const InformationCard = props => {
       />
 
       <TouchableOpacity
+        disabled={!props.hasModal}
         style={[styles.container, globalStyle.backgroundWhite]}
         onPress={() => toggleModal()}>
         {/* The first row includes the item of discussion and also if applicable its risk factor */}
@@ -152,11 +153,16 @@ InformationCard.propTypes = {
   modaltext: PropTypes.string,
   type: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  hasModal: PropTypes.bool,
   TopSubtitle: PropTypes.string,
   BottomSubtitle: PropTypes.string,
   risk: PropTypes.string,
   status: PropTypes.string,
   onset: PropTypes.string,
+};
+
+InformationCard.defaultProps = {
+  hasModal: true,
 };
 
 export default InformationCard;

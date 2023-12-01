@@ -13,6 +13,7 @@ import ProfileScreen from '../screens/ProfileScreen/ProfileScreen';
 import {useTranslation} from 'react-i18next';
 import LoginScreen from '../screens/LoginScreen/LoginScreen';
 import {t} from 'i18next';
+import EpidemiologicalHistoryScreen from '../screens/MedicalHistoryScreen/Contents/EpidemiologicalHistory/EpidemiologicalHistoryScreen';
 
 const ICON_SIZE = scaleFontSize(25);
 const INACTIVE_COLOR = '#A4A4A4';
@@ -57,6 +58,11 @@ export const MyHealthStack = () => {
       <stack.Screen
         name={Routes.MedicalHistory}
         component={MedicalHistoryScreen}
+        options={{headerShown: true, headerTitle: t('Medical History')}}
+      />
+      <stack.Screen
+        name={Routes.EpidemiologicalHistoryScreen}
+        component={EpidemiologicalHistoryScreen}
         options={{headerShown: true, headerTitle: t('Medical History')}}
       />
       <stack.Screen

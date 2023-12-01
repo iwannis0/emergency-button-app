@@ -41,10 +41,8 @@
       "email-body-partB": "\n\nFeel free to contact me for any further information.\n\nBest Regards,\n"
     },
     "epidemiologicalHistory": {
-      "title": "Epidemiological History"
-    },
-    "travelHistory": {
-      "title": "Travel History"
+      "title": "Epidemiological History",
+      "travel-history": "Travel History"
     },
     "medicalPersonalHistory": {
       "title": "Medical Personal History"
