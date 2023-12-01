@@ -35,7 +35,11 @@ const InformationCard = props => {
       setrow2Flag(false);
       setrow1TopMargin(20);
       setrow3TopMargin(10);
-    } else if (props.type === 'Procedure' || props.type === 'Travel') {
+    } else if (
+      props.type === 'Procedure' ||
+      props.type === 'Travel' ||
+      props.type === 'Social History'
+    ) {
       setCHARACTER_LIMIT(40);
       setRiskFlag(false);
       setstatusFlag(false);
