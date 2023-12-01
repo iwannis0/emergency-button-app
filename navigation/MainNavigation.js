@@ -15,6 +15,7 @@ import LoginScreen from '../screens/LoginScreen/LoginScreen';
 import {t} from 'i18next';
 import EpidemiologicalHistoryScreen from '../screens/MedicalHistoryScreen/Contents/EpidemiologicalHistory/EpidemiologicalHistoryScreen';
 import AllergiesScreen from '../screens/MedicalHistoryScreen/Contents/MedicalPersonalHistory/screens/AllergiesScreen';
+import ProblemsScreen from '../screens/MedicalHistoryScreen/Contents/MedicalPersonalHistory/screens/ProblemsScreen';
 
 const ICON_SIZE = scaleFontSize(25);
 const INACTIVE_COLOR = '#A4A4A4';
@@ -78,6 +79,16 @@ export const MyHealthStack = () => {
           headerShown: true,
           headerTitle: t(
             'medicalHistory.medicalPersonalHistory.allergies.title',
+          ),
+        }}
+      />
+      <stack.Screen
+        name={Routes.ProblemsScreen}
+        component={ProblemsScreen}
+        options={{
+          headerShown: true,
+          headerTitle: t(
+            'medicalHistory.medicalPersonalHistory.problems.title',
           ),
         }}
       />

@@ -65,20 +65,27 @@
         "severity": "Severity of Reaction",
         "exposure": "Exposure Route of Reaction",
         "reaction-onset": "Onset Date of Reaction"
+      },
+      "problems":{
+        "title": "Problems and Procedures",
+        "current": {
+          "title": "Current Problems",
+          "severity": "Severity",
+          "onset": "Onset Date",
+          "description:": "Current Problem / Diagnosis"
+        },
+        "resolved": {
+          "title": "Resolved or Inactive Problems"
+        },
+        "procedures": {
+          "title": "Procedures"
+        },
+        "functional": {
+          "title": "Functional Status"
+        }
       }
     },
-    "problemsAndProcedures": {
-      "title": "Problems and Procedures"
-    },
-    "currentProblems": {
-      "title": "Current Problems"
-    },
-    "resolvedOrInactiveProblems": {
-      "title": "Resolved or Inactive Problems"
-    },
-    "functionalStatus": {
-      "title": "Functional Status"
-    },
+    
     "devicesAndImplants": {
       "title": "Devices and Implants"
     },
