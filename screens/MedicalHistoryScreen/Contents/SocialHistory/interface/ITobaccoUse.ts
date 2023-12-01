@@ -1,6 +1,5 @@
 import {IEffectivePeriod} from '../../../../../common/interfaces/IEffectivePeriod';
 import {IIdentifier} from '../../../../../common/interfaces/IIdentifier';
-import {IPerformer} from '../../../../../common/interfaces/IImunization';
 
 export interface ITobaccoUse {
   id?: string;
@@ -8,7 +7,6 @@ export interface ITobaccoUse {
   status?: string;
   category?: string[];
   issued?: Date;
-  refPerformer?: IPerformer;
   refSubjectCyPatient?: string;
   refSubjectDevice?: string;
   refSubjectLocation?: string;

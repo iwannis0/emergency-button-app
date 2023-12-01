@@ -30,14 +30,6 @@ export const getAlcoholConsumption = async (
       },
     },
   );
-
-  response.data.data.sort((a, b) =>
-    a?.effectivePeriod?.start &&
-    b?.effectivePeriod?.start &&
-    a?.effectivePeriod?.start < b?.effectivePeriod?.start
-      ? 1
-      : -1,
-  );
   return response.data;
 };
 
@@ -64,17 +56,10 @@ export const getTobaccoUse = async (
       },
     },
   );
-  response.data.data.sort((a, b) =>
-    a?.effectivePeriod?.start &&
-    b?.effectivePeriod?.start &&
-    a?.effectivePeriod?.start < b?.effectivePeriod?.start
-      ? 1
-      : -1,
-  );
   return response.data;
 };
 
-export const getDrugUsesByPatientId = async (
+export const getDrugUses = async (
   token: string,
   patientId: string,
   pageSize: number = 10,
@@ -96,13 +81,6 @@ export const getDrugUsesByPatientId = async (
         pageSize: pageSize,
       },
     },
-  );
-  response.data.data.sort((a, b) =>
-    a?.effectivePeriod?.start &&
-    b?.effectivePeriod?.start &&
-    a?.effectivePeriod?.start < b?.effectivePeriod?.start
-      ? 1
-      : -1,
   );
   return response.data;
 };
@@ -130,17 +108,10 @@ export const getSleepHabits = async (
       },
     },
   );
-  response.data.data.sort((a, b) =>
-    a?.effectivePeriod?.start &&
-    b?.effectivePeriod?.start &&
-    a?.effectivePeriod?.start < b?.effectivePeriod?.start
-      ? 1
-      : -1,
-  );
   return response.data;
 };
 
-export const getExerciseByPatientId = async (
+export const getExercise = async (
   token: string,
   patientId: string,
   pageSize: number = 10,
@@ -162,13 +133,6 @@ export const getExerciseByPatientId = async (
         pageSize: pageSize,
       },
     },
-  );
-  response.data.data.sort((a, b) =>
-    a?.effectivePeriod?.start &&
-    b?.effectivePeriod?.start &&
-    a?.effectivePeriod?.start < b?.effectivePeriod?.start
-      ? 1
-      : -1,
   );
   return response.data;
 };
