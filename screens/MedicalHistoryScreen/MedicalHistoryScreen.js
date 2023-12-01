@@ -3,9 +3,6 @@ import {SafeAreaView, ScrollView, View, Text} from 'react-native';
 import styles from './style';
 import globalStyle from '../../assets/styles/globalStyle';
 import {useTranslation} from 'react-i18next';
-
-import {useRecoilState} from 'recoil';
-import {userState} from '../../features/recoil/atoms/User/userState';
 import NavigationButton from '../../components/NavigationButton/NavigationButton';
 
 const MedicalHistoryScreen = ({navigation}) => {
@@ -36,7 +33,9 @@ const MedicalHistoryScreen = ({navigation}) => {
                 </Text>
                 <NavigationButton
                   type={'withArrow'}
-                  title={t('medicalHistory.allergiesAndIntolerances.title')}
+                  title={t(
+                    'medicalHistory.medicalPersonalHistory.allergies.title',
+                  )}
                   onPress={() => {
                     navigation.navigate('AllergiesScreen');
                   }}

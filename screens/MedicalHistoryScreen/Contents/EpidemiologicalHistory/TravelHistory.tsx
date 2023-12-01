@@ -22,6 +22,7 @@ const TravelHistory = () => {
   const fetchData = async () => {
     try {
       const newData = await getTravelHistory(user.token, user.id, 10, page);
+      setPage(prevPage => prevPage + 1);
       if (newData.data.length === 0) {
         setNoExtraData(true);
       }
@@ -44,7 +45,6 @@ const TravelHistory = () => {
     if (noExtraData) {
       return;
     }
-    setPage(prevPage => prevPage + 1);
     const newData = await fetchData();
     setData(prevData => [...prevData, ...newData]);
   };
@@ -61,12 +61,16 @@ const TravelHistory = () => {
             type={'Travel'}
             hasModal={false}
             title={item.value.display}
-            TopSubtitle={dayjs(new Date(item.effectivePeriod.start)).format(
+            TopSubtitle={`${t(
+              'medicalHistory.epidemiologicalHistory.arrival',
+            )} ${dayjs(new Date(item.effectivePeriod.start)).format(
               DATE_FORMAT,
-            )}
-            BottomSubtitle={dayjs(new Date(item.effectivePeriod.end)).format(
+            )}`}
+            BottomSubtitle={`${t(
+              'medicalHistory.epidemiologicalHistory.departure',
+            )} ${dayjs(new Date(item.effectivePeriod.end)).format(
               DATE_FORMAT,
-            )}
+            )}`}
           />
         )}
       />

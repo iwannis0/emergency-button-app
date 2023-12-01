@@ -22,6 +22,7 @@
   "Major Medical Problems" : "Major Medical Problems",
   "Procedures" : "Procedures",
   "Medical Devices" : "Medical Devices",
+  "no-data" : "No data available",
   "medicalHistory": {
     "smartlinks":{
       "main-button": "Share Patient Summary",
@@ -42,13 +43,29 @@
     },
     "epidemiologicalHistory": {
       "title": "Epidemiological History",
-      "travel-history": "Travel History"
+      "travel-history": "Travel History",
+      "arrival": "Arrival Date:",
+      "departure": "Departure Date:"
     },
     "medicalPersonalHistory": {
-      "title": "Medical Personal History"
-    },
-    "allergiesAndIntolerances": {
-      "title": "Allergies and Intolerances"
+      "title": "Medical Personal History",
+      "allergies": {
+        "title": "Allergies and Intolerances",
+        "category": "Category",
+        "type": "Type",
+        "substance": "Substance / Product",
+        "status": "Clinical Status",
+        "criticality": "Criticality",
+        "description": "Description",
+        "onset": "Onset Date",
+        "last-occurrence" : "Last Occurrence Date",
+        "resolution": "Resolution Date",
+        "reaction-description": "Description of Reaction",
+        "manifestation": "Manifestation of Reaction",
+        "severity": "Severity of Reaction",
+        "exposure": "Exposure Route of Reaction",
+        "reaction-onset": "Onset Date of Reaction"
+      }
     },
     "problemsAndProcedures": {
       "title": "Problems and Procedures"
