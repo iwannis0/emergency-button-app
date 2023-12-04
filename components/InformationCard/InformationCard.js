@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import styles from './style';
 import PropTypes from 'prop-types';
-import data from '../../testing/dummydata/infocardDummy';
 import ModalComponent from '../ModalComponent/ModalComponent';
 import globalStyle from '../../assets/styles/globalStyle';
 
@@ -20,13 +19,9 @@ const InformationCard = props => {
   const [onsetFlag, setonsetFlag] = useState(true);
   const [row1TopMargin, setrow1TopMargin] = useState(10);
   const [row3TopMargin, setrow3TopMargin] = useState(0);
-  const [riskColor, setriskColor] = useState('#91D9A5');
+  const [riskTest, setRiskTest] = useState('Undefined');
+  const [riskColor, setriskColor] = useState('#D4D4D4');
   const [statusColor, setstatusColor] = useState('#76A66E');
-  const [TopSubtext, setTopSubtext] = useState('');
-  const [BottomSubtext, setBottomSubtext] = useState('');
-
-  const fullTop = `${TopSubtext} ${props.TopSubtitle}`;
-  const fullBottom = `${BottomSubtext} ${props.BottomSubtitle}`;
   {
     /* This effect is used to define the structure of the Card */
   }
@@ -48,14 +43,19 @@ const InformationCard = props => {
     /* This effect is used to change the color of the Risk Box */
   }
   useEffect(() => {
-    if (props.type !== 'Procedure') {
+    if (props.type === 'Allergy') {
       if (props.risk === 'High Risk') {
+        setRiskTest('High Risk');
         setriskColor('#FF9F9F');
       } else if (props.risk === 'Moderate') {
+        setRiskTest('Moderate');
         setriskColor('#FFCC6A');
+      } else if (props.risk === 'Low Risk') {
+        setRiskTest('Low Risk');
+        setriskColor('#91D9A5');
       }
     }
-  }, [props.type, props.risk]);
+  }, [props, props.type, props.risk]);
 
   {
     /* This effect is used to change the color of the Status circle */
@@ -63,37 +63,18 @@ const InformationCard = props => {
   useEffect(() => {
     if (props.type === 'Allergy') {
       if (props.status === 'Inactive') {
-        setstatusColor('red');
+        setstatusColor('#ad1509');
       }
     }
   }, [props.type, props.status]);
 
-  {
-    /* This effect is used to change the color of the Status circle */
-  }
-  useEffect(() => {
-    if (props.type === 'Medical') {
-      setBottomSubtext('Diagnoses Age:');
-    } else if (props.type === 'Procedure') {
-      setTopSubtext('Body Site:');
-      setBottomSubtext('Procedure Date:');
-    } else if (props.type === 'Device') {
-      setTopSubtext('Onset Date:');
-      setBottomSubtext('Removal Date:');
-    } else if (props.type === 'Travel') {
-      setTopSubtext('Arrival Date:');
-      setBottomSubtext('Departure Date:');
-    }
-  }, [props.type]);
-
   return (
     <View style={styles.informationCardContainer}>
       <ModalComponent
-        data={data}
-        visibility={modalVisible}
-        toggle={toggleModal}
-        onClose={() => setModalVisible(false)}
         title={props.title}
+        visibility={modalVisible}
+        onClose={() => setModalVisible(false)}
+        children={props.children}
       />
 
       <TouchableOpacity
@@ -114,7 +95,7 @@ const InformationCard = props => {
                 globalStyle.fullyCentered,
                 {backgroundColor: riskColor},
               ]}>
-              <Text style={styles.risk_Caption}>{props.risk}</Text>
+              <Text style={styles.risk_Caption}>{riskTest}</Text>
             </View>
           )}
         </View>
@@ -122,9 +103,9 @@ const InformationCard = props => {
         {row2Flag && (
           <View style={[globalStyle.row, styles.marginTop5]}>
             <Text numberOfLines={1} style={globalStyle.descriptionGrey}>
-              {fullTop.length < CHARACTER_LIMIT
-                ? `${fullTop}`
-                : `${fullTop.substring(0, CHARACTER_LIMIT)}...`}
+              {props.TopSubtitle.length < CHARACTER_LIMIT
+                ? `${props.TopSubtitle}`
+                : `${props.TopSubtitle.substring(0, CHARACTER_LIMIT)}...`}
             </Text>
             {statusFlag && (
               <View style={styles.status_container}>
@@ -138,9 +119,9 @@ const InformationCard = props => {
         {/* The third row is an additional information and if applicable the onset date */}
         <View style={[globalStyle.row, {marginTop: row3TopMargin}]}>
           <Text numberOfLines={1} style={globalStyle.descriptionGrey}>
-            {fullBottom.length < CHARACTER_LIMIT
-              ? `${fullBottom}`
-              : `${fullBottom.substring(0, CHARACTER_LIMIT)}...`}
+            {props.BottomSubtitle.length < CHARACTER_LIMIT
+              ? `${props.BottomSubtitle}`
+              : `${props.BottomSubtitle.substring(0, CHARACTER_LIMIT)}...`}
           </Text>
           {onsetFlag && <Text style={styles.caption}>From {props.onset}</Text>}
         </View>
@@ -159,6 +140,7 @@ InformationCard.propTypes = {
   risk: PropTypes.string,
   status: PropTypes.string,
   onset: PropTypes.string,
+  children: PropTypes.node,
 };
 
 InformationCard.defaultProps = {

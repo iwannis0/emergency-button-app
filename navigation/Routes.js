@@ -6,6 +6,7 @@ export const Routes = {
   Alerts: 'Alerts',
   MedicalHistory: 'Medical History',
   EpidemiologicalHistoryScreen: 'EpidemiologicalHistoryScreen',
+  AllergiesScreen: 'AllergiesScreen',
   MyHealth: 'MyHealth',
   Profile: 'Profile',
 };

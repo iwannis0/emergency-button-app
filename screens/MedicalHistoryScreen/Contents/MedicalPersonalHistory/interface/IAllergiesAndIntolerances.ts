@@ -4,7 +4,7 @@ import {ICode} from '../../../../../common/interfaces/ICode';
 
 export interface IAllergyType {
   // Main data field
-  category?: string;
+  category?: string[];
   typeExtensionExtraCode?: ICodeableConcept;
   code?: IAllergyIntoleranceCode;
   clinicalStatus?: ICodeableConcept;
@@ -15,7 +15,9 @@ export interface IAllergyType {
   onset?: IAllergyIntoleranceOnset;
   lastOccurrence?: Date;
   endDate?: Date;
-  reactions?: IAllergyReaction[];
+  reaction?: IAllergyReaction[];
+  abatementDatetime?: Date;
+  note?: {text: string}[];
 }
 
 export interface IAllergyIntoleranceCode {
