@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, FlatList, ScrollView} from 'react-native';
+import {useTranslation} from 'react-i18next';
 import InformationCard from '../../../../components/InformationCard/InformationCard';
+import Modalinfo from '../../../../components/Modalinfo/Modalinfo';
 import {getResolvedProblems} from './api/medicalPersonalHistoryAPI';
 import {IResolvedProblems} from './interface/IResolvedProblems';
 import {useRecoilState} from 'recoil';
 import {userState} from '../../../../features/recoil/atoms/User/userState';
 import Loading from '../../../../components/Loading/Loading';
-import {useTranslation} from 'react-i18next';
-import Modalinfo from '../../../../components/Modalinfo/Modalinfo';
+
 import dayjs from 'dayjs';
 import {DATE_FORMAT} from '../../../../common/constants/constants';
 
