@@ -99,27 +99,6 @@ const Procedures = () => {
       />
       {loading && <Loading />}
     </View>
-    // <View style={styles.removeMargin}>
-    //   {data &&
-    //     data.length > 0 &&
-    //     data.map(item => {
-    //       return (
-    //         <InformationCard
-    //           type={'Procedure'}
-    //           title={
-    //             item.code?.procedureDescription?.display ||
-    //             item.code?.absentOrUnknownProcedure?.display ||
-    //             item.code?.otherCode?.at(0)?.display ||
-    //             '-'
-    //           }
-    //           TopSubtitle={item.bodySite?.at(0)?.display || '-'}
-    //           BottomSubtitle={
-    //             getFullDateDayMonthYear(item.performed?.dateTime) || '-'
-    //           }
-    //         />
-    //       );
-    //     })}
-    // </View>
   );
 };
 
