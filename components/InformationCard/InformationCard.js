@@ -4,6 +4,7 @@ import styles from './style';
 import PropTypes from 'prop-types';
 import ModalComponent from '../ModalComponent/ModalComponent';
 import globalStyle from '../../assets/styles/globalStyle';
+import {RISK_COLOURS} from '../../common/constants/constants';
 
 const InformationCard = props => {
   const [CHARACTER_LIMIT, setCHARACTER_LIMIT] = useState(27);
@@ -19,8 +20,8 @@ const InformationCard = props => {
   const [onsetFlag, setonsetFlag] = useState(true);
   const [row1TopMargin, setrow1TopMargin] = useState(10);
   const [row3TopMargin, setrow3TopMargin] = useState(0);
-  const [riskTest, setRiskTest] = useState('Undefined');
-  const [riskColor, setriskColor] = useState('#D4D4D4');
+  const [riskTest, setRiskTest] = useState('Unknown');
+  const [riskColor, setriskColor] = useState(RISK_COLOURS.UNKNOWN);
   const [statusColor, setstatusColor] = useState('#76A66E');
   {
     /* This effect is used to define the structure of the Card */
@@ -46,13 +47,13 @@ const InformationCard = props => {
     if (props.type === 'Allergy') {
       if (props.risk === 'High Risk') {
         setRiskTest('High Risk');
-        setriskColor('#FF9F9F');
+        setriskColor(RISK_COLOURS.HIGH);
       } else if (props.risk === 'Moderate') {
         setRiskTest('Moderate');
-        setriskColor('#FFCC6A');
+        setriskColor(RISK_COLOURS.MODERATE);
       } else if (props.risk === 'Low Risk') {
         setRiskTest('Low Risk');
-        setriskColor('#91D9A5');
+        setriskColor(RISK_COLOURS.LOW);
       }
     }
   }, [props, props.type, props.risk]);
