@@ -12,9 +12,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#E2E2E2',
     borderBottomWidth: scaleFontSize(1),
     justifyContent: 'center',
-  },
-  modalText: {
-    marginLeft: horizontalScale(20),
+    paddingLeft: horizontalScale(20),
   },
 });
 

@@ -22,6 +22,7 @@
   "Major Medical Problems" : "Σοβαρά Ιατρικά Προβλήματα",
   "Procedures" : "Επεμβάσεις",
   "Medical Devices" : "Ιατρικές Συσκευές",
+  "no-data" : "Δεν υπάρχουν διαθέσιμα δεδομένα",
   "medicalHistory": {
     "smartlinks":{
       "main-button": "Κοινοποίηση Ιστορικού Ασθενούς",
@@ -41,13 +42,29 @@
     },
     "epidemiologicalHistory": {
       "title": "Επιδημιολογικό Ιστορικό",
-      "travel-history": "Ιστορικό Ταξιδιού"
+      "travel-history": "Ιστορικό Ταξιδιού",
+      "arrival": "Ημερομηνία Άφιξης:",
+      "departure": "Ημερομηνία Αναχώρησης:"
     },
     "medicalPersonalHistory": {
-      "title": "Ιατρικό Προσωπικό Ιστορικό"
-    },
-    "allergiesAndIntolerances": {
-      "title": "Αλλεργίες και Δυσανεξίες"
+      "title": "Ιατρικό Προσωπικό Ιστορικό",
+      "allergies": {
+        "title": "Αλλεργίες και Δυσανεξίες",
+        "category": "Κατηγορία",
+        "type": "Τύπος",
+        "substance": "Ουσία / Προϊόν",
+        "status": "Κλινική Κατάσταση",
+        "criticality": "Κρισιμότητα",
+        "description": "Περιγραφή",
+        "onset": "Ημερομηνία Έναρξης",
+        "last-occurrence" : "Ημερομηνία Τελευταίας Εμφάνισης",
+        "resolution": "Ημερομηνία Επίλυσης",
+        "reaction-description": "Περιγραφή Αντίδρασης",
+        "manifestation": "Εκδήλωση Αντίδρασης",
+        "severity": "Σοβαρότητα Αντίδρασης",
+        "exposure": "Διαδρομή Έκθεσης Αντίδρασης",
+        "reaction-onset": "Ημερομηνία Έναρξης Αντίδρασης"
+      }
     },
     "problemsAndProcedures": {
       "title": "Προβλήματα και Επεμβάσεις"
