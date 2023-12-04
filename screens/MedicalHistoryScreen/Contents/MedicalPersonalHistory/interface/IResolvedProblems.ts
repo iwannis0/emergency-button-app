@@ -3,6 +3,9 @@ import {ICodeableConcept} from '../../../../../common/interfaces/ICodeableConcep
 
 export interface IResolvedProblems {
   code?: {
+    otherCode?: ICoding[];
+    icD10Code?: ICoding[];
+    absentOrUnknownProblem?: ICoding[];
     coding?: ICoding[];
   };
   onset?: {
