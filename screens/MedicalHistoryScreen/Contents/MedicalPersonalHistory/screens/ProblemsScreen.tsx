@@ -5,7 +5,6 @@ import globalStyle from '../../../../../assets/styles/globalStyle';
 import CurrentProblems from '../CurrentProblems';
 import ResolvedProblems from '../ResolvedProblems';
 import Procedures from '../Procedures';
-import FunctionalStatus from '../FunctionalStatus';
 
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {verticalScale} from '../../../../../assets/styles/scaling';
