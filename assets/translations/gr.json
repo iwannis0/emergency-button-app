@@ -64,19 +64,25 @@
         "severity": "Σοβαρότητα Αντίδρασης",
         "exposure": "Διαδρομή Έκθεσης Αντίδρασης",
         "reaction-onset": "Ημερομηνία Έναρξης Αντίδρασης"
+      },
+      "problems":{
+        "title": "Προβλήματα και Επεμβάσεις",
+        "current": {
+          "title": "Τρέχοντα Προβλήματα",
+          "severity": "Σοβαρότητα",
+          "onset": "Ημερομηνία Έναρξης",
+          "description:": "Τρέχον Πρόβλημα / Διάγνωση"
+        },
+        "resolved": {
+          "title": "Επιλυμένα ή Ανενεργά Προβλήματα"
+        },
+        "procedures": {
+          "title": "Επεμβάσεις"
+        },
+        "functional": {
+          "title": "Λειτουργική Κατάσταση"
+        }
       }
-    },
-    "problemsAndProcedures": {
-      "title": "Προβλήματα και Επεμβάσεις"
-    },
-    "currentProblems": {
-      "title": "Τρέχοντα Προβλήματα"
-    },
-    "resolvedOrInactiveProblems": {
-      "title": "Επιλυμένα ή Ανενεργά Προβλήματα"
-    },
-    "functionalStatus": {
-      "title": "Λειτουργική Κατάσταση"
     },
     "devicesAndImplants": {
       "title": "Συσκευές και Εμφυτεύματα"

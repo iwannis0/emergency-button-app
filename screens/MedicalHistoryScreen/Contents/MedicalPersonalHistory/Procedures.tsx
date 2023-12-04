@@ -7,7 +7,7 @@ import {IProcedure} from './interface/IProcedure';
 import {useRecoilState} from 'recoil';
 import {userState} from '../../../../features/recoil/atoms/User/userState';
 
-const ProblemsAndProcedures = () => {
+const Procedures = () => {
   const [user, _] = useRecoilState(userState);
 
   const fetchData = async () => {
@@ -48,7 +48,7 @@ const ProblemsAndProcedures = () => {
   );
 };
 
-export default ProblemsAndProcedures;
+export default Procedures;
 
 const styles = {
   removeMargin: {

@@ -7,6 +7,7 @@ export const Routes = {
   MedicalHistory: 'Medical History',
   EpidemiologicalHistoryScreen: 'EpidemiologicalHistoryScreen',
   AllergiesScreen: 'AllergiesScreen',
+  ProblemsScreen: 'ProblemsScreen',
   MyHealth: 'MyHealth',
   Profile: 'Profile',
 };
