@@ -106,13 +106,23 @@
       "title": "Κοινωνικό Ιστορικό",
       "alcohol-consumption": {
         "title": "Κατανάλωση Αλκοόλ",
-        "dateStart:": "Ημερομηνία Έναρξης",
-        "dateEnd:": "Ημερομηνία Λήξης",
+        "dateStart": "Ημερομηνία Έναρξης",
+        "dateEnd": "Ημερομηνία Λήξης",
         "alcohol-status": "Κατάσταση Κατανάλωσης",
         "alcohol-intake": "Ποσότητα Αλκοόλ (αλκοολούχα ποτά ανά ημέρα)",
+        "alcohol-intake-per-day": "Ποσότητα Αλκοόλ ανά Ημέρα)",
         "alcohol-type": "Τύπος Αλκοόλ"
       },
-      "tobacco-use": "Χρήση Καπνού",
+
+      "tobacco-use": {
+        "title": "Χρήση Καπνού",
+        "dateStart": "Ημερομηνία Έναρξης",
+        "dateEnd": "Ημερομηνία Λήξης",
+        "tobacco-status": "Κατάσταση Χρήσης",
+        "tobacco-type": "Τύπος Καπνού",
+        "pack-years": "Πακέτα Ετησίως"
+      },
+
       "drug-use": "Χρήση Ναρκωτικών Ουσιών",
       "sleep-habits": "Συνήθειες Ύπνου",
       "exercise": "Άσκηση"

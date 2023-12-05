@@ -111,9 +111,17 @@
         "dateEnd": "Date End",
         "alcohol-status": "Alcohol Status",
         "alcohol-intake": "Alcohol Intake (alcoholic drinks per day)",
+        "alcohol-intake-per-day": "Alcohol Intake per Day",
         "alcohol-type": "Alcohol Type"
       },
-      "tobacco-use": "Tobacco Use",
+      "tobacco-use": {
+        "title": "Tobacco Use",
+        "dateStart": "Date Start",
+        "dateEnd": "Date End",
+        "tobacco-status": "Tobacco Status",
+        "tobacco-type": "Tobacco Type",
+        "pack-years": "Pack Years"
+      },
       "drug-use": "Drug Use",
       "sleep-habits": "Sleep Habits",
       "exercise:": "Exercise"

@@ -67,10 +67,14 @@ const AlcoholConsumption = (props: any) => {
           <InformationCard
             type={'Social History'}
             title={item.alcoholStatus?.display || t('no-data')}
-            TopSubtitle={item.alcoholType?.display || t('no-data')}
-            BottomSubtitle={
+            TopSubtitle={`${t(
+              'medicalHistory.socialHistory.alcohol-consumption.alcohol-status',
+            )}: ${item.alcoholType?.display || t('no-data')}`}
+            BottomSubtitle={`${t(
+              'medicalHistory.socialHistory.alcohol-consumption.alcohol-intake-per-day',
+            )}: ${
               item.alcoholIntake?.decimalValue?.toString() || t('no-data')
-            }>
+            }`}>
             <ScrollView>
               <Modalinfo
                 placeholder={t(
