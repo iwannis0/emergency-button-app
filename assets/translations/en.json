@@ -87,11 +87,14 @@
           "title": "Functional Status",
           "date": "Effective Date"
         }
+      },
+      "devices": {
+        "title": "Devices and Implants",
+        "onset":"Onset Date",
+        "removal": "Removal Date",
+        "name": "Device Name",
+        "type": "Device Type"
       }
-    },
-    
-    "devicesAndImplants": {
-      "title": "Devices and Implants"
     },
     "medicationSummary": {
       "title": "Medication Summary"
