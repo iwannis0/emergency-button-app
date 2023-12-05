@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, FlatList} from 'react-native';
+import {View, FlatList, ScrollView, StyleSheet} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import InformationCard from '../../../../components/InformationCard/InformationCard';
 import {ITravelHistoryType} from './interface/ITravelHistoryType';
@@ -9,6 +9,7 @@ import {userState} from '../../../../features/recoil/atoms/User/userState';
 import {DATE_FORMAT} from '../../../../common/constants/constants';
 import dayjs from 'dayjs';
 import Loading from '../../../../components/Loading/Loading';
+import Modalinfo from '../../../../components/Modalinfo/Modalinfo';
 
 const TravelHistory = () => {
   const {t} = useTranslation();
@@ -59,19 +60,40 @@ const TravelHistory = () => {
         renderItem={({item}) => (
           <InformationCard
             type={'Travel'}
-            hasModal={false}
             title={item.value.display}
             TopSubtitle={`${t(
               'medicalHistory.epidemiologicalHistory.arrival',
-            )} ${dayjs(new Date(item.effectivePeriod.start)).format(
-              DATE_FORMAT,
-            )}`}
+            )} ${
+              dayjs(new Date(item.effectivePeriod.start)).format(DATE_FORMAT) ||
+              t('no-data')
+            }`}
             BottomSubtitle={`${t(
               'medicalHistory.epidemiologicalHistory.departure',
-            )} ${dayjs(new Date(item.effectivePeriod.end)).format(
-              DATE_FORMAT,
-            )}`}
-          />
+            )} ${
+              dayjs(new Date(item.effectivePeriod.end)).format(DATE_FORMAT) ||
+              t('no-data')
+            }`}>
+            <ScrollView>
+              <Modalinfo
+                placeholder={t('medicalHistory.epidemiologicalHistory.arrival')}
+                value={
+                  dayjs(new Date(item.effectivePeriod.start)).format(
+                    DATE_FORMAT,
+                  ) || t('no-data')
+                }
+              />
+              <Modalinfo
+                placeholder={t(
+                  'medicalHistory.epidemiologicalHistory.departure',
+                )}
+                value={
+                  dayjs(new Date(item.effectivePeriod.end)).format(
+                    DATE_FORMAT,
+                  ) || t('no-data')
+                }
+              />
+            </ScrollView>
+          </InformationCard>
         )}
       />
       {loading && <Loading />}
@@ -81,8 +103,8 @@ const TravelHistory = () => {
 
 export default TravelHistory;
 
-const styles = {
+const styles = StyleSheet.create({
   containerHeight: {
     height: '100%',
   },
-};
+});

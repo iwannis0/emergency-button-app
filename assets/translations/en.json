@@ -75,16 +75,17 @@
           "description:": "Current Problem / Diagnosis"
         },
         "resolved": {
-          "title": "Resolved or Inactive Problems",
+          "title": "Resolved Problems",
           "resolution":"Resolution Date"
         },
         "procedures": {
-          "title": "Procedures",
+          "title": "Past Procedures",
           "bodysite": "Body Site",
           "date": "Procedure Date"
         },
         "functional": {
-          "title": "Functional Status"
+          "title": "Functional Status",
+          "date": "Effective Date"
         }
       }
     },
