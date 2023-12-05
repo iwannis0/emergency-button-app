@@ -88,8 +88,8 @@ const MedicalHistoryScreen = ({navigation}) => {
               onPress={() => {
                 navigation.navigate('SocialHistoryScreen');
               }}
-              bottomBorderStyle={globalStyle.bottomBorderL2}
-              titleStyle={globalStyle.descriptionBlackL2}
+              bottomBorderStyle={globalStyle.bottomBorderL1}
+              titleStyle={globalStyle.descriptionBlackL1}
             />
             <NavigationButton
               type={'withArrow'}
