@@ -38,13 +38,13 @@ const ProblemsScreen = () => {
                 )}
                 component={ResolvedProblems}
               />
-              {/* <AllergiesTabs.Screen
+              <AllergiesTabs.Screen
                 name={t(
                   'medicalHistory.medicalPersonalHistory.problems.procedures.title',
                 )}
                 component={Procedures}
               />
-              <AllergiesTabs.Screen
+              {/* <AllergiesTabs.Screen
                 name={t(
                   'medicalHistory.medicalPersonalHistory.problems.functional.title',
                 )}
