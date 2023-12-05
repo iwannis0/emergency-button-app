@@ -79,7 +79,9 @@
           "resolution": "Resolution Date"
         },
         "procedures": {
-          "title": "Procedures"
+          "title": "Procedures",
+          "bodysite": "Body Site",
+          "date": "Procedure Date"
         },
         "functional": {
           "title": "Functional Status"
