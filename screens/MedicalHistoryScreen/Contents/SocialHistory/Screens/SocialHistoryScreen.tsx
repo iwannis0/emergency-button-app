@@ -6,6 +6,7 @@ import globalStyle from '../../../../../assets/styles/globalStyle';
 import alcoholConsumption from '../AlcoholConsumption';
 import {verticalScale} from '../../../../../assets/styles/scaling';
 import tobbacoUse from '../TobbacoUse';
+import drugUse from '../DrugUse';
 
 const SocialHistoryScreen = () => {
   const {t} = useTranslation();
@@ -25,6 +26,7 @@ const SocialHistoryScreen = () => {
                 tabBarStyle: {backgroundColor: '#f2f2f2'},
                 tabBarIndicatorStyle: {backgroundColor: 'transparent'},
                 tabBarItemStyle: {width: verticalScale(190)},
+                tabBarScrollEnabled: true,
               }}>
               <SocialHistoryTabs.Screen
                 name={t(
@@ -35,6 +37,10 @@ const SocialHistoryScreen = () => {
               <SocialHistoryTabs.Screen
                 name={t('medicalHistory.socialHistory.tobacco-use.title')}
                 component={tobbacoUse}
+              />
+              <SocialHistoryTabs.Screen
+                name={t('medicalHistory.socialHistory.drug-use.title')}
+                component={drugUse}
               />
             </SocialHistoryTabs.Navigator>
           </View>
