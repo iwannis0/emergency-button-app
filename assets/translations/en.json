@@ -58,7 +58,7 @@
         "criticality": "Criticality",
         "description": "Description",
         "onset": "Onset Date",
-        "last-occurrence" : "Last Occurrence Date",
+        "last-occurrence": "Last Occurrence Date",
         "resolution": "Resolution Date",
         "reaction-description": "Description of Reaction",
         "manifestation": "Manifestation of Reaction",
@@ -66,7 +66,7 @@
         "exposure": "Exposure Route of Reaction",
         "reaction-onset": "Onset Date of Reaction"
       },
-      "problems":{
+      "problems": {
         "title": "Problems and Procedures",
         "current": {
           "title": "Current Problems",
@@ -76,7 +76,7 @@
         },
         "resolved": {
           "title": "Resolved or Inactive Problems",
-          "resolution":"Resolution Date"
+          "resolution": "Resolution Date"
         },
         "procedures": {
           "title": "Procedures"
@@ -84,14 +84,13 @@
         "functional": {
           "title": "Functional Status"
         }
+      },
+      "devicesAndImplants": {
+        "title": "Devices and Implants"
+      },
+      "medicationSummary": {
+        "title": "Medication Summary"
       }
-    },
-    
-    "devicesAndImplants": {
-      "title": "Devices and Implants"
-    },
-    "medicationSummary": {
-      "title": "Medication Summary"
     },
     "gynecologicalHistory": {
       "title": "Gynecological History"
@@ -103,7 +102,19 @@
       "title": "Pregnancy Outcome"
     },
     "socialHistory": {
-      "title": "Social History"
+      "title": "Social History",
+      "alcohol-consumption": {
+        "title": "Alcohol Consumption",
+        "dateStart": "Date Start",
+        "dateEnd": "Date End",
+        "alcohol-status": "Alcohol Status",
+        "alcohol-intake": "Alcohol Intake (alcoholic drinks per day)",
+        "alcohol-type": "Alcohol Type"
+      },
+      "tobacco-use": "Tobacco Use",
+      "drug-use": "Drug Use",
+      "sleep-habits": "Sleep Habits",
+      "exercise:": "Exercise"
     },
     "immunization": {
       "title": "Immunization"

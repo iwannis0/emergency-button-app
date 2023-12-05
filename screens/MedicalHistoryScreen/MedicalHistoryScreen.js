@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, ScrollView, View, Text} from 'react-native';
+import {SafeAreaView, ScrollView, Text, View} from 'react-native';
 import styles from './style';
 import globalStyle from '../../assets/styles/globalStyle';
 import {useTranslation} from 'react-i18next';
@@ -88,8 +88,8 @@ const MedicalHistoryScreen = ({navigation}) => {
               onPress={() => {
                 navigation.navigate('SocialHistoryScreen');
               }}
-              bottomBorderStyle={globalStyle.bottomBorderL1}
-              titleStyle={globalStyle.descriptionBlackL1}
+              bottomBorderStyle={globalStyle.bottomBorderL2}
+              titleStyle={globalStyle.descriptionBlackL2}
             />
             <NavigationButton
               type={'withArrow'}
