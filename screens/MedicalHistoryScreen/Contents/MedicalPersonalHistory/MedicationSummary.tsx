@@ -1,16 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, ScrollView, FlatList} from 'react-native';
+import {useTranslation} from 'react-i18next';
 import InformationCard from '../../../../components/InformationCard/InformationCard';
+import Modalinfo from '../../../../components/Modalinfo/Modalinfo';
+import Loading from '../../../../components/Loading/Loading';
 import {getMedicationSummary} from './api/medicalPersonalHistoryAPI';
 import {IMedicationSummary} from './interface/IMedicationSummary';
 import {useRecoilState} from 'recoil';
 import {userState} from '../../../../features/recoil/atoms/User/userState';
-import {useTranslation} from 'react-i18next';
-import Loading from '../../../../components/Loading/Loading';
 import dayjs from 'dayjs';
 import {DATE_FORMAT} from '../../../../common/constants/constants';
 import {getFullDateDayMonthYear} from '../../../../common/features/dateTransformations';
-import Modalinfo from '../../../../components/Modalinfo/Modalinfo';
 
 const MedicationSummary = () => {
   const {t} = useTranslation();
