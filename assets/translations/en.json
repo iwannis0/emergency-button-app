@@ -75,24 +75,29 @@
           "description:": "Current Problem / Diagnosis"
         },
         "resolved": {
-          "title": "Resolved or Inactive Problems",
+          "title": "Resolved Problems",
           "resolution": "Resolution Date"
         },
         "procedures": {
-          "title": "Procedures",
+          "title": "Past Procedures",
           "bodysite": "Body Site",
           "date": "Procedure Date"
         },
         "functional": {
-          "title": "Functional Status"
+          "title": "Functional Status",
+          "date": "Effective Date"
         }
       },
-      "devicesAndImplants": {
-        "title": "Devices and Implants"
-      },
-      "medicationSummary": {
-        "title": "Medication Summary"
+      "devices": {
+        "title": "Devices and Implants",
+        "onset":"Onset Date",
+        "removal": "Removal Date",
+        "name": "Device Name",
+        "type": "Device Type"
       }
+    },
+    "medicationSummary": {
+      "title": "Medication Summary"
     },
     "gynecologicalHistory": {
       "title": "Gynecological History"

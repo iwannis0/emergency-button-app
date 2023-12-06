@@ -55,7 +55,9 @@ const MedicalHistoryScreen = ({navigation}) => {
                 />
                 <NavigationButton
                   type={'withArrow'}
-                  title={t('medicalHistory.devicesAndImplants.title')}
+                  title={t(
+                    'medicalHistory.medicalPersonalHistory.devices.title',
+                  )}
                   onPress={() => {
                     navigation.navigate('DevicesScreen');
                   }}

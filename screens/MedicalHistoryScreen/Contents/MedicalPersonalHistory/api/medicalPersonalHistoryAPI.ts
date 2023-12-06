@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {IAllergyType} from '../interface/IAllergiesAndIntolerances';
 import {IBackendResponse} from '../../../../../common/interfaces/IBackedResponse';
-import {IInitialDeviceAndImplants} from '../interface/IDeviceAndImplants';
+import {IDeviceAndImplants} from '../interface/IDeviceAndImplants';
 import {IMedicationSummary} from '../interface/IMedicationSummary';
 import {IProcedure} from '../interface/IProcedure';
 import {ICurrentProblems} from '../interface/ICurrentProblems';
@@ -37,19 +37,20 @@ export const getDevices = async (
   patientId: string,
   pageSize: number = 10,
   pageNumber: number = 1,
-): Promise<IBackendResponse<IInitialDeviceAndImplants[]>> => {
-  const response = await axios.get<
-    IBackendResponse<IInitialDeviceAndImplants[]>
-  >(`${BACKEND_API_URL}/Device/GetDevicesForPatient`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
+): Promise<IBackendResponse<IDeviceAndImplants[]>> => {
+  const response = await axios.get<IBackendResponse<IDeviceAndImplants[]>>(
+    `${BACKEND_API_URL}/Device/GetDevicesForPatient`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      params: {
+        patientId: patientId,
+        pageSize: pageSize,
+        pageNumber: pageNumber,
+      },
     },
-    params: {
-      patientId: patientId,
-      pageSize: pageSize,
-      pageNumber: pageNumber,
-    },
-  });
+  );
 
   return response.data;
 };
