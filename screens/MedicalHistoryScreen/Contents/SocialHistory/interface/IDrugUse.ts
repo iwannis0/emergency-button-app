@@ -1,7 +1,7 @@
 import {ICoding} from '../../../../../common/interfaces/ICoding';
 import {IIdentifier} from '../../../../../common/interfaces/IIdentifier';
-import {IPeriodTimeZone} from '../../../../../common/interfaces/IPeriodTimeZone';
 import {IRefPerformer} from '../../../../../common/interfaces/IRefPerformer';
+import {IEffectivePeriod} from '../../../../../common/interfaces/IEffectivePeriod';
 
 export interface IDrugUseStatus {
   system?: string;
@@ -21,7 +21,7 @@ export interface IDrugUse {
   drugOrMedicationType: ICoding;
   dailyDosage: string;
   routeOfAdministration: ICoding;
-  effectivePeriod: IPeriodTimeZone;
+  effectivePeriod: IEffectivePeriod;
   effectiveDateTime: Date;
   refSubjectCyPatient: string;
   refSubjectDevice: string;

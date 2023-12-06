@@ -137,7 +137,17 @@
         "tobacco-type": "Tobacco Type",
         "pack-years": "Pack Years"
       },
-      "drug-use": "Drug Use",
+
+      "drug-use": {
+        "title": "Drug Use",
+        "dateStart": "Date Start",
+        "dateEnd": "Date End",
+        "drug-use-status": "Drug Use Status",
+        "drug-use-type": "Drug or Medication Type",
+        "drug-use-dosage": "Daily Dosage (grams per day)",
+        "route-of-administration": "Route of Administration"
+      },
+
       "sleep-habits": "Sleep Habits",
       "exercise:": "Exercise"
     },
