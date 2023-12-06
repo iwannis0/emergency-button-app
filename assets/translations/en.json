@@ -145,7 +145,15 @@
         "finding-related-to-sleep": "Finding Related to Sleep"
       },
 
-      "exercise:": "Exercise"
+      "exercise": {
+        "title": "Exercise",
+        "dateStart": "Date Start",
+        "dateEnd": "Date End",
+        "exercise-activity": "Exercise Activity",
+        "frequency-per-week": "Frequency per Week",
+        "exercise-duration": "Exercise Duration",
+        "exercise-intensity": "Exercise Intensity"
+      }
     },
     "immunization": {
       "title": "Immunization"
