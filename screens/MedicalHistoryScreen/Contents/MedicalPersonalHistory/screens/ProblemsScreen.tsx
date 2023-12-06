@@ -7,50 +7,51 @@ import ResolvedProblems from '../ResolvedProblems';
 import Procedures from '../Procedures';
 import FunctionalStatus from '../FunctionalStatus';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import {scaleFontSize} from '../../../../../assets/styles/scaling';
 
 const ProblemsScreen = () => {
   const {t} = useTranslation();
-  const AllergiesTabs = createMaterialTopTabNavigator();
+  const ProblemsTabs = createMaterialTopTabNavigator();
 
   return (
     <SafeAreaView>
       <View>
         <View style={globalStyle.marginTop60}>
           <View style={styles.container}>
-            <AllergiesTabs.Navigator
+            <ProblemsTabs.Navigator
               screenOptions={{
                 tabBarLabelStyle: [
                   globalStyle.descriptionGrey,
-                  {textTransform: 'none'},
+                  {textTransform: 'none', fontSize: scaleFontSize(12)},
                 ],
                 tabBarStyle: {backgroundColor: '#f2f2f2'},
-                tabBarIndicatorStyle: {backgroundColor: 'transparent'},
+                tabBarIndicatorStyle: {backgroundColor: '#33C3BB'},
               }}>
-              <AllergiesTabs.Screen
+              <ProblemsTabs.Screen
                 name={t(
                   'medicalHistory.medicalPersonalHistory.problems.current.title',
                 )}
                 component={CurrentProblems}
               />
-              <AllergiesTabs.Screen
+              <ProblemsTabs.Screen
                 name={t(
                   'medicalHistory.medicalPersonalHistory.problems.resolved.title',
                 )}
                 component={ResolvedProblems}
               />
-              <AllergiesTabs.Screen
+              <ProblemsTabs.Screen
                 name={t(
                   'medicalHistory.medicalPersonalHistory.problems.procedures.title',
                 )}
                 component={Procedures}
               />
-              {/* <AllergiesTabs.Screen
+              <ProblemsTabs.Screen
                 name={t(
                   'medicalHistory.medicalPersonalHistory.problems.functional.title',
                 )}
                 component={FunctionalStatus}
-              /> */}
-            </AllergiesTabs.Navigator>
+              />
+            </ProblemsTabs.Navigator>
           </View>
         </View>
       </View>
