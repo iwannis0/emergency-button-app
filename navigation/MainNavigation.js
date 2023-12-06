@@ -17,6 +17,7 @@ import EpidemiologicalHistoryScreen from '../screens/MedicalHistoryScreen/Conten
 import AllergiesScreen from '../screens/MedicalHistoryScreen/Contents/MedicalPersonalHistory/screens/AllergiesScreen';
 import ProblemsScreen from '../screens/MedicalHistoryScreen/Contents/MedicalPersonalHistory/screens/ProblemsScreen';
 import SocialHistoryScreen from '../screens/MedicalHistoryScreen/Contents/SocialHistory/Screens/SocialHistoryScreen';
+import DevicesScreen from '../screens/MedicalHistoryScreen/Contents/MedicalPersonalHistory/screens/DevicesScreen';
 
 const ICON_SIZE = scaleFontSize(25);
 const INACTIVE_COLOR = '#A4A4A4';
@@ -99,6 +100,14 @@ export const MyHealthStack = () => {
         options={{
           headerShown: true,
           headerTitle: t('medicalHistory.socialHistory.title'),
+        }}
+      />
+      <stack.Screen
+        name={Routes.DevicesScreen}
+        component={DevicesScreen}
+        options={{
+          headerShown: true,
+          headerTitle: t('medicalHistory.medicalPersonalHistory.devices.title'),
         }}
       />
       <stack.Screen

@@ -88,12 +88,16 @@
           "date": "Effective Date"
         }
       },
-      "devicesAndImplants": {
-        "title": "Devices and Implants"
-      },
-      "medicationSummary": {
-        "title": "Medication Summary"
+      "devices": {
+        "title": "Devices and Implants",
+        "onset":"Onset Date",
+        "removal": "Removal Date",
+        "name": "Device Name",
+        "type": "Device Type"
       }
+    },
+    "medicationSummary": {
+      "title": "Medication Summary"
     },
     "gynecologicalHistory": {
       "title": "Gynecological History"
