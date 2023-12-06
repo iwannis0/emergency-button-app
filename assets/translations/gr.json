@@ -57,7 +57,7 @@
         "criticality": "Κρισιμότητα",
         "description": "Περιγραφή",
         "onset": "Ημερομηνία Έναρξης",
-        "last-occurrence" : "Ημερομηνία Τελευταίας Εμφάνισης",
+        "last-occurrence": "Ημερομηνία Τελευταίας Εμφάνισης",
         "resolution": "Ημερομηνία Επίλυσης",
         "reaction-description": "Περιγραφή Αντίδρασης",
         "manifestation": "Εκδήλωση Αντίδρασης",
@@ -65,7 +65,7 @@
         "exposure": "Διαδρομή Έκθεσης Αντίδρασης",
         "reaction-onset": "Ημερομηνία Έναρξης Αντίδρασης"
       },
-      "problems":{
+      "problems": {
         "title": "Προβλήματα και Επεμβάσεις",
         "current": {
           "title": "Τρέχοντα Προβλήματα",
@@ -75,7 +75,7 @@
         },
         "resolved": {
           "title": "Επιλυμένα Προβλήματα",
-          "resolution":"Ημερομηνία Επίλυσης"
+          "resolution": "Ημερομηνία Επίλυσης"
         },
         "procedures": {
           "title": "Παλίες Επεμβάσεις",
@@ -98,17 +98,39 @@
     "medicationSummary": {
       "title": "Περίληψη Συνταγογραφούμενων Φαρμάκων"
     },
-    "gynecologicalHistory": {
-      "title": "Γυναικολογικό Ιστορικό"
-    },
-    "pregnancyHistory": {
-      "title": "Ιστορικό Εγκυμοσύνης"
-    },
-    "pregnancyOutcome": {
-      "title": "Αποτέλεσμα Εγκυμοσύνης"
-    },
+      "gynecologicalHistory": {
+        "title": "Γυναικολογικό Ιστορικό"
+      },
+      "pregnancyHistory": {
+        "title": "Ιστορικό Εγκυμοσύνης"
+      },
+      "pregnancyOutcome": {
+        "title": "Αποτέλεσμα Εγκυμοσύνης"
+      },
     "socialHistory": {
-      "title": "Κοινωνικό Ιστορικό"
+      "title": "Κοινωνικό Ιστορικό",
+      "alcohol-consumption": {
+        "title": "Κατανάλωση Αλκοόλ",
+        "dateStart": "Ημερομηνία Έναρξης",
+        "dateEnd": "Ημερομηνία Λήξης",
+        "alcohol-status": "Κατάσταση Κατανάλωσης",
+        "alcohol-intake": "Ποσότητα Αλκοόλ (αλκοολούχα ποτά ανά ημέρα)",
+        "alcohol-intake-per-day": "Ποσότητα Αλκοόλ ανά Ημέρα)",
+        "alcohol-type": "Τύπος Αλκοόλ"
+      },
+
+      "tobacco-use": {
+        "title": "Χρήση Καπνού",
+        "dateStart": "Ημερομηνία Έναρξης",
+        "dateEnd": "Ημερομηνία Λήξης",
+        "tobacco-status": "Κατάσταση Χρήσης",
+        "tobacco-type": "Τύπος Καπνού",
+        "pack-years": "Πακέτα Ετησίως"
+      },
+
+      "drug-use": "Χρήση Ναρκωτικών Ουσιών",
+      "sleep-habits": "Συνήθειες Ύπνου",
+      "exercise": "Άσκηση"
     },
     "immunization": {
       "title": "Εμβολιασμοί"

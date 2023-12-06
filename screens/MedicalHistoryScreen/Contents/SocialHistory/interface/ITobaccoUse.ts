@@ -15,7 +15,7 @@ export interface ITobaccoUse {
   tobaccoStatus?: ITobaccoStatus;
   tobaccoType?: ITobaccoType;
   packYearsValue?: 0;
-  effectivePeriod?: IEffectivePeriod;
+  effectivePeriod: IEffectivePeriod;
   type?: string;
 }
 
