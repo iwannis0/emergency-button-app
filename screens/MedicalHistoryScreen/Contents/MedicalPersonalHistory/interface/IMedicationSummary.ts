@@ -2,11 +2,22 @@ import {ICoding} from '../../../../../common/interfaces/ICoding';
 
 export interface IMedicationSummary {
   effective: {
-    dateTime: Date;
+    effective: Date;
   };
   status: string;
   dosage: {
+    text: string;
     routeEDQM: ICoding[];
+    doseAndRate: IDosage[];
+    timing: {
+      repeat: {
+        duration: number;
+        durationUnit: string;
+        frequency: number;
+        period: number;
+        periodUnit: string;
+      };
+    };
   };
   medication: {
     code: {
@@ -21,5 +32,12 @@ export interface IMedicationSummary {
         strength: string;
       };
     }[];
+  };
+}
+
+interface IDosage {
+  doseQuantity: {
+    decimalValue: number;
+    unit: string;
   };
 }

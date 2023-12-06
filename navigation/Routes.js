@@ -9,6 +9,7 @@ export const Routes = {
   AllergiesScreen: 'AllergiesScreen',
   ProblemsScreen: 'ProblemsScreen',
   DevicesScreen: 'DevicesScreen',
+  MedicationSummaryScreen: 'MedicationSummaryScreen',
   MyHealth: 'MyHealth',
   Profile: 'Profile',
 };
