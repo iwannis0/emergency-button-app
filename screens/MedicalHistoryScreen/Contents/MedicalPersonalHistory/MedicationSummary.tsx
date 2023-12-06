@@ -76,39 +76,13 @@ const MedicationSummary = () => {
                 extension => extension.medicationProduct !== null,
               )?.medicationProduct?.strength || t('no-data')
             }`}
-            BottomSubtitle={`${t(
-              'medicalHistory.medicalPersonalHistory.medication.method',
-            )}: ${item.dosage?.routeEDQM?.at(0)?.display || t('no-data')}`}>
+            BottomSubtitle={`every ${item.dosage.timing.repeat.period} ${item.dosage.timing.repeat.periodUnit.display} for ${item.dosage.timing.repeat.bounds.duration.value} ${item.dosage.timing.repeat.bounds.duration.unit}`}>
             <ScrollView>
               <Modalinfo
                 placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.medication.onset',
+                  'medicalHistory.medicalPersonalHistory.medication.ingredient',
                 )}
-                value={
-                  dayjs(new Date(item.effective?.dateTime)).format(
-                    DATE_FORMAT,
-                  ) || t('no-data')
-                }
-              />
-              <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.medication.period',
-                )}
-                value={`${item.dosage.timing.repeat.period} ${
-                  item.dosage.timing.repeat.periodUnit.display || t('no-data')
-                }`}
-              />
-              <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.medication.dosage',
-                )}
-                value={`every ${item.dosage.timing.repeat.period} ${item.dosage.timing.repeat.periodUnit.display} for ${item.dosage.timing.repeat.bounds.duration.value} ${item.dosage.timing.repeat.bounds.duration.unit}`}
-              />
-              <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.medication.status',
-                )}
-                value={item.status || t('no-data')}
+                value={item.medication.code.atcCode[0].display || t('no-data')}
               />
               <Modalinfo
                 placeholder={t(
@@ -122,9 +96,51 @@ const MedicationSummary = () => {
               />
               <Modalinfo
                 placeholder={t(
+                  'medicalHistory.medicalPersonalHistory.medication.onset',
+                )}
+                value={
+                  dayjs(new Date(item.effective?.dateTime)).format(
+                    DATE_FORMAT,
+                  ) || t('no-data')
+                }
+              />
+              <Modalinfo
+                placeholder={t(
+                  'medicalHistory.medicalPersonalHistory.medication.frequency',
+                )}
+                value={`every ${item.dosage.timing.repeat.period} ${item.dosage.timing.repeat.periodUnit.display} for ${item.dosage.timing.repeat.bounds.duration.value} ${item.dosage.timing.repeat.bounds.duration.unit}`}
+              />
+              <Modalinfo
+                placeholder={t(
+                  'medicalHistory.medicalPersonalHistory.medication.dosage',
+                )}
+                value={`${item.dosage.doseAndRate[0].doseQuantity.decimalValue} ${item.dosage.doseAndRate[0].doseQuantity.unit}`}
+              />
+              <Modalinfo
+                placeholder={t(
+                  'medicalHistory.medicalPersonalHistory.medication.form',
+                )}
+                value={`${
+                  item.medication.form.edqmCode[0].display || t('no-data')
+                }`}
+              />
+              <Modalinfo
+                placeholder={t(
+                  'medicalHistory.medicalPersonalHistory.medication.status',
+                )}
+                value={item.status || t('no-data')}
+              />
+              <Modalinfo
+                placeholder={t(
                   'medicalHistory.medicalPersonalHistory.medication.administration',
                 )}
                 value={item.dosage?.routeEDQM?.at(0)?.display || t('no-data')}
+              />
+              <Modalinfo
+                placeholder={t(
+                  'medicalHistory.medicalPersonalHistory.medication.info',
+                )}
+                value={item.note?.at(0)?.text || t('no-data')}
               />
             </ScrollView>
           </InformationCard>
@@ -132,31 +148,6 @@ const MedicationSummary = () => {
       />
       {loading && <Loading />}
     </View>
-    // <View style={styles.removeMargin}>
-    //   {data &&
-    //     data.length > 0 &&
-    //     data.map(item => {
-    //       return (
-    //         <InformationCard
-    //           type={'Allergies and Intolerances'}
-    //           title={
-    //             item.medication?.extension?.find(
-    //               extension => extension.medicationProduct !== null,
-    //             )?.medicationProduct?.productName || '-'
-    //           }
-    //           TopSubtitle={item.dosage?.routeEDQM?.at(0)?.display || '-'}
-    //           BottomSubtitle={
-    //             item.medication?.extension?.find(
-    //               extension => extension.medicationProduct !== null,
-    //             )?.medicationProduct?.strength || '-'
-    //           }
-    //           // risk={item.criticality?.display || '-'}
-    //           status={item.status || '-'}
-    //           onset={getFullDateDayMonthYear(item.effective?.dateTime) || '-'}
-    //         />
-    //       );
-    //     })}
-    // </View>
   );
 };
 

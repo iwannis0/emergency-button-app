@@ -99,12 +99,14 @@
         "title": "Medication Summary",
         "strength": "Strength",
         "ingredient": "Active Ingredient",
-        "period": "Medication Period",
+        "frequency": "Frequency",
         "dosage": "Dosage",
+        "form": "Form of Medication",
         "onset":"Onset Date",
         "status": "Status",
         "method": "Method",
-        "administration": "Administration Route"
+        "administration": "Administration Route",
+        "info": "Additional Information"
       }
     },
     "gynecologicalHistory": {
