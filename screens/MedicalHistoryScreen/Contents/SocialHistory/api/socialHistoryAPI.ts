@@ -14,7 +14,7 @@ export const getAlcoholConsumption = async (
   pageNumber: number = 1,
 ): Promise<IBackendResponse<IAlcoholConsumption[]>> => {
   const response = await axios.post<IBackendResponse<IAlcoholConsumption[]>>(
-    `${BACKEND_API_URL}SocialHistory/AlcoholConsumption/GetAlcoholConsumptions`,
+    `${BACKEND_API_URL}/SocialHistory/AlcoholConsumption/GetAlcoholConsumptions`,
     {
       searchObservationParamsDto: {
         refPatient: patientId,
@@ -40,7 +40,7 @@ export const getTobaccoUse = async (
   pageNumber: number = 1,
 ): Promise<IBackendResponse<ITobaccoUse[]>> => {
   const response = await axios.post<IBackendResponse<ITobaccoUse[]>>(
-    `${BACKEND_API_URL}SocialHistory/TobaccoUse/GetTobaccoUses`,
+    `${BACKEND_API_URL}/SocialHistory/TobaccoUse/GetTobaccoUses`,
     {
       searchObservationParamsDto: {
         refPatient: patientId,
@@ -66,7 +66,7 @@ export const getDrugUses = async (
   pageNumber: number = 1,
 ): Promise<IBackendResponse<IDrugUse[]>> => {
   const response = await axios.post<IBackendResponse<IDrugUse[]>>(
-    `${BACKEND_API_URL}SocialHistory/DrugUse/GetDrugUses`,
+    `${BACKEND_API_URL}/SocialHistory/DrugUse/GetDrugUses`,
     {
       searchObservationParamsDto: {
         refPatient: patientId,
@@ -92,7 +92,7 @@ export const getSleepHabits = async (
   pageNumber: number = 1,
 ): Promise<IBackendResponse<ISleepHabits[]>> => {
   const response = await axios.post<IBackendResponse<ISleepHabits[]>>(
-    `${BACKEND_API_URL}SocialHistory/SleepHabits/GetSleepHabits`,
+    `${BACKEND_API_URL}/SocialHistory/SleepHabits/GetSleepHabits`,
     {
       searchObservationParamsDto: {
         refPatient: patientId,
@@ -118,7 +118,7 @@ export const getExercise = async (
   pageNumber: number = 1,
 ): Promise<IBackendResponse<IExercise[]>> => {
   const response = await axios.post<IBackendResponse<IExercise[]>>(
-    `${BACKEND_API_URL}SocialHistory/Exercise/GetExercises`,
+    `${BACKEND_API_URL}/SocialHistory/Exercise/GetExercises`,
     {
       searchObservationParamsDto: {
         refPatient: patientId,
