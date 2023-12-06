@@ -23,6 +23,7 @@
   "Procedures" : "Επεμβάσεις",
   "Medical Devices" : "Ιατρικές Συσκευές",
   "no-data" : "Δεν υπάρχουν διαθέσιμα δεδομένα",
+  "not-applicable": "Δεν εφαρμόζεται",
   "medicalHistory": {
     "smartlinks":{
       "main-button": "Κοινοποίηση Ιστορικού Ασθενούς",
@@ -108,16 +109,21 @@
         "info": "Περαιτέρω Πληροφορίες"
       }
     },
-    
-      "gynecologicalHistory": {
-        "title": "Γυναικολογικό Ιστορικό"
+    "gynecological": {
+      "title": "Γυναικολογικό Ιστορικό",
+      "pregnancy-history": {
+        "title": "Ιστορικό Εγκυμοσύνης",
+        "examinationDate": "Ημερομηνία Εξέτασης",
+        "expectedDeliveryDate": "Προβλεπόμενη Ημερομηνία Τοκετού",
+        "method": "Μέθοδος για υπολογισμό της ΠΗΤ"
       },
-      "pregnancyHistory": {
-        "title": "Ιστορικό Εγκυμοσύνης"
-      },
-      "pregnancyOutcome": {
-        "title": "Αποτέλεσμα Εγκυμοσύνης"
-      },
+      "pregnancy-outcome": {
+        "title": "Αποτέλεσμα Εγκυμοσύνης",
+        "births": "Σύνολο Γεννήσεων",
+        "abortions": "Σύνολο Αμβλώσεων",
+        "ectopic": "Σύνολο Εκτοπικών Γεννήσεων"
+      }
+    },
     "socialHistory": {
       "title": "Κοινωνικό Ιστορικό",
       "alcohol-consumption": {

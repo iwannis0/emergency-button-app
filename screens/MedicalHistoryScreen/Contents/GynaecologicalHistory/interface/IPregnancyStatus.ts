@@ -4,7 +4,8 @@ export interface IPregnancyStatus {
   examinationDate?: Date;
   value?: ICoding;
   expectedDeliveryData?: {
+    code?: ICoding;
     examinationDate?: Date;
-    code: ICoding;
+    dateOfDelivery: Date;
   }[];
 }

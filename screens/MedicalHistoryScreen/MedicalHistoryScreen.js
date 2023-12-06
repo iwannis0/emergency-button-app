@@ -79,7 +79,7 @@ const MedicalHistoryScreen = ({navigation}) => {
 
             <NavigationButton
               type={'withArrow'}
-              title={t('medicalHistory.gynecologicalHistory.title')}
+              title={t('medicalHistory.gynecological.title')}
               onPress={() => {
                 navigation.navigate('GynecologicalHistoryScreen');
               }}

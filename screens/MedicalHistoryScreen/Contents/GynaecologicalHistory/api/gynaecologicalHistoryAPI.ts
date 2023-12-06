@@ -6,8 +6,6 @@ import {BACKEND_API_URL} from '@env';
 export const getPregnancyOutcome = async (
   token: string,
   patientId: string,
-  pageSize: number = 10,
-  pageNumber: number = 1,
 ): Promise<IBackendResponse<IGynaecologicalHistory>> => {
   const response = await axios.get<IBackendResponse<IGynaecologicalHistory>>(
     `${BACKEND_API_URL}/Observation/PregnancyDetails/GetPregnancyDetailsForPatient`,
@@ -17,8 +15,6 @@ export const getPregnancyOutcome = async (
       },
       params: {
         patientId: patientId,
-        pageSize: pageSize,
-        pageNumber: pageNumber,
       },
     },
   );
@@ -29,8 +25,6 @@ export const getPregnancyOutcome = async (
 export const getPregnancyHistory = async (
   token: string,
   patientId: string,
-  pageSize: number = 10,
-  pageNumber: number = 1,
 ): Promise<IBackendResponse<IGynaecologicalHistory>> => {
   const response = await axios.get<IBackendResponse<IGynaecologicalHistory>>(
     `${BACKEND_API_URL}/Observation/PregnancyDetails/GetPregnancyDetailsForPatient`,
@@ -40,8 +34,6 @@ export const getPregnancyHistory = async (
       },
       params: {
         patientId: patientId,
-        pageSize: pageSize,
-        pageNumber: pageNumber,
       },
     },
   );
