@@ -1,12 +1,13 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet, View} from 'react-native';
-import {useTranslation} from 'react-i18next';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import globalStyle from '../../../../../assets/styles/globalStyle';
 import alcoholConsumption from '../AlcoholConsumption';
 import {verticalScale} from '../../../../../assets/styles/scaling';
 import tobbacoUse from '../TobbacoUse';
 import drugUse from '../DrugUse';
+import sleepHabits from '../SleepHabits';
+import {useTranslation} from 'react-i18next';
 
 const SocialHistoryScreen = () => {
   const {t} = useTranslation();
@@ -41,6 +42,10 @@ const SocialHistoryScreen = () => {
               <SocialHistoryTabs.Screen
                 name={t('medicalHistory.socialHistory.drug-use.title')}
                 component={drugUse}
+              />
+              <SocialHistoryTabs.Screen
+                name={t('medicalHistory.socialHistory.sleep-habits.title')}
+                component={sleepHabits}
               />
             </SocialHistoryTabs.Navigator>
           </View>

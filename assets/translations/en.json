@@ -138,7 +138,13 @@
         "route-of-administration": "Route of Administration"
       },
 
-      "sleep-habits": "Sleep Habits",
+      "sleep-habits": {
+        "title": "Sleep Habits",
+        "dateStart": "Date Start",
+        "dateEnd": "Date End",
+        "finding-related-to-sleep": "Finding Related to Sleep"
+      },
+
       "exercise:": "Exercise"
     },
     "immunization": {

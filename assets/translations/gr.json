@@ -138,7 +138,13 @@
         "route-of-administration": "Μέθοδος Χορήγησης"
       },
 
-      "sleep-habits": "Συνήθειες Ύπνου",
+      "sleep-habits": {
+        "title": "Συνήθειες Ύπνου",
+        "dateStart": "Ημερομηνία Έναρξης",
+        "dateEnd": "Ημερομηνία Λήξης",
+        "finding-related-to-sleep": "Εύρημα Σχετικό με τον Ύπνο"
+      },
+
       "exercise": "Άσκηση"
     },
     "immunization": {
