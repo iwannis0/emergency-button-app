@@ -151,12 +151,26 @@
         "dateEnd": "Ημερομηνία Λήξης",
         "drug-use-status": "Κατάσταση Χρήσης",
         "drug-use-type": "Τύπος Φαρμάκου",
-        "drug-use-dosage": "Ημερήσια δόση (γραμμάρια ανα ημέρα)",
+        "drug-use-dosage": "Ημερήσια δόση (γραμμάρια ανά ημέρα)",
         "route-of-administration": "Μέθοδος Χορήγησης"
       },
 
-      "sleep-habits": "Συνήθειες Ύπνου",
-      "exercise": "Άσκηση"
+      "sleep-habits": {
+        "title": "Συνήθειες Ύπνου",
+        "dateStart": "Ημερομηνία Έναρξης",
+        "dateEnd": "Ημερομηνία Λήξης",
+        "finding-related-to-sleep": "Εύρημα Σχετικό με τον Ύπνο"
+      },
+
+      "exercise:": {
+        "title": "Άσκηση",
+        "dateStart": "Ημερομηνία Έναρξης",
+        "dateEnd": "Ημερομηνία Λήξης",
+        "exercise-activity": "Δραστηριότητα",
+        "frequency-per-week": "Συχνότητα (ανά εβδομάδα)",
+        "exercise-duration": "Διάρκεια (λεπτά)",
+        "exercise-intensity": "Ένταση"
+      }
     },
     "immunization": {
       "title": "Εμβολιασμοί"
