@@ -23,6 +23,7 @@
   "Procedures" : "Procedures",
   "Medical Devices" : "Medical Devices",
   "no-data" : "No data available",
+  "not-applicable": "Not Applicable",
   "medicalHistory": {
     "smartlinks":{
       "main-button": "Share Patient Summary",
@@ -109,14 +110,20 @@
         "info": "Additional Information"
       }
     },
-    "gynecologicalHistory": {
-      "title": "Gynecological History"
-    },
-    "pregnancyHistory": {
-      "title": "Pregnancy History"
-    },
-    "pregnancyOutcome": {
-      "title": "Pregnancy Outcome"
+    "gynecological": {
+      "title": "Gynecological History",
+      "pregnancy-history": {
+        "title": "Pregnancy History",
+        "examinationDate": "Examination Date",
+        "expectedDeliveryDate": "Expected Date of Date",
+        "method": "Method Used for calculating EDD"
+      },
+      "pregnancy-outcome": {
+        "title": "Pregnancy Outcome",
+        "births": "Total Births",
+        "abortions": "Total Abortions",
+        "ectopic": "Ectopic Pregnancies"
+      }
     },
     "socialHistory": {
       "title": "Social History",
