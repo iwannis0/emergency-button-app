@@ -94,10 +94,20 @@
         "removal": "Removal Date",
         "name": "Device Name",
         "type": "Device Type"
+      },
+      "medication": {
+        "title": "Medication Summary",
+        "strength": "Strength",
+        "ingredient": "Active Ingredient",
+        "frequency": "Frequency",
+        "dosage": "Dosage",
+        "form": "Form of Medication",
+        "onset":"Onset Date",
+        "status": "Status",
+        "method": "Method",
+        "administration": "Administration Route",
+        "info": "Additional Information"
       }
-    },
-    "medicationSummary": {
-      "title": "Medication Summary"
     },
     "gynecologicalHistory": {
       "title": "Gynecological History"

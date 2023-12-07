@@ -18,6 +18,7 @@ import AllergiesScreen from '../screens/MedicalHistoryScreen/Contents/MedicalPer
 import ProblemsScreen from '../screens/MedicalHistoryScreen/Contents/MedicalPersonalHistory/screens/ProblemsScreen';
 import SocialHistoryScreen from '../screens/MedicalHistoryScreen/Contents/SocialHistory/Screens/SocialHistoryScreen';
 import DevicesScreen from '../screens/MedicalHistoryScreen/Contents/MedicalPersonalHistory/screens/DevicesScreen';
+import MedicationSummaryScreen from '../screens/MedicalHistoryScreen/Contents/MedicalPersonalHistory/screens/MedicationSummaryScreen';
 
 const ICON_SIZE = scaleFontSize(25);
 const INACTIVE_COLOR = '#A4A4A4';
@@ -108,6 +109,16 @@ export const MyHealthStack = () => {
         options={{
           headerShown: true,
           headerTitle: t('medicalHistory.medicalPersonalHistory.devices.title'),
+        }}
+      />
+      <stack.Screen
+        name={Routes.MedicationSummaryScreen}
+        component={MedicationSummaryScreen}
+        options={{
+          headerShown: true,
+          headerTitle: t(
+            'medicalHistory.medicalPersonalHistory.medication.title',
+          ),
         }}
       />
       <stack.Screen

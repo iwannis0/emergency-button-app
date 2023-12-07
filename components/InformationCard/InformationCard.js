@@ -7,7 +7,7 @@ import globalStyle from '../../assets/styles/globalStyle';
 import {RISK_COLOURS} from '../../common/constants/constants';
 
 const InformationCard = props => {
-  const [CHARACTER_LIMIT, setCHARACTER_LIMIT] = useState(27);
+  const [CHARACTER_LIMIT, setCHARACTER_LIMIT] = useState(23);
 
   const [modalVisible, setModalVisible] = useState(false);
   const toggleModal = () => {
@@ -60,6 +60,15 @@ const InformationCard = props => {
         setriskColor(RISK_COLOURS.LOW);
       }
     }
+    if (props.type === 'Medication') {
+      if (props.risk === 'Completed') {
+        setRiskTest('Completed');
+        setriskColor(RISK_COLOURS.LOW);
+      } else {
+        setRiskTest('Pending');
+        setriskColor(RISK_COLOURS.MODERATE);
+      }
+    }
   }, [props, props.type, props.risk]);
 
   {
@@ -70,6 +79,9 @@ const InformationCard = props => {
       if (props.status === 'Inactive') {
         setstatusColor('#ad1509');
       }
+    }
+    if (props.type === 'Medication') {
+      setstatusColor('#ffffff');
     }
   }, [props.type, props.status]);
 
