@@ -21,7 +21,6 @@ const PregnancyHistory = () => {
   const fetchData = async () => {
     try {
       const newData = await getPregnancyHistory(user.token, user.id);
-      console.log(JSON.stringify(newData.data.pregnancyStatus, null, 2));
       return newData.data.pregnancyStatus;
     } catch (error) {
       console.error(error);
