@@ -20,6 +20,7 @@ import SocialHistoryScreen from '../screens/MedicalHistoryScreen/Contents/Social
 import DevicesScreen from '../screens/MedicalHistoryScreen/Contents/MedicalPersonalHistory/screens/DevicesScreen';
 import MedicationSummaryScreen from '../screens/MedicalHistoryScreen/Contents/MedicalPersonalHistory/screens/MedicationSummaryScreen';
 import GynecologicalHistoryScreen from '../screens/MedicalHistoryScreen/Contents/GynaecologicalHistory/GynecologicalHistoryScreen';
+import ImmunizationScreen from '../screens/MedicalHistoryScreen/Contents/Immunization/Screens/ImmunizationScreen';
 
 const ICON_SIZE = scaleFontSize(25);
 const INACTIVE_COLOR = '#A4A4A4';
@@ -128,6 +129,14 @@ export const MyHealthStack = () => {
         options={{
           headerShown: true,
           headerTitle: t('medicalHistory.gynecological.title'),
+        }}
+      />
+      <stack.Screen
+        name={Routes.ImmunizationScreen}
+        component={ImmunizationScreen}
+        options={{
+          headerShown: true,
+          headerTitle: t('medicalHistory.immunization.title'),
         }}
       />
       <stack.Screen
