@@ -173,7 +173,20 @@
       }
     },
     "immunization": {
-      "title": "Immunization"
+      "title": "Immunization",
+      "vaccine-code": "Vaccine Code",
+      "disease-targeted": "Disease or Agent Targeted",
+      "number-doses": "Number of Doses",
+      "date": "Date of Vaccination",
+
+      "details": {
+        "title": "Details",
+        "medicinal-product": "Vaccine Medicinal Product",
+        "auth-holder": "Marketing Authorisation Holder",
+        "batch-number": "Batch / Lot Number",
+        "admin-center": "Administering Center",
+        "country": "Country of Vaccination"
+      }
     },
     "planOfCare": {
       "title": "Plan of Care",

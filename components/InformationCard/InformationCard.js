@@ -35,6 +35,7 @@ const InformationCard = props => {
       props.type === 'Procedure' ||
       props.type === 'Travel' ||
       props.type === 'Social History' ||
+      props.type === 'Immunization' ||
       props.type === 'PlanOfCare'
     ) {
       setCHARACTER_LIMIT(40);

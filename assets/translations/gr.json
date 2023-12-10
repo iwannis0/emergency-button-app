@@ -172,9 +172,24 @@
         "exercise-intensity": "Ένταση"
       }
     },
+
     "immunization": {
-      "title": "Εμβολιασμοί"
+      "title": "Εμβολιασμοί",
+      "vaccine-code": "Κωδικός Εμβολίου",
+      "disease-targeted": "Ασθένεια",
+      "number-doses": "Αριθμός Δόσεων",
+      "date": "Ημερομηνία Εμβολιασμού",
+
+      "details": {
+        "title": "Λεπτομέρειες Εμβολιασμού",
+        "medicinal-product": "Φαρμακευτικό Προϊόν",
+        "auth-holder": "Κάτοχος Άδειας",
+        "batch-number": "Αριθμός Παρτίδας",
+        "admin-center": "Κέντρο Εμβολιασμού",
+        "country": "Χώρα Εμβολιασμού"
+      }
     },
+
     "planOfCare": {
       "title": "Σχέδιο Φροντίδας",
       "therapeuticRecommendation":{
