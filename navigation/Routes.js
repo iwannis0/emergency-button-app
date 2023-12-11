@@ -14,4 +14,5 @@ export const Routes = {
   GynecologicalHistoryScreen: 'GynecologicalHistoryScreen',
   MyHealth: 'MyHealth',
   Profile: 'Profile',
+  ShlScreen: 'ShlScreen',
 };

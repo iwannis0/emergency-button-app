@@ -179,6 +179,15 @@
       "title": "Plan of Care"
     }
   },
+  "shl":{
+    "title": "Smart Health Links",
+    "create": "+ Create IPS SHLink",
+    "previous": "My SHLinks",
+    "info-title": "What are Smart Health Links?",
+    "info": "SMART Health Links are used to securely share your healthcare data using passcode-protected URLs with configurable expiration dates. They update automatically and eliminate the need for individuals to share their records more than once.\n\n When you share your SMART Health Link, healthcare providers or trusted individuals can view your detailed health information by scanning the QR code and entering the passcode.\n\n Additionally an audit log reports when your SMART Health was accessed, and users can deactivate at any point in time.",
+    "published-date": "Published on",
+    "expiration-date": "Expires on"
+  },
   "__________________________ServicesScreen__________________________" : "",
   "Doctors Registry" : "Doctors' Registry",
   "Pharmacists Registry" : "Pharmacists' Registry",

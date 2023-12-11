@@ -19,16 +19,10 @@ import {
   generateSHL,
   sendEmail,
   showAlertAndOpenURL,
-} from '../../features/SHL/shl';
+} from '../../features/SHL/viewSHL';
 import ModalComponent from '../../components/ModalComponent/ModalComponent';
 import QRCode from 'react-native-qrcode-svg';
 import {horizontalScale} from '../../assets/styles/scaling';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {
-  faShareNodes,
-  faCopy,
-  faUpRightFromSquare,
-} from '@fortawesome/free-solid-svg-icons';
 
 const MyHealthScreen = ({navigation}) => {
   const {t} = useTranslation();
@@ -117,96 +111,10 @@ const MyHealthScreen = ({navigation}) => {
         />
       </ScrollView>
 
-      <ModalComponent
-        title={''}
-        visibility={modalVisible}
-        onClose={() => setModalVisible(false)}>
-        <View style={globalStyle.fullyCentered}>
-          <View>
-            <QRCode
-              value={shl}
-              size={horizontalScale(240)}
-              logo={require('../../assets/images/smart-logo.png')}
-              logoSize={horizontalScale(45)}
-            />
-          </View>
-          <Text style={[globalStyle.descriptionBlackL1, styles.pinContainer]}>
-            {t('medicalHistory.smartlinks.pin')} {pin}
-          </Text>
-          <View style={styles.actionButtonRow}>
-            <TouchableOpacity
-              style={[styles.actionButtonsSHL, globalStyle.fullyCentered]}
-              onPress={() => {
-                sendEmail(
-                  '',
-                  t('medicalHistory.smartlinks.emai-subject'),
-                  t('medicalHistory.smartlinks.email-body-partA') +
-                    shl +
-                    t('medicalHistory.smartlinks.email-body-partB') +
-                    user.surname +
-                    ' ' +
-                    user.name,
-                );
-              }}>
-              <FontAwesomeIcon
-                icon={faShareNodes}
-                color="#FFFFFF"
-                size={horizontalScale(18)}
-              />
-              <Text style={styles.actionButtonText}>
-                {t('medicalHistory.smartlinks.share')}
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={[styles.actionButtonsSHL, globalStyle.fullyCentered]}
-              onPress={() => {
-                copyToClipboard(
-                  shl,
-                  t('medicalHistory.smartlinks.copy-alert'),
-                  t('medicalHistory.smartlinks.copy-alert-continue'),
-                );
-              }}>
-              <FontAwesomeIcon
-                icon={faCopy}
-                color="#FFFFFF"
-                size={horizontalScale(18)}
-              />
-              <Text style={styles.actionButtonText}>
-                {t('medicalHistory.smartlinks.copy')}
-              </Text>
-            </TouchableOpacity>
-          </View>
-          <TouchableOpacity
-            style={[styles.actionButtonsSHL, globalStyle.fullyCentered]}
-            onPress={() => {
-              showAlertAndOpenURL(
-                shl,
-                t('medicalHistory.smartlinks.open-alert-title'),
-                t('medicalHistory.smartlinks.open-alert-description'),
-                t('medicalHistory.smartlinks.open-alert-cancel'),
-                t('medicalHistory.smartlinks.open-alert-continue'),
-              );
-            }}>
-            <FontAwesomeIcon
-              icon={faUpRightFromSquare}
-              color="#FFFFFF"
-              size={horizontalScale(18)}
-            />
-            <Text style={styles.actionButtonText}>
-              {t('medicalHistory.smartlinks.open')}
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </ModalComponent>
-
       <TouchableOpacity
         style={[globalStyle.Button, globalStyle.fullyCentered]}
         onPress={() => {
-          const result = generateSHL();
-          setShl(result.shlink);
-          setPin(result.pin);
-          setModalVisible(true);
+          navigation.navigate('ShlScreen');
         }}>
         <Text style={globalStyle.buttonText}>
           {t('medicalHistory.smartlinks.main-button')}

@@ -20,6 +20,7 @@ import SocialHistoryScreen from '../screens/MedicalHistoryScreen/Contents/Social
 import DevicesScreen from '../screens/MedicalHistoryScreen/Contents/MedicalPersonalHistory/screens/DevicesScreen';
 import MedicationSummaryScreen from '../screens/MedicalHistoryScreen/Contents/MedicalPersonalHistory/screens/MedicationSummaryScreen';
 import GynecologicalHistoryScreen from '../screens/MedicalHistoryScreen/Contents/GynaecologicalHistory/GynecologicalHistoryScreen';
+import ShlScreen from '../screens/ShlScreen/ShlScreen';
 
 const ICON_SIZE = scaleFontSize(25);
 const INACTIVE_COLOR = '#A4A4A4';
@@ -134,6 +135,11 @@ export const MyHealthStack = () => {
         name={Routes.Profile}
         component={ProfileScreen}
         options={{headerShown: true, headerTitle: ''}}
+      />
+      <stack.Screen
+        name={Routes.ShlScreen}
+        component={ShlScreen}
+        options={{headerShown: true, headerTitle: t('shl.title')}}
       />
     </stack.Navigator>
   );
