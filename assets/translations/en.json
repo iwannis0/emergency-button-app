@@ -189,7 +189,12 @@
       }
     },
     "planOfCare": {
-      "title": "Plan of Care"
+      "title": "Plan of Care",
+      "therapeuticRecommendation":{
+        "title": "Therapeutic Recommendation",
+        "date": "Date",
+        "recommendation": "Recommendation"
+      }
     }
   },
   "__________________________ServicesScreen__________________________" : "",
