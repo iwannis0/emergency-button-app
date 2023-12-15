@@ -15,4 +15,5 @@ export const Routes = {
   ImmunizationScreen: 'ImmunizationScreen',
   MyHealth: 'MyHealth',
   Profile: 'Profile',
+  ShlScreen: 'ShlScreen',
 };

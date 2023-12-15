@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.21)',
   },
   modalView: {
-    flex: 1,
+    height: verticalScale(400),
     margin: verticalScale(130),
     width: horizontalScale(320),
     borderRadius: horizontalScale(10),
