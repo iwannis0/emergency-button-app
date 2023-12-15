@@ -1,38 +1,35 @@
 import React from 'react';
-import {View, ScrollView, SafeAreaView} from 'react-native';
+import {SafeAreaView, ScrollView, View} from 'react-native';
 import styles from './style';
 import InformationCard from '../../components/InformationCard/InformationCard';
 import Subtitle from '../../components/Subtitle/Subtitle';
 import globalStyle from '../../assets/styles/globalStyle';
-import {useTranslation} from 'react-i18next';
 
 const AlertsScreen = () => {
-  const {t} = useTranslation();
-
   return (
     <SafeAreaView>
       <ScrollView>
         <View style={styles.background}>
           <View style={globalStyle.marginTop60}>
-            <Subtitle title={t('Allergies')} />
+            <Subtitle title="Allergies" />
             <View
               style={[
                 globalStyle.backgroundWhite,
                 globalStyle.informationCardContainer,
               ]}>
               <InformationCard
-                type="Allergy"
-                title="Dust (substance)"
-                TopSubtitle="Environment"
-                BottomSubtitle="Allergic disposition"
-                risk="High Risk"
-                status="Active"
-                onset="23/06/23"
+                type={'Allergy'}
+                title={'Dust (substance)'}
+                TopSubtitle={'Environment'}
+                BottomSubtitle={'Allergic dispotition'}
+                risk={'High Risk'}
+                status={'Active'}
+                onset={'23/06/23'}
               />
             </View>
             {/*******************************************************/}
             <Subtitle
-              title={t('Major Medical Problems')}
+              title="Major Medical Problems"
               style={globalStyle.subtitleBox}
             />
             <View
@@ -42,51 +39,49 @@ const AlertsScreen = () => {
               ]}>
               <InformationCard
                 modaltext={'This is a modal 2'}
-                type="Medical"
-                title="Cholera"
-                TopSubtitle="Environment"
-                BottomSubtitle="36"
-                risk="Moderate"
-                status="Active"
-                onset="23/06/23"
+                type={'Procedure'}
+                title={'Cholera'}
+                TopSubtitle={'Environment'}
+                BottomSubtitle={'36'}
+                risk={'Moderate'}
+                status={'Active'}
+                onset={'23/06/23'}
               />
               <InformationCard
-                type="Medical"
-                title="Eczema herpeticum"
-                BottomSubtitle="36"
-                risk="Mild"
-                onset="23/06/23"
+                type={'Procedure'}
+                title={'Eczema herpeticum'}
+                TopSubtitle={''}
+                BottomSubtitle={'36'}
+                risk={'Mild'}
+                onset={'23/06/23'}
               />
             </View>
             {/*******************************************************/}
-            <Subtitle title={t('Procedures')} style={globalStyle.subtitleBox} />
+            <Subtitle title="Procedures" style={globalStyle.subtitleBox} />
             <View
               style={[
                 globalStyle.backgroundWhite,
                 globalStyle.informationCardContainer,
               ]}>
               <InformationCard
-                type="Procedure"
-                title="Cardioversion"
-                TopSubtitle="12nm mpla mpla adffasfad adsfadsfadsf dfafasd"
-                BottomSubtitle="36"
+                type={'Procedure'}
+                title={'Cardioversion'}
+                TopSubtitle={'12nm mpla mpla adffasfad adsfadsfadsf dfafasd'}
+                BottomSubtitle={'36'}
               />
             </View>
             {/*******************************************************/}
-            <Subtitle
-              title={t('Medical Devices')}
-              style={globalStyle.subtitleBox}
-            />
+            <Subtitle title="Medical Devices" style={globalStyle.subtitleBox} />
             <View
               style={[
                 globalStyle.backgroundWhite,
                 globalStyle.informationCardContainer,
               ]}>
               <InformationCard
-                type="Device"
-                title="Arterial stent (physical object)"
-                TopSubtitle="Onset Date:"
-                BottomSubtitle="Removal Date:"
+                type={'Procedure'}
+                title={'Arterial stent (physical object)'}
+                TopSubtitle={'Onset Date:'}
+                BottomSubtitle={'Removal Date:'}
               />
             </View>
           </View>
