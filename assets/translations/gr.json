@@ -162,7 +162,7 @@
         "finding-related-to-sleep": "Εύρημα Σχετικό με τον Ύπνο"
       },
 
-      "exercise:": {
+      "exercise": {
         "title": "Άσκηση",
         "dateStart": "Ημερομηνία Έναρξης",
         "dateEnd": "Ημερομηνία Λήξης",
@@ -191,7 +191,12 @@
     },
 
     "planOfCare": {
-      "title": "Σχέδιο Φροντίδας"
+      "title": "Σχέδιο Φροντίδας",
+      "therapeuticRecommendation":{
+        "title": "Θεραπευτική Σύσταση",
+        "date": "Ημερομηνία",
+        "recommendation": "Σύσταση"
+      }
     }
   },
   "shl":{

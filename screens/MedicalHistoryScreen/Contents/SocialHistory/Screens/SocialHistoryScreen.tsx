@@ -27,7 +27,7 @@ const SocialHistoryScreen = () => {
                 ],
                 tabBarStyle: {backgroundColor: '#f2f2f2'},
                 tabBarIndicatorStyle: {backgroundColor: 'transparent'},
-                tabBarItemStyle: {width: verticalScale(190)},
+                tabBarItemStyle: {width: verticalScale(100)},
                 tabBarScrollEnabled: true,
               }}>
               <SocialHistoryTabs.Screen

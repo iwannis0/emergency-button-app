@@ -115,7 +115,7 @@
       "pregnancy-history": {
         "title": "Pregnancy History",
         "examinationDate": "Examination Date",
-        "expectedDeliveryDate": "Expected Date of Date",
+        "expectedDeliveryDate": "Expected Date of Delivery",
         "method": "Method Used for calculating EDD"
       },
       "pregnancy-outcome": {
@@ -189,7 +189,12 @@
       }
     },
     "planOfCare": {
-      "title": "Plan of Care"
+      "title": "Plan of Care",
+      "therapeuticRecommendation":{
+        "title": "Therapeutic Recommendation",
+        "date": "Date",
+        "recommendation": "Recommendation"
+      }
     }
   },
   "shl":{

@@ -13,6 +13,7 @@ export const Routes = {
   MedicationSummaryScreen: 'MedicationSummaryScreen',
   GynecologicalHistoryScreen: 'GynecologicalHistoryScreen',
   ImmunizationScreen: 'ImmunizationScreen',
+  PlanOfCareScreen: 'PlanOfCareScreen',
   MyHealth: 'MyHealth',
   Profile: 'Profile',
   ShlScreen: 'ShlScreen',
