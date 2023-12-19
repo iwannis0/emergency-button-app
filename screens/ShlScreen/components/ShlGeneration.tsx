@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, Switch, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  Switch,
+  TouchableOpacity,
+  Alert,
+} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {useRecoilState} from 'recoil';
 import {summaryResourcesState} from '../../../features/recoil/atoms/SummaryResources/summaryResourcesState';
@@ -10,21 +17,29 @@ import {userState} from '../../../features/recoil/atoms/User/userState';
 import dayjs from 'dayjs';
 import {DATE_FORMAT} from '../../../common/constants/constants';
 import {encode as btoa} from 'base-64';
+import {shlHistoryState} from '../../../features/recoil/atoms/ShlHistory/shlHistoryState';
+import {IShl} from '../../../features/recoil/interfaces/IShl';
 
-const ShlGeneration = () => {
+interface Props {
+  closeModal: (visible: boolean) => void;
+}
+
+const ShlGeneration = (props: Props) => {
   const {t} = useTranslation();
-  const [user, __] = useRecoilState(userState);
-  const [summaryResources, _] = useRecoilState(summaryResourcesState);
+  const [user, _] = useRecoilState(userState);
+  const [summaryResources, __] = useRecoilState(summaryResourcesState);
+  const [shlHistory, setShlHistory] = useRecoilState(shlHistoryState);
+
+  const [label, setLabel] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [selectedOption, setSelectedOption] = useState(0);
   const expirationOptions = [
     t('shl.generation.1h'),
     t('shl.generation.4h'),
     t('shl.generation.12h'),
     t('shl.generation.24h'),
   ];
-  const [label, setLabel] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [selectedOption, setSelectedOption] = useState(0);
 
   const validatePassword = text => {
     if (text.length >= 6 && text.length <= 15) {
@@ -39,7 +54,7 @@ const ShlGeneration = () => {
     }
   };
 
-  const checkAndGenerate = () => {
+  const checkAndGenerate = async () => {
     if (validatePassword(password)) {
       const name =
         label === ''
@@ -57,16 +72,32 @@ const ShlGeneration = () => {
       }
       const expirationDate = dayjs().add(hoursExpiration, 'hour').toString();
       const minifiedResources = JSON.stringify(summaryResources.resources);
-      generateSHLink(
+      await generateSHLink(
         user.token,
         user.id,
         password,
         name,
         expirationDate,
         btoa(minifiedResources),
-      );
-      // TODO: HANDLE RESPONSE AND SAVE TO PERSISTENT STORAGE
+      )
+        .then(response => {
+          const newLink: IShl = {
+            ...response.data[0],
+            passcode: password,
+          };
+          const updatedShlHistory = {
+            shLinks: [...shlHistory.shLinks, newLink],
+          };
+          setShlHistory(updatedShlHistory);
+          console.log(shlHistory);
+          return 'Success';
+        })
+        .catch(errorMessage => {
+          console.log(errorMessage);
+          return 'Failure';
+        });
     }
+    return 'Wrong password';
   };
 
   return (
@@ -122,7 +153,34 @@ const ShlGeneration = () => {
 
       <TouchableOpacity
         style={[globalStyle.Button, styles.createButton]}
-        onPress={() => checkAndGenerate()}>
+        onPress={async () => {
+          const result = await checkAndGenerate();
+          switch (result) {
+            case 'Success':
+              Alert.alert(
+                'Link Created',
+                'The link was succesfully created! You can find it in the SHL History.',
+                [
+                  {
+                    text: 'Continue',
+                    onPress: () => props.closeModal(false),
+                  },
+                ],
+                {cancelable: false},
+              );
+              break;
+            case 'Failure':
+              Alert.alert(
+                'Failure',
+                'Something went wrong. Please try again later.',
+                [{text: 'OK'}],
+                {cancelable: false},
+              );
+              break;
+            default:
+              break;
+          }
+        }}>
         <Text style={globalStyle.buttonText}>{t('shl.generation.create')}</Text>
       </TouchableOpacity>
     </View>

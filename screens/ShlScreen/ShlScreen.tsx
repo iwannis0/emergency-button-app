@@ -18,6 +18,9 @@ import ShlGeneration from './components/ShlGeneration';
 import {useRecoilState} from 'recoil';
 import {summaryResourcesState} from '../../features/recoil/atoms/SummaryResources/summaryResourcesState';
 import {SummaryResources} from '../../features/recoil/atoms/SummaryResources/SummaryResources';
+import {FlatList} from 'react-native-gesture-handler';
+import {IShl} from '../../features/recoil/interfaces/IShl';
+import {shlHistoryState} from '../../features/recoil/atoms/ShlHistory/shlHistoryState';
 
 const ShlScreen = () => {
   const {t} = useTranslation();
@@ -26,7 +29,8 @@ const ShlScreen = () => {
   const [summaryResources, setSummaryResources] = useRecoilState(
     summaryResourcesState,
   );
-
+  const [shlHistory, setShlHistory] = useRecoilState(shlHistoryState);
+  console.log('shlHistory', shlHistory);
   return (
     <SafeAreaView style={styles.container}>
       <ModalComponent
@@ -52,7 +56,11 @@ const ShlScreen = () => {
           setModalVisible(false);
         }}>
         <View>
-          {!summaryResources.ready ? <ResourceSelection /> : <ShlGeneration />}
+          {!summaryResources.ready ? (
+            <ResourceSelection />
+          ) : (
+            <ShlGeneration closeModal={setModalVisible} />
+          )}
         </View>
       </ModalComponent>
 
@@ -78,6 +86,10 @@ const ShlScreen = () => {
           <Text style={globalStyle.buttonText}>{t('shl.create')}</Text>
         </TouchableOpacity>
         <Text style={styles.myLinksText}>{t('shl.previous')}</Text>
+        <FlatList
+          data={shlHistory.shLinks}
+          renderItem={({item}) => <Text>{item.label}</Text>}
+        />
       </View>
     </SafeAreaView>
   );
