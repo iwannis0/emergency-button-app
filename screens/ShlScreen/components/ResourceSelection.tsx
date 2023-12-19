@@ -35,7 +35,7 @@ import {
 } from '../interfaces/types/IConsentSummary copy';
 import {summaryResourcesState} from '../../../features/recoil/atoms/SummaryResources/summaryResourcesState';
 import {SummaryResources} from '../../../features/recoil/atoms/SummaryResources/SummaryResources';
-import styles from './styles';
+import styles from './SelectionStyles';
 
 const ResourceSelection = () => {
   const {t} = useTranslation();

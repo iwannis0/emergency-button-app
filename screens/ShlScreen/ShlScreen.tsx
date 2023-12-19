@@ -21,6 +21,7 @@ import {SummaryResources} from '../../features/recoil/atoms/SummaryResources/Sum
 import {FlatList} from 'react-native-gesture-handler';
 import {IShl} from '../../features/recoil/interfaces/IShl';
 import {shlHistoryState} from '../../features/recoil/atoms/ShlHistory/shlHistoryState';
+import MySHLink from './components/MySHLink';
 
 const ShlScreen = () => {
   const {t} = useTranslation();
@@ -88,7 +89,10 @@ const ShlScreen = () => {
         <Text style={styles.myLinksText}>{t('shl.previous')}</Text>
         <FlatList
           data={shlHistory.shLinks}
-          renderItem={({item}) => <Text>{item.label}</Text>}
+          keyExtractor={(item: IShl) => item.shl}
+          renderItem={({item}) => {
+            return <MySHLink data={item} />;
+          }}
         />
       </View>
     </SafeAreaView>

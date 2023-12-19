@@ -11,7 +11,7 @@ import {useTranslation} from 'react-i18next';
 import {useRecoilState} from 'recoil';
 import {summaryResourcesState} from '../../../features/recoil/atoms/SummaryResources/summaryResourcesState';
 import globalStyle from '../../../assets/styles/globalStyle';
-import styles from './styles';
+import styles from './SelectionStyles';
 import {generateSHLink} from '../api/generateLink';
 import {userState} from '../../../features/recoil/atoms/User/userState';
 import dayjs from 'dayjs';
