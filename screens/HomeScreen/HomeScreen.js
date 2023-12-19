@@ -107,9 +107,7 @@ const MyHealthScreen = ({navigation}) => {
         onPress={() => {
           navigation.navigate('ShlScreen');
         }}>
-        <Text style={globalStyle.buttonText}>
-          {t('medicalHistory.smartlinks.main-button')}
-        </Text>
+        <Text style={globalStyle.buttonText}>{t('shl.main-button')}</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

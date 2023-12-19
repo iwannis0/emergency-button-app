@@ -3,7 +3,7 @@ import {horizontalScale, verticalScale} from '../../../assets/styles/scaling';
 
 const styles = StyleSheet.create({
   modalHeight: {
-    height: verticalScale(350),
+    height: verticalScale(500),
   },
   row: {
     flexDirection: 'row',
@@ -17,10 +17,6 @@ const styles = StyleSheet.create({
   flatList: {
     shadowColor: '#000000',
     marginHorizontal: horizontalScale(10),
-    width: horizontalScale(300),
-    shadowOpacity: 0.2,
-    shadowRadius: 1,
-    elevation: 1,
   },
   backButton: {
     width: horizontalScale(120),
@@ -56,7 +52,7 @@ const styles = StyleSheet.create({
     color: 'red',
   },
   inputContainer: {
-    marginVertical: 10,
+    marginVertical: 15,
   },
   optionsContainer: {
     flexDirection: 'row',
@@ -64,12 +60,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginLeft: 20,
   },
-  firstColumn: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: '50%', // Half width for 2 columns
-  },
-  secondColumn: {
+  column: {
     flexDirection: 'row',
     alignItems: 'center',
     width: '50%',

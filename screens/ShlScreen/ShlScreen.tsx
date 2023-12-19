@@ -31,7 +31,6 @@ const ShlScreen = () => {
     summaryResourcesState,
   );
   const [shlHistory, setShlHistory] = useRecoilState(shlHistoryState);
-  console.log('shlHistory', shlHistory);
   return (
     <SafeAreaView style={styles.container}>
       <ModalComponent

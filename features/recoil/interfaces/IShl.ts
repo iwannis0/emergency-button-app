@@ -5,5 +5,5 @@ export interface IShl {
   expirationDate: string;
   passcode: string;
   accessCount: number;
-  failedAttempts: number;
+  failedAccessCount: number;
 }

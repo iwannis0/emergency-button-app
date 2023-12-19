@@ -136,11 +136,7 @@ const ShlGeneration = (props: Props) => {
         </Text>
         <View style={styles.optionsContainer}>
           {expirationOptions.map((option, index) => (
-            <View
-              key={index}
-              style={
-                index % 2 === 0 ? styles.firstColumn : styles.secondColumn
-              }>
+            <View key={index} style={styles.column}>
               <Switch
                 onValueChange={() => setSelectedOption(index)}
                 value={selectedOption === index}

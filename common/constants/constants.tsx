@@ -1,4 +1,5 @@
 export const DATE_FORMAT = 'DD MMMM YYYY';
+export const DATE_TIME_FORMAT = 'DD MMMM YYYY, HH:mm';
 export const EMAIL = 'Email';
 export const PHONE = 'Phone';
 export const PATIENT = 'Patient';
