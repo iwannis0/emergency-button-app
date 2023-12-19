@@ -10,17 +10,17 @@ export const generateSHLink = async (
   resources: string,
 ) => {
   const response = await axios.post(
-    `${BACKEND_API_URL}/api/SmartHealthLink/GenerateSmartHealthLink`,
+    `${BACKEND_API_URL}/SmartHealthLink/GenerateSmartHealthLink`,
+    {
+      patientId: id,
+      label: name,
+      passcode: code,
+      expirationDate: expiration,
+      data: resources,
+    },
     {
       headers: {
         Authorization: `Bearer ${token}`,
-      },
-      params: {
-        patientId: id,
-        label: name,
-        passcode: code,
-        expirationDate: expiration,
-        data: resources,
       },
     },
   );
