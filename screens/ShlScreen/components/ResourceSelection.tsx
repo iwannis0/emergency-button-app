@@ -65,6 +65,8 @@ const ResourceSelection = () => {
     fetchData().then(newData => {
       newData.entry = newData?.entry.filter(
         entry =>
+          entry.resource.resourceType === 'Patient' ||
+          entry.resource.resourceType === 'Composition' ||
           entry.resource.resourceType === 'AllergyIntolerance' ||
           entry.resource.resourceType === 'CarePlan' ||
           entry.resource.resourceType === 'Condition' ||
@@ -558,6 +560,14 @@ const ResourceSelection = () => {
           style={[globalStyle.Button, styles.continueButton]}
           onPress={() => {
             if (confirmationPhase) {
+              const PatientIndex = data.findIndex(
+                item => item.resource.resourceType === 'Patient',
+              );
+              const CompositionIndex = data.findIndex(
+                item => item.resource.resourceType === 'Composition',
+              );
+              selectedStates[PatientIndex] = true;
+              selectedStates[CompositionIndex] = true;
               SetSummaryResources(
                 new SummaryResources(
                   true,

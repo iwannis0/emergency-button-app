@@ -56,8 +56,6 @@ const ShlGeneration = () => {
         hoursExpiration = 24;
       }
       const expirationDate = dayjs().add(hoursExpiration, 'hour').toString();
-      console.log(expirationDate);
-      console.log(summaryResources.resources);
       const minifiedResources = JSON.stringify(summaryResources.resources);
       generateSHLink(
         user.token,
