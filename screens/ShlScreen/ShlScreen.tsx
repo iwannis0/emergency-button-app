@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   View,
@@ -15,13 +15,16 @@ import {horizontalScale} from '../../assets/styles/scaling';
 import ModalComponent from '../../components/ModalComponent/ModalComponent';
 import ResourceSelection from './components/ResourceSelection';
 import ShlGeneration from './components/ShlGeneration';
-import {useRecoilState} from 'recoil';
+import {useRecoilState, useResetRecoilState} from 'recoil';
 import {summaryResourcesState} from '../../features/recoil/atoms/SummaryResources/summaryResourcesState';
 import {SummaryResources} from '../../features/recoil/atoms/SummaryResources/SummaryResources';
 import {FlatList} from 'react-native-gesture-handler';
 import {IShl} from '../../features/recoil/interfaces/IShl';
 import {shlHistoryState} from '../../features/recoil/atoms/ShlHistory/shlHistoryState';
 import MySHLink from './components/MySHLink';
+import Loading from '../../components/Loading/Loading';
+import {getLinks} from './api/getLinks';
+import {userState} from '../../features/recoil/atoms/User/userState';
 
 const ShlScreen = () => {
   const {t} = useTranslation();
@@ -30,7 +33,61 @@ const ShlScreen = () => {
   const [summaryResources, setSummaryResources] = useRecoilState(
     summaryResourcesState,
   );
+  const [user, _] = useRecoilState(userState);
   const [shlHistory, setShlHistory] = useRecoilState(shlHistoryState);
+  const [shlLog, setShlLog] = useState<IShl[]>([]);
+  const resetSHLHistory = useResetRecoilState(shlHistoryState);
+  const [loading, setLoading] = useState(true);
+  const [isResetComplete, setIsResetComplete] = useState(false);
+
+  useEffect(() => {
+    setShlLog(shlHistory.shLinks);
+    resetSHLHistory();
+    setIsResetComplete(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isResetComplete) {
+      return;
+    }
+
+    const fetchShlHistory = async () => {
+      try {
+        setLoading(true);
+        setLoading(true);
+        const data = await getLinks(user.token, user.id);
+
+        if (!data || !data.data) {
+          throw new Error('No data received from the server.');
+        }
+
+        const newShlHistory = data.data.map((item: IShl) => {
+          const foundShl = shlLog.find((shl: IShl) => shl.shl === item.shl);
+          return {
+            shl: item.shl,
+            label: item.label,
+            creationDate: item.creationDate,
+            expirationDate: item.expirationDate,
+            accessCount: item.accessCount,
+            failedAccessCount: item.failedAccessCount,
+            passcode: foundShl ? foundShl.passcode : 'sadfasdfads',
+          };
+        });
+
+        setShlHistory((prev: any) => ({
+          ...prev,
+          shLinks: [...prev.shLinks, ...newShlHistory],
+        }));
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchShlHistory();
+  }, [isResetComplete]);
+
   return (
     <SafeAreaView style={styles.container}>
       <ModalComponent
@@ -94,6 +151,7 @@ const ShlScreen = () => {
           }}
         />
       </View>
+      {loading && <Loading />}
     </SafeAreaView>
   );
 };

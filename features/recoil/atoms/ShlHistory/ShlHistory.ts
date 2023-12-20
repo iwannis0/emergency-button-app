@@ -4,7 +4,7 @@ import {IShlHistory} from '../../interfaces/IShlHistory';
 export class ShlHistory implements IShlHistory {
   shLinks: IShl[];
 
-  constructor() {
-    this.shLinks = [];
+  constructor(array: IShl[]) {
+    this.shLinks = array;
   }
 }
