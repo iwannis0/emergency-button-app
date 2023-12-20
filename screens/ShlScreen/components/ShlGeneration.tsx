@@ -41,7 +41,7 @@ const ShlGeneration = (props: Props) => {
     t('shl.generation.24h'),
   ];
 
-  const validatePassword = text => {
+  const validatePassword = (text: string) => {
     if (text.length >= 6 && text.length <= 15) {
       return true;
     } else {
@@ -55,49 +55,52 @@ const ShlGeneration = (props: Props) => {
   };
 
   const checkAndGenerate = async () => {
-    if (validatePassword(password)) {
-      const name =
-        label === ''
-          ? `Link generated on ${dayjs().format(DATE_FORMAT)}`
-          : label;
-      let hoursExpiration = 1;
-      if (selectedOption === 1) {
-        hoursExpiration = 4;
-      }
-      if (selectedOption === 2) {
-        hoursExpiration = 12;
-      }
-      if (selectedOption === 3) {
-        hoursExpiration = 24;
-      }
-      const expirationDate = dayjs().add(hoursExpiration, 'hour').toString();
-      const minifiedResources = JSON.stringify(summaryResources.resources);
-      await generateSHLink(
-        user.token,
-        user.id,
-        password,
-        name,
-        expirationDate,
-        btoa(minifiedResources),
-      )
-        .then(response => {
-          const newLink: IShl = {
-            ...response.data[0],
-            passcode: password,
-          };
-          const updatedShlHistory = {
-            shLinks: [...shlHistory.shLinks, newLink],
-          };
-          setShlHistory(updatedShlHistory);
-          console.log(shlHistory);
-          return 'Success';
-        })
-        .catch(errorMessage => {
-          console.log(errorMessage);
-          return 'Failure';
-        });
+    if (!validatePassword(password)) {
+      return 'Wrong password';
     }
-    return 'Wrong password';
+
+    const name =
+      label === '' ? `Link generated on ${dayjs().format(DATE_FORMAT)}` : label;
+    let hoursExpiration = 1;
+    if (selectedOption === 1) {
+      hoursExpiration = 4;
+    }
+    if (selectedOption === 2) {
+      hoursExpiration = 12;
+    }
+    if (selectedOption === 3) {
+      hoursExpiration = 24;
+    }
+    const expirationDate = dayjs().add(hoursExpiration, 'hour').toString();
+    const minifiedResources = JSON.stringify(summaryResources.resources);
+    return await generateSHLink(
+      user.token,
+      user.id,
+      password,
+      name,
+      expirationDate,
+      btoa(minifiedResources),
+    )
+      .then(response => {
+        const newLink: IShl = {
+          shl: response.data,
+          label: name,
+          passcode: password,
+          expirationDate: expirationDate,
+        };
+
+        const updatedShlHistory = {
+          shLinks: [...shlHistory.shLinks, newLink],
+        };
+        setShlHistory(updatedShlHistory);
+
+        console.log(shlHistory);
+        return 'Success';
+      })
+      .catch(errorMessage => {
+        console.log(errorMessage);
+        return 'Failure';
+      });
   };
 
   return (
@@ -150,12 +153,15 @@ const ShlGeneration = (props: Props) => {
       <TouchableOpacity
         style={[globalStyle.Button, styles.createButton]}
         onPress={async () => {
-          const result = await checkAndGenerate();
+          const result = await checkAndGenerate()
+            .then(result => result)
+            .catch(error => error);
+
           switch (result) {
             case 'Success':
               Alert.alert(
                 'Link Created',
-                'The link was succesfully created! You can find it in the SHL History.',
+                'The link was successfully created! You can find it in the SHL History.',
                 [
                   {
                     text: 'Continue',

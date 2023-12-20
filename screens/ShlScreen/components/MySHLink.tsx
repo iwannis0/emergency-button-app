@@ -17,8 +17,9 @@ const MySHLink = (props: {data: IShl}) => {
   const [user, _] = useRecoilState(userState);
   const [shlHistory, setShlHistory] = useRecoilState(shlHistoryState);
   const [modalVisible, setModalVisible] = React.useState(false);
-  const DeleteProcess = async () => {
-    await deleteLink(props.data.shl, user.token)
+
+  const handleDeleteShl = async () => {
+    return await deleteLink(props.data.shl, user.token)
       .then(response => {
         console.log('response', response);
         if (response.isSuccess) {
@@ -72,7 +73,7 @@ const MySHLink = (props: {data: IShl}) => {
                   style: 'cancel',
                 },
 
-                {text: 'OK', onPress: () => DeleteProcess()},
+                {text: 'OK', onPress: () => handleDeleteShl()},
               ],
               {cancelable: false},
             );

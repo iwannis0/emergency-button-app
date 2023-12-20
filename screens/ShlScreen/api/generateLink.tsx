@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {BACKEND_API_URL} from '@env';
+import {IBackendResponse} from '../../../common/interfaces/IBackedResponse';
 
 export const generateSHLink = async (
   token: string,
@@ -8,7 +9,7 @@ export const generateSHLink = async (
   name: string,
   expiration: string,
   resources: string,
-) => {
+): Promise<IBackendResponse<string>> => {
   const response = await axios.post(
     `${BACKEND_API_URL}/SmartHealthLink/GenerateSmartHealthLink`,
     {

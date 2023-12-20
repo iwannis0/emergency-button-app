@@ -1,5 +1,11 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, SafeAreaView} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  SafeAreaView,
+  StyleSheet,
+} from 'react-native';
 import globalStyle from '../../../../assets/styles/globalStyle';
 import QRCode from 'react-native-qrcode-svg';
 import {useTranslation} from 'react-i18next';
@@ -25,6 +31,11 @@ import {IShl} from '../../../../features/recoil/interfaces/IShl';
 const ViewLink = (props: {data: IShl}) => {
   const {t} = useTranslation();
   const [user, _] = useRecoilState(userState);
+
+  const VIEWER_LINK = 'https://ehr.local:3443/shlink:/';
+
+  let LINK = VIEWER_LINK + props.data.shl;
+
   return (
     <SafeAreaView style={globalStyle.fullyCentered}>
       <View style={styles.infoContainer}>
@@ -58,12 +69,13 @@ const ViewLink = (props: {data: IShl}) => {
         </View>
       </View>
 
-      <View>
+      <View style={stylesLocal.qrCodeContainer}>
         <QRCode
-          value={props.data.shl}
-          size={horizontalScale(230)}
+          quietZone={5}
+          value={LINK}
+          size={horizontalScale(300)}
           logo={require('../../../../assets/images/smart-logo.png')}
-          logoSize={horizontalScale(30)}
+          logoSize={horizontalScale(60)}
         />
       </View>
       <Text style={[globalStyle.descriptionBlackL1, styles.pinContainer]}>
@@ -77,7 +89,7 @@ const ViewLink = (props: {data: IShl}) => {
               '',
               t('shl.viewing.emai-subject'),
               t('shl.viewing.email-body-partA') +
-                props.data.shl +
+                LINK +
                 t('shl.viewing.email-body-partB') +
                 user.surname +
                 ' ' +
@@ -96,7 +108,7 @@ const ViewLink = (props: {data: IShl}) => {
           style={[styles.actionButtonsSHL, globalStyle.fullyCentered]}
           onPress={() => {
             copyToClipboard(
-              props.data.shl,
+              LINK,
               t('shl.viewing.copy-alert'),
               t('shl.viewing.copy-alert-continue'),
             );
@@ -113,7 +125,7 @@ const ViewLink = (props: {data: IShl}) => {
         style={[styles.actionButtonsSHL, globalStyle.fullyCentered]}
         onPress={() => {
           showAlertAndOpenURL(
-            props.data.shl,
+            LINK,
             t('shl.viewing.open-alert-title'),
             t('shl.viewing.open-alert-description'),
             t('shl.viewing.open-alert-cancel'),
@@ -130,5 +142,11 @@ const ViewLink = (props: {data: IShl}) => {
     </SafeAreaView>
   );
 };
+
+const stylesLocal = StyleSheet.create({
+  qrCodeContainer: {
+    backgroundColor: '#ff0000',
+  },
+});
 
 export default ViewLink;
