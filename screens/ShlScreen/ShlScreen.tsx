@@ -54,7 +54,6 @@ const ShlScreen = () => {
     const fetchShlHistory = async () => {
       try {
         setLoading(true);
-        setLoading(true);
         const data = await getLinks(user.token, user.id);
 
         if (!data || !data.data) {
@@ -70,7 +69,7 @@ const ShlScreen = () => {
             expirationDate: item.expirationDate,
             accessCount: item.accessCount,
             failedAccessCount: item.failedAccessCount,
-            passcode: foundShl ? foundShl.passcode : 'sadfasdfads',
+            passcode: foundShl ? foundShl.passcode : 'Not saved in device',
           };
         });
 

@@ -8,7 +8,7 @@ export const getLinks = async (
   id: string,
 ): Promise<IBackendResponse<IShl[]>> => {
   const response = await axios.get(
-    `${BACKEND_API_URL}/SmartHealthLink/GetSmartHealthLink`,
+    `${BACKEND_API_URL}/SmartHealthLink/GetSmartHealthLinkHistory`,
     {
       headers: {
         Authorization: `Bearer ${token}`,

@@ -21,18 +21,16 @@ const MySHLink = (props: {data: IShl}) => {
   const handleDeleteShl = async () => {
     return await deleteLink(props.data.shl, user.token)
       .then(response => {
-        console.log('response', response);
-        if (response.isSuccess) {
-          const updatedLinks = shlHistory.shLinks.filter(
-            link => link.shl !== props.data.shl,
-          );
-          setShlHistory({...shlHistory, shLinks: updatedLinks});
-          Alert.alert('Success', 'SHL deleted successfully');
-        } else {
-          Alert.alert('Error', 'Something went wrong');
-        }
+        if (!response) throw new Error('Error');
+
+        const updatedLinks = shlHistory.shLinks.filter(
+          link => link.shl !== props.data.shl,
+        );
+        setShlHistory({...shlHistory, shLinks: updatedLinks});
+        Alert.alert('Success', 'SHL deleted successfully');
       })
       .catch(error => {
+        console.log('error', error);
         Alert.alert('Error', 'Something went wrong');
       });
   };
