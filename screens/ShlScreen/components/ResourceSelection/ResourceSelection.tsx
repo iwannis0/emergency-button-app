@@ -7,35 +7,35 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {useTranslation} from 'react-i18next';
-import {getSummary} from '../api/Summary';
+import {getSummary} from '../../api/Summary';
 import {useRecoilState} from 'recoil';
-import {userState} from '../../../features/recoil/atoms/User/userState';
-import Loading from '../../../components/Loading/Loading';
-import {IEntry} from '../interfaces/IPatientSummary';
-import ResourceIPS from '../../../components/ResourceIPS/ResourceIPS';
+import {userState} from '../../../../features/recoil/atoms/User/userState';
+import Loading from '../../../../components/Loading/Loading';
+import {IEntry} from '../../interfaces/IPatientSummary';
+import ResourceIPS from '../../../../components/ResourceIPS/ResourceIPS';
 import Checkbox from '@react-native-community/checkbox';
-import globalStyle from '../../../assets/styles/globalStyle';
-import {IAllergyIntoleranceSummary} from '../interfaces/types/IAllergyIntoleranceSummary';
-import {ICarePlanSummary} from '../interfaces/types/ICarePlanSummary';
-import {IConditionSummary} from '../interfaces/types/IConditionSummary';
+import globalStyle from '../../../../assets/styles/globalStyle';
+import {IAllergyIntoleranceSummary} from '../../interfaces/types/IAllergyIntoleranceSummary';
+import {ICarePlanSummary} from '../../interfaces/types/ICarePlanSummary';
+import {IConditionSummary} from '../../interfaces/types/IConditionSummary';
 import dayjs from 'dayjs';
-import {DATE_FORMAT} from '../../../common/constants/constants';
-import {IDeviceSummary} from '../interfaces/types/IDeviceSummary';
-import {IDiagnosticReportSummary} from '../interfaces/types/IDiagnosticReportSummary';
-import {IProcedureSummary} from '../interfaces/types/IProcedureSummary';
-import {IImmunizationSummary} from '../interfaces/types/IImmunizationSummary';
-import {IObservationSummary} from '../interfaces/types/IObservationSummary';
+import {DATE_FORMAT} from '../../../../common/constants/constants';
+import {IDeviceSummary} from '../../interfaces/types/IDeviceSummary';
+import {IDiagnosticReportSummary} from '../../interfaces/types/IDiagnosticReportSummary';
+import {IProcedureSummary} from '../../interfaces/types/IProcedureSummary';
+import {IImmunizationSummary} from '../../interfaces/types/IImmunizationSummary';
+import {IObservationSummary} from '../../interfaces/types/IObservationSummary';
 import {
   IMedication,
   IMedicationSummary,
-} from '../interfaces/types/IMedicationSummary';
+} from '../../interfaces/types/IMedicationSummary';
 import {
   IConsentSummary,
   IPractitionerRole,
-} from '../interfaces/types/IConsentSummary copy';
-import {summaryResourcesState} from '../../../features/recoil/atoms/SummaryResources/summaryResourcesState';
-import {SummaryResources} from '../../../features/recoil/atoms/SummaryResources/SummaryResources';
-import styles from './SelectionStyles';
+} from '../../interfaces/types/IConsentSummary copy';
+import {summaryResourcesState} from '../../../../features/recoil/atoms/SummaryResources/summaryResourcesState';
+import {SummaryResources} from '../../../../features/recoil/atoms/SummaryResources/SummaryResources';
+import styles from '../SelectionStyles';
 
 const ResourceSelection = () => {
   const {t} = useTranslation();
@@ -45,7 +45,7 @@ const ResourceSelection = () => {
   const [loggedLimit, setLoggedLimit] = useState(20);
   const [loading, setLoading] = useState(true);
   const [selectAll, setSelectAll] = useState(false);
-  const [confirmationPhase, setConfirmationPhase] = useState<Boolean>();
+  const [confirmationPhase, setConfirmationPhase] = useState<Boolean>(false);
 
   const [data, setData] = useState<IEntry[]>([]);
   const [selectedStates, setSelectedStates] = useState<boolean[]>([]);
@@ -515,8 +515,23 @@ const ResourceSelection = () => {
         return;
     }
 
-    if (confirmationPhase && !selectedStates[index]) {
-      return;
+    if (confirmationPhase) {
+      if (!selectedStates[index]) {
+        return;
+      }
+      return (
+        <ResourceIPS
+          id={identification}
+          selected={selectedStates[index]}
+          onToggle={newValue => handleItemToggle(index, newValue)}
+          type={type}
+          text1={info1}
+          text2={info2}
+          text3={info3}
+          text4={info4}
+          phase={true}
+        />
+      );
     }
     return (
       <ResourceIPS
@@ -528,6 +543,7 @@ const ResourceSelection = () => {
         text2={info2}
         text3={info3}
         text4={info4}
+        phase={false}
       />
     );
   };
@@ -553,7 +569,7 @@ const ResourceSelection = () => {
         onEndReachedThreshold={0.5}
         data={data?.slice(0, limit)}
         renderItem={renderItem}
-        keyExtractor={item => item.resource.id}
+        keyExtractor={item => item.fullUrl}
       />
       <View style={styles.buttonsContainer}>
         <TouchableOpacity

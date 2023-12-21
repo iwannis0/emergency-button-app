@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   typeText: {
     fontSize: scaleFontSize(16),
     fontWeight: 'bold',
-    color: '#000',
+    color: '#000000',
   },
 });
 

@@ -9,7 +9,10 @@ import {
 import globalStyle from '../../../../assets/styles/globalStyle';
 import QRCode from 'react-native-qrcode-svg';
 import {useTranslation} from 'react-i18next';
-import {horizontalScale} from '../../../../assets/styles/scaling';
+import {
+  horizontalScale,
+  verticalScale,
+} from '../../../../assets/styles/scaling';
 import {
   sendEmail,
   copyToClipboard,
@@ -73,9 +76,9 @@ const ViewLink = (props: {data: IShl}) => {
         <QRCode
           quietZone={5}
           value={LINK}
-          size={horizontalScale(300)}
+          size={verticalScale(260)}
           logo={require('../../../../assets/images/smart-logo.png')}
-          logoSize={horizontalScale(60)}
+          logoSize={verticalScale(60)}
         />
       </View>
       <Text style={[globalStyle.descriptionBlackL1, styles.pinContainer]}>

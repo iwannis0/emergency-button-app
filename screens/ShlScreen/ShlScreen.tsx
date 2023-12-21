@@ -1,44 +1,44 @@
 import React, {useState, useEffect} from 'react';
+import {useTranslation} from 'react-i18next';
 import {
   SafeAreaView,
   View,
   Text,
   TouchableOpacity,
   ScrollView,
+  FlatList,
 } from 'react-native';
 import styles from './styles';
-import {useTranslation} from 'react-i18next';
 import globalStyle from '../../assets/styles/globalStyle';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faInfo} from '@fortawesome/free-solid-svg-icons';
 import {horizontalScale} from '../../assets/styles/scaling';
-import ModalComponent from '../../components/ModalComponent/ModalComponent';
-import ResourceSelection from './components/ResourceSelection';
-import ShlGeneration from './components/ShlGeneration';
-import {useRecoilState, useResetRecoilState} from 'recoil';
-import {summaryResourcesState} from '../../features/recoil/atoms/SummaryResources/summaryResourcesState';
-import {SummaryResources} from '../../features/recoil/atoms/SummaryResources/SummaryResources';
-import {FlatList} from 'react-native-gesture-handler';
-import {IShl} from '../../features/recoil/interfaces/IShl';
-import {shlHistoryState} from '../../features/recoil/atoms/ShlHistory/shlHistoryState';
-import MySHLink from './components/MySHLink';
+import {faInfo} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import MySHLink from './components/MySHLink/MySHLink';
 import Loading from '../../components/Loading/Loading';
-import {getLinks} from './api/getLinks';
+import ShlGeneration from './components/ShlGeneration/ShlGeneration';
+import ResourceSelection from './components/ResourceSelection/ResourceSelection';
+import ModalComponent from '../../components/ModalComponent/ModalComponent';
+import {useRecoilState, useResetRecoilState} from 'recoil';
 import {userState} from '../../features/recoil/atoms/User/userState';
+import {shlHistoryState} from '../../features/recoil/atoms/ShlHistory/shlHistoryState';
+import {IShl} from '../../features/recoil/interfaces/IShl';
+import {SummaryResources} from '../../features/recoil/atoms/SummaryResources/SummaryResources';
+import {summaryResourcesState} from '../../features/recoil/atoms/SummaryResources/summaryResourcesState';
+import {getLinks} from './api/shlFunctions';
 
 const ShlScreen = () => {
   const {t} = useTranslation();
+  const [loading, setLoading] = useState(true);
+  const [shlLog, setShlLog] = useState<IShl[]>([]);
   const [modalVisible, setModalVisible] = useState(false);
+  const [isResetComplete, setIsResetComplete] = useState(false);
   const [infoModalVisible, setInfoModalVisible] = useState(false);
+  const [user, _] = useRecoilState(userState);
+  const resetSHLHistory = useResetRecoilState(shlHistoryState);
+  const [shlHistory, setShlHistory] = useRecoilState(shlHistoryState);
   const [summaryResources, setSummaryResources] = useRecoilState(
     summaryResourcesState,
   );
-  const [user, _] = useRecoilState(userState);
-  const [shlHistory, setShlHistory] = useRecoilState(shlHistoryState);
-  const [shlLog, setShlLog] = useState<IShl[]>([]);
-  const resetSHLHistory = useResetRecoilState(shlHistoryState);
-  const [loading, setLoading] = useState(true);
-  const [isResetComplete, setIsResetComplete] = useState(false);
 
   useEffect(() => {
     setShlLog(shlHistory.shLinks);

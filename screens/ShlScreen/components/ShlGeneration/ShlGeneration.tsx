@@ -9,16 +9,17 @@ import {
 } from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {useRecoilState} from 'recoil';
-import {summaryResourcesState} from '../../../features/recoil/atoms/SummaryResources/summaryResourcesState';
-import globalStyle from '../../../assets/styles/globalStyle';
-import styles from './SelectionStyles';
-import {generateSHLink} from '../api/generateLink';
-import {userState} from '../../../features/recoil/atoms/User/userState';
+import {summaryResourcesState} from '../../../../features/recoil/atoms/SummaryResources/summaryResourcesState';
+import globalStyle from '../../../../assets/styles/globalStyle';
+import styles from '../SelectionStyles';
+import {generateSHLink} from '../../api/shlFunctions';
+import {userState} from '../../../../features/recoil/atoms/User/userState';
 import dayjs from 'dayjs';
-import {DATE_FORMAT} from '../../../common/constants/constants';
+import {DATE_FORMAT} from '../../../../common/constants/constants';
 import {encode as btoa} from 'base-64';
-import {shlHistoryState} from '../../../features/recoil/atoms/ShlHistory/shlHistoryState';
-import {IShl} from '../../../features/recoil/interfaces/IShl';
+import {shlHistoryState} from '../../../../features/recoil/atoms/ShlHistory/shlHistoryState';
+import {IShl} from '../../../../features/recoil/interfaces/IShl';
+import {SummaryResources} from '../../../../features/recoil/atoms/SummaryResources/SummaryResources';
 
 interface Props {
   closeModal: (visible: boolean) => void;
@@ -27,7 +28,9 @@ interface Props {
 const ShlGeneration = (props: Props) => {
   const {t} = useTranslation();
   const [user, _] = useRecoilState(userState);
-  const [summaryResources, __] = useRecoilState(summaryResourcesState);
+  const [summaryResources, setSummaryResources] = useRecoilState(
+    summaryResourcesState,
+  );
   const [shlHistory, setShlHistory] = useRecoilState(shlHistoryState);
 
   const [label, setLabel] = useState('');
@@ -87,14 +90,15 @@ const ShlGeneration = (props: Props) => {
           label: name,
           passcode: password,
           expirationDate: expirationDate,
+          accessCount: 0,
+          failedAccessCount: 0,
         };
 
         const updatedShlHistory = {
           shLinks: [...shlHistory.shLinks, newLink],
         };
         setShlHistory(updatedShlHistory);
-
-        console.log(shlHistory);
+        setSummaryResources(new SummaryResources(false, []));
         return 'Success';
       })
       .catch(errorMessage => {
@@ -165,7 +169,10 @@ const ShlGeneration = (props: Props) => {
                 [
                   {
                     text: 'Continue',
-                    onPress: () => props.closeModal(false),
+                    onPress: () => {
+                      props.closeModal(false);
+                      setSummaryResources(new SummaryResources(false, []));
+                    },
                   },
                 ],
                 {cancelable: false},

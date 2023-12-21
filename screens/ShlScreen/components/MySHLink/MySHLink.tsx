@@ -1,16 +1,16 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, Alert} from 'react-native';
 import styles from './MyStyles';
-import globalStyle from '../../../assets/styles/globalStyle';
+import globalStyle from '../../../../assets/styles/globalStyle';
 import {useTranslation} from 'react-i18next';
-import {IShl} from '../../../features/recoil/interfaces/IShl';
-import {deleteLink} from '../api/deleteLink';
+import {IShl} from '../../../../features/recoil/interfaces/IShl';
+import {deleteLink} from '../../api/shlFunctions';
 import {useRecoilState} from 'recoil';
-import {userState} from '../../../features/recoil/atoms/User/userState';
-import {shlHistoryState} from '../../../features/recoil/atoms/ShlHistory/shlHistoryState';
-import ViewLink from './ViewLink/ViewLink';
+import {userState} from '../../../../features/recoil/atoms/User/userState';
+import {shlHistoryState} from '../../../../features/recoil/atoms/ShlHistory/shlHistoryState';
+import ViewLink from '../ViewLink/ViewLink';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import ModalComponent from '../../../components/ModalComponent/ModalComponent';
+import ModalComponent from '../../../../components/ModalComponent/ModalComponent';
 
 const MySHLink = (props: {data: IShl}) => {
   const {t} = useTranslation();

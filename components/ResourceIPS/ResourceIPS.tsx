@@ -1,9 +1,9 @@
 import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
-import PropTypes from 'prop-types';
 import styles from './styles';
-import CheckBox from '@react-native-community/checkbox';
+import PropTypes from 'prop-types';
 import {useTranslation} from 'react-i18next';
+import CheckBox from '@react-native-community/checkbox';
+import {Text, TouchableOpacity, View} from 'react-native';
 
 const ResourceIPS = props => {
   const {t} = useTranslation();
@@ -15,6 +15,9 @@ const ResourceIPS = props => {
     ? [styles.button, {backgroundColor: 'rgba(17, 212, 40, 0.4)'}] // Combine styles if selected
     : styles.button;
 
+  const renderText = (text: string) =>
+    !props.phase && text !== t('no-data') && <Text>{text}</Text>;
+
   return (
     <TouchableOpacity style={buttonStyle} onPress={handleToggleCheckbox}>
       <View style={styles.container}>
@@ -24,9 +27,9 @@ const ResourceIPS = props => {
         <View style={styles.resourceContainer}>
           <Text style={styles.typeText}>{props.type}</Text>
           <Text>{props.text1}</Text>
-          {props.text2 !== t('no-data') && <Text>{props.text2}</Text>}
-          {props.text3 !== t('no-data') && <Text>{props.text3}</Text>}
-          {props.text4 !== t('no-data') && <Text>{props.text4}</Text>}
+          {renderText(props.text2)}
+          {renderText(props.text3)}
+          {renderText(props.text4)}
         </View>
       </View>
     </TouchableOpacity>
@@ -42,6 +45,7 @@ ResourceIPS.propTypes = {
   text2: PropTypes.string,
   text3: PropTypes.string,
   text4: PropTypes.string,
+  phase: PropTypes.bool,
 };
 
 export default ResourceIPS;
