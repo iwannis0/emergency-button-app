@@ -7,8 +7,13 @@ import {Text, TouchableOpacity, View} from 'react-native';
 
 const ResourceIPS = props => {
   const {t} = useTranslation();
+
   const handleToggleCheckbox = () => {
-    props.onToggle(!props.selected);
+    if (!props.selected) {
+      props.addID();
+    } else {
+      props.removeID();
+    }
   };
 
   const buttonStyle = props.selected
@@ -39,7 +44,8 @@ const ResourceIPS = props => {
 ResourceIPS.propTypes = {
   id: PropTypes.string.isRequired,
   selected: PropTypes.bool,
-  onToggle: PropTypes.func.isRequired,
+  addID: PropTypes.func,
+  removeID: PropTypes.func,
   type: PropTypes.string.isRequired,
   text1: PropTypes.string.isRequired,
   text2: PropTypes.string,

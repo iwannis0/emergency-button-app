@@ -2,9 +2,10 @@ import {StyleSheet} from 'react-native';
 import {horizontalScale, verticalScale} from '../../assets/styles/scaling';
 
 const styles = StyleSheet.create({
-  centeredView: {
-    flex: 1,
+  container: {
     backgroundColor: 'rgba(0,0,0,0.21)',
+    alignItems: 'center',
+    bottom: verticalScale(80),
   },
   modalView: {
     height: verticalScale(550),

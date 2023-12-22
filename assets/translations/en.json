@@ -1,4 +1,7 @@
 {
+  "general": {
+    "search": "Search..."
+  },
   "__________________________Routes__________________________" : "",
   "Home" : "Home",
   "Services" : "Services",
@@ -196,6 +199,8 @@
     "select-all": "Select all resources",
     "select-promt": "Please select the resources you want to share with the Smart Health Link.",
     "summary": {
+      "show-all" : "Categories",
+      "select-category": "Select Category",
       "allergy": "Allergy",
       "intolerance": "Intolerance",
       "careplan": "Plan of Treatment",

@@ -5,6 +5,8 @@ import {
   FlatList,
   View,
   TouchableOpacity,
+  TextInput,
+  KeyboardAvoidingView,
 } from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {getSummary} from '../../api/Summary';
@@ -35,20 +37,28 @@ import {
 } from '../../interfaces/types/IConsentSummary copy';
 import {summaryResourcesState} from '../../../../features/recoil/atoms/SummaryResources/summaryResourcesState';
 import {SummaryResources} from '../../../../features/recoil/atoms/SummaryResources/SummaryResources';
-import styles from '../SelectionStyles';
+import styles from './style';
+import CategoryDropdown from '../CategoryDropdown/CategoryDropdown';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faSearch} from '@fortawesome/free-solid-svg-icons';
 
 const ResourceSelection = () => {
   const {t} = useTranslation();
   const [_, SetSummaryResources] = useRecoilState(summaryResourcesState);
   const [user, __] = useRecoilState(userState);
-  const [limit, setLimit] = useState(20);
-  const [loggedLimit, setLoggedLimit] = useState(20);
   const [loading, setLoading] = useState(true);
   const [selectAll, setSelectAll] = useState(false);
-  const [confirmationPhase, setConfirmationPhase] = useState<Boolean>(false);
+  const [confirmationPhase, setConfirmationPhase] = useState<boolean>(false);
+  const [dropdownValue, setDropdownValue] = useState(t('shl.summary.show-all'));
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+  };
 
   const [data, setData] = useState<IEntry[]>([]);
-  const [selectedStates, setSelectedStates] = useState<boolean[]>([]);
+  const [vizualizeData, setVizualizedData] = useState<IEntry[]>([]);
+  const [selectedStates, setSelectedStates] = useState<string[]>([]);
 
   const fetchData = async () => {
     try {
@@ -64,7 +74,7 @@ const ResourceSelection = () => {
   useEffect(() => {
     fetchData().then(newData => {
       newData.entry = newData?.entry.filter(
-        entry =>
+        (entry: IEntry) =>
           entry.resource.resourceType === 'Patient' ||
           entry.resource.resourceType === 'Composition' ||
           entry.resource.resourceType === 'AllergyIntolerance' ||
@@ -72,6 +82,7 @@ const ResourceSelection = () => {
           entry.resource.resourceType === 'Condition' ||
           entry.resource.resourceType === 'Device' ||
           entry.resource.resourceType === 'DiagnosticReport' ||
+          entry.resource.resourceType === 'Immunization' ||
           entry.resource.resourceType === 'Procedure' ||
           entry.resource.resourceType === 'Observation' ||
           entry.resource.resourceType === 'MedicationRequest' ||
@@ -97,40 +108,104 @@ const ResourceSelection = () => {
         return 0;
       });
       setData(newData.entry);
-      setSelectedStates(newData?.entry.map(() => false));
+      setVizualizedData(newData.entry);
+      setSelectedStates([]);
       setConfirmationPhase(false);
     });
   }, []);
 
   useEffect(() => {
     if (confirmationPhase) {
-      setLoggedLimit(limit);
-      setLimit(selectedStates.filter(state => state).length);
+      const filteredIds = data.filter(id =>
+        selectedStates.includes(id.fullUrl),
+      );
+      setVizualizedData(filteredIds);
     } else {
-      setLimit(loggedLimit);
+      setVizualizedData(data);
     }
   }, [confirmationPhase]);
 
+  useEffect(() => {
+    switch (dropdownValue) {
+      case t('shl.summary.allergy'):
+      case t('shl.summary.intolerance'):
+        setVizualizedData(
+          data.filter(
+            item => item.resource.resourceType === 'AllergyIntolerance',
+          ),
+        );
+        break;
+      case t('shl.summary.careplan'):
+        setVizualizedData(
+          data.filter(item => item.resource.resourceType === 'CarePlan'),
+        );
+        break;
+      case t('shl.summary.problem'):
+        setVizualizedData(
+          data.filter(item => item.resource.resourceType === 'Condition'),
+        );
+        break;
+      case t('shl.summary.device'):
+        setVizualizedData(
+          data.filter(item => item.resource.resourceType === 'Device'),
+        );
+        break;
+      case t('shl.summary.diagnosis'):
+        setVizualizedData(
+          data.filter(
+            item => item.resource.resourceType === 'DiagnosticReport',
+          ),
+        );
+        break;
+      case t('shl.summary.procedure'):
+        setVizualizedData(
+          data.filter(item => item.resource.resourceType === 'Procedure'),
+        );
+        break;
+      case t('shl.summary.immunization'):
+        setVizualizedData(
+          data.filter(item => item.resource.resourceType === 'Immunization'),
+        );
+        break;
+      case t('shl.summary.vital-sign'):
+      case t('shl.summary.pregnancy'):
+      case t('shl.summary.social-history'):
+      case t('shl.summary.travel-history'):
+        setVizualizedData(
+          data.filter(item => item.resource.resourceType === 'Observation'),
+        );
+        break;
+      case t('shl.summary.medication'):
+        setVizualizedData(
+          data.filter(
+            item => item.resource.resourceType === 'MedicationRequest',
+          ),
+        );
+        break;
+      case t('shl.summary.consent'):
+        setVizualizedData(
+          data.filter(item => item.resource.resourceType === 'Consent'),
+        );
+        break;
+      default:
+        setVizualizedData(data);
+    }
+  }, [dropdownValue]);
+
   const handleSelectAll = () => {
     if (selectAll) {
-      setSelectedStates(selectedStates.map(() => false));
+      setSelectedStates([]);
     } else {
-      setSelectedStates(selectedStates.map(() => true));
+      setSelectedStates(data.map(entry => entry.fullUrl));
     }
     setSelectAll(!selectAll);
   };
 
-  const loadMoreData = async () => {
-    setLimit(limit + 20);
-  };
-
-  const handleItemToggle = (index: number, newValue: boolean) => {
-    const updatedSelectedStates = [...selectedStates];
-    updatedSelectedStates[index] = newValue;
-    setSelectedStates(updatedSelectedStates);
-  };
-
   const renderItem = ({item, index}: {item: IEntry; index: number}) => {
+    if (confirmationPhase && !selectedStates.includes(item.fullUrl)) {
+      return;
+    }
+
     let identification = t('no-data');
     let type = t('no-data');
     let info1 = t('no-data');
@@ -515,35 +590,37 @@ const ResourceSelection = () => {
         return;
     }
 
-    if (confirmationPhase) {
-      if (!selectedStates[index]) {
+    if (!confirmationPhase && dropdownValue !== t('shl.summary.show-all')) {
+      if (!confirmationPhase && dropdownValue !== type) {
         return;
       }
-      return (
-        <ResourceIPS
-          id={identification}
-          selected={selectedStates[index]}
-          onToggle={newValue => handleItemToggle(index, newValue)}
-          type={type}
-          text1={info1}
-          text2={info2}
-          text3={info3}
-          text4={info4}
-          phase={true}
-        />
-      );
+    }
+    if (searchQuery !== '') {
+      if (
+        !type.toLowerCase().includes(searchQuery.toLowerCase()) &&
+        !info1.toLowerCase().includes(searchQuery.toLowerCase()) &&
+        !info2.toLowerCase().includes(searchQuery.toLowerCase()) &&
+        !info3.toLowerCase().includes(searchQuery.toLowerCase()) &&
+        !info4.toLowerCase().includes(searchQuery.toLowerCase())
+      ) {
+        return;
+      }
     }
     return (
       <ResourceIPS
         id={identification}
-        selected={selectedStates[index]}
-        onToggle={newValue => handleItemToggle(index, newValue)}
+        selected={selectedStates.includes(item.fullUrl)}
+        //ids.filter(id => id !== idToRemove);
+        addID={() => setSelectedStates([...selectedStates, item.fullUrl])}
+        removeID={() =>
+          setSelectedStates(selectedStates.filter(id => id !== item.fullUrl))
+        }
         type={type}
         text1={info1}
         text2={info2}
         text3={info3}
         text4={info4}
-        phase={false}
+        phase={confirmationPhase}
       />
     );
   };
@@ -563,31 +640,43 @@ const ResourceSelection = () => {
           </TouchableOpacity>
         )}
       </View>
+      {!confirmationPhase && (
+        <View style={[styles.row, styles.searchContainer]}>
+          <CategoryDropdown value={dropdownValue} setValue={setDropdownValue} />
+          <View style={[styles.row, styles.searchInput]}>
+            <FontAwesomeIcon icon={faSearch} />
+            <TextInput
+              style={styles.searchInputText}
+              placeholder={t('general.search')}
+              value={searchQuery}
+              onChangeText={handleSearch}
+            />
+          </View>
+        </View>
+      )}
+
       <FlatList
         style={styles.flatList}
-        onEndReached={loadMoreData}
-        onEndReachedThreshold={0.5}
-        data={data?.slice(0, limit)}
+        data={vizualizeData}
         renderItem={renderItem}
         keyExtractor={item => item.fullUrl}
       />
-      <View style={styles.buttonsContainer}>
+      <View>
         <TouchableOpacity
           style={[globalStyle.Button, styles.continueButton]}
           onPress={() => {
             if (confirmationPhase) {
-              const PatientIndex = data.findIndex(
-                item => item.resource.resourceType === 'Patient',
-              );
-              const CompositionIndex = data.findIndex(
-                item => item.resource.resourceType === 'Composition',
-              );
-              selectedStates[PatientIndex] = true;
-              selectedStates[CompositionIndex] = true;
+              const PatientID =
+                data.find(item => item.resource.resourceType === 'Patient')
+                  ?.fullUrl || 'noPatient';
+              const CompositionID =
+                data.find(item => item.resource.resourceType === 'Composition')
+                  ?.fullUrl || 'noPatient';
+              setSelectedStates([PatientID, CompositionID, ...selectedStates]);
               SetSummaryResources(
                 new SummaryResources(
                   true,
-                  data.filter((_, index) => selectedStates[index]),
+                  data.filter(item => selectedStates.includes(item.fullUrl)),
                 ),
               );
             } else {

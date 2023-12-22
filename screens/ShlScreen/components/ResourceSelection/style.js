@@ -1,5 +1,9 @@
 import {StyleSheet} from 'react-native';
-import {horizontalScale, verticalScale} from '../../../assets/styles/scaling';
+import {
+  horizontalScale,
+  scaleFontSize,
+  verticalScale,
+} from '../../../../assets/styles/scaling';
 
 const styles = StyleSheet.create({
   modalHeight: {
@@ -13,6 +17,22 @@ const styles = StyleSheet.create({
     left: horizontalScale(-15),
     marginHorizontal: horizontalScale(30),
     marginBottom: horizontalScale(5),
+  },
+  searchContainer: {
+    marginHorizontal: horizontalScale(10),
+  },
+  searchInputText: {
+    width: '100%',
+  },
+  searchInput: {
+    width: '50%',
+    height: verticalScale(35),
+    marginLeft: horizontalScale(10),
+    paddingHorizontal: horizontalScale(10),
+    borderWidth: scaleFontSize(1),
+    borderRadius: scaleFontSize(15),
+    borderColor: 'rgba(0, 0, 0, 0.3)',
+    backgroundColor: 'white',
   },
   flatList: {
     shadowColor: '#000000',

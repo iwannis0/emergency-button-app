@@ -1,6 +1,13 @@
 //Basics
 import React from 'react';
-import {Image, Modal, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Image,
+  KeyboardAvoidingView,
+  Modal,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import PropTypes from 'prop-types';
 
 // Styles
@@ -14,7 +21,9 @@ const ModalComponent = props => {
       animationType="fade"
       transparent={true}
       onRequestClose={props.onClose}>
-      <View style={[styles.centeredView, globalStyle.fullyCentered]}>
+      <KeyboardAvoidingView
+        keyboardVerticalOffset={100}
+        style={styles.container}>
         <View style={[styles.modalView, globalStyle.backgroundWhite]}>
           <View style={[globalStyle.row, styles.modaltitle]}>
             <Text style={[globalStyle.descriptionBlackL1, {fontWeight: 600}]}>
@@ -29,7 +38,7 @@ const ModalComponent = props => {
           </View>
           {props.children}
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </Modal>
   );
 };

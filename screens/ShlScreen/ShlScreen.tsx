@@ -52,6 +52,7 @@ const ShlScreen = () => {
     }
 
     const fetchShlHistory = async () => {
+      console.log(shlHistory.shLinks);
       try {
         setLoading(true);
         const data = await getLinks(user.token, user.id);
