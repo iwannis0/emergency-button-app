@@ -21,9 +21,7 @@ const ModalComponent = props => {
       animationType="fade"
       transparent={true}
       onRequestClose={props.onClose}>
-      <KeyboardAvoidingView
-        keyboardVerticalOffset={100}
-        style={styles.container}>
+      <KeyboardAvoidingView style={styles.container}>
         <View style={[styles.modalView, globalStyle.backgroundWhite]}>
           <View style={[globalStyle.row, styles.modaltitle]}>
             <Text style={[globalStyle.descriptionBlackL1, {fontWeight: 600}]}>
