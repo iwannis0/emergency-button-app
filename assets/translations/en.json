@@ -1,6 +1,8 @@
 {
   "general": {
-    "search": "Search..."
+    "search": "Search...",
+    "continue": "Continue",
+    "back": "Back"
   },
   "__________________________Routes__________________________" : "",
   "Home" : "Home",
@@ -194,7 +196,7 @@
     "info": "SMART Health Links are used to securely share your healthcare data using passcode-protected URLs with configurable expiration dates. They update automatically and eliminate the need for individuals to share their records more than once.\n\n When you share your SMART Health Link, healthcare providers or trusted individuals can view your detailed health information by scanning the QR code and entering the passcode.\n\n Additionally an audit log reports when your SMART Health was accessed, and users can deactivate at any point in time.",
     "confirm": "Confirm",
     "continue": "Continue",
-    "go-back": "Go Back",
+    "go-back": "Back",
     "confirm-promt": "This are the resources you have selected to share. Press confirm if they are correct.",
     "select-all": "Select all resources",
     "select-promt": "Please select the resources you want to share with the Smart Health Link.",

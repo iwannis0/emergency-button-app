@@ -32,7 +32,6 @@ const ShlGeneration = (props: Props) => {
     summaryResourcesState,
   );
   const [shlHistory, setShlHistory] = useRecoilState(shlHistoryState);
-
   const [label, setLabel] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -43,25 +42,27 @@ const ShlGeneration = (props: Props) => {
     t('shl.generation.12h'),
     t('shl.generation.24h'),
   ];
+  const [pause, setPause] = useState(false);
 
-  const validatePassword = (text: string) => {
-    if (text.length >= 6 && text.length <= 15) {
+  const validatePassword = () => {
+    if (password.length >= 6 && password.length <= 15) {
+      setError('');
       return true;
     } else {
-      setError(
-        text.length >= 6 && text.length <= 15
-          ? ''
-          : t('shl.generation.password-error'),
-      );
+      setError(t('shl.generation.password-error'));
       return false;
     }
   };
 
   const checkAndGenerate = async () => {
-    if (!validatePassword(password)) {
+    if (pause) {
+      return;
+    }
+    setPause(true);
+    if (!validatePassword()) {
+      setPause(false);
       return 'Wrong password';
     }
-
     const name =
       label === '' ? `Link generated on ${dayjs().format(DATE_FORMAT)}` : label;
     let hoursExpiration = 1;
@@ -76,39 +77,56 @@ const ShlGeneration = (props: Props) => {
     }
     const expirationDate = dayjs().add(hoursExpiration, 'hour').toString();
     const minifiedResources = JSON.stringify(summaryResources.resources);
-    return await generateSHLink(
-      user.token,
-      user.id,
-      password,
-      name,
-      expirationDate,
-      btoa(minifiedResources),
-    )
-      .then(response => {
-        const newLink: IShl = {
-          shl: response.data,
-          label: name,
-          passcode: password,
-          expirationDate: expirationDate,
-          accessCount: 0,
-          failedAccessCount: 0,
-        };
+    console.log(minifiedResources);
 
-        const updatedShlHistory = {
-          shLinks: [...shlHistory.shLinks, newLink],
-        };
-        setShlHistory(updatedShlHistory);
-        setSummaryResources(new SummaryResources(false, []));
-        return 'Success';
-      })
-      .catch(errorMessage => {
-        console.log(errorMessage);
-        return 'Failure';
-      });
+    try {
+      const response = await generateSHLink(
+        user.token,
+        user.id,
+        password,
+        name,
+        expirationDate,
+        btoa(minifiedResources),
+      );
+      const newLink: IShl = {
+        shl: response.data,
+        label: name,
+        passcode: password,
+        expirationDate: expirationDate,
+        accessCount: 0,
+        failedAccessCount: 0,
+      };
+
+      const updatedShlHistory = {
+        shLinks: [...shlHistory.shLinks, newLink],
+      };
+      setShlHistory(updatedShlHistory);
+      return 'Success';
+    } catch (errorMessage) {
+      console.log(errorMessage);
+      return 'Failure';
+    } finally {
+      setPause(false);
+    }
   };
 
   return (
     <View style={styles.container}>
+      <View style={styles.inputContainer}>
+        <Text style={globalStyle.descriptionBlackL1}>
+          {t('shl.generation.passcode-title')}
+        </Text>
+        <TextInput
+          style={styles.input}
+          secureTextEntry
+          placeholder={t('shl.generation.passcode-placeholder')}
+          value={password}
+          onChangeText={setPassword}
+          onBlur={validatePassword}
+          maxLength={16}
+        />
+        {error ? <Text style={styles.errorText}>{error}</Text> : null}
+      </View>
       <View style={styles.inputContainer}>
         <Text style={globalStyle.descriptionBlackL1}>
           {t('shl.generation.label-title')}
@@ -120,21 +138,6 @@ const ShlGeneration = (props: Props) => {
           onChangeText={setLabel}
           maxLength={42}
         />
-      </View>
-
-      <View style={styles.inputContainer}>
-        <Text style={globalStyle.descriptionBlackL1}>
-          {t('shl.generation.passcode-title')}
-        </Text>
-        <TextInput
-          style={styles.input}
-          secureTextEntry
-          placeholder={t('shl.generation.passcode-placeholder')}
-          value={password}
-          onChangeText={setPassword}
-          maxLength={16}
-        />
-        {error ? <Text style={styles.errorText}>{error}</Text> : null}
       </View>
 
       <View style={styles.inputContainer}>
@@ -154,44 +157,48 @@ const ShlGeneration = (props: Props) => {
         </View>
       </View>
 
-      <TouchableOpacity
-        style={[globalStyle.Button, styles.createButton]}
-        onPress={async () => {
-          const result = await checkAndGenerate()
-            .then(result => result)
-            .catch(error => error);
+      <View style={globalStyle.fullyCentered}>
+        <TouchableOpacity
+          style={globalStyle.Button}
+          onPress={async () => {
+            const result = await checkAndGenerate()
+              .then(result => result)
+              .catch(error => error);
 
-          switch (result) {
-            case 'Success':
-              Alert.alert(
-                'Link Created',
-                'The link was successfully created! You can find it in the SHL History.',
-                [
-                  {
-                    text: 'Continue',
-                    onPress: () => {
-                      props.closeModal(false);
-                      setSummaryResources(new SummaryResources(false, []));
+            switch (result) {
+              case 'Success':
+                Alert.alert(
+                  'Link Created',
+                  'The link was successfully created! You can find it in the SHL History.',
+                  [
+                    {
+                      text: 'Continue',
+                      onPress: () => {
+                        props.closeModal(false);
+                        setSummaryResources(new SummaryResources(false, []));
+                      },
                     },
-                  },
-                ],
-                {cancelable: false},
-              );
-              break;
-            case 'Failure':
-              Alert.alert(
-                'Failure',
-                'Something went wrong. Please try again later.',
-                [{text: 'OK'}],
-                {cancelable: false},
-              );
-              break;
-            default:
-              break;
-          }
-        }}>
-        <Text style={globalStyle.buttonText}>{t('shl.generation.create')}</Text>
-      </TouchableOpacity>
+                  ],
+                  {cancelable: false},
+                );
+                break;
+              case 'Failure':
+                Alert.alert(
+                  'Failure',
+                  'Something went wrong. Please try again later.',
+                  [{text: 'OK'}],
+                  {cancelable: false},
+                );
+                break;
+              default:
+                break;
+            }
+          }}>
+          <Text style={globalStyle.buttonText}>
+            {t('shl.generation.create')}
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };

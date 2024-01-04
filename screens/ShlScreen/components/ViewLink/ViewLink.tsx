@@ -31,6 +31,13 @@ import {DATE_TIME_FORMAT} from '../../../../common/constants/constants';
 import styles from './styles';
 import {IShl} from '../../../../features/recoil/interfaces/IShl';
 
+// TODO: Put QR on top
+// TODO: Infos put on show more details
+// TODO: More visible, less background
+// TODO: Make copy with a small feedback not a big alert
+// TODO; Buttons make more consinsetn
+// TODO: Actions make more distict to not press wrongly
+// TODO: Put instructions for the user
 const ViewLink = (props: {data: IShl}) => {
   const {t} = useTranslation();
   const [user, _] = useRecoilState(userState);

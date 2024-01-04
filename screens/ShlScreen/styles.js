@@ -34,6 +34,11 @@ const styles = StyleSheet.create({
     lineHeight: scaleFontSize(25),
     marginLeft: horizontalScale(10),
   },
+  createContainer: {
+    position: 'absolute',
+    bottom: verticalScale(20),
+    width: '100%',
+  },
 });
 
 export default styles;

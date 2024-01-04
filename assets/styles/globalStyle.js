@@ -52,12 +52,13 @@ const globalStyle = StyleSheet.create({
     marginTop: verticalScale(60),
   },
   Button: {
-    width: horizontalScale(300),
-    height: verticalScale(50),
+    padding: horizontalScale(10),
+    width: horizontalScale(200),
+    minHeight: verticalScale(45),
+    borderRadius: scaleFontSize(5),
     backgroundColor: '#0C6C79',
-    borderRadius: scaleFontSize(10),
-    marginTop: verticalScale(20),
-    marginLeft: horizontalScale(25),
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   buttonText: {
     color: '#FFFFFF',

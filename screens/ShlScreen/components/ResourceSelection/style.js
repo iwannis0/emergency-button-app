@@ -7,7 +7,7 @@ import {
 
 const styles = StyleSheet.create({
   modalHeight: {
-    height: verticalScale(500),
+    height: verticalScale(485),
   },
   row: {
     flexDirection: 'row',
@@ -45,20 +45,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     position: 'absolute',
     right: horizontalScale(170),
-    backgroundColor: '#d9534a',
+    backgroundColor: 'grey',
   },
   continueButton: {
     width: horizontalScale(120),
     height: verticalScale(30),
     alignItems: 'center',
     justifyContent: 'center',
-    left: horizontalScale(150),
-  },
-  createButton: {
-    width: horizontalScale(200),
-    alignItems: 'center',
-    justifyContent: 'center',
-    left: horizontalScale(15),
+    left: horizontalScale(170),
   },
   input: {
     borderColor: 'gray',

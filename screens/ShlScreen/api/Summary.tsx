@@ -1,8 +1,9 @@
 import axios from 'axios';
+import {BACKEND_FHIR_URL} from '@env';
 
 export const getSummary = async (token: string, patientId: string) => {
   const response = await axios.get(
-    ` https://dev-fhir.ehealth4u.eu/fhir/Patient/${patientId}/$summary`,
+    `${BACKEND_FHIR_URL}/Patient/${patientId}/$summary`,
     {
       headers: {
         Authorization: `Bearer ${token}`,

@@ -2,33 +2,27 @@ import React from 'react';
 import styles from './styles';
 import PropTypes from 'prop-types';
 import {useTranslation} from 'react-i18next';
-import CheckBox from '@react-native-community/checkbox';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {Text, Switch, View} from 'react-native';
 
+// Remove check and put toggle and remove backround color, also put toggle on right
 const ResourceIPS = props => {
   const {t} = useTranslation();
-
-  const handleToggleCheckbox = () => {
-    if (!props.selected) {
-      props.addID();
-    } else {
-      props.removeID();
-    }
-  };
-
-  const buttonStyle = props.selected
-    ? [styles.button, {backgroundColor: 'rgba(17, 212, 40, 0.4)'}] // Combine styles if selected
-    : styles.button;
 
   const renderText = (text: string) =>
     !props.phase && text !== t('no-data') && <Text>{text}</Text>;
 
+  const handleToggle = value => {
+    // Call the callback function passed through props
+    if (props.selected) {
+      props.removeID(props.id);
+    } else {
+      props.addID(props.id);
+    }
+  };
+
   return (
-    <TouchableOpacity style={buttonStyle} onPress={handleToggleCheckbox}>
+    <View>
       <View style={styles.container}>
-        <View style={styles.checkBoxContainer}>
-          <CheckBox disabled={true} value={props.selected} />
-        </View>
         <View style={styles.resourceContainer}>
           <Text style={styles.typeText}>{props.type}</Text>
           <Text>{props.text1}</Text>
@@ -36,8 +30,11 @@ const ResourceIPS = props => {
           {renderText(props.text3)}
           {renderText(props.text4)}
         </View>
+        <View style={styles.checkBoxContainer}>
+          <Switch value={props.selected} onValueChange={handleToggle} />
+        </View>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 };
 

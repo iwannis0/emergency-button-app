@@ -13,80 +13,27 @@ import globalStyle from '../../assets/styles/globalStyle';
 import {horizontalScale} from '../../assets/styles/scaling';
 import {faInfo} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import MySHLink from './components/MySHLink/MySHLink';
-import Loading from '../../components/Loading/Loading';
 import ShlGeneration from './components/ShlGeneration/ShlGeneration';
 import ResourceSelection from './components/ResourceSelection/ResourceSelection';
 import ModalComponent from '../../components/ModalComponent/ModalComponent';
-import {useRecoilState, useResetRecoilState} from 'recoil';
-import {userState} from '../../features/recoil/atoms/User/userState';
-import {shlHistoryState} from '../../features/recoil/atoms/ShlHistory/shlHistoryState';
-import {IShl} from '../../features/recoil/interfaces/IShl';
+import {useRecoilState} from 'recoil';
 import {SummaryResources} from '../../features/recoil/atoms/SummaryResources/SummaryResources';
 import {summaryResourcesState} from '../../features/recoil/atoms/SummaryResources/summaryResourcesState';
-import {getLinks} from './api/shlFunctions';
+import ShlHistory from '../../components/ShlHistory/shlHistory';
 
+// TODO: Put create button on bottom
+// TODO: Make history discrete
+// TODO: Make delete as in emails
+// TODO: Make the view more appealing
 const ShlScreen = () => {
   const {t} = useTranslation();
-  const [loading, setLoading] = useState(true);
-  const [shlLog, setShlLog] = useState<IShl[]>([]);
+
   const [modalVisible, setModalVisible] = useState(false);
-  const [isResetComplete, setIsResetComplete] = useState(false);
   const [infoModalVisible, setInfoModalVisible] = useState(false);
-  const [user, _] = useRecoilState(userState);
-  const resetSHLHistory = useResetRecoilState(shlHistoryState);
-  const [shlHistory, setShlHistory] = useRecoilState(shlHistoryState);
+
   const [summaryResources, setSummaryResources] = useRecoilState(
     summaryResourcesState,
   );
-
-  useEffect(() => {
-    setShlLog(shlHistory.shLinks);
-    resetSHLHistory();
-    setIsResetComplete(true);
-  }, []);
-
-  useEffect(() => {
-    if (!isResetComplete) {
-      return;
-    }
-
-    const fetchShlHistory = async () => {
-      console.log(shlHistory.shLinks);
-      try {
-        setLoading(true);
-        const data = await getLinks(user.token, user.id);
-
-        if (!data || !data.data) {
-          throw new Error('No data received from the server.');
-        }
-
-        const newShlHistory = data.data.map((item: IShl) => {
-          const foundShl = shlLog.find((shl: IShl) => shl.shl === item.shl);
-          return {
-            shl: item.shl,
-            label: item.label,
-            creationDate: item.creationDate,
-            expirationDate: item.expirationDate,
-            accessCount: item.accessCount,
-            failedAccessCount: item.failedAccessCount,
-            passcode: foundShl ? foundShl.passcode : 'Not saved in device',
-          };
-        });
-
-        setShlHistory((prev: any) => ({
-          ...prev,
-          shLinks: [...prev.shLinks, ...newShlHistory],
-        }));
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchShlHistory();
-  }, [isResetComplete]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -121,37 +68,32 @@ const ShlScreen = () => {
         </View>
       </ModalComponent>
 
-      <View style={styles.infoIconContainer}>
-        <TouchableOpacity
-          onPress={() => {
-            setInfoModalVisible(true);
-          }}>
+      <TouchableOpacity
+        onPress={() => {
+          setInfoModalVisible(true);
+        }}>
+        <View style={styles.infoIconContainer}>
           <FontAwesomeIcon
             icon={faInfo}
             color="#212121"
             size={horizontalScale(16)}
           />
-        </TouchableOpacity>
-      </View>
+        </View>
+      </TouchableOpacity>
 
-      <View style={globalStyle.marginTop60}>
-        <TouchableOpacity
-          style={[globalStyle.Button, globalStyle.fullyCentered]}
-          onPress={() => {
-            setModalVisible(true);
-          }}>
-          <Text style={globalStyle.buttonText}>{t('shl.create')}</Text>
-        </TouchableOpacity>
+      <View style={[globalStyle.marginTop60, {flex: 1}]}>
         <Text style={styles.myLinksText}>{t('shl.previous')}</Text>
-        <FlatList
-          data={shlHistory.shLinks}
-          keyExtractor={(item: IShl) => item.shl}
-          renderItem={({item}) => {
-            return <MySHLink data={item} />;
-          }}
-        />
+        <ShlHistory />
+        <View style={[styles.createContainer, globalStyle.fullyCentered]}>
+          <TouchableOpacity
+            style={[globalStyle.Button]}
+            onPress={() => {
+              setModalVisible(true);
+            }}>
+            <Text style={globalStyle.buttonText}>{t('shl.create')}</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-      {loading && <Loading />}
     </SafeAreaView>
   );
 };

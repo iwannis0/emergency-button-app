@@ -102,13 +102,15 @@ const MyHealthScreen = ({navigation}) => {
         />
       </ScrollView>
 
-      <TouchableOpacity
-        style={[globalStyle.Button, globalStyle.fullyCentered]}
-        onPress={() => {
-          navigation.navigate('ShlScreen');
-        }}>
-        <Text style={globalStyle.buttonText}>{t('shl.main-button')}</Text>
-      </TouchableOpacity>
+      <View style={globalStyle.fullyCentered}>
+        <TouchableOpacity
+          style={[globalStyle.Button]}
+          onPress={() => {
+            navigation.navigate('ShlScreen');
+          }}>
+          <Text style={globalStyle.buttonText}>{t('shl.main-button')}</Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 };

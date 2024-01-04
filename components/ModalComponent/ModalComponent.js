@@ -13,6 +13,8 @@ import PropTypes from 'prop-types';
 // Styles
 import styles from './style';
 import globalStyle from '../../assets/styles/globalStyle';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faXmark} from '@fortawesome/free-solid-svg-icons';
 
 const ModalComponent = props => {
   return (
@@ -27,11 +29,10 @@ const ModalComponent = props => {
             <Text style={[globalStyle.descriptionBlackL1, {fontWeight: 600}]}>
               {props.title}
             </Text>
-            <TouchableOpacity onPress={props.onClose}>
-              <Image
-                source={require('../../assets/images/forNavigation/close.png')}
-                style={{width: 15, height: 15, tintColor: '#777777'}}
-              />
+            <TouchableOpacity
+              style={styles.closeContainer}
+              onPress={props.onClose}>
+              <FontAwesomeIcon icon={faXmark} size={25} color="grey" />
             </TouchableOpacity>
           </View>
           {props.children}

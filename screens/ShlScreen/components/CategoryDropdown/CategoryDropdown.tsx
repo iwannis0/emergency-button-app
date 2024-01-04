@@ -1,10 +1,9 @@
-import React, {useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import {Text, View} from 'react-native';
 import {Dropdown} from 'react-native-element-dropdown';
 import {useTranslation} from 'react-i18next';
 import {
   horizontalScale,
-  scaleFontSize,
   verticalScale,
 } from '../../../../assets/styles/scaling';
 import globalStyle from '../../../../assets/styles/globalStyle';
@@ -73,6 +72,7 @@ const DropdownComponent = ({value, setValue}) => {
       selectedTextStyle={globalStyle.descriptionBlackL2}
       inputSearchStyle={globalStyle.descriptionBlackL2}
       data={data}
+      autoScroll={false}
       search
       maxHeight={verticalScale(300)}
       labelField="label"
