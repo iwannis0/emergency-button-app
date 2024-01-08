@@ -94,7 +94,7 @@ const ShlHistory = () => {
           } else {
             return {
               ...item,
-              passcode: 'Not stored locally',
+              passcode: 'Unknown',
             };
           }
         });

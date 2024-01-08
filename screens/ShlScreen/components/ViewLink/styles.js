@@ -7,43 +7,51 @@ import {
 
 const styles = StyleSheet.create({
   infoContainer: {
-    marginTop: verticalScale(-20),
-    marginBottom: verticalScale(15),
-    textAlign: 'left',
-    width: horizontalScale(270),
-    right: horizontalScale(10),
+    width: horizontalScale(290),
   },
   dates: {
     marginLeft: horizontalScale(20),
     fontWeight: '700',
     fontSize: scaleFontSize(20),
+    marginBottom: verticalScale(10),
   },
   actionButtonsSHL: {
-    width: horizontalScale(130),
-    height: verticalScale(25),
-    backgroundColor: '#0C6C79',
-    borderRadius: scaleFontSize(5),
-    marginTop: verticalScale(10),
-    flexDirection: 'row',
+    width: horizontalScale(50),
+    height: horizontalScale(50),
+    borderRadius: scaleFontSize(30),
+    marginHorizontal: horizontalScale(20),
+    marginTop: verticalScale(15),
+    marginBottom: verticalScale(2),
   },
-  actionButtonText: {
-    color: '#FFFFFF',
-    fontWeight: '400',
-    fontSize: scaleFontSize(16),
-    marginLeft: horizontalScale(5),
+  actionButtotText: {
+    fontSize: scaleFontSize(18),
+    fontWeight: '700',
   },
   actionButtonRow: {
     flexDirection: 'row',
-    width: horizontalScale(270),
-    justifyContent: 'space-between',
+    width: '95%',
   },
-  pinContainer: {
-    marginTop: verticalScale(10),
-    fontSize: scaleFontSize(20),
+  flipButton: {
     borderWidth: scaleFontSize(1),
-    padding: horizontalScale(4),
-    backgroundColor: 'rgba(12, 108, 121, 0.09)',
-    borderRadius: scaleFontSize(5),
+    padding: horizontalScale(10),
+    borderRadius: scaleFontSize(20),
+    marginTop: verticalScale(15),
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  accessText: {
+    marginTop: verticalScale(10),
+    fontSize: scaleFontSize(28),
+    fontWeight: '800',
+    color: 'black',
+  },
+  pinText: {
+    fontSize: scaleFontSize(20),
+  },
+  infoText: {
+    fontSize: scaleFontSize(20),
+    fontWeight: '700',
   },
 });
 

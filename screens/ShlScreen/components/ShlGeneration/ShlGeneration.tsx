@@ -77,7 +77,6 @@ const ShlGeneration = (props: Props) => {
     }
     const expirationDate = dayjs().add(hoursExpiration, 'hour').toString();
     const minifiedResources = JSON.stringify(summaryResources.resources);
-    console.log(minifiedResources);
 
     try {
       const response = await generateSHLink(

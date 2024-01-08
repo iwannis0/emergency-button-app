@@ -571,7 +571,6 @@ const ResourceSelection = () => {
   };
 
   const handleSearch = (query: string) => {
-    console.log(query);
     setSearchQuery(query);
     if (query === '') {
       changeCategory();

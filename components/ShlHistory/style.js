@@ -19,6 +19,18 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     paddingRight: 15,
   },
+  flipCard: {
+    width: 300,
+    height: 200,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    backfaceVisibility: 'hidden',
+  },
+  flipCardBack: {
+    position: 'absolute',
+    top: 0,
+  },
 });
 
 export default styles;
