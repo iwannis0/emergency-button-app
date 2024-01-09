@@ -11,8 +11,7 @@ const ResourceIPS = props => {
   const renderText = (text: string) =>
     !props.phase && text !== t('no-data') && <Text>{text}</Text>;
 
-  const handleToggle = value => {
-    // Call the callback function passed through props
+  const handleToggle = () => {
     if (props.selected) {
       props.removeID(props.id);
     } else {

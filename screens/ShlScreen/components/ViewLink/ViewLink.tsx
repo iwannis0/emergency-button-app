@@ -25,6 +25,8 @@ import {
   faUpRightFromSquare,
   faArrowRight,
   faArrowLeft,
+  faEye,
+  faTriangleExclamation,
 } from '@fortawesome/free-solid-svg-icons';
 import {useRecoilState} from 'recoil';
 import {userState} from '../../../../features/recoil/atoms/User/userState';
@@ -51,57 +53,6 @@ const ViewLink = (props: {data: IShl}) => {
     flipRotation = value;
   });
 
-  // const frontAnimatedStyle = {
-  //   opacity: flipAnimation.interpolate({
-  //     inputRange: [0, 90, 180],
-  //     outputRange: [1, 0, 0],
-  //   }),
-  //   transform: [
-  //     {
-  //       rotateY: flipAnimation.interpolate({
-  //         inputRange: [0, 180],
-  //         outputRange: ['0deg', '180deg'],
-  //       }),
-  //     },
-  //   ],
-  // };
-
-  // const backAnimatedStyle = {
-  //   zindex: 2,
-  //   opacity: flipAnimation.interpolate({
-  //     inputRange: [0, 90, 180],
-  //     outputRange: [0, 0, 1],
-  //   }),
-  //   transform: [
-  //     {
-  //       rotateY: flipAnimation.interpolate({
-  //         inputRange: [0, 180],
-  //         outputRange: ['180deg', '360deg'],
-  //       }),
-  //     },
-  //   ],
-  // };
-
-  // const flipCard = () => {
-  //   if (flipRotation >= 90) {
-  //     setFlipped(false);
-  //     Animated.spring(flipAnimation, {
-  //       toValue: 0,
-  //       friction: 8,
-  //       tension: 10,
-  //       useNativeDriver: true,
-  //     }).start();
-  //   } else {
-  //     setFlipped(true);
-  //     Animated.spring(flipAnimation, {
-  //       toValue: 180,
-  //       friction: 8,
-  //       tension: 10,
-  //       useNativeDriver: true,
-  //     }).start();
-  //   }
-  // };
-
   const flipCard = () => {
     let toValue = flipped ? 0 : 180;
     setFlipped(!flipped);
@@ -113,7 +64,6 @@ const ViewLink = (props: {data: IShl}) => {
     }).start();
   };
 
-  // Optimizing style calculation with useMemo
   const frontAnimatedStyle = useMemo(
     () => ({
       opacity: flipAnimation.interpolate({
@@ -151,6 +101,82 @@ const ViewLink = (props: {data: IShl}) => {
   );
   return (
     <SafeAreaView style={globalStyle.fullyCentered}>
+      <Animated.View style={[styles.backContainer, backAnimatedStyle]}>
+        <View style={styles.infoContainer}>
+          {/* Statistics Information*/}
+          <View style={styles.statisticsContainer}>
+            <View style={[globalStyle.fullyCentered, styles.borderColor]}>
+              <View style={styles.row}>
+                <FontAwesomeIcon
+                  icon={faEye}
+                  size={horizontalScale(20)}
+                  color="grey"
+                />
+                <Text style={styles.infoText}>
+                  {' '}
+                  {t('shl.viewing.access-count')}
+                </Text>
+              </View>
+
+              <Text style={styles.statisticsText}>
+                {props.data.accessCount}
+              </Text>
+            </View>
+            <View style={[globalStyle.fullyCentered, styles.borderColor]}>
+              <View style={styles.row}>
+                <FontAwesomeIcon
+                  icon={faTriangleExclamation}
+                  size={horizontalScale(20)}
+                  color="grey"
+                />
+                <Text style={styles.infoText}>
+                  {' '}
+                  {t('shl.viewing.failed-attempts')}
+                </Text>
+              </View>
+
+              <Text style={styles.statisticsText}>
+                {props.data.failedAccessCount}
+              </Text>
+            </View>
+          </View>
+
+          {/* Date Information */}
+          <View style={styles.datesContainer}>
+            <Text style={styles.infoText}>
+              {t('shl.viewing.published-date')}:
+            </Text>
+            <Text style={[globalStyle.descriptionBlackL1, styles.dates]}>
+              {dayjs(props.data.creationDate).format(DATE_TIME_FORMAT)}
+            </Text>
+            <Text style={styles.infoText}>
+              {t('shl.viewing.expiration-date')}:
+            </Text>
+            <Text style={[globalStyle.descriptionBlackL1, styles.dates]}>
+              {dayjs(props.data.expirationDate).format(DATE_TIME_FORMAT)}
+            </Text>
+          </View>
+
+          <Text style={styles.infoText}>
+            {t('shl.viewing.instructions-placeholder')}:
+          </Text>
+          <Text style={[globalStyle.descriptionBlackL1, styles.dates]}>
+            {t('shl.viewing.instructions')}
+          </Text>
+
+          <TouchableOpacity
+            disabled={!flipped}
+            style={styles.flipButton}
+            onPress={() => flipCard()}>
+            <FontAwesomeIcon
+              icon={faArrowLeft}
+              color="#414141"
+              size={horizontalScale(20)}
+            />
+            <Text style={globalStyle.descriptionBlackL1}>{'   '}Back</Text>
+          </TouchableOpacity>
+        </View>
+      </Animated.View>
       <Animated.View style={[globalStyle.fullyCentered, frontAnimatedStyle]}>
         <View>
           <QRCode
@@ -258,79 +284,22 @@ const ViewLink = (props: {data: IShl}) => {
           </View>
         </View>
 
-        <TouchableOpacity
-          disabled={flipped}
-          style={styles.flipButton}
-          onPress={() => flipCard()}>
-          <Text style={globalStyle.descriptionBlackL1}>
-            {t('shl.viewing.more-info')}
-            {'   '}
-          </Text>
-          <FontAwesomeIcon
-            icon={faArrowRight}
-            color="#414141"
-            size={horizontalScale(20)}
-          />
-        </TouchableOpacity>
-      </Animated.View>
-      <Animated.View
-        style={[
-          {
-            position: 'absolute',
-          },
-          backAnimatedStyle,
-        ]}>
-        <View style={styles.infoContainer}>
-          <Text style={styles.infoText}>
-            {t('shl.viewing.published-date')}:
-          </Text>
-          <Text style={[globalStyle.descriptionBlackL1, styles.dates]}>
-            {
-              '1. Present the QR code to the person you want to share the link\n2. Let them scan the QR code with the camera of their smartphone\n3. They will be redirected to our website to view your resources\n4. Share the Access Code with them to allow them to access the resources'
-            }
-          </Text>
-          <Text style={styles.infoText}>
-            {t('shl.viewing.published-date')}:
-          </Text>
-          <Text style={[globalStyle.descriptionBlackL1, styles.dates]}>
-            {dayjs(props.data.creationDate).format(DATE_TIME_FORMAT)}
-          </Text>
-          <Text style={styles.infoText}>
-            {t('shl.viewing.expiration-date')}:
-          </Text>
-          <Text style={[globalStyle.descriptionBlackL1, styles.dates]}>
-            {dayjs(props.data.expirationDate).format(DATE_TIME_FORMAT)}
-          </Text>
-          <View style={styles.actionButtonRow}>
-            <Text style={styles.infoText}>
-              {t('shl.viewing.access-count')}:
+        {!flipped && (
+          <TouchableOpacity
+            disabled={flipped}
+            style={styles.flipButton}
+            onPress={() => flipCard()}>
+            <Text style={globalStyle.descriptionBlackL1}>
+              {t('shl.viewing.more-info')}
+              {'   '}
             </Text>
-            <Text style={[globalStyle.descriptionBlackL1, styles.dates]}>
-              {props.data.accessCount}
-            </Text>
-          </View>
-          <View style={styles.actionButtonRow}>
-            <Text style={styles.infoText}>
-              {t('shl.viewing.failed-attempts')}:
-            </Text>
-            <Text style={[globalStyle.descriptionBlackL1, styles.dates]}>
-              {props.data.failedAccessCount}
-            </Text>
-          </View>
-          {flipped && (
-            <TouchableOpacity
-              disabled={!flipped}
-              style={styles.flipButton}
-              onPress={() => flipCard()}>
-              <FontAwesomeIcon
-                icon={faArrowLeft}
-                color="#414141"
-                size={horizontalScale(20)}
-              />
-              <Text style={globalStyle.descriptionBlackL1}>{'   '}Back</Text>
-            </TouchableOpacity>
-          )}
-        </View>
+            <FontAwesomeIcon
+              icon={faArrowRight}
+              color="#414141"
+              size={horizontalScale(20)}
+            />
+          </TouchableOpacity>
+        )}
       </Animated.View>
     </SafeAreaView>
   );

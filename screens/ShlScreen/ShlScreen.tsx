@@ -81,7 +81,7 @@ const ShlScreen = () => {
         </View>
       </TouchableOpacity>
 
-      <View style={[globalStyle.marginTop60, {flex: 1}]}>
+      <View style={styles.screenContainer}>
         <Text style={styles.myLinksText}>{t('shl.previous')}</Text>
         <ShlHistory />
         <View style={[styles.createContainer, globalStyle.fullyCentered]}>

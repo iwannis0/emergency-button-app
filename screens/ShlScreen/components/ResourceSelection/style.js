@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
   },
   searchContainer: {
     marginHorizontal: horizontalScale(10),
+    marginBottom: verticalScale(10),
   },
   searchInputText: {
     width: '100%',
@@ -36,48 +37,26 @@ const styles = StyleSheet.create({
   },
   flatList: {
     shadowColor: '#000000',
-    marginHorizontal: horizontalScale(10),
+    marginLeft: horizontalScale(20),
+    marginRight: horizontalScale(10),
   },
   backButton: {
-    width: horizontalScale(120),
+    width: horizontalScale(135),
     height: verticalScale(30),
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
-    right: horizontalScale(170),
+    right: horizontalScale(165),
     backgroundColor: 'grey',
+    marginTop: verticalScale(10),
   },
   continueButton: {
-    width: horizontalScale(120),
+    width: horizontalScale(135),
     height: verticalScale(30),
     alignItems: 'center',
     justifyContent: 'center',
-    left: horizontalScale(170),
-  },
-  input: {
-    borderColor: 'gray',
-    borderWidth: 1,
-    borderRadius: 5,
-    paddingVertical: 5,
-    paddingHorizontal: 10,
-    marginBottom: 2,
-  },
-  errorText: {
-    color: 'red',
-  },
-  inputContainer: {
-    marginVertical: 15,
-  },
-  optionsContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    marginTop: 10,
-    marginLeft: 20,
-  },
-  column: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: '50%',
+    left: horizontalScale(165),
+    marginTop: verticalScale(10),
   },
 });
 

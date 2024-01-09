@@ -11,7 +11,7 @@ import {useTranslation} from 'react-i18next';
 import {useRecoilState} from 'recoil';
 import {summaryResourcesState} from '../../../../features/recoil/atoms/SummaryResources/summaryResourcesState';
 import globalStyle from '../../../../assets/styles/globalStyle';
-import styles from '../ResourceSelection/style';
+import styles from './style';
 import {generateSHLink} from '../../api/shlFunctions';
 import {userState} from '../../../../features/recoil/atoms/User/userState';
 import dayjs from 'dayjs';
@@ -20,6 +20,7 @@ import {encode as btoa} from 'base-64';
 import {shlHistoryState} from '../../../../features/recoil/atoms/ShlHistory/shlHistoryState';
 import {IShl} from '../../../../features/recoil/interfaces/IShl';
 import {SummaryResources} from '../../../../features/recoil/atoms/SummaryResources/SummaryResources';
+import ScrollPicker from 'react-native-wheel-scrollview-picker';
 
 interface Props {
   closeModal: (visible: boolean) => void;
@@ -35,12 +36,17 @@ const ShlGeneration = (props: Props) => {
   const [label, setLabel] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [selectedOption, setSelectedOption] = useState(0);
+  const [expirationValue, setExpirationValue] = useState(0);
   const expirationOptions = [
-    t('shl.generation.1h'),
-    t('shl.generation.4h'),
-    t('shl.generation.12h'),
-    t('shl.generation.24h'),
+    {display: t('shl.generation.1h'), value: 1},
+    {display: t('shl.generation.4h'), value: 4},
+    {display: t('shl.generation.12h'), value: 12},
+    {display: t('shl.generation.1d'), value: 24},
+    {display: t('shl.generation.1w'), value: 24 * 7},
+    {display: t('shl.generation.1m'), value: 24 * 31},
+    {display: t('shl.generation.3m'), value: 24 * 31 * 3},
+    {display: t('shl.generation.6m'), value: 24 * 31 * 6},
+    {display: t('shl.generation.1y'), value: 24 * 365},
   ];
   const [pause, setPause] = useState(false);
 
@@ -65,19 +71,11 @@ const ShlGeneration = (props: Props) => {
     }
     const name =
       label === '' ? `Link generated on ${dayjs().format(DATE_FORMAT)}` : label;
-    let hoursExpiration = 1;
-    if (selectedOption === 1) {
-      hoursExpiration = 4;
-    }
-    if (selectedOption === 2) {
-      hoursExpiration = 12;
-    }
-    if (selectedOption === 3) {
-      hoursExpiration = 24;
-    }
-    const expirationDate = dayjs().add(hoursExpiration, 'hour').toString();
-    const minifiedResources = JSON.stringify(summaryResources.resources);
+    const expirationDate = dayjs()
+      .add(expirationOptions[expirationValue].value, 'hour')
+      .toString();
 
+    const minifiedResources = JSON.stringify(summaryResources.resources);
     try {
       const response = await generateSHLink(
         user.token,
@@ -102,11 +100,19 @@ const ShlGeneration = (props: Props) => {
       setShlHistory(updatedShlHistory);
       return 'Success';
     } catch (errorMessage) {
-      console.log(errorMessage);
+      expirationDate;
+      console.log('expirationDate');
       return 'Failure';
     } finally {
       setPause(false);
     }
+  };
+
+  const handleSliderChange = (newValue: string) => {
+    const newExpirationValue = expirationOptions.findIndex(
+      option => option.display === newValue,
+    );
+    setExpirationValue(newExpirationValue);
   };
 
   return (
@@ -143,20 +149,20 @@ const ShlGeneration = (props: Props) => {
         <Text style={globalStyle.descriptionBlackL1}>
           {t('shl.generation.expiration-title')}
         </Text>
-        <View style={styles.optionsContainer}>
-          {expirationOptions.map((option, index) => (
-            <View key={index} style={styles.column}>
-              <Switch
-                onValueChange={() => setSelectedOption(index)}
-                value={selectedOption === index}
-              />
-              <Text style={globalStyle.descriptionBlackL2}>{option}</Text>
-            </View>
-          ))}
+        <View style={styles.scrollContainer}>
+          <ScrollPicker
+            dataSource={expirationOptions.map(option => option.display)}
+            selectedIndex={expirationValue}
+            onValueChange={handleSliderChange}
+            highlightColor="grey"
+            wrapperBackground="#FFFFFF"
+            wrapperHeight={80}
+            highlightBorderWidth={1}
+          />
         </View>
       </View>
 
-      <View style={globalStyle.fullyCentered}>
+      <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={globalStyle.Button}
           onPress={async () => {
@@ -193,9 +199,7 @@ const ShlGeneration = (props: Props) => {
                 break;
             }
           }}>
-          <Text style={globalStyle.buttonText}>
-            {t('shl.generation.create')}
-          </Text>
+          <Text style={globalStyle.buttonText}>{t('shl.create')}</Text>
         </TouchableOpacity>
       </View>
     </View>

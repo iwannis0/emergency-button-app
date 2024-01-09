@@ -1,9 +1,14 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {View, Text, Animated, FlatList, Pressable, Alert} from 'react-native';
 import {Swipeable} from 'react-native-gesture-handler';
 import styles from './style';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faTrashCan} from '@fortawesome/free-solid-svg-icons';
+import {
+  faAngleLeft,
+  faInfo,
+  faInfoCircle,
+  faTrashCan,
+} from '@fortawesome/free-solid-svg-icons';
 import {horizontalScale} from '../../assets/styles/scaling';
 import ModalComponent from '../ModalComponent/ModalComponent';
 import ViewLink from '../../screens/ShlScreen/components/ViewLink/ViewLink';
@@ -11,17 +16,21 @@ import {useRecoilState} from 'recoil';
 import {shlHistoryState} from '../../features/recoil/atoms/ShlHistory/shlHistoryState';
 import {userState} from '../../features/recoil/atoms/User/userState';
 import Loading from '../Loading/Loading';
-import {IShl} from '../../features/recoil/interfaces/IShl';
 import {getLinks, deleteLink} from '../../screens/ShlScreen/api/shlFunctions';
 
 const ListItem = ({item, onDelete}) => {
   const swipeThreshold = 80;
   const [modalVisible, setModalVisible] = useState(false);
+  const swipeableRef = useRef(null);
 
-  const renderRightActions = (progress, dragX: any) => {
+  const closeSwipeable = () => {
+    swipeableRef.current?.close();
+  };
+
+  const renderRightActions = (progress, dragX) => {
     const opacity = dragX.interpolate({
       inputRange: [-swipeThreshold, 0],
-      outputRange: [1, 0],
+      outputRange: [100, 0],
       extrapolate: 'clamp',
     });
 
@@ -31,7 +40,7 @@ const ListItem = ({item, onDelete}) => {
           <FontAwesomeIcon
             icon={faTrashCan}
             color="white"
-            size={horizontalScale(20)}
+            size={horizontalScale(17)}
           />
         </Animated.View>
       </View>
@@ -54,13 +63,30 @@ const ListItem = ({item, onDelete}) => {
       )}
 
       <Swipeable
+        ref={swipeableRef}
         renderRightActions={renderRightActions}
-        onSwipeableOpen={() => onDelete()}
+        onSwipeableOpen={() => onDelete(closeSwipeable)}
         rightThreshold={swipeThreshold}>
         <Pressable
-          style={styles.listItem}
+          style={styles.listItemContainer}
           onPress={() => setModalVisible(true)}>
-          <Text style={styles.listItemText}>{item.label}</Text>
+          <View style={styles.listItem}>
+            <FontAwesomeIcon
+              icon={faInfoCircle}
+              size={horizontalScale(15)}
+              color="grey"
+            />
+            <Text style={styles.listItemText}>
+              {'   '}
+              {item.label}
+            </Text>
+          </View>
+
+          <FontAwesomeIcon
+            icon={faAngleLeft}
+            size={horizontalScale(15)}
+            color="grey"
+          />
         </Pressable>
       </Swipeable>
     </View>
@@ -74,29 +100,19 @@ const ShlHistory = () => {
 
   useEffect(() => {
     const updateHistory = async () => {
+      setLoading(true);
       try {
         const data = await getLinks(user.token, user.id);
-
         if (!data || !data.data) {
           throw new Error('No data received from the server.');
         }
-        const updatedList = data.data.map((item: IShl) => {
+        const updatedList = data.data.map(item => {
           const existingItem = shlHistory.shLinks.find(
             shl => shl.shl === item.shl,
           );
-          if (existingItem) {
-            return {
-              ...item,
-              passcode: existingItem.passcode,
-              accessCount: item.accessCount,
-              failedAccessCount: item.failedAccessCount,
-            };
-          } else {
-            return {
-              ...item,
-              passcode: 'Unknown',
-            };
-          }
+          return existingItem
+            ? {...item, passcode: existingItem.passcode}
+            : {...item, passcode: 'Unknown'};
         });
         setShlHistory({shLinks: updatedList});
       } catch (error) {
@@ -108,23 +124,35 @@ const ShlHistory = () => {
     updateHistory();
   }, []);
 
-  const handleDeleteShl = async (Delete_Link: string) => {
-    return await deleteLink(Delete_Link, user.token)
-      .then(response => {
-        if (!response) {
-          throw new Error('Error');
-        }
-
-        const updatedLinks = shlHistory.shLinks.filter(
-          link => link.shl !== Delete_Link,
-        );
-        setShlHistory({...shlHistory, shLinks: updatedLinks});
-        Alert.alert('Success', 'SHL deleted successfully');
-      })
-      .catch(error => {
-        console.log('error', error);
-        Alert.alert('Error', 'Something went wrong');
-      });
+  const handleDeleteShl = async (Delete_Link, closeSwipeable) => {
+    Alert.alert(
+      'Delete',
+      'Are you sure you want to delete this Smart Health Link?',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+          onPress: closeSwipeable, // Close the swipeable item when cancel is pressed
+        },
+        {
+          text: 'OK',
+          onPress: async () => {
+            try {
+              await deleteLink(Delete_Link, user.token);
+              const updatedLinks = shlHistory.shLinks.filter(
+                link => link.shl !== Delete_Link,
+              );
+              setShlHistory({...shlHistory, shLinks: updatedLinks});
+              Alert.alert('Success', 'Smart Health Link deleted successfully');
+            } catch (error) {
+              console.log('error', error);
+              Alert.alert('Error', 'Something went wrong');
+            }
+          },
+        },
+      ],
+      {cancelable: false},
+    );
   };
 
   return (
@@ -134,23 +162,12 @@ const ShlHistory = () => {
         renderItem={({item}) => (
           <ListItem
             item={item}
-            onDelete={() => {
-              Alert.alert(
-                'Delete',
-                'Are you sure you want to delete this SHL?',
-                [
-                  {
-                    text: 'Cancel',
-                    style: 'cancel',
-                  },
-
-                  {text: 'OK', onPress: () => handleDeleteShl(item.shl)},
-                ],
-                {cancelable: false},
-              );
+            onDelete={closeSwipeable => {
+              handleDeleteShl(item.shl, closeSwipeable);
             }}
           />
         )}
+        keyExtractor={item => item.shl}
       />
       {loading && <Loading />}
     </View>

@@ -53,6 +53,33 @@ const styles = StyleSheet.create({
     fontSize: scaleFontSize(20),
     fontWeight: '700',
   },
+  statisticsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+  },
+  statisticsText: {
+    fontSize: scaleFontSize(20),
+    fontWeight: '700',
+    color: 'black',
+  },
+  borderColor: {
+    padding: horizontalScale(10),
+    borderWidth: scaleFontSize(3),
+    borderRadius: scaleFontSize(20),
+    borderColor: 'grey',
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  datesContainer: {
+    marginTop: verticalScale(10),
+  },
+  backContainer: {
+    position: 'absolute',
+    top: 20,
+  },
 });
 
 export default styles;

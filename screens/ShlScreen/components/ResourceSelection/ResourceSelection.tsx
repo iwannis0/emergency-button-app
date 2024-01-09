@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {
   SafeAreaView,
   Text,
@@ -47,7 +47,7 @@ const ResourceSelection = () => {
   const [_, SetSummaryResources] = useRecoilState(summaryResourcesState);
   const [user, __] = useRecoilState(userState);
   const [loading, setLoading] = useState(true);
-  const [selectAll, setSelectAll] = useState(false);
+  const [selectAll, setSelectAll] = useState(true);
   const [confirmationPhase, setConfirmationPhase] = useState<boolean>(false);
   const [dropdownValue, setDropdownValue] = useState(t('shl.summary.show-all'));
   const [searchQuery, setSearchQuery] = useState('');
@@ -55,6 +55,7 @@ const ResourceSelection = () => {
   const [data, setData] = useState<IResource[]>([]);
   const [vizualizedData, setVizualizedData] = useState<IResource[]>([]);
   const [selectedResources, setSelectedResources] = useState<string[]>([]);
+  const flatListRef = useRef(null);
   const [bundleInfo, setBundleInfo] = useState({
     idSystem: '',
     valueSystem: '',
@@ -124,7 +125,6 @@ const ResourceSelection = () => {
       });
       createResourceObjects(newData.entry);
       setConfirmationPhase(false);
-      setSelectedResources([]);
     });
   }, []);
 
@@ -534,10 +534,12 @@ const ResourceSelection = () => {
     });
     setData(ResourceTable);
     setVizualizedData(ResourceTable);
+    setSelectedResources(ResourceTable.map(item => item.fullUrl));
   }
 
   // Switch to confirmation phase
   useEffect(() => {
+    flatListRef.current.scrollToOffset({animated: false, offset: 0});
     if (confirmationPhase) {
       setVizualizedData(
         data.filter(item => selectedResources.includes(item.fullUrl)),
@@ -668,6 +670,7 @@ const ResourceSelection = () => {
       )}
 
       <FlatList
+        ref={flatListRef}
         style={styles.flatList}
         data={vizualizedData}
         renderItem={({item}) => renderItem(item)}

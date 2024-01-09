@@ -10,6 +10,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#ffffff',
   },
+  screenContainer: {
+    flex: 1,
+    marginHorizontal: horizontalScale(15),
+    marginTop: verticalScale(20),
+  },
   infoIconContainer: {
     position: 'absolute',
     borderColor: '#212121',
@@ -33,6 +38,7 @@ const styles = StyleSheet.create({
     marginTop: verticalScale(50),
     lineHeight: scaleFontSize(25),
     marginLeft: horizontalScale(10),
+    marginBottom: verticalScale(10),
   },
   createContainer: {
     position: 'absolute',

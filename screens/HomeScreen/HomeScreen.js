@@ -14,14 +14,12 @@ import globalStyle from '../../assets/styles/globalStyle';
 import {useTranslation} from 'react-i18next';
 import {useRecoilState} from 'recoil';
 import {userState} from '../../features/recoil/atoms/User/userState';
+import {shlHistoryState} from '../../features/recoil/atoms/ShlHistory/shlHistoryState';
 
 const MyHealthScreen = ({navigation}) => {
   const {t} = useTranslation();
   const [user, _] = useRecoilState(userState);
-  const [modalVisible, setModalVisible] = React.useState(false);
-  const [shl, setShl] = React.useState(null);
-  const [pin, setPin] = React.useState(null);
-
+  const [shHistory, __] = useRecoilState(shlHistoryState);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.ImageContainer}>
@@ -108,7 +106,7 @@ const MyHealthScreen = ({navigation}) => {
           onPress={() => {
             navigation.navigate('ShlScreen');
           }}>
-          <Text style={globalStyle.buttonText}>{t('shl.main-button')}</Text>
+          <Text style={globalStyle.buttonText}>Smart Health Links</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

@@ -157,7 +157,7 @@ export const MyHealthStack = () => {
       <stack.Screen
         name={Routes.ShlScreen}
         component={ShlScreen}
-        options={{headerShown: true, headerTitle: t('shl.title')}}
+        options={{headerShown: true, headerTitle: 'Smart Health Link'}}
       />
     </stack.Navigator>
   );
