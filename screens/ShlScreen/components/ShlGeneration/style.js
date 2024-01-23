@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     position: 'absolute',
-    left: horizontalScale(40),
+    left: horizontalScale(55),
     bottom: verticalScale(15),
   },
   scrollContainer: {

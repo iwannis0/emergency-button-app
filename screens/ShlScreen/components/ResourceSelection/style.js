@@ -6,17 +6,12 @@ import {
 } from '../../../../assets/styles/scaling';
 
 const styles = StyleSheet.create({
-  modalHeight: {
-    height: verticalScale(485),
-  },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   container: {
-    left: horizontalScale(-15),
-    marginHorizontal: horizontalScale(30),
-    marginBottom: horizontalScale(5),
+    marginHorizontal: horizontalScale(15),
   },
   searchContainer: {
     marginHorizontal: horizontalScale(10),
@@ -39,24 +34,27 @@ const styles = StyleSheet.create({
     shadowColor: '#000000',
     marginLeft: horizontalScale(20),
     marginRight: horizontalScale(10),
+    height: verticalScale(410),
+  },
+  flatListConfirm: {
+    height: verticalScale(480),
   },
   backButton: {
-    width: horizontalScale(135),
-    height: verticalScale(30),
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'absolute',
-    right: horizontalScale(165),
+    width: horizontalScale(120),
     backgroundColor: 'grey',
-    marginTop: verticalScale(10),
+  },
+  backButtonDisabled: {
+    width: horizontalScale(120),
+    backgroundColor: 'white',
   },
   continueButton: {
-    width: horizontalScale(135),
-    height: verticalScale(30),
-    alignItems: 'center',
-    justifyContent: 'center',
-    left: horizontalScale(165),
+    width: horizontalScale(120),
+  },
+  containerButton: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
     marginTop: verticalScale(10),
+    marginHorizontal: horizontalScale(20),
   },
 });
 

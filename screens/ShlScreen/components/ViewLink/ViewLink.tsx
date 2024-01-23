@@ -43,7 +43,7 @@ const ViewLink = (props: {data: IShl}) => {
   const {t} = useTranslation();
   const [user, _] = useRecoilState(userState);
   const [flipped, setFlipped] = useState(false);
-  const VIEWER_LINK = 'https://ehr.local:3443/shlink:/';
+  const VIEWER_LINK = 'https://dev-ehr.ehealth4u.eu/ips#shlink:/';
   let LINK = VIEWER_LINK + props.data.shl;
 
   const flipAnimation = useState(new Animated.Value(0))[0];
@@ -181,109 +181,119 @@ const ViewLink = (props: {data: IShl}) => {
         <View>
           <QRCode
             value={LINK}
-            size={verticalScale(280)}
+            size={horizontalScale(300)}
             logo={require('../../../../assets/images/smart-logo.png')}
-            logoSize={verticalScale(50)}
+            logoSize={horizontalScale(40)}
           />
         </View>
-        <Text style={styles.accessText}>{t('shl.viewing.pin')}</Text>
-        <Text style={styles.pinText}>
-          {' '}
-          {props.data.passcode !== 'Unknown'
-            ? props.data.passcode
-            : t('shl.viewing.unknown-pin')}
-        </Text>
+        <View style={[globalStyle.fullyCentered, styles.actionsContainer]}>
+          <Text style={styles.accessText}>{t('shl.viewing.pin')}</Text>
+          <Text style={styles.pinText}>
+            {' '}
+            {props.data.passcode !== 'Unknown'
+              ? props.data.passcode
+              : t('shl.viewing.unknown-pin')}
+          </Text>
 
-        <View style={styles.actionButtonRow}>
-          <View style={globalStyle.fullyCentered}>
-            <TouchableOpacity
-              disabled={flipped}
-              style={[
-                globalStyle.Button,
-                styles.actionButtonsSHL,
-                globalStyle.fullyCentered,
-              ]}
-              onPress={() => {
-                sendEmail(
-                  '',
-                  t('shl.viewing.emai-subject'),
-                  t('shl.viewing.email-body-partA') +
-                    LINK +
-                    t('shl.viewing.email-body-partB') +
-                    user.surname +
-                    ' ' +
-                    user.name,
-                );
-              }}>
-              <FontAwesomeIcon
-                icon={faShareNodes}
-                color="#f5f5f5"
-                size={horizontalScale(25)}
-              />
-            </TouchableOpacity>
-            <Text
-              style={[globalStyle.descriptionBlackL1, styles.actionButtotText]}>
-              {t('shl.viewing.share')}
-            </Text>
-          </View>
+          <View style={styles.actionButtonRow}>
+            <View style={globalStyle.fullyCentered}>
+              <TouchableOpacity
+                disabled={flipped}
+                style={[
+                  globalStyle.Button,
+                  styles.actionButtonsSHL,
+                  globalStyle.fullyCentered,
+                ]}
+                onPress={() => {
+                  sendEmail(
+                    '',
+                    t('shl.viewing.emai-subject'),
+                    t('shl.viewing.email-body-partA') +
+                      LINK +
+                      t('shl.viewing.email-body-partB') +
+                      user.surname +
+                      ' ' +
+                      user.name,
+                  );
+                }}>
+                <FontAwesomeIcon
+                  icon={faShareNodes}
+                  color="#f5f5f5"
+                  size={horizontalScale(25)}
+                />
+              </TouchableOpacity>
+              <Text
+                style={[
+                  globalStyle.descriptionBlackL1,
+                  styles.actionButtotText,
+                ]}>
+                {t('shl.viewing.share')}
+              </Text>
+            </View>
 
-          <View style={globalStyle.fullyCentered}>
-            <TouchableOpacity
-              disabled={flipped}
-              style={[
-                globalStyle.Button,
-                styles.actionButtonsSHL,
-                globalStyle.fullyCentered,
-              ]}
-              onPress={() => {
-                copyToClipboard(
-                  LINK,
-                  t('shl.viewing.copy-alert'),
-                  t('shl.viewing.copy-alert-continue'),
-                );
-              }}>
-              <FontAwesomeIcon
-                icon={faCopy}
-                color="#f5f5f5"
-                size={horizontalScale(22)}
-              />
-            </TouchableOpacity>
-            <Text
-              style={[globalStyle.descriptionBlackL1, styles.actionButtotText]}>
-              {t('shl.viewing.copy')}
-            </Text>
-          </View>
+            <View style={globalStyle.fullyCentered}>
+              <TouchableOpacity
+                disabled={flipped}
+                style={[
+                  globalStyle.Button,
+                  styles.actionButtonsSHL,
+                  globalStyle.fullyCentered,
+                ]}
+                onPress={() => {
+                  copyToClipboard(
+                    LINK,
+                    t('shl.viewing.copy-alert'),
+                    t('shl.viewing.copy-alert-continue'),
+                  );
+                }}>
+                <FontAwesomeIcon
+                  icon={faCopy}
+                  color="#f5f5f5"
+                  size={horizontalScale(22)}
+                />
+              </TouchableOpacity>
+              <Text
+                style={[
+                  globalStyle.descriptionBlackL1,
+                  styles.actionButtotText,
+                ]}>
+                {t('shl.viewing.copy')}
+              </Text>
+            </View>
 
-          <View style={globalStyle.fullyCentered}>
-            <TouchableOpacity
-              disabled={flipped}
-              style={[
-                globalStyle.Button,
-                styles.actionButtonsSHL,
-                globalStyle.fullyCentered,
-              ]}
-              onPress={() => {
-                showAlertAndOpenURL(
-                  LINK,
-                  t('shl.viewing.open-alert-title'),
-                  t('shl.viewing.open-alert-description'),
-                  t('shl.viewing.open-alert-cancel'),
-                  t('shl.viewing.open-alert-continue'),
-                );
-              }}>
-              <FontAwesomeIcon
-                icon={faUpRightFromSquare}
-                color="#f5f5f5"
-                size={horizontalScale(22)}
-              />
-            </TouchableOpacity>
-            <Text
-              style={[globalStyle.descriptionBlackL1, styles.actionButtotText]}>
-              {t('shl.viewing.open')}
-            </Text>
+            <View style={globalStyle.fullyCentered}>
+              <TouchableOpacity
+                disabled={flipped}
+                style={[
+                  globalStyle.Button,
+                  styles.actionButtonsSHL,
+                  globalStyle.fullyCentered,
+                ]}
+                onPress={() => {
+                  showAlertAndOpenURL(
+                    LINK,
+                    t('shl.viewing.open-alert-title'),
+                    t('shl.viewing.open-alert-description'),
+                    t('shl.viewing.open-alert-cancel'),
+                    t('shl.viewing.open-alert-continue'),
+                  );
+                }}>
+                <FontAwesomeIcon
+                  icon={faUpRightFromSquare}
+                  color="#f5f5f5"
+                  size={horizontalScale(22)}
+                />
+              </TouchableOpacity>
+              <Text
+                style={[
+                  globalStyle.descriptionBlackL1,
+                  styles.actionButtotText,
+                ]}>
+                {t('shl.viewing.open')}
+              </Text>
+            </View>
           </View>
         </View>
-
         {!flipped && (
           <TouchableOpacity
             disabled={flipped}

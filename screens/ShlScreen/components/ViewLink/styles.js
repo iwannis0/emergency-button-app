@@ -7,7 +7,10 @@ import {
 
 const styles = StyleSheet.create({
   infoContainer: {
-    width: horizontalScale(290),
+    marginHorizontal: horizontalScale(15),
+  },
+  actionsContainer: {
+    height: horizontalScale(170),
   },
   dates: {
     marginLeft: horizontalScale(20),
@@ -63,7 +66,7 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   borderColor: {
-    padding: horizontalScale(10),
+    padding: horizontalScale(5),
     borderWidth: scaleFontSize(3),
     borderRadius: scaleFontSize(20),
     borderColor: 'grey',
@@ -78,7 +81,7 @@ const styles = StyleSheet.create({
   },
   backContainer: {
     position: 'absolute',
-    top: 20,
+    top: verticalScale(20),
   },
 });
 

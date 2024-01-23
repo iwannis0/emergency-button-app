@@ -640,7 +640,7 @@ const ResourceSelection = () => {
   };
 
   return (
-    <SafeAreaView style={styles.modalHeight}>
+    <SafeAreaView>
       <View style={styles.container}>
         <Text style={globalStyle.descriptionBlackL2}>
           {confirmationPhase ? t('shl.confirm-promt') : t('shl.select-promt')}
@@ -653,30 +653,43 @@ const ResourceSelection = () => {
             </Text>
           </TouchableOpacity>
         )}
-      </View>
-      {!confirmationPhase && (
-        <View style={[styles.row, styles.searchContainer]}>
-          <CategoryDropdown value={dropdownValue} setValue={setDropdownValue} />
-          <View style={[styles.row, styles.searchInput]}>
-            <FontAwesomeIcon icon={faSearch} />
-            <TextInput
-              style={styles.searchInputText}
-              placeholder={t('general.search')}
-              value={searchQuery}
-              onChangeText={handleSearch}
+
+        {!confirmationPhase && (
+          <View style={[styles.row, styles.searchContainer]}>
+            <CategoryDropdown
+              value={dropdownValue}
+              setValue={setDropdownValue}
             />
+            <View style={[styles.row, styles.searchInput]}>
+              <FontAwesomeIcon icon={faSearch} />
+              <TextInput
+                style={styles.searchInputText}
+                placeholder={t('general.search')}
+                value={searchQuery}
+                onChangeText={handleSearch}
+              />
+            </View>
           </View>
-        </View>
-      )}
+        )}
+      </View>
 
       <FlatList
         ref={flatListRef}
-        style={styles.flatList}
+        style={[styles.flatList, confirmationPhase && styles.flatListConfirm]}
         data={vizualizedData}
         renderItem={({item}) => renderItem(item)}
         keyExtractor={item => item.id}
       />
-      <View>
+      <View style={styles.containerButton}>
+        <TouchableOpacity
+          disabled={!confirmationPhase}
+          style={[
+            globalStyle.Button,
+            confirmationPhase ? styles.backButton : styles.backButtonDisabled,
+          ]}
+          onPress={() => setConfirmationPhase(false)}>
+          <Text style={globalStyle.buttonText}>{t('general.back')}</Text>
+        </TouchableOpacity>
         <TouchableOpacity
           style={[globalStyle.Button, styles.continueButton]}
           onPress={() => {
@@ -690,13 +703,6 @@ const ResourceSelection = () => {
             {confirmationPhase ? t('shl.confirm') : t('general.continue')}
           </Text>
         </TouchableOpacity>
-        {confirmationPhase && (
-          <TouchableOpacity
-            style={[globalStyle.Button, styles.backButton]}
-            onPress={() => setConfirmationPhase(false)}>
-            <Text style={globalStyle.buttonText}>{t('general.back')}</Text>
-          </TouchableOpacity>
-        )}
       </View>
       {loading && <Loading />}
     </SafeAreaView>

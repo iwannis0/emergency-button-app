@@ -40,7 +40,6 @@ const globalStyle = StyleSheet.create({
     marginLeft: 17,
   },
   row: {
-    width: horizontalScale(317),
     flexDirection: 'row',
     justifyContent: 'space-between',
   },

@@ -4,13 +4,13 @@ import {horizontalScale, verticalScale} from '../../assets/styles/scaling';
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'rgba(0,0,0,0.21)',
-    alignItems: 'center',
-    bottom: verticalScale(80),
+    height: '100%',
   },
   modalView: {
-    height: verticalScale(550),
-    margin: verticalScale(130),
-    width: horizontalScale(320),
+    height: verticalScale(650),
+    marginHorizontal: horizontalScale(20),
+    marginTop: verticalScale(30),
+    backgroundColor: 'rgba(0,0,0,0.21)',
     borderRadius: horizontalScale(10),
     shadowColor: '#0000000',
     shadowOffset: {
@@ -25,10 +25,6 @@ const styles = StyleSheet.create({
     marginTop: verticalScale(15),
     paddingHorizontal: horizontalScale(15),
     paddingBottom: verticalScale(10),
-  },
-  modalInformation: {
-    width: '100%',
-    flex: 1,
   },
 });
 
