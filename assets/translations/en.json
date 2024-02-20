@@ -166,9 +166,7 @@
       "disease-targeted": "Disease or Agent Targeted",
       "number-doses": "Number of Doses",
       "date": "Date of Vaccination",
-
       "details": {
-        "title": "Details",
         "medicinal-product": "Vaccine Medicinal Product",
         "auth-holder": "Marketing Authorisation Holder",
         "batch-number": "Batch / Lot Number",
