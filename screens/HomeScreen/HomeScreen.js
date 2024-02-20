@@ -14,23 +14,12 @@ import globalStyle from '../../assets/styles/globalStyle';
 import {useTranslation} from 'react-i18next';
 import {useRecoilState} from 'recoil';
 import {userState} from '../../features/recoil/atoms/User/userState';
-import {
-  copyToClipboard,
-  generateSHL,
-  sendEmail,
-  showAlertAndOpenURL,
-} from '../../features/SHL/viewSHL';
-import ModalComponent from '../../components/ModalComponent/ModalComponent';
-import QRCode from 'react-native-qrcode-svg';
-import {horizontalScale} from '../../assets/styles/scaling';
+import {shlHistoryState} from '../../features/recoil/atoms/ShlHistory/shlHistoryState';
 
 const MyHealthScreen = ({navigation}) => {
   const {t} = useTranslation();
   const [user, _] = useRecoilState(userState);
-  const [modalVisible, setModalVisible] = React.useState(false);
-  const [shl, setShl] = React.useState(null);
-  const [pin, setPin] = React.useState(null);
-
+  const [shHistory, __] = useRecoilState(shlHistoryState);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.ImageContainer}>
@@ -111,15 +100,15 @@ const MyHealthScreen = ({navigation}) => {
         />
       </ScrollView>
 
-      <TouchableOpacity
-        style={[globalStyle.Button, globalStyle.fullyCentered]}
-        onPress={() => {
-          navigation.navigate('ShlScreen');
-        }}>
-        <Text style={globalStyle.buttonText}>
-          {t('medicalHistory.smartlinks.main-button')}
-        </Text>
-      </TouchableOpacity>
+      <View style={globalStyle.fullyCentered}>
+        <TouchableOpacity
+          style={[globalStyle.Button]}
+          onPress={() => {
+            navigation.navigate('ShlScreen');
+          }}>
+          <Text style={globalStyle.buttonText}>Smart Health Links</Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 };

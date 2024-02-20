@@ -227,14 +227,16 @@ const LoginScreen = ({navigation}) => {
         </TouchableOpacity>
 
         {/* Sign In Button */}
-        <TouchableOpacity
-          style={[globalStyle.Button, globalStyle.fullyCentered]}
-          onPress={() => {
-            setLoading(true);
-            handleLogin();
-          }}>
-          <Text style={globalStyle.buttonText}>{t('Sign In')}</Text>
-        </TouchableOpacity>
+        <View style={globalStyle.fullyCentered}>
+          <TouchableOpacity
+            style={[globalStyle.Button]}
+            onPress={() => {
+              setLoading(true);
+              handleLogin();
+            }}>
+            <Text style={globalStyle.buttonText}>{t('Sign In')}</Text>
+          </TouchableOpacity>
+        </View>
 
         {/* Forgot Password Button */}
         <TouchableOpacity>

@@ -15,17 +15,15 @@ const globalStyle = StyleSheet.create({
   descriptionBlackL2: {
     fontFamily: 'Inter',
     fontWeight: '200',
-    fontSize: scaleFontSize(17),
+    fontSize: scaleFontSize(16),
     lineHeight: scaleFontSize(20),
-    paddingLeft: verticalScale(5),
     color: '#212121',
   },
   descriptionBlackL3: {
     fontFamily: 'Inter',
     fontWeight: '400',
-    fontSize: scaleFontSize(16),
+    fontSize: scaleFontSize(14),
     lineHeight: scaleFontSize(16),
-    paddingLeft: verticalScale(10),
     color: '#212121',
   },
   descriptionGrey: {
@@ -42,7 +40,6 @@ const globalStyle = StyleSheet.create({
     marginLeft: 17,
   },
   row: {
-    width: horizontalScale(317),
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
@@ -54,12 +51,13 @@ const globalStyle = StyleSheet.create({
     marginTop: verticalScale(60),
   },
   Button: {
-    width: horizontalScale(300),
-    height: verticalScale(50),
+    padding: horizontalScale(10),
+    width: horizontalScale(200),
+    minHeight: verticalScale(45),
+    borderRadius: scaleFontSize(5),
     backgroundColor: '#0C6C79',
-    borderRadius: scaleFontSize(10),
-    marginTop: verticalScale(20),
-    marginLeft: horizontalScale(25),
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   buttonText: {
     color: '#FFFFFF',
