@@ -16,4 +16,5 @@ export const Routes = {
   PlanOfCareScreen: 'PlanOfCareScreen',
   MyHealth: 'MyHealth',
   Profile: 'Profile',
+  ShlScreen: 'ShlScreen',
 };
