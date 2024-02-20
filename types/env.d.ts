@@ -1,5 +1,6 @@
 declare module '@env' {
   export const BACKEND_API_URL: string;
+  export const GATEWAY_API_URL: string;
   export const KEYCLOAK_AUTH_SERVER_URL: string;
   export const KEYCLOAK_REALM: string;
   export const KEYCLOAK_RESOURCE: string;

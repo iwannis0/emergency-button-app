@@ -3,8 +3,8 @@ import {verticalScale} from '../../../../../assets/styles/scaling';
 import {useTranslation} from 'react-i18next';
 import React from 'react';
 import {SafeAreaView, StyleSheet, View} from 'react-native';
-import Immunization from '../Immunization';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import Vaccination from '../Vaccination';
 
 const ImmunizationScreen = () => {
   const {t} = useTranslation();
@@ -28,7 +28,7 @@ const ImmunizationScreen = () => {
               }}>
               <ImmunizationTabs.Screen
                 name={t('medicalHistory.immunization.title')}
-                component={Immunization}
+                component={Vaccination}
               />
             </ImmunizationTabs.Navigator>
           </View>

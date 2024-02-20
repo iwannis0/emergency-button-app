@@ -1,14 +1,14 @@
+import {IVaccination} from '../interface/IVaccination';
 import axios from 'axios';
 import {GATEWAY_API_URL} from '@env';
-import {IPlanOfCare} from '../interface/IPlanOfCare';
 
-export const getPlanOfCare = async (
+export const getVaccination = async (
   token: string,
   patientId: string,
   translationCode: string,
-): Promise<IPlanOfCare[]> => {
-  const response = await axios.get<IPlanOfCare[]>(
-    `${GATEWAY_API_URL}/PatientSummary/GetPlanOfCare`,
+): Promise<IVaccination[]> => {
+  const response = await axios.get<IVaccination[]>(
+    `${GATEWAY_API_URL}/PatientSummary/GetVaccination`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -19,5 +19,6 @@ export const getPlanOfCare = async (
       },
     },
   );
+
   return response.data;
 };

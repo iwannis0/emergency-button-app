@@ -8,27 +8,17 @@ import Modalinfo from '../../../../components/Modalinfo/Modalinfo';
 import Loading from '../../../../components/Loading/Loading';
 import {IPlanOfCare} from './interface/IPlanOfCare';
 import {getPlanOfCare} from './api/planOfCareAPI';
-import dayjs from 'dayjs';
-import {DATE_FORMAT} from '../../../../common/constants/constants';
+import NoDataSection from '../../../../components/NoDataSection/NoDataSection';
 
-const PlanOfCare = (props: any) => {
+const PlanOfCare = () => {
   const {t} = useTranslation();
   const [user, _] = useRecoilState(userState);
-
-  const [page, setPage] = useState(1);
   const [data, setData] = React.useState<IPlanOfCare[]>([]);
   const [loading, setLoading] = useState(true);
-  const [noExtraData, setNoExtraData] = useState(false);
 
   const fetchData = async () => {
     try {
-      const newData = await getPlanOfCare(user.token, user.id, 10, page);
-
-      setPage(prevPage => prevPage + 1);
-      if (newData.data.length === 0) {
-        setNoExtraData(true);
-      }
-      return newData.data;
+      return await getPlanOfCare(user.token, user.id, 'EN');
     } catch (error) {
       console.error(error);
       return [];
@@ -43,31 +33,19 @@ const PlanOfCare = (props: any) => {
     });
   }, []);
 
-  const handleEndReached = async () => {
-    if (noExtraData) {
-      return;
-    }
-    const newData = await fetchData();
-    setData(prevData => [...prevData, ...newData]);
-  };
-
   return (
     <View style={styles.containerHeight}>
       <FlatList
-        onEndReachedThreshold={0.5}
-        onEndReached={handleEndReached}
         keyExtractor={(_, index) => index.toString()}
         data={data}
         renderItem={({item}) => (
           <InformationCard
             type={'PlanOfCare'}
-            title={
-              dayjs(new Date(item.created)).format(DATE_FORMAT) || t('no-data')
-            }
-            TopSubtitle={''}
-            BottomSubtitle={`${t(
+            title={`${t(
               'medicalHistory.planOfCare.therapeuticRecommendation.recommendation',
-            )}: ${item.description || t('no-data')}`}>
+            )}: ${item.case || t('no-data')}`}
+            TopSubtitle={item.description || t('no-data')}
+            BottomSubtitle={''}>
             <ScrollView style={styles.containerHeight}>
               <Modalinfo
                 placeholder={t(
@@ -78,6 +56,7 @@ const PlanOfCare = (props: any) => {
             </ScrollView>
           </InformationCard>
         )}
+        ListEmptyComponent={NoDataSection}
       />
       {loading && <Loading />}
     </View>
