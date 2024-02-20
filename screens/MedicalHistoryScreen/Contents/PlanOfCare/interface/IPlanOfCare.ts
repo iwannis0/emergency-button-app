@@ -1,4 +1,4 @@
 export interface IPlanOfCare {
-  created: string;
+  case?: string;
   description?: string;
 }

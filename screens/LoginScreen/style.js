@@ -7,7 +7,7 @@ import {
 
 const styles = StyleSheet.create({
   ImageContainer: {
-    height: verticalScale(215),
+    height: verticalScale(260),
   },
   LoginContainer: {
     borderTopLeftRadius: scaleFontSize(20),
@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
     marginLeft: horizontalScale(24),
   },
   input: {
-    width: horizontalScale(300),
-    height: verticalScale(50),
+    width: horizontalScale(350),
+    height: verticalScale(60),
     borderColor: '#D8D8D8',
     borderWidth: scaleFontSize(2),
     marginTop: verticalScale(20),
@@ -39,13 +39,13 @@ const styles = StyleSheet.create({
   },
   forgot: {
     color: '#497C79',
-    marginTop: verticalScale(15),
+    marginTop: verticalScale(30),
     marginLeft: horizontalScale(25),
     fontSize: scaleFontSize(16),
   },
   SignUpButton: {
     flexDirection: 'row',
-    marginTop: verticalScale(25),
+    marginTop: verticalScale(20),
   },
   signInDescription: {
     marginLeft: horizontalScale(25),
@@ -67,7 +67,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginLeft: horizontalScale(20),
-    marginTop: verticalScale(10),
+    marginTop: verticalScale(20),
+    marginBottom: verticalScale(20),
   },
   changeLanguageContainer: {
     flexDirection: 'row',

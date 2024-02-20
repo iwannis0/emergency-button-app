@@ -33,6 +33,6 @@ public class MainActivity extends ReactActivity {
    @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(null);
-    // OkHttpClientProvider.setOkHttpClientFactory(new IgnoreSSLFactory());
+    OkHttpClientProvider.setOkHttpClientFactory(new IgnoreSSLFactory());
   }
 }
