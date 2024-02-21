@@ -14,7 +14,7 @@ import {
   copyToClipboard,
   sendEmail,
   showAlertAndOpenURL,
-} from '../../../../features/SHL/shl';
+} from '../../../../features/SHL/viewSHL';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
   faArrowLeft,
