@@ -40,20 +40,19 @@
       "title": "Ιατρικό Προσωπικό Ιστορικό",
       "allergies": {
         "title": "Αλλεργίες και Δυσανεξίες",
-        "category": "Κατηγορία",
         "type": "Τύπος",
         "substance": "Προϊόν",
+        "manifestation": "Εκδήλωση Αντίδρασης",
         "status": "Κλινική Κατάσταση",
         "criticality": "Κρισιμότητα",
-        "description": "Περιγραφή",
-        "onset": "Ημερομηνία Έναρξης",
-        "last-occurrence": "Ημερομηνία Τελευταίας Εμφάνισης",
-        "resolution": "Ημερομηνία Επίλυσης",
-        "reaction-description": "Περιγραφή Αντίδρασης",
-        "manifestation": "Εκδήλωση Αντίδρασης",
         "severity": "Σοβαρότητα Αντίδρασης",
-        "exposure": "Διαδρομή Έκθεσης Αντίδρασης",
-        "reaction-onset": "Ημερομηνία Έναρξης Αντίδρασης"
+        "certainty": "Βεβαιώτητα",
+        "onsetDate": "Ημερομηνία Έναρξης",
+        "lastOccurenceDate": "Ημερομηνία Τελευταίας Εμφάνισης",
+        "resolutionDate": "Ημερομηνία Επίλυσης",
+        "exposureRoute": "Διαδρομή Έκθεσης Αντίδρασης",
+        "category": "Κατηγορία",
+        "description": "Περιγραφή"
       },
       "problems": {
         "title": "Προβλήματα και Επεμβάσεις",
@@ -65,7 +64,8 @@
         },
         "resolved": {
           "title": "Επιλυμένα Προβλήματα",
-          "resolution": "Ημερομηνία Επίλυσης"
+          "resolution": "Ημερομηνία Επίλυσης",
+          "status": "Κατάσταση"
         },
         "procedures": {
           "title": "Παλίες Επεμβάσεις",
@@ -74,7 +74,9 @@
         },
         "functional": {
           "title": "Λειτουργική Κατάσταση",
-          "date": "Ημερομηνία Αξιολόγησης"
+          "onset": "Ημερομηνία Εμφάνισης",
+          "description": "Περιγραφή",
+          "assesmentDate": "Ημερομηνία Αξιολόγησης"
         }
       },
       "devices": {
@@ -164,21 +166,16 @@
 
     "immunization": {
       "title": "Εμβολιασμοί",
-      "vaccine-code": "Κωδικός Εμβολίου",
-      "disease-targeted": "Ασθένεια",
-      "number-doses": "Αριθμός Δόσεων",
+      "disease": "Ασθένεια",
       "date": "Ημερομηνία Εμβολιασμού",
-
-      "details": {
-        "title": "Λεπτομέρειες Εμβολιασμού",
-        "medicinal-product": "Φαρμακευτικό Προϊόν",
-        "auth-holder": "Κάτοχος Άδειας",
-        "batch-number": "Αριθμός Παρτίδας",
-        "admin-center": "Κέντρο Εμβολιασμού",
-        "country": "Χώρα Εμβολιασμού"
-      }
+      "brand": "Μάρκα",
+      "holder": "Κάτοχος Άδειας",
+      "batch": "Αριθμός Παρτίδας",
+      "administeringCenter": "Κέντρο Εμβολιασμού",
+      "doseNumber": "Αριθμός Δόσης",
+      "physician": "Ιατρός",
+      "administered": "Κατάσταση Εμβολιασμού"
     },
-
     "planOfCare": {
       "title": "Σχέδιο Φροντίδας",
       "therapeuticRecommendation":{

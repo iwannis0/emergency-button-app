@@ -7,24 +7,22 @@ import {IProcedure} from '../interface/IProcedure';
 import {ICurrentProblems} from '../interface/ICurrentProblems';
 import {IResolvedProblems} from '../interface/IResolvedProblems';
 import {IFunctionalStatus} from '../interface/IFunctionalStatus';
-import {BACKEND_API_URL} from '@env';
+import {BACKEND_API_URL, GATEWAY_API_URL} from '@env';
 
 export const getAllergyIntolerance = async (
   token: string,
   patientId: string,
-  pageSize: number = 10,
-  pageNumber: number = 1,
-): Promise<IBackendResponse<IAllergyType[]>> => {
-  const response = await axios.get<IBackendResponse<IAllergyType[]>>(
-    `${BACKEND_API_URL}/AllergyIntolerance/GetAllergyIntolerancesByPatientId`,
+  translationCode: string,
+): Promise<IAllergyType[]> => {
+  const response = await axios.get<IAllergyType[]>(
+    `${GATEWAY_API_URL}/PatientSummary/GetAllergies`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
       },
       params: {
         patientId: patientId,
-        pageSize: pageSize,
-        pageNumber: pageNumber,
+        translationCode: translationCode,
       },
     },
   );
@@ -81,95 +79,79 @@ export const getMedicationSummary = async (
 export const getCurrentProblems = async (
   token: string,
   patientId: string,
-  pageSize: number = 100,
-  pageNumber: number = 1,
-): Promise<IBackendResponse<ICurrentProblems[]>> => {
-  const response = await axios.get<IBackendResponse<ICurrentProblems[]>>(
-    `${BACKEND_API_URL}/ConditionDiagnosis/GetCurrentConditionProblemsByPatientId`,
+  translationCode: string,
+): Promise<ICurrentProblems[]> => {
+  const response = await axios.get<ICurrentProblems[]>(
+    `${GATEWAY_API_URL}/PatientSummary/GetCurrentProblems`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
       },
       params: {
         patientId: patientId,
-        pageSize: pageSize,
-        pageNumber: pageNumber,
+        translationCode: translationCode,
       },
     },
   );
-
   return response.data;
 };
 
 export const getResolvedProblems = async (
   token: string,
   patientId: string,
-  pageSize: number = 100,
-  pageNumber: number = 1,
-): Promise<IBackendResponse<IResolvedProblems[]>> => {
-  const response = await axios.get<IBackendResponse<IResolvedProblems[]>>(
-    `${BACKEND_API_URL}/Condition/GetResolvedConditionProblemsByPatientId`,
+  translationCode: string,
+): Promise<IResolvedProblems[]> => {
+  const response = await axios.get<IResolvedProblems[]>(
+    `${GATEWAY_API_URL}/PatientSummary/GetResolvedProblems`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
       },
       params: {
         patientId: patientId,
-        pageSize: pageSize,
-        pageNumber: pageNumber,
+        translationCode: translationCode,
       },
     },
   );
-
   return response.data;
 };
 
 export const getProcedures = async (
   token: string,
   patientId: string,
-  pageSize: number = 100,
-  pageNumber: number = 1,
-): Promise<IBackendResponse<IProcedure[]>> => {
-  const response = await axios.get<IBackendResponse<IProcedure[]>>(
-    `${BACKEND_API_URL}/Procedure/GetProceduresByPatientId`,
+  translationCode: string,
+): Promise<IProcedure[]> => {
+  const response = await axios.get<IProcedure[]>(
+    `${GATEWAY_API_URL}/PatientSummary/GetProcedures`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
       },
       params: {
         patientId: patientId,
-        pageSize: pageSize,
-        pageNumber: pageNumber,
+        translationCode: translationCode,
       },
     },
   );
-
   return response.data;
 };
 
 export const getFunctionalStatus = async (
   token: string,
-  refPatient: string,
-  pageSize: number = 100,
-  pageNumber: number = 1,
-): Promise<IBackendResponse<IFunctionalStatus[]>> => {
-  const response = await axios.post<IBackendResponse<IFunctionalStatus[]>>(
-    `${BACKEND_API_URL}/Observation/FunctionalStatus/GetFunctionalStatus`,
-    {
-      searchObservationParamsDto: {
-        refPatient: refPatient,
-      },
-    },
+  patientId: string,
+  translationCode: string,
+): Promise<IFunctionalStatus[]> => {
+  const response = await axios.get<IFunctionalStatus[]>(
+    `${GATEWAY_API_URL}/PatientSummary/GetFunctionalStatus`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
       },
       params: {
-        pageNumber: pageNumber,
-        pageSize: pageSize,
+        patientId: patientId,
+        translationCode: translationCode,
       },
     },
   );
-
   return response.data;
 };
