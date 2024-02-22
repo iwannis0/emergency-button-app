@@ -66,7 +66,7 @@ const Vaccination = () => {
                 value={item.brand || t('no-data')}
               />
               <Modalinfo
-                placeholder={t('medicalHistory.immunization.brand')}
+                placeholder={t('medicalHistory.immunization.disease')}
                 value={item.disease || t('no-data')}
               />
               <Modalinfo

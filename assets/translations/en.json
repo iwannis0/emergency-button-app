@@ -40,20 +40,19 @@
       "title": "Medical Personal History",
       "allergies": {
         "title": "Allergies and Intolerances",
-        "category": "Category",
         "type": "Type",
-        "substance": "Product",
+        "substance": "Substance",
+        "manifestation": "Manifestation",
         "status": "Clinical Status",
         "criticality": "Criticality",
-        "description": "Description",
-        "onset": "Onset Date",
-        "last-occurrence": "Last Occurrence Date",
-        "resolution": "Resolution Date",
-        "reaction-description": "Description of Reaction",
-        "manifestation": "Manifestation of Reaction",
         "severity": "Severity of Reaction",
-        "exposure": "Exposure Route of Reaction",
-        "reaction-onset": "Onset Date of Reaction"
+        "certainty": "Certainty",
+        "onsetDate": "Onset Date",
+        "lastOccurenceDate": "Last Occurrence Date",
+        "resolutionDate": "Resolution Date",
+        "exposureRoute": "Exposure Route",
+        "category": "Category",
+        "description": "Description"
       },
       "problems": {
         "title": "Problems and Procedures",
@@ -65,7 +64,8 @@
         },
         "resolved": {
           "title": "Resolved Problems",
-          "resolution": "Resolution Date"
+          "resolution": "Resolution Date",
+          "status": "Status"
         },
         "procedures": {
           "title": "Past Procedures",
@@ -74,7 +74,9 @@
         },
         "functional": {
           "title": "Functional Status",
-          "date": "Effective Date"
+          "onset": "Onset Date",
+          "description": "Description",
+          "assesmentDate": "Assessment Date"
         }
       },
       "devices": {
@@ -162,17 +164,16 @@
     },
     "immunization": {
       "title": "Immunization",
-      "vaccine-code": "Vaccine Code",
-      "disease-targeted": "Disease or Agent Targeted",
-      "number-doses": "Number of Doses",
+      "disease": "Disease or Agent Targeted",
       "date": "Date of Vaccination",
-      "details": {
-        "medicinal-product": "Vaccine Medicinal Product",
-        "auth-holder": "Marketing Authorisation Holder",
-        "batch-number": "Batch / Lot Number",
-        "admin-center": "Administering Center",
-        "country": "Country of Vaccination"
-      }
+      "brand": "Brand",
+      "holder": "Marketing Authorisation Holder",
+      "batch": "Batch / Lot Number",
+      "administeringCenter": "Administering Center",
+      "doseNumber": "Dose Number",
+      "physician": "Physician",
+      "administered": "Status of Vaccination",
+      "country": "Country of Vaccination"
     },
     "planOfCare": {
       "title": "Plan of Care",

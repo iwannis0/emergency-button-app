@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, StyleSheet, FlatList, ScrollView} from 'react-native';
+import {FlatList, ScrollView, StyleSheet, View} from 'react-native';
 import InformationCard from '../../../../components/InformationCard/InformationCard';
 import {getFunctionalStatus} from './api/medicalPersonalHistoryAPI';
 import {IFunctionalStatus} from './interface/IFunctionalStatus';
@@ -10,25 +10,17 @@ import dayjs from 'dayjs';
 import {DATE_FORMAT} from '../../../../common/constants/constants';
 import Modalinfo from '../../../../components/Modalinfo/Modalinfo';
 import {useTranslation} from 'react-i18next';
+import NoDataSection from '../../../../components/NoDataSection/NoDataSection';
 
 const FunctionalStatus = () => {
   const {t} = useTranslation();
   const [user, _] = useRecoilState(userState);
-
-  const [page, setPage] = useState(1);
   const [data, setData] = React.useState<IFunctionalStatus[]>([]);
   const [loading, setLoading] = useState(true);
-  const [noExtraData, setNoExtraData] = useState(false);
 
   const fetchData = async () => {
     try {
-      const newData = await getFunctionalStatus(user.token, user.id, 10, page);
-
-      setPage(prevPage => prevPage + 1);
-      if (newData.data.length === 0) {
-        setNoExtraData(true);
-      }
-      return newData.data;
+      return await getFunctionalStatus(user.token, user.id, 'EN');
     } catch (error) {
       console.error(error);
       return [];
@@ -43,46 +35,48 @@ const FunctionalStatus = () => {
     });
   }, []);
 
-  const handleEndReached = async () => {
-    if (noExtraData) {
-      return;
-    }
-    const newData = await fetchData();
-    setData(prevData => [...prevData, ...newData]);
-  };
   return (
     <View style={styles.containerHeight}>
       <FlatList
-        onEndReachedThreshold={0.5}
-        onEndReached={handleEndReached}
         keyExtractor={(_, index) => index.toString()}
         data={data}
         renderItem={({item}) => (
           <InformationCard
             type={'Procedure'}
-            title={
-              item.value?.coding?.at(0)?.display || item.value?.text || '-'
-            }
+            title={item.result || '-'}
             TopSubtitle={`${t(
-              'medicalHistory.medicalPersonalHistory.problems.functional.date',
-            )}: ${
-              dayjs(new Date(item.effectiveDateTime)).format(DATE_FORMAT) ||
-              t('no-data')
-            }`}
-            BottomSubtitle={''}>
+              'medicalHistory.medicalPersonalHistory.problems.functional.onset',
+            )}: ${dayjs(item.onsetDate) || t('no-data')}`}
+            BottomSubtitle={`${t(
+              'medicalHistory.medicalPersonalHistory.problems.functional.assesmentDate',
+            )}: ${dayjs(item.assesmentDate) || t('no-data')}`}>
             <ScrollView>
               <Modalinfo
                 placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.problems.functional.date',
+                  'medicalHistory.medicalPersonalHistory.problems.functional.onset',
                 )}
                 value={
-                  dayjs(new Date(item.effectiveDateTime)).format(DATE_FORMAT) ||
-                  t('no-data')
+                  dayjs(item.onsetDate).format(DATE_FORMAT) || t('no-data')
                 }
+              />
+              <Modalinfo
+                placeholder={t(
+                  'medicalHistory.medicalPersonalHistory.problems.functional.assesmentDate',
+                )}
+                value={
+                  dayjs(item.assesment).format(DATE_FORMAT) || t('no-data')
+                }
+              />
+              <Modalinfo
+                placeholder={t(
+                  'medicalHistory.medicalPersonalHistory.problems.functional.description',
+                )}
+                value={item.result || t('no-data')}
               />
             </ScrollView>
           </InformationCard>
         )}
+        ListEmptyComponent={NoDataSection}
       />
       {loading && <Loading />}
     </View>

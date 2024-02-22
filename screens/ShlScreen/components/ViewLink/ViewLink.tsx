@@ -1,32 +1,29 @@
-import React, {useState, useMemo} from 'react';
+import React, {useMemo, useState} from 'react';
 import {
-  View,
+  Animated,
+  SafeAreaView,
   Text,
   TouchableOpacity,
-  SafeAreaView,
-  Animated,
+  View,
 } from 'react-native';
 import globalStyle from '../../../../assets/styles/globalStyle';
 import QRCode from 'react-native-qrcode-svg';
 import {useTranslation} from 'react-i18next';
+import {horizontalScale} from '../../../../assets/styles/scaling';
 import {
-  horizontalScale,
-  verticalScale,
-} from '../../../../assets/styles/scaling';
-import {
-  sendEmail,
   copyToClipboard,
+  sendEmail,
   showAlertAndOpenURL,
-} from '../../../../features/SHL/shl';
+} from '../../../../features/SHL/viewSHL';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
-  faShareNodes,
-  faCopy,
-  faUpRightFromSquare,
-  faArrowRight,
   faArrowLeft,
+  faArrowRight,
+  faCopy,
   faEye,
+  faShareNodes,
   faTriangleExclamation,
+  faUpRightFromSquare,
 } from '@fortawesome/free-solid-svg-icons';
 import {useRecoilState} from 'recoil';
 import {userState} from '../../../../features/recoil/atoms/User/userState';
@@ -35,10 +32,6 @@ import {DATE_TIME_FORMAT} from '../../../../common/constants/constants';
 import styles from './styles';
 import {IShl} from '../../../../features/recoil/interfaces/IShl';
 
-// TODO: Infos put on show more details
-// TODO: More visible, less background
-// TODO: Make copy with a small feedback not a big alert
-// TODO: Put instructions for the user
 const ViewLink = (props: {data: IShl}) => {
   const {t} = useTranslation();
   const [user, _] = useRecoilState(userState);
