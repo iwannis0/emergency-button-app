@@ -13,7 +13,7 @@ const MedicalHistoryScreen = ({navigation}) => {
       <View style={globalStyle.backgroundWhite}>
         <View style={globalStyle.marginTop60}>
           <ScrollView>
-            <NavigationButton
+            {/*<NavigationButton
               type={'withArrow'}
               title={t('medicalHistory.epidemiologicalHistory.title')}
               onPress={() => {
@@ -21,7 +21,7 @@ const MedicalHistoryScreen = ({navigation}) => {
               }}
               bottomBorderStyle={globalStyle.bottomBorderL1}
               titleStyle={globalStyle.descriptionBlackL1}
-            />
+            />*/}
             <View style={globalStyle.bottomBorderL1}>
               <View style={styles.PersonalHistoryContainer}>
                 <Text
