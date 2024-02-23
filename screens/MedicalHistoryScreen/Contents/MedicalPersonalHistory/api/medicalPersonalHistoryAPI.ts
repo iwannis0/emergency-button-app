@@ -1,13 +1,12 @@
 import axios from 'axios';
 import {IAllergyType} from '../interface/IAllergiesAndIntolerances';
-import {IBackendResponse} from '../../../../../common/interfaces/IBackedResponse';
 import {IDeviceAndImplants} from '../interface/IDeviceAndImplants';
 import {IMedicationSummary} from '../interface/IMedicationSummary';
 import {IProcedure} from '../interface/IProcedure';
 import {ICurrentProblems} from '../interface/ICurrentProblems';
 import {IResolvedProblems} from '../interface/IResolvedProblems';
 import {IFunctionalStatus} from '../interface/IFunctionalStatus';
-import {BACKEND_API_URL, GATEWAY_API_URL} from '@env';
+import {GATEWAY_API_URL} from '@env';
 
 export const getAllergyIntolerance = async (
   token: string,
@@ -33,46 +32,40 @@ export const getAllergyIntolerance = async (
 export const getDevices = async (
   token: string,
   patientId: string,
-  pageSize: number = 10,
-  pageNumber: number = 1,
-): Promise<IBackendResponse<IDeviceAndImplants[]>> => {
-  const response = await axios.get<IBackendResponse<IDeviceAndImplants[]>>(
-    `${BACKEND_API_URL}/Device/GetDevicesForPatient`,
+  translationCode: string,
+): Promise<IDeviceAndImplants[]> => {
+  const response = await axios.get<IDeviceAndImplants[]>(
+    `${GATEWAY_API_URL}/PatientSummary/GetDevices`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
       },
       params: {
         patientId: patientId,
-        pageSize: pageSize,
-        pageNumber: pageNumber,
+        translationCode: translationCode,
       },
     },
   );
-
   return response.data;
 };
 
 export const getMedicationSummary = async (
   token: string,
   patientId: string,
-  pageSize: number = 100,
-  pageNumber: number = 1,
-): Promise<IBackendResponse<IMedicationSummary[]>> => {
-  const response = await axios.get<IBackendResponse<IMedicationSummary[]>>(
-    `${BACKEND_API_URL}/MedicationStatementSummary/GetMedicationStatementSummaryForPatient`,
+  translationCode: string,
+): Promise<IMedicationSummary[]> => {
+  const response = await axios.get<IMedicationSummary[]>(
+    `${GATEWAY_API_URL}/PatientSummary/GetMedicationSummary`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
       },
       params: {
         patientId: patientId,
-        pageSize: pageSize,
-        pageNumber: pageNumber,
+        translationCode: translationCode,
       },
     },
   );
-
   return response.data;
 };
 

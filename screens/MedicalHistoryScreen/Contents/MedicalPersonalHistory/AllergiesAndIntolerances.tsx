@@ -10,6 +10,7 @@ import Modalinfo from '../../../../components/Modalinfo/Modalinfo';
 import dayjs from 'dayjs';
 import {DATE_FORMAT} from '../../../../common/constants/constants';
 import {useTranslation} from 'react-i18next';
+import NoDataSection from '../../../../components/NoDataSection/NoDataSection';
 
 const AllergiesAndIntolerances = () => {
   const {t} = useTranslation();
@@ -39,6 +40,7 @@ const AllergiesAndIntolerances = () => {
       <FlatList
         keyExtractor={(_, index) => index.toString()}
         data={data}
+        ListEmptyComponent={NoDataSection}
         renderItem={({item}) => (
           <InformationCard
             type={'Allergy'}

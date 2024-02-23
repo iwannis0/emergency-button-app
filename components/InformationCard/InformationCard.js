@@ -63,11 +63,14 @@ const InformationCard = props => {
       }
     }
     if (props.type === 'Medication') {
-      if (props.risk === 'Completed') {
-        setRiskTest('Completed');
+      if (props.risk === 'completed') {
+        setRiskTest('completed');
         setriskColor(RISK_COLOURS.LOW);
+      } else if (props.risk === 'active') {
+        setRiskTest('active');
+        setriskColor(RISK_COLOURS.ACTIVE);
       } else {
-        setRiskTest('Pending');
+        setRiskTest('pending');
         setriskColor(RISK_COLOURS.MODERATE);
       }
     }

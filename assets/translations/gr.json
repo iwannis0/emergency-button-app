@@ -94,6 +94,7 @@
         "dosage": "Δοσολογία",
         "form": "Μορφή",
         "onset":"Ημερομηνία Έναρξης",
+        "endDate": "Ημερομηνία Τερματισμού",
         "status": "Κατάσταση",
         "method": "Μέθοδος Χορήγησης",
         "administration": "Τρόπος Χορήγησης",
@@ -102,68 +103,21 @@
     },
     "gynecological": {
       "title": "Γυναικολογικό Ιστορικό",
-      "pregnancy-history": {
-        "title": "Ιστορικό Εγκυμοσύνης",
-        "examinationDate": "Ημερομηνία Εξέτασης",
-        "expectedDeliveryDate": "Προβλεπόμενη Ημερομηνία Τοκετού",
-        "method": "Μέθοδος για υπολογισμό της ΠΗΤ"
-      },
-      "pregnancy-outcome": {
-        "title": "Αποτέλεσμα Εγκυμοσύνης",
-        "births": "Σύνολο Γεννήσεων",
-        "abortions": "Σύνολο Αμβλώσεων",
-        "ectopic": "Σύνολο Εκτοπικών Γεννήσεων"
-      }
+      "expectedDelivery": "Ημερομηνία Προβλεπώμενης Γέννησης",
+      "observationDate": "Ημερομηνία Εκτίμησης",
+      "abortions": "Εκτρώσεις",
+      "children": "Αριθμός τέκνων",
+      "outcomeDate": "Ημερομηνίες Γεννήσεων Τέκνων"
     },
     "socialHistory": {
       "title": "Κοινωνικό Ιστορικό",
-      "alcohol-consumption": {
-        "title": "Κατανάλωση Αλκοόλ",
-        "dateStart": "Ημερομηνία Έναρξης",
-        "dateEnd": "Ημερομηνία Λήξης",
-        "alcohol-status": "Κατάσταση Κατανάλωσης",
-        "alcohol-intake": "Ποσότητα Αλκοόλ (αλκοολούχα ποτά ανά ημέρα)",
-        "alcohol-intake-per-day": "Ποσότητα Αλκοόλ ανά Ημέρα)",
-        "alcohol-type": "Τύπος Αλκοόλ"
-      },
-
-      "tobacco-use": {
-        "title": "Χρήση Καπνού",
-        "dateStart": "Ημερομηνία Έναρξης",
-        "dateEnd": "Ημερομηνία Λήξης",
-        "tobacco-status": "Κατάσταση Χρήσης",
-        "tobacco-type": "Τύπος Καπνού",
-        "pack-years": "Πακέτα Ετησίως"
-      },
-
-      "drug-use": {
-        "title": "Χρήση  Φαρμάκων",
-        "dateStart": "Ημερομηνία Έναρξης",
-        "dateEnd": "Ημερομηνία Λήξης",
-        "drug-use-status": "Κατάσταση Χρήσης",
-        "drug-use-type": "Τύπος Φαρμάκου",
-        "drug-use-dosage": "Ημερήσια δόση (γραμμάρια ανά ημέρα)",
-        "route-of-administration": "Μέθοδος Χορήγησης"
-      },
-
-      "sleep-habits": {
-        "title": "Συνήθειες Ύπνου",
-        "dateStart": "Ημερομηνία Έναρξης",
-        "dateEnd": "Ημερομηνία Λήξης",
-        "finding-related-to-sleep": "Εύρημα Σχετικό με τον Ύπνο"
-      },
-
-      "exercise": {
-        "title": "Άσκηση",
-        "dateStart": "Ημερομηνία Έναρξης",
-        "dateEnd": "Ημερομηνία Λήξης",
-        "exercise-activity": "Δραστηριότητα",
-        "frequency-per-week": "Συχνότητα (ανά εβδομάδα)",
-        "exercise-duration": "Διάρκεια (λεπτά)",
-        "exercise-intensity": "Ένταση"
-      }
+      "from": "Από",
+      "until": "εώς",
+      "present": "Παρών",
+      "onset": "Ημερομηνία Έναρξης",
+      "endDate": "Ημερομηνία Τερματισμού",
+      "frequency": "Συχνότητα"
     },
-
     "immunization": {
       "title": "Εμβολιασμοί",
       "disease": "Ασθένεια",

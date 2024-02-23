@@ -10,4 +10,5 @@ export const RISK_COLOURS = {
   LOW: '#91D9A5',
   MODERATE: '#FFCC6A',
   HIGH: '#FF9F9F',
+  ACTIVE: '#81aaf3',
 };

@@ -94,6 +94,7 @@
         "dosage": "Dosage",
         "form": "Form of Medication",
         "onset":"Onset Date",
+        "endDate": "End Date",
         "status": "Status",
         "method": "Method",
         "administration": "Administration Route",
@@ -102,65 +103,20 @@
     },
     "gynecological": {
       "title": "Gynecological History",
-      "pregnancy-history": {
-        "title": "Pregnancy History",
-        "examinationDate": "Examination Date",
-        "expectedDeliveryDate": "Expected Date of Delivery",
-        "method": "Method Used for calculating EDD"
-      },
-      "pregnancy-outcome": {
-        "title": "Pregnancy Outcome",
-        "births": "Total Births",
-        "abortions": "Total Abortions",
-        "ectopic": "Ectopic Pregnancies"
-      }
+      "expectedDelivery": "Expected Delivery",
+      "observationDate": "Observation Date",
+      "abortions": "Abortions",
+      "children": "Number of children",
+      "outcomeDate": "Birthdays of children"
     },
     "socialHistory": {
       "title": "Social History",
-      "alcohol-consumption": {
-        "title": "Alcohol Consumption",
-        "dateStart": "Date Start",
-        "dateEnd": "Date End",
-        "alcohol-status": "Alcohol Status",
-        "alcohol-intake": "Alcohol Intake (alcoholic drinks per day)",
-        "alcohol-intake-per-day": "Alcohol Intake per Day",
-        "alcohol-type": "Alcohol Type"
-      },
-      "tobacco-use": {
-        "title": "Tobacco Use",
-        "dateStart": "Date Start",
-        "dateEnd": "Date End",
-        "tobacco-status": "Tobacco Status",
-        "tobacco-type": "Tobacco Type",
-        "pack-years": "Pack Years"
-      },
-
-      "drug-use": {
-        "title": "Drug Use",
-        "dateStart": "Date Start",
-        "dateEnd": "Date End",
-        "drug-use-status": "Drug Use Status",
-        "drug-use-type": "Drug or Medication Type",
-        "drug-use-dosage": "Daily Dosage (grams per day)",
-        "route-of-administration": "Route of Administration"
-      },
-
-      "sleep-habits": {
-        "title": "Sleep Habits",
-        "dateStart": "Date Start",
-        "dateEnd": "Date End",
-        "finding-related-to-sleep": "Finding Related to Sleep"
-      },
-
-      "exercise": {
-        "title": "Exercise",
-        "dateStart": "Date Start",
-        "dateEnd": "Date End",
-        "exercise-activity": "Exercise Activity",
-        "frequency-per-week": "Frequency per Week",
-        "exercise-duration": "Exercise Duration",
-        "exercise-intensity": "Exercise Intensity"
-      }
+      "from": "From",
+      "until": "Until",
+      "present": "Present",
+      "onset": "Starting Date",
+      "endDate": "Ending Date",
+      "frequency": "Frequency"
     },
     "immunization": {
       "title": "Immunization",
