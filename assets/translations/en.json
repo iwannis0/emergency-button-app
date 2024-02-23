@@ -48,7 +48,7 @@
         "severity": "Severity of Reaction",
         "certainty": "Certainty",
         "onsetDate": "Onset Date",
-        "lastOccurenceDate": "Last Occurrence Date",
+        "lastOccurence": "Last Occurrence Date",
         "resolutionDate": "Resolution Date",
         "exposureRoute": "Exposure Route",
         "category": "Category",
