@@ -20,9 +20,9 @@ const styles = StyleSheet.create({
     height: horizontalScale(60),
   },
   ImageInitials: {
-    right: horizontalScale(31),
-    top: verticalScale(14),
-    fontSize: scaleFontSize(26),
+    right: horizontalScale(38),
+    top: verticalScale(15),
+    fontSize: scaleFontSize(25),
     color: '#00827B',
   },
   Name: {
