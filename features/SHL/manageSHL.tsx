@@ -14,7 +14,7 @@ export function useDeleteLink() {
     });
   };
 
-  const showAlert = (
+  return (
     id: string,
     title: string,
     message: string,
@@ -31,6 +31,4 @@ export function useDeleteLink() {
       {cancelable: true},
     );
   };
-
-  return showAlert;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, SafeAreaView, StyleSheet} from 'react-native';
+import {SafeAreaView, StyleSheet, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import globalStyle from '../../../../../assets/styles/globalStyle';
 import DeviceAndImplants from '../DevicesAndImplants';

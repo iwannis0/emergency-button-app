@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, FlatList, ScrollView, StyleSheet} from 'react-native';
+import {FlatList, ScrollView, StyleSheet, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import InformationCard from '../../../../components/InformationCard/InformationCard';
 import {ITravelHistoryType} from './interface/ITravelHistoryType';

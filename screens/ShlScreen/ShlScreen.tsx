@@ -1,12 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {
   SafeAreaView,
-  View,
+  ScrollView,
   Text,
   TouchableOpacity,
-  ScrollView,
-  FlatList,
+  View,
 } from 'react-native';
 import styles from './styles';
 import globalStyle from '../../assets/styles/globalStyle';

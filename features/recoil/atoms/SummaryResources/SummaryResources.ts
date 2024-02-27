@@ -1,5 +1,4 @@
-import {ISummaryResources} from '../../interfaces/ISummaryResources';
-import {IBundle} from '../../interfaces/ISummaryResources';
+import {IBundle, ISummaryResources} from '../../interfaces/ISummaryResources';
 
 export class SummaryResources implements ISummaryResources {
   ready: boolean;

@@ -1,4 +1,4 @@
-import {IshLinksArray, IshLink} from '../../interfaces/IshLinks';
+import {IshLink, IshLinksArray} from '../../interfaces/IshLinks';
 
 export class shLinksArray implements IshLinksArray {
   links: IshLink[];

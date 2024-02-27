@@ -2,7 +2,6 @@ import React from 'react';
 import {Image, Pressable, Text, View} from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './style';
-import globalStyle from '../../assets/styles/globalStyle';
 
 const NavigationButton = props => {
   return (

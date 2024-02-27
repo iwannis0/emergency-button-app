@@ -1,8 +1,8 @@
 import {StyleSheet} from 'react-native';
 import {
   horizontalScale,
-  verticalScale,
   scaleFontSize,
+  verticalScale,
 } from '../../assets/styles/scaling';
 
 const styles = StyleSheet.create({

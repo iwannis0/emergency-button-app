@@ -1,5 +1,5 @@
 import {IAllergyIntoleranceSummary} from './types/IAllergyIntoleranceSummary';
-import {IMedicationSummary, IMedication} from './types/IMedicationSummary';
+import {IMedication, IMedicationSummary} from './types/IMedicationSummary';
 import {ICarePlanSummary} from './types/ICarePlanSummary';
 import {IConditionSummary} from './types/IConditionSummary';
 import {IDeviceSummary} from './types/IDeviceSummary';

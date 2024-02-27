@@ -1,14 +1,14 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
-  View,
-  Text,
-  Image,
-  TextInput,
-  SafeAreaView,
-  TouchableOpacity,
-  Switch,
   Alert,
+  Image,
+  SafeAreaView,
   ScrollView,
+  Switch,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import {useTranslation} from 'react-i18next';
 import i18n from '../../assets/translations/i18next';
@@ -17,10 +17,6 @@ import globalStyle from '../../assets/styles/globalStyle';
 import Loading from '../../components/Loading/Loading';
 import ModalComponent from '../../components/ModalComponent/ModalComponent';
 import NavigationButton from '../../components/NavigationButton/NavigationButton';
-
-const AUTHORIZED = 'Authorized';
-const SUCCESS = 'Success';
-
 // Values
 import {useRecoilState} from 'recoil';
 import {userState} from '../../features/recoil/atoms/User/userState';
@@ -34,11 +30,14 @@ import {
   isPhoneSecuredCheck,
 } from '../../features/auth/BiometricsManager';
 
-const LoginScreen = ({navigation}) => {
+const AUTHORIZED = 'Authorized';
+const SUCCESS = 'Success';
+
+const LoginScreen = () => {
   const {t} = useTranslation();
   const isFocused = useIsFocused();
 
-  const [user, setUser] = useRecoilState(userState);
+  const [_, setUser] = useRecoilState(userState);
   const [userPreferences, setUserPreferences] =
     useRecoilState(UserPreferencesState);
 
@@ -79,9 +78,9 @@ const LoginScreen = ({navigation}) => {
     async function checkLanguage() {
       if (isFocused) {
         if (userPreferences.language === 'English') {
-          i18n.changeLanguage('en');
+          await i18n.changeLanguage('en');
         } else {
-          i18n.changeLanguage('gr');
+          await i18n.changeLanguage('gr');
         }
       }
     }

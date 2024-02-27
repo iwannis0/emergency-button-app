@@ -1,13 +1,11 @@
-import {useEffect} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import {Alert} from 'react-native';
-import {useState, useCallback} from 'react';
 import {useTranslation} from 'react-i18next';
-import {useRecoilState} from 'recoil';
-import {useResetRecoilState} from 'recoil';
+import {useRecoilState, useResetRecoilState} from 'recoil';
 import {userState} from '../recoil/atoms/User/userState';
 import {UserPreferencesState} from '../recoil/atoms/UserPreferences/UserPreferencesState';
 import {TokensUtils} from 'react-native-keycloak-plugin';
-import {signOut, RefreshToken} from './auth';
+import {RefreshToken, signOut} from './auth';
 
 const LOGOUT = 'Logout';
 const AUTHENTICATION = 'Authentication';
@@ -19,7 +17,6 @@ async function handleLogout(resetUser, resetKeychain) {
   if (logoutResponse === 'Success') {
     resetUser();
   }
-  return;
 }
 
 async function refreshableFetch(keepLoggedIn, token) {
@@ -44,8 +41,7 @@ const TokenManager = () => {
   const [isPaused, setIsPaused] = useState(false);
   const [user, setUser] = useRecoilState(userState);
   const resetUser = useResetRecoilState(userState);
-  const [userPreferences, setUserPreferences] =
-    useRecoilState(UserPreferencesState);
+  const [userPreferences, _] = useRecoilState(UserPreferencesState);
 
   const showAlert = useCallback(
     alertType => {
