@@ -23,9 +23,7 @@ const InformationCard = props => {
   const [riskTest, setRiskTest] = useState('Unknown');
   const [riskColor, setriskColor] = useState(RISK_COLOURS.UNKNOWN);
   const [statusColor, setstatusColor] = useState('#76A66E');
-  {
-    /* This effect is used to define the structure of the Card */
-  }
+
   useEffect(() => {
     if (props.type === 'Medical') {
       setrow2Flag(false);
@@ -46,9 +44,6 @@ const InformationCard = props => {
     }
   }, [props.type]);
 
-  {
-    /* This effect is used to change the color of the Risk Box */
-  }
   useEffect(() => {
     if (props.type === 'Allergy') {
       if (props.risk === 'High Risk') {
@@ -76,9 +71,6 @@ const InformationCard = props => {
     }
   }, [props, props.type, props.risk]);
 
-  {
-    /* This effect is used to change the color of the Status circle */
-  }
   useEffect(() => {
     if (props.type === 'Allergy') {
       if (props.status === 'Inactive') {
@@ -138,7 +130,7 @@ const InformationCard = props => {
           </View>
         )}
 
-        {/* The third row is an additional information and if applicable the onset date */}
+        {/* The third row is additional information and if applicable the onset date */}
         <View style={[globalStyle.row, {marginTop: row3TopMargin}]}>
           <Text numberOfLines={1} style={globalStyle.descriptionGrey}>
             {props.BottomSubtitle.length < CHARACTER_LIMIT

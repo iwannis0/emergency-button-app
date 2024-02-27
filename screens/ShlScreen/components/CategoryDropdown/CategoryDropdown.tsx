@@ -10,6 +10,7 @@ import globalStyle from '../../../../assets/styles/globalStyle';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faCheck} from '@fortawesome/free-solid-svg-icons';
 import styles from './style';
+
 const DropdownComponent = ({value, setValue}) => {
   const {t} = useTranslation();
 

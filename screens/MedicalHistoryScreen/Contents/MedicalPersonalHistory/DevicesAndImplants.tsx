@@ -38,7 +38,7 @@ const DeviceAndImplants = () => {
   return (
     <View style={styles.containerHeight}>
       <FlatList
-        keyExtractor={(_, index) => index.toString()}
+        keyExtractor={(__, index) => index.toString()}
         data={data}
         renderItem={({item}) => {
           return (

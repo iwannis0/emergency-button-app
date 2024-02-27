@@ -1,11 +1,10 @@
-import React, {useState, useRef, useEffect} from 'react';
-import {View, Text, Animated, FlatList, Pressable, Alert} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
+import {Alert, Animated, FlatList, Pressable, Text, View} from 'react-native';
 import {Swipeable} from 'react-native-gesture-handler';
 import styles from './style';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
   faAngleLeft,
-  faInfo,
   faInfoCircle,
   faTrashCan,
 } from '@fortawesome/free-solid-svg-icons';
@@ -16,7 +15,7 @@ import {useRecoilState} from 'recoil';
 import {shlHistoryState} from '../../features/recoil/atoms/ShlHistory/shlHistoryState';
 import {userState} from '../../features/recoil/atoms/User/userState';
 import Loading from '../Loading/Loading';
-import {getLinks, deleteLink} from '../../screens/ShlScreen/api/shlFunctions';
+import {deleteLink, getLinks} from '../../screens/ShlScreen/api/shlFunctions';
 
 const ListItem = ({item, onDelete}) => {
   const swipeThreshold = 80;

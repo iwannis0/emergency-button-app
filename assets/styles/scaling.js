@@ -1,4 +1,5 @@
 import {Dimensions} from 'react-native';
+
 const {width, height} = Dimensions.get('window');
 
 const horizontalScale = size => (size / width) * width;

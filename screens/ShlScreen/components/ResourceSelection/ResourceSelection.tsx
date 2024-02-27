@@ -1,11 +1,11 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
+  FlatList,
   SafeAreaView,
   Text,
-  FlatList,
-  View,
-  TouchableOpacity,
   TextInput,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {getSummary} from '../../api/Summary';
@@ -84,8 +84,7 @@ const ResourceSelection = () => {
 
   const fetchData = async () => {
     try {
-      const newData = await getSummary(user.token, user.id);
-      return newData;
+      return await getSummary(user.token, user.id);
     } catch (error) {
       console.error(error);
     } finally {

@@ -41,7 +41,7 @@ const GynecologicalHistoryScreen = () => {
     return (
       <SafeAreaView>
         <View style={[globalStyle.marginTop60, styles.container]}>
-          <NoDataSection></NoDataSection>
+          <NoDataSection />
         </View>
       </SafeAreaView>
     );

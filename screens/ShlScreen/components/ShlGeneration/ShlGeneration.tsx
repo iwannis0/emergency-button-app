@@ -1,12 +1,5 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  Switch,
-  TouchableOpacity,
-  Alert,
-} from 'react-native';
+import {Alert, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {useRecoilState} from 'recoil';
 import {summaryResourcesState} from '../../../../features/recoil/atoms/SummaryResources/summaryResourcesState';
@@ -100,8 +93,6 @@ const ShlGeneration = (props: Props) => {
       setShlHistory(updatedShlHistory);
       return 'Success';
     } catch (errorMessage) {
-      expirationDate;
-      console.log('expirationDate');
       return 'Failure';
     } finally {
       setPause(false);

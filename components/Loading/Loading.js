@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Animated, Text, Easing} from 'react-native';
+import {Animated, Easing, Text, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import styles from './style';
 

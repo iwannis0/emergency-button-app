@@ -1,12 +1,12 @@
 import React from 'react';
 import {
+  Image,
+  Pressable,
   SafeAreaView,
   ScrollView,
-  View,
   Text,
-  Pressable,
   TouchableOpacity,
-  Image,
+  View,
 } from 'react-native';
 import NavigationButton from '../../components/NavigationButton/NavigationButton';
 import styles from './style';
@@ -14,12 +14,11 @@ import globalStyle from '../../assets/styles/globalStyle';
 import {useTranslation} from 'react-i18next';
 import {useRecoilState} from 'recoil';
 import {userState} from '../../features/recoil/atoms/User/userState';
-import {shlHistoryState} from '../../features/recoil/atoms/ShlHistory/shlHistoryState';
 
 const MyHealthScreen = ({navigation}) => {
   const {t} = useTranslation();
   const [user, _] = useRecoilState(userState);
-  const [shHistory, __] = useRecoilState(shlHistoryState);
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.ImageContainer}>

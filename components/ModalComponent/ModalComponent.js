@@ -1,7 +1,6 @@
 //Basics
 import React from 'react';
 import {
-  Image,
   KeyboardAvoidingView,
   Modal,
   Text,

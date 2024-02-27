@@ -1,9 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {
-  horizontalScale,
-  scaleFontSize,
-  verticalScale,
-} from '../../assets/styles/scaling';
+import {verticalScale} from '../../assets/styles/scaling';
 
 const myHealthDashboardStyle = StyleSheet.create({
   container: {

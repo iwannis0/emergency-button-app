@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './styles';
 import PropTypes from 'prop-types';
 import {useTranslation} from 'react-i18next';
-import {Text, Switch, View} from 'react-native';
+import {Switch, Text, View} from 'react-native';
 
 // Remove check and put toggle and remove backround color, also put toggle on right
 const ResourceIPS = props => {
