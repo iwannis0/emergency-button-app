@@ -6,7 +6,7 @@ import globalStyle from '../../assets/styles/globalStyle';
 
 const NoDataComponent = () => (
   <View style={styles.noDataContainer}>
-    <Text style={globalStyle.descriptionBlackL2}>{t('no-data')}</Text>
+    <Text style={globalStyle.descriptionBlackL2}>{t('general.no-known')}</Text>
   </View>
 );
 

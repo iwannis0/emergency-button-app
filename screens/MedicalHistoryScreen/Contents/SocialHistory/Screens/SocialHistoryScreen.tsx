@@ -52,40 +52,42 @@ const SocialHistoryScreen = () => {
             renderItem={({item}) => (
               <InformationCard
                 type={'Procedure'}
-                title={item.type || t('no-data')}
-                TopSubtitle={`${t('medicalHistory.socialHistory.from')} ${
+                title={item.type || t('general.no-data')}
+                TopSubtitle={`${t('dictionary.from')} ${
                   item.startDate
                     ? dayjs(item.startDate).format(DATE_FORMAT) +
-                      t('medicalHistory.socialHistory.until') +
+                      t('dictionary.until') +
                       item.endDate
                       ? dayjs(item.endDate).format(DATE_FORMAT)
-                      : t('medicalHistory.socialHistory.present')
-                    : t('no-data')
+                      : t('dictionary.present')
+                    : t('general.no-data')
                 }`}
                 BottomSubtitle={`${item.value} ${item.unit}`}>
                 <ScrollView>
                   <Modalinfo
-                    placeholder={t('medicalHistory.socialHistory.onset')}
+                    placeholder={t('dates.onset')}
                     value={
                       item.startDate
                         ? dayjs(item.startDate).format(DATE_FORMAT)
-                        : t('no-data')
+                        : t('general.no-data')
                     }
                   />
                   <Modalinfo
-                    placeholder={t('medicalHistory.socialHistory.endDate')}
+                    placeholder={t('dates.end')}
                     value={
                       item.startDate
                         ? item.endDate
                           ? dayjs(item.endDate).format(DATE_FORMAT)
-                          : t('medicalHistory.socialHistory.present')
-                        : t('no-data')
+                          : t('dictionary.present')
+                        : t('general.no-data')
                     }
                   />
                   <Modalinfo
-                    placeholder={t('medicalHistory.socialHistory.frequency')}
+                    placeholder={t('patientSummary.social-history.frequency')}
                     value={
-                      item.unit ? item.value + ' ' + item.unit : t('no-data')
+                      item.unit
+                        ? item.value + ' ' + item.unit
+                        : t('general.no-data')
                     }
                   />
                 </ScrollView>

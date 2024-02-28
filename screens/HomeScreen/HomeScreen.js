@@ -40,7 +40,7 @@ const MyHealthScreen = ({navigation}) => {
       <ScrollView style={globalStyle.marginTop60}>
         <NavigationButton
           type={'withIcon'}
-          title={t('Alerts')}
+          title={t('patientSummary.alerts.title')}
           image={require('../../assets/images/forNavigation/Alert.png')}
           onPress={() => {
             navigation.navigate('Alerts');
@@ -50,7 +50,7 @@ const MyHealthScreen = ({navigation}) => {
         />
         <NavigationButton
           type={'withIcon'}
-          title={t('Medical History')}
+          title={t('patientSummary.title')}
           image={require('../../assets/images/forNavigation/Medical.png')}
           onPress={() => {
             navigation.navigate('Medical History');
@@ -60,7 +60,7 @@ const MyHealthScreen = ({navigation}) => {
         />
         <NavigationButton
           type={'withIcon'}
-          title={t('Clinical Examination')}
+          title={t('patientSummary.clinical.title')}
           image={require('../../assets/images/forNavigation/Clinical.png')}
           onPress={() => {
             navigation.navigate('Clinical Examination');
@@ -70,7 +70,7 @@ const MyHealthScreen = ({navigation}) => {
         />
         <NavigationButton
           type={'withIcon'}
-          title={t('Laboratory')}
+          title={t('patientSummary.laboratory.title')}
           image={require('../../assets/images/forNavigation/Laboratory.png')}
           onPress={() => {
             navigation.navigate('Laboratory');
@@ -80,7 +80,7 @@ const MyHealthScreen = ({navigation}) => {
         />
         <NavigationButton
           type={'withIcon'}
-          title={t('Imaging')}
+          title={t('patientSummary.imaging.title')}
           image={require('../../assets/images/forNavigation/Imaging.png')}
           onPress={() => {
             navigation.navigate('Imaging');
@@ -90,7 +90,7 @@ const MyHealthScreen = ({navigation}) => {
         />
         <NavigationButton
           type={'withIcon'}
-          title={t('Episodes of Care and Visits')}
+          title={t('patientSummary.episodes-care.title')}
           image={require('../../assets/images/forNavigation/Episodes.png')}
           onPress={() => {
             navigation.navigate('Episodes of Care and Visits');

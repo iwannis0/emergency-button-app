@@ -44,34 +44,30 @@ const FunctionalStatus = () => {
           <InformationCard
             type={'Procedure'}
             title={item.result || '-'}
-            TopSubtitle={`${t(
-              'medicalHistory.medicalPersonalHistory.problems.functional.onset',
-            )}: ${dayjs(item.onsetDate) || t('no-data')}`}
-            BottomSubtitle={`${t(
-              'medicalHistory.medicalPersonalHistory.problems.functional.assesmentDate',
-            )}: ${dayjs(item.assesmentDate) || t('no-data')}`}>
+            TopSubtitle={`${t('dates.onset')}: ${
+              dayjs(item.onsetDate) || t('general.no-data')
+            }`}
+            BottomSubtitle={`${t('dates.assessment')}: ${
+              dayjs(item.assesmentDate) || t('general.no-data')
+            }`}>
             <ScrollView>
               <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.problems.functional.onset',
-                )}
+                placeholder={t('dates.onset')}
                 value={
-                  dayjs(item.onsetDate).format(DATE_FORMAT) || t('no-data')
+                  dayjs(item.onsetDate).format(DATE_FORMAT) ||
+                  t('general.no-data')
                 }
               />
               <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.problems.functional.assesmentDate',
-                )}
+                placeholder={t('dates.assessment')}
                 value={
-                  dayjs(item.assesment).format(DATE_FORMAT) || t('no-data')
+                  dayjs(item.assesment).format(DATE_FORMAT) ||
+                  t('general.no-data')
                 }
               />
               <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.problems.functional.description',
-                )}
-                value={item.result || t('no-data')}
+                placeholder={t('general.description')}
+                value={item.result || t('general.no-data')}
               />
             </ScrollView>
           </InformationCard>

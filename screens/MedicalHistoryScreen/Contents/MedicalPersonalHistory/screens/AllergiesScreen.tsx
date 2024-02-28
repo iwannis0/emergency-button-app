@@ -26,9 +26,7 @@ const AllergiesScreen = () => {
                 tabBarItemStyle: {width: verticalScale(190)},
               }}>
               <AllergiesTabs.Screen
-                name={t(
-                  'medicalHistory.medicalPersonalHistory.allergies.title',
-                )}
+                name={t('patientSummary.allergies.title')}
                 component={AllergiesAndIntolerances}
               />
             </AllergiesTabs.Navigator>

@@ -26,9 +26,7 @@ const MedicationSummaryScreen = () => {
                 tabBarItemStyle: {width: verticalScale(160)},
               }}>
               <MedicationTabs.Screen
-                name={t(
-                  'medicalHistory.medicalPersonalHistory.medication.title',
-                )}
+                name={t('patientSummary.medication-summary.title')}
                 component={MedicationSummary}
               />
             </MedicationTabs.Navigator>

@@ -43,28 +43,24 @@ const Procedures = () => {
         renderItem={({item}) => (
           <InformationCard
             type={'Procedure'}
-            title={item.description || t('no-data')}
-            TopSubtitle={`${t(
-              'medicalHistory.medicalPersonalHistory.problems.procedures.bodysite',
-            )}: ${item.bodysite || t('no-data')}`}
-            BottomSubtitle={`${t(
-              'medicalHistory.medicalPersonalHistory.problems.procedures.date',
-            )}: ${
-              dayjs(item.procedureDate).format(DATE_FORMAT) || t('no-data')
+            title={item.description || t('general.no-data')}
+            TopSubtitle={`${t('patientSummary.problems.body-site')}: ${
+              item.bodysite || t('general.no-data')
+            }`}
+            BottomSubtitle={`${t('dates.procedure')}: ${
+              dayjs(item.procedureDate).format(DATE_FORMAT) ||
+              t('general.no-data')
             }`}>
             <ScrollView>
               <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.problems.procedures.bodysite',
-                )}
-                value={item.bodysite || t('no-data')}
+                placeholder={t('patientSummary.problems.body-site')}
+                value={item.bodysite || t('general.no-data')}
               />
               <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.problems.procedures.date',
-                )}
+                placeholder={t('dates.procedure')}
                 value={
-                  dayjs(item.procedureDate).format(DATE_FORMAT) || t('no-data')
+                  dayjs(item.procedureDate).format(DATE_FORMAT) ||
+                  t('general.no-data')
                 }
               />
             </ScrollView>

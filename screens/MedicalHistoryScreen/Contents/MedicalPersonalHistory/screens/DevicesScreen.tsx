@@ -26,7 +26,7 @@ const DevicesScreen = () => {
                 tabBarItemStyle: {width: verticalScale(200)},
               }}>
               <DevicesTabs.Screen
-                name={t('medicalHistory.medicalPersonalHistory.devices.title')}
+                name={t('patientSummary.devices.title')}
                 component={DeviceAndImplants}
               />
             </DevicesTabs.Navigator>

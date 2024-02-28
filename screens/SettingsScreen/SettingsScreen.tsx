@@ -34,18 +34,18 @@ const SettingsScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.ImageContainer} />
+      <View />
       <ScrollView style={globalStyle.marginTop60}>
         {/* Change Language */}
         <ModalComponent
-          title={t('Language')}
+          title={t('general.language')}
           visibility={LanguageModalVisible}
           onClose={() => setLanguageModalVisible(false)}>
           <ScrollView>
             <NavigationButton
               type={'withIcon'}
               image={require('../../assets/images/Languages/english.png')}
-              title={t('English')}
+              title={t('general.english')}
               onPress={() => {
                 i18n.changeLanguage('en');
                 setUserPreferences(currentUserPreferences => ({
@@ -60,7 +60,7 @@ const SettingsScreen = () => {
             <NavigationButton
               type={'withIcon'}
               image={require('../../assets/images/Languages/greek.png')}
-              title={t('Greek')}
+              title={t('general.greek')}
               onPress={() => {
                 i18n.changeLanguage('gr');
                 setUserPreferences(currentUserPreferences => ({
@@ -76,7 +76,7 @@ const SettingsScreen = () => {
 
         <NavigationButton
           type={'withArrow'}
-          title={t('Language')}
+          title={t('general.language')}
           onPress={() => {
             setLanguageModalVisible(true);
           }}
@@ -86,19 +86,19 @@ const SettingsScreen = () => {
 
         {/* Terms of use */}
         <ModalComponent
-          title={t('Terms of Use')}
+          title={t('settings.terms')}
           visibility={TermsModalVisible}
           onClose={() => setTermsModalVisible(false)}>
           <ScrollView>
             <Text style={styles.modalInformation}>
-              {t('terms-conditions-text')}
+              {t('settings.terms-description')}
             </Text>
           </ScrollView>
         </ModalComponent>
 
         <NavigationButton
           type={'withArrow'}
-          title={t('Terms of Use')}
+          title={t('settings.terms')}
           onPress={() => {
             setTermsModalVisible(true);
           }}
@@ -108,19 +108,19 @@ const SettingsScreen = () => {
 
         {/* Privacy Policy */}
         <ModalComponent
-          title={t('Privacy Policy')}
+          title={t('settings.privacy-policy')}
           visibility={PrivacyModalVisible}
           onClose={() => setPrivacyModalVisible(false)}>
           <ScrollView>
             <Text style={styles.modalInformation}>
-              {t('privacy-policy-text')}
+              {t('settings.privacy-policy-description')}
             </Text>
           </ScrollView>
         </ModalComponent>
 
         <NavigationButton
           type={'withArrow'}
-          title={t('Privacy Policy')}
+          title={t('settings.privacy-policy')}
           onPress={() => {
             setPrivacyModalVisible(true);
           }}
@@ -130,17 +130,19 @@ const SettingsScreen = () => {
 
         {/* About */}
         <ModalComponent
-          title={t('About')}
+          title={t('dictionary.about')}
           visibility={AboutModalVisible}
           onClose={() => setAboutModalVisible(false)}>
           <ScrollView>
-            <Text style={styles.modalInformation}>{t('about-text')}</Text>
+            <Text style={styles.modalInformation}>
+              {t('settings.about-description')}
+            </Text>
           </ScrollView>
         </ModalComponent>
 
         <NavigationButton
           type={'withArrow'}
-          title={t('About')}
+          title={t('dictionary.about')}
           onPress={() => {
             setAboutModalVisible(true);
           }}
@@ -151,7 +153,7 @@ const SettingsScreen = () => {
         {/* Logout */}
         <NavigationButton
           type={'withArrow'}
-          title={t('Logout')}
+          title={t('settings.logout')}
           onPress={() => {
             handleLogout();
           }}

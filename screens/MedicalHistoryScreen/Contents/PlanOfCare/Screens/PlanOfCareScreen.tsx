@@ -27,9 +27,7 @@ const PlanOfCareScreen = () => {
                 tabBarScrollEnabled: true,
               }}>
               <PlanOfCareTabs.Screen
-                name={t(
-                  'medicalHistory.planOfCare.therapeuticRecommendation.title',
-                )}
+                name={t('patientSummary.plan-of-care.title')}
                 component={PlanOfCare}
               />
             </PlanOfCareTabs.Navigator>

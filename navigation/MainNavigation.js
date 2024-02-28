@@ -13,7 +13,6 @@ import ProfileScreen from '../screens/ProfileScreen/ProfileScreen';
 import {useTranslation} from 'react-i18next';
 import LoginScreen from '../screens/LoginScreen/LoginScreen';
 import {t} from 'i18next';
-import EpidemiologicalHistoryScreen from '../screens/MedicalHistoryScreen/Contents/EpidemiologicalHistory/EpidemiologicalHistoryScreen';
 import AllergiesScreen from '../screens/MedicalHistoryScreen/Contents/MedicalPersonalHistory/screens/AllergiesScreen';
 import ProblemsScreen from '../screens/MedicalHistoryScreen/Contents/MedicalPersonalHistory/screens/ProblemsScreen';
 import SocialHistoryScreen from '../screens/MedicalHistoryScreen/Contents/SocialHistory/Screens/SocialHistoryScreen';
@@ -57,36 +56,27 @@ export const MyHealthStack = () => {
       <stack.Screen
         name={Routes.Home}
         component={HomeScreen}
-        options={{headerShown: true, headerTitle: t('Home')}}
+        options={{headerShown: true, headerTitle: t('myHealth.title')}}
       />
       <stack.Screen
         name={Routes.Alerts}
         component={AlertsScreen}
-        options={{headerShown: true, headerTitle: t('Alerts')}}
+        options={{
+          headerShown: true,
+          headerTitle: t('patientSummary.alerts.title'),
+        }}
       />
       <stack.Screen
         name={Routes.MedicalHistory}
         component={MedicalHistoryScreen}
-        options={{headerShown: true, headerTitle: t('Medical History')}}
-      />
-      <stack.Screen
-        name={Routes.EpidemiologicalHistoryScreen}
-        component={EpidemiologicalHistoryScreen}
-        options={{
-          headerShown: true,
-          headerTitle: t(
-            'medicalHistory.epidemiologicalHistory.travel-history',
-          ),
-        }}
+        options={{headerShown: true, headerTitle: t('patientSummary.title')}}
       />
       <stack.Screen
         name={Routes.AllergiesScreen}
         component={AllergiesScreen}
         options={{
           headerShown: true,
-          headerTitle: t(
-            'medicalHistory.medicalPersonalHistory.allergies.title',
-          ),
+          headerTitle: t('patientSummary.allergies.title'),
         }}
       />
       <stack.Screen
@@ -94,9 +84,7 @@ export const MyHealthStack = () => {
         component={ProblemsScreen}
         options={{
           headerShown: true,
-          headerTitle: t(
-            'medicalHistory.medicalPersonalHistory.problems.title',
-          ),
+          headerTitle: t('patientSummary.problems.current'),
         }}
       />
       <stack.Screen
@@ -104,7 +92,7 @@ export const MyHealthStack = () => {
         component={SocialHistoryScreen}
         options={{
           headerShown: true,
-          headerTitle: t('medicalHistory.socialHistory.title'),
+          headerTitle: t('patientSummary.social-history.title'),
         }}
       />
       <stack.Screen
@@ -112,7 +100,7 @@ export const MyHealthStack = () => {
         component={DevicesScreen}
         options={{
           headerShown: true,
-          headerTitle: t('medicalHistory.medicalPersonalHistory.devices.title'),
+          headerTitle: t('patientSummary.devices.title'),
         }}
       />
       <stack.Screen
@@ -120,9 +108,7 @@ export const MyHealthStack = () => {
         component={MedicationSummaryScreen}
         options={{
           headerShown: true,
-          headerTitle: t(
-            'medicalHistory.medicalPersonalHistory.medication.title',
-          ),
+          headerTitle: t('patientSummary.medication-summary.title'),
         }}
       />
       <stack.Screen
@@ -130,7 +116,7 @@ export const MyHealthStack = () => {
         component={GynecologicalHistoryScreen}
         options={{
           headerShown: true,
-          headerTitle: t('medicalHistory.gynecological.title'),
+          headerTitle: t('patientSummary.gynaecological.title'),
         }}
       />
       <stack.Screen
@@ -138,7 +124,7 @@ export const MyHealthStack = () => {
         component={ImmunizationScreen}
         options={{
           headerShown: true,
-          headerTitle: t('medicalHistory.immunization.title'),
+          headerTitle: t('patientSummary.immunization.title'),
         }}
       />
       <stack.Screen
@@ -146,7 +132,7 @@ export const MyHealthStack = () => {
         component={PlanOfCareScreen}
         options={{
           headerShown: true,
-          headerTitle: t('medicalHistory.planOfCare.title'),
+          headerTitle: t('patientSummary.plan-of-care.title'),
         }}
       />
       <stack.Screen
@@ -175,7 +161,7 @@ export const ServicesStack = () => {
       <stack.Screen
         name={Routes.ServicesScreen}
         component={ServicesScreen}
-        options={{headerShown: true, headerTitle: t('Services')}}
+        options={{headerShown: true, headerTitle: t('services.title')}}
       />
     </stack.Navigator>
   );
@@ -193,7 +179,7 @@ export const SettingsStack = () => {
       <stack.Screen
         name={Routes.SettingsScreen}
         component={SettingsScreen}
-        options={{headerShown: true, headerTitle: t('Settings')}}
+        options={{headerShown: true, headerTitle: t('settings.title')}}
       />
     </stack.Navigator>
   );
@@ -212,7 +198,7 @@ export const Authenticated = () => {
       }}>
       <Tab.Screen
         options={{
-          tabBarLabel: t('MyHealth'),
+          tabBarLabel: t('myHealth.title'),
           tabBarIcon: ({focused}) => (
             <Image
               source={require('../assets/images/forNavigation/myHealth.png')}
@@ -225,12 +211,12 @@ export const Authenticated = () => {
           ),
           headerShown: false,
         }}
-        name="MyHealth"
+        name={t('myHealth.title')}
         component={MyHealthStack}
       />
       <Tab.Screen
         options={{
-          title: t('Services'),
+          title: t('services.title'),
           tabBarIcon: ({focused}) => (
             <Image
               source={require('../assets/images/forNavigation/Services.png')}
@@ -243,12 +229,12 @@ export const Authenticated = () => {
           ),
           headerShown: false,
         }}
-        name="Services"
+        name={t('services.title')}
         component={ServicesStack}
       />
       <Tab.Screen
         options={{
-          title: t('Settings'),
+          title: t('settings.title'),
           tabBarIcon: ({focused}) => (
             <Image
               source={require('../assets/images/forNavigation/Settings.png')}
@@ -261,7 +247,7 @@ export const Authenticated = () => {
           ),
           headerShown: false,
         }}
-        name="Settings"
+        name={t('settings.title')}
         component={SettingsStack}
       />
     </Tab.Navigator>

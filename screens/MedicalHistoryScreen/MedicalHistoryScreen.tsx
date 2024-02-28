@@ -1,6 +1,5 @@
 import React from 'react';
-import {SafeAreaView, ScrollView, Text, View} from 'react-native';
-import styles from './style';
+import {SafeAreaView, ScrollView, View} from 'react-native';
 import globalStyle from '../../assets/styles/globalStyle';
 import {useTranslation} from 'react-i18next';
 import NavigationButton from '../../components/NavigationButton/NavigationButton';
@@ -13,73 +12,46 @@ const MedicalHistoryScreen = ({navigation}) => {
       <View style={globalStyle.backgroundWhite}>
         <View style={globalStyle.marginTop60}>
           <ScrollView>
-            {/*<NavigationButton
+            <NavigationButton
               type={'withArrow'}
-              title={t('medicalHistory.epidemiologicalHistory.title')}
+              title={t('patientSummary.allergies.title')}
               onPress={() => {
-                navigation.navigate('EpidemiologicalHistoryScreen');
+                navigation.navigate('AllergiesScreen');
               }}
               bottomBorderStyle={globalStyle.bottomBorderL1}
               titleStyle={globalStyle.descriptionBlackL1}
-            />*/}
-            <View style={globalStyle.bottomBorderL1}>
-              <View style={styles.PersonalHistoryContainer}>
-                <Text
-                  style={[
-                    globalStyle.descriptionBlackL1,
-                    styles.PersonalHistoryTitle,
-                  ]}>
-                  {t('medicalHistory.medicalPersonalHistory.title')}
-                </Text>
-                <NavigationButton
-                  type={'withArrow'}
-                  title={t(
-                    'medicalHistory.medicalPersonalHistory.allergies.title',
-                  )}
-                  onPress={() => {
-                    navigation.navigate('AllergiesScreen');
-                  }}
-                  bottomBorderStyle={globalStyle.bottomBorderL2}
-                  titleStyle={globalStyle.descriptionBlackL2}
-                />
-                <NavigationButton
-                  type={'withArrow'}
-                  title={t(
-                    'medicalHistory.medicalPersonalHistory.problems.title',
-                  )}
-                  onPress={() => {
-                    navigation.navigate('ProblemsScreen');
-                  }}
-                  bottomBorderStyle={globalStyle.bottomBorderL2}
-                  titleStyle={globalStyle.descriptionBlackL2}
-                />
-                <NavigationButton
-                  type={'withArrow'}
-                  title={t(
-                    'medicalHistory.medicalPersonalHistory.devices.title',
-                  )}
-                  onPress={() => {
-                    navigation.navigate('DevicesScreen');
-                  }}
-                  bottomBorderStyle={globalStyle.bottomBorderL2}
-                  titleStyle={globalStyle.descriptionBlackL2}
-                />
-                <NavigationButton
-                  type={'withArrow'}
-                  title={t(
-                    'medicalHistory.medicalPersonalHistory.medication.title',
-                  )}
-                  onPress={() => {
-                    navigation.navigate('MedicationSummaryScreen');
-                  }}
-                  titleStyle={globalStyle.descriptionBlackL2}
-                />
-              </View>
-            </View>
+            />
+            <NavigationButton
+              type={'withArrow'}
+              title={t('patientSummary.problems.title')}
+              onPress={() => {
+                navigation.navigate('ProblemsScreen');
+              }}
+              bottomBorderStyle={globalStyle.bottomBorderL1}
+              titleStyle={globalStyle.descriptionBlackL1}
+            />
+            <NavigationButton
+              type={'withArrow'}
+              title={t('patientSummary.devices.title')}
+              onPress={() => {
+                navigation.navigate('DevicesScreen');
+              }}
+              bottomBorderStyle={globalStyle.bottomBorderL1}
+              titleStyle={globalStyle.descriptionBlackL1}
+            />
+            <NavigationButton
+              type={'withArrow'}
+              title={t('patientSummary.medication-summary.title')}
+              onPress={() => {
+                navigation.navigate('MedicationSummaryScreen');
+              }}
+              bottomBorderStyle={globalStyle.bottomBorderL1}
+              titleStyle={globalStyle.descriptionBlackL1}
+            />
 
             <NavigationButton
               type={'withArrow'}
-              title={t('medicalHistory.gynecological.title')}
+              title={t('patientSummary.gynaecological.title')}
               onPress={() => {
                 navigation.navigate('GynecologicalHistoryScreen');
               }}
@@ -88,7 +60,7 @@ const MedicalHistoryScreen = ({navigation}) => {
             />
             <NavigationButton
               type={'withArrow'}
-              title={t('medicalHistory.socialHistory.title')}
+              title={t('patientSummary.social-history.title')}
               onPress={() => {
                 navigation.navigate('SocialHistoryScreen');
               }}
@@ -97,7 +69,7 @@ const MedicalHistoryScreen = ({navigation}) => {
             />
             <NavigationButton
               type={'withArrow'}
-              title={t('medicalHistory.immunization.title')}
+              title={t('patientSummary.immunization.title')}
               onPress={() => {
                 navigation.navigate('ImmunizationScreen');
               }}
@@ -106,7 +78,7 @@ const MedicalHistoryScreen = ({navigation}) => {
             />
             <NavigationButton
               type={'withArrow'}
-              title={t('medicalHistory.planOfCare.title')}
+              title={t('patientSummary.plan-of-care.title')}
               onPress={() => {
                 navigation.navigate('PlanOfCareScreen');
               }}

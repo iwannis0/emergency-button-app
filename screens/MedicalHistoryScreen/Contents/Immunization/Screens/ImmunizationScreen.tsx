@@ -27,7 +27,7 @@ const ImmunizationScreen = () => {
                 tabBarScrollEnabled: true,
               }}>
               <ImmunizationTabs.Screen
-                name={t('medicalHistory.immunization.title')}
+                name={t('patientSummary.immunization.title')}
                 component={Vaccination}
               />
             </ImmunizationTabs.Navigator>

@@ -10,11 +10,11 @@ const ServicesScreen = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.ImageContainer} />
+      <View />
       <ScrollView style={globalStyle.marginTop60}>
         <NavigationButton
           type={'withIcon'}
-          title={t('Doctors Registry')}
+          title={t('services.doctor-registry.title')}
           image={require('../../assets/images/forNavigation/Doctor_registry.png')}
           onPress={() => {
             navigation.navigate('Alerts'); // TO BE IMPLEMENTED
@@ -24,7 +24,7 @@ const ServicesScreen = ({navigation}) => {
         />
         <NavigationButton
           type={'withIcon'}
-          title={t('Pharmacists Registry')}
+          title={t('services.pharmacist-registry.title')}
           image={require('../../assets/images/forNavigation/Pharmacist_registry.png')}
           onPress={() => {
             navigation.navigate('Alerts'); // TO BE IMPLEMENTED
