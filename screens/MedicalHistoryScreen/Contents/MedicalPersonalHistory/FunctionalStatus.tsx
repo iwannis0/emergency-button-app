@@ -45,10 +45,11 @@ const FunctionalStatus = () => {
             type={'Procedure'}
             title={item.result || '-'}
             TopSubtitle={`${t('dates.onset')}: ${
-              dayjs(item.onsetDate) || t('general.no-data')
+              dayjs(item.onsetDate).format(DATE_FORMAT) || t('general.no-data')
             }`}
             BottomSubtitle={`${t('dates.assessment')}: ${
-              dayjs(item.assesmentDate) || t('general.no-data')
+              dayjs(item.assesmentDate).format(DATE_FORMAT) ||
+              t('general.no-data')
             }`}>
             <ScrollView>
               <Modalinfo

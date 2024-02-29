@@ -3,11 +3,19 @@ import {initReactI18next} from 'react-i18next';
 
 import en from './en.json';
 import gr from './gr.json';
+import pt from './pt.json';
+import hu from './hu.json';
+import si from './si.json';
+import cz from './cz.json';
 
 i18n.use(initReactI18next).init({
   resources: {
     en: {translation: en},
     gr: {translation: gr},
+    pt: {translation: pt},
+    hu: {translation: hu},
+    si: {translation: si},
+    cz: {translation: cz},
   },
   lng: 'en', // Set the default language
   fallbackLng: 'en', // Fallback language if a translation is missing

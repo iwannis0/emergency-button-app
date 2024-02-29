@@ -29,6 +29,7 @@ import {
   checkBiometrics,
   isPhoneSecuredCheck,
 } from '../../features/auth/BiometricsManager';
+import CountryFlag from 'react-native-country-flag';
 
 const AUTHORIZED = 'Authorized';
 const SUCCESS = 'Success';
@@ -50,9 +51,13 @@ const LoginScreen = () => {
   const [isPhoneSecured, setIsPhoneSecured] = useState(true);
   const [LanguageModalVisible, setLanguageModalVisible] = React.useState(false);
 
-  const images = {
-    English: require('../../assets/images/Languages/english.png'),
-    Greek: require('../../assets/images/Languages/greek.png'),
+  const isoCode = {
+    English: 'gb',
+    Greek: 'gr',
+    Portuguese: 'pt',
+    Hungarian: 'hu',
+    Slovak: 'si',
+    Czech: 'cz',
   };
 
   useEffect(() => {
@@ -79,10 +84,25 @@ const LoginScreen = () => {
   useEffect(() => {
     async function checkLanguage() {
       if (isFocused) {
-        if (userPreferences.language === 'English') {
-          await i18n.changeLanguage('en');
-        } else {
-          await i18n.changeLanguage('gr');
+        switch (userPreferences.language) {
+          case 'Greek':
+            await i18n.changeLanguage('gr');
+            break;
+          case 'Portuguese':
+            await i18n.changeLanguage('pt');
+            break;
+          case 'Hungarian':
+            await i18n.changeLanguage('hu');
+            break;
+          case 'Slovak':
+            await i18n.changeLanguage('si');
+            break;
+          case 'Czech':
+            await i18n.changeLanguage('cz');
+            break;
+          default:
+            await i18n.changeLanguage('gb');
+            break;
         }
       }
     }
@@ -128,7 +148,7 @@ const LoginScreen = () => {
         <ScrollView>
           <NavigationButton
             type={'withIcon'}
-            image={require('../../assets/images/Languages/english.png')}
+            countryIso={'gb'}
             title={t('English')}
             onPress={() => {
               i18n.changeLanguage('en');
@@ -143,13 +163,73 @@ const LoginScreen = () => {
           />
           <NavigationButton
             type={'withIcon'}
-            image={require('../../assets/images/Languages/greek.png')}
+            countryIso={'gr'}
             title={t('Greek')}
             onPress={() => {
               i18n.changeLanguage('gr');
               setUserPreferences(currentUserPreferences => ({
                 ...currentUserPreferences,
                 language: 'Greek',
+              }));
+              setLanguageModalVisible(false);
+            }}
+            bottomBorderStyle={globalStyle.bottomBorderL3}
+            titleStyle={globalStyle.descriptionBlackL1}
+          />
+          <NavigationButton
+            type={'withIcon'}
+            countryIso={'pt'}
+            title={t('Portuguese')}
+            onPress={() => {
+              i18n.changeLanguage('pt');
+              setUserPreferences(currentUserPreferences => ({
+                ...currentUserPreferences,
+                language: 'Portuguese',
+              }));
+              setLanguageModalVisible(false);
+            }}
+            bottomBorderStyle={globalStyle.bottomBorderL3}
+            titleStyle={globalStyle.descriptionBlackL1}
+          />
+          <NavigationButton
+            type={'withIcon'}
+            countryIso={'hu'}
+            title={t('Hungarian')}
+            onPress={() => {
+              i18n.changeLanguage('hu');
+              setUserPreferences(currentUserPreferences => ({
+                ...currentUserPreferences,
+                language: 'Hungarian',
+              }));
+              setLanguageModalVisible(false);
+            }}
+            bottomBorderStyle={globalStyle.bottomBorderL3}
+            titleStyle={globalStyle.descriptionBlackL1}
+          />
+          <NavigationButton
+            type={'withIcon'}
+            countryIso={'si'}
+            title={t('Slovak')}
+            onPress={() => {
+              i18n.changeLanguage('si');
+              setUserPreferences(currentUserPreferences => ({
+                ...currentUserPreferences,
+                language: 'Slovak',
+              }));
+              setLanguageModalVisible(false);
+            }}
+            bottomBorderStyle={globalStyle.bottomBorderL3}
+            titleStyle={globalStyle.descriptionBlackL1}
+          />
+          <NavigationButton
+            type={'withIcon'}
+            countryIso={'cz'}
+            title={t('Czech')}
+            onPress={() => {
+              i18n.changeLanguage('cz');
+              setUserPreferences(currentUserPreferences => ({
+                ...currentUserPreferences,
+                language: 'Czech',
               }));
               setLanguageModalVisible(false);
             }}
@@ -163,13 +243,10 @@ const LoginScreen = () => {
         onPress={() => {
           setLanguageModalVisible(true);
         }}>
-        <Text style={globalStyle.descriptionBlackL3}>
-          {t('general.change-language')}:
+        <Text style={globalStyle.descriptionBlackL2}>
+          {t('general.change-language')}:{' '}
         </Text>
-        <Image
-          style={styles.changeLanguageImage}
-          source={images[userPreferences.language]}
-        />
+        <CountryFlag isoCode={isoCode[userPreferences.language]} size={25} />
       </TouchableOpacity>
       <View style={[styles.ImageContainer, globalStyle.fullyCentered]}>
         <Image

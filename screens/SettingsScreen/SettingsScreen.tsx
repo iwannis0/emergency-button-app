@@ -44,8 +44,8 @@ const SettingsScreen = () => {
           <ScrollView>
             <NavigationButton
               type={'withIcon'}
-              image={require('../../assets/images/Languages/english.png')}
-              title={t('general.english')}
+              countryIso={'gb'}
+              title={t('English')}
               onPress={() => {
                 i18n.changeLanguage('en');
                 setUserPreferences(currentUserPreferences => ({
@@ -59,13 +59,73 @@ const SettingsScreen = () => {
             />
             <NavigationButton
               type={'withIcon'}
-              image={require('../../assets/images/Languages/greek.png')}
-              title={t('general.greek')}
+              countryIso={'gr'}
+              title={t('Greek')}
               onPress={() => {
                 i18n.changeLanguage('gr');
                 setUserPreferences(currentUserPreferences => ({
                   ...currentUserPreferences,
                   language: 'Greek',
+                }));
+                setLanguageModalVisible(false);
+              }}
+              bottomBorderStyle={globalStyle.bottomBorderL3}
+              titleStyle={globalStyle.descriptionBlackL1}
+            />
+            <NavigationButton
+              type={'withIcon'}
+              countryIso={'pt'}
+              title={t('Portuguese')}
+              onPress={() => {
+                i18n.changeLanguage('pt');
+                setUserPreferences(currentUserPreferences => ({
+                  ...currentUserPreferences,
+                  language: 'Portuguese',
+                }));
+                setLanguageModalVisible(false);
+              }}
+              bottomBorderStyle={globalStyle.bottomBorderL3}
+              titleStyle={globalStyle.descriptionBlackL1}
+            />
+            <NavigationButton
+              type={'withIcon'}
+              countryIso={'hu'}
+              title={t('Hungarian')}
+              onPress={() => {
+                i18n.changeLanguage('hu');
+                setUserPreferences(currentUserPreferences => ({
+                  ...currentUserPreferences,
+                  language: 'Hungarian',
+                }));
+                setLanguageModalVisible(false);
+              }}
+              bottomBorderStyle={globalStyle.bottomBorderL3}
+              titleStyle={globalStyle.descriptionBlackL1}
+            />
+            <NavigationButton
+              type={'withIcon'}
+              countryIso={'si'}
+              title={t('Slovak')}
+              onPress={() => {
+                i18n.changeLanguage('si');
+                setUserPreferences(currentUserPreferences => ({
+                  ...currentUserPreferences,
+                  language: 'Slovak',
+                }));
+                setLanguageModalVisible(false);
+              }}
+              bottomBorderStyle={globalStyle.bottomBorderL3}
+              titleStyle={globalStyle.descriptionBlackL1}
+            />
+            <NavigationButton
+              type={'withIcon'}
+              countryIso={'cz'}
+              title={t('Czech')}
+              onPress={() => {
+                i18n.changeLanguage('cz');
+                setUserPreferences(currentUserPreferences => ({
+                  ...currentUserPreferences,
+                  language: 'Czech',
                 }));
                 setLanguageModalVisible(false);
               }}
