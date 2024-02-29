@@ -28,27 +28,19 @@ const ProblemsScreen = () => {
                 tabBarIndicatorStyle: {backgroundColor: '#33C3BB'},
               }}>
               <ProblemsTabs.Screen
-                name={t(
-                  'medicalHistory.medicalPersonalHistory.problems.current.title',
-                )}
+                name={t('patientSummary.problems.current')}
                 component={CurrentProblems}
               />
               <ProblemsTabs.Screen
-                name={t(
-                  'medicalHistory.medicalPersonalHistory.problems.resolved.title',
-                )}
+                name={t('patientSummary.problems.resolved')}
                 component={ResolvedProblems}
               />
               <ProblemsTabs.Screen
-                name={t(
-                  'medicalHistory.medicalPersonalHistory.problems.procedures.title',
-                )}
+                name={t('patientSummary.problems.procedures')}
                 component={Procedures}
               />
               <ProblemsTabs.Screen
-                name={t(
-                  'medicalHistory.medicalPersonalHistory.problems.functional.title',
-                )}
+                name={t('patientSummary.problems.functional-status')}
                 component={FunctionalStatus}
               />
             </ProblemsTabs.Navigator>

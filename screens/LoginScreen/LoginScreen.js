@@ -58,7 +58,9 @@ const LoginScreen = () => {
   useEffect(() => {
     async function checkBiometricsAndRefresh() {
       if (isFocused && userPreferences.keepLoggedIn) {
-        const biometricAuth = await checkBiometrics(t('Instruction'));
+        const biometricAuth = await checkBiometrics(
+          t('login.biometrics-instruction'),
+        );
         if (biometricAuth.status === SUCCESS) {
           setLoading(true);
           const signingResponse = await autoLogin();
@@ -109,9 +111,11 @@ const LoginScreen = () => {
 
   const SwitchAlert = () => {
     if (!isPhoneSecured) {
-      Alert.alert(t('login-alert-title'), t('login-alert-description'), [
-        {text: t('login-alert-continue')},
-      ]);
+      Alert.alert(
+        t('login.alert-disabled-logged'),
+        t('login.alert-disabled-description'),
+        [{text: t('general.continue')}],
+      );
     }
   };
 
@@ -160,7 +164,7 @@ const LoginScreen = () => {
           setLanguageModalVisible(true);
         }}>
         <Text style={globalStyle.descriptionBlackL3}>
-          {t('change-language')}
+          {t('general.change-language')}:
         </Text>
         <Image
           style={styles.changeLanguageImage}
@@ -176,17 +180,17 @@ const LoginScreen = () => {
       <View
         style={[styles.LoginContainer, globalStyle.backgroundWhite, {flex: 1}]}>
         <Text style={[globalStyle.descriptionBlack, styles.login]}>
-          {t('Login')}
+          {t('login.title')}
         </Text>
         <TextInput
           style={styles.input}
-          placeholder={t('Username')}
+          placeholder={t('login.username')}
           onChangeText={text => setUsername(text)}
         />
         <View style={styles.PasswordContainer}>
           <TextInput
             style={styles.input}
-            placeholder={t('Password')}
+            placeholder={t('login.password')}
             secureTextEntry={!passwordVisible}
             onChangeText={text => setPassword(text)}
           />
@@ -206,7 +210,7 @@ const LoginScreen = () => {
         </View>
         {incorrectPwd && (
           <Text style={[globalStyle.descriptionBlack, styles.errorMessage]}>
-            {t('Incorrect username or password')}
+            {t('login.incorrect')}
           </Text>
         )}
 
@@ -221,7 +225,7 @@ const LoginScreen = () => {
             value={keepLoggedInSwitch}
           />
           <Text style={[globalStyle.descriptionBlack]}>
-            {t('keep-me-logged-in')}
+            {t('login.keep-logged')}
           </Text>
         </TouchableOpacity>
 
@@ -233,14 +237,14 @@ const LoginScreen = () => {
               setLoading(true);
               handleLogin();
             }}>
-            <Text style={globalStyle.buttonText}>{t('Sign In')}</Text>
+            <Text style={globalStyle.buttonText}>{t('login.sign')}</Text>
           </TouchableOpacity>
         </View>
 
         {/* Forgot Password Button */}
         <TouchableOpacity>
           <Text style={[globalStyle.descriptionBlack, styles.forgot]}>
-            {t('Forgot your Password?')}
+            {t('login.forgot')}
           </Text>
         </TouchableOpacity>
 
@@ -248,10 +252,10 @@ const LoginScreen = () => {
         <TouchableOpacity style={styles.SignUpButton}>
           <Text
             style={[globalStyle.descriptionBlack, styles.signInDescription]}>
-            {t("Don't have an account?")}
+            {t('login.new-account')}
           </Text>
           <Text style={[globalStyle.descriptionBlack, styles.signInPrompt]}>
-            {t('Join now')}
+            {t('login.join')}
           </Text>
         </TouchableOpacity>
       </View>

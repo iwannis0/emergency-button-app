@@ -49,40 +49,34 @@ const GynecologicalHistoryScreen = () => {
   return (
     <SafeAreaView>
       <View style={[globalStyle.marginTop60, styles.container]}>
-        <Text style={styles.marginTop}>
-          {t('medicalHistory.gynecological.expectedDelivery')}:
-        </Text>
+        <Text style={styles.marginTop}>{t('dates.expected-delivery')}:</Text>
         <Text style={globalStyle.descriptionBlackL1}>
           {data?.deliveryDate
             ? dayjs(data.deliveryDate).format(DATE_FORMAT)
-            : t('not-applicable')}
+            : t('general.no-data')}
         </Text>
 
-        <Text style={styles.marginTop}>
-          {t('medicalHistory.gynecological.observationDate')}:
-        </Text>
+        <Text style={styles.marginTop}>{t('dates.observation')}:</Text>
         <Text style={globalStyle.descriptionBlackL1}>
           {data?.observationDate
             ? dayjs(data.observationDate).format(DATE_FORMAT)
-            : t('not-applicable')}
+            : t('general.no-data')}
         </Text>
 
         <Text style={styles.marginTop}>
-          {t('medicalHistory.gynecological.abortions')}:
+          {t('patientSummary.gynaecological.abortions')}:
         </Text>
         <Text style={globalStyle.descriptionBlackL1}>
-          {data?.abortions || t('no-data')}
+          {data?.abortions || t('general.no-data')}
         </Text>
 
         <Text style={styles.marginTop}>
-          {t('medicalHistory.gynecological.children')}:
+          {t('patientSummary.gynaecological.children')}:
         </Text>
         <Text style={globalStyle.descriptionBlackL1}>
-          {data?.numberOfChildren || t('no-data')}
+          {data?.numberOfChildren || t('general.no-data')}
         </Text>
-        <Text style={styles.marginTop}>
-          {t('medicalHistory.gynecological.outcomeDate')}
-        </Text>
+        <Text style={styles.marginTop}>{t('dates.outcome')}</Text>
         {data.numberOfChildren > 0 &&
           data?.outcomeDates.split(',').map((date, index) => (
             <Text style={globalStyle.descriptionBlackL1} key={index}>

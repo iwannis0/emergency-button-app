@@ -372,14 +372,12 @@ const ResourceSelection = () => {
                 ObservationResource.valueCodeableConcept.coding.at(0)
                   ?.display || t('no-data')
               }`;
-              info2 = `${t('medicalHistory.epidemiologicalHistory.arrival')}: ${
+              info2 = `${t('dates.arrival')}: ${
                 dayjs(ObservationResource.effectivePeriod.start).format(
                   DATE_FORMAT,
                 ) || t('no-data')
               }`;
-              info3 = `${t(
-                'medicalHistory.epidemiologicalHistory.departure',
-              )}: ${
+              info3 = `${t('dates.departure')}: ${
                 dayjs(ObservationResource.effectivePeriod.end).format(
                   DATE_FORMAT,
                 ) || t('no-data')

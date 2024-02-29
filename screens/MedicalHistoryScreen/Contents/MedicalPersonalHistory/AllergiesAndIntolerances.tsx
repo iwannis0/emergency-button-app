@@ -44,101 +44,75 @@ const AllergiesAndIntolerances = () => {
         renderItem={({item}) => (
           <InformationCard
             type={'Allergy'}
-            title={item.substance || t('no-data')}
-            TopSubtitle={item.type || t('no-data')}
-            BottomSubtitle={item.manifestation || t('no-data')}
+            title={item.substance || t('general.no-data')}
+            TopSubtitle={item.type || t('general.no-data')}
+            BottomSubtitle={item.manifestation || t('general.no-data')}
             risk={item.criticality || 'Undefined'}
             status={item.status || '-'}
             onset={dayjs(new Date(item.onsetDate)).format(DATE_FORMAT) || '-'}>
             <ScrollView>
               <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.allergies.type',
-                )}
-                value={item.type || t('no-data')}
+                placeholder={t('patientSummary.allergies.type')}
+                value={item.type || t('general.no-data')}
               />
               <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.allergies.substance',
-                )}
-                value={item.substance || t('no-data')}
+                placeholder={t('patientSummary.allergies.substance')}
+                value={item.substance || t('general.no-data')}
               />
               <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.allergies.manifestation',
-                )}
-                value={item.manifestation || t('no-data')}
+                placeholder={t('patientSummary.allergies.manifestation')}
+                value={item.manifestation || t('general.no-data')}
               />
               <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.allergies.onsetDate',
-                )}
+                placeholder={t('dates.onset')}
                 value={
                   dayjs(new Date(item.onsetDate)).format(DATE_FORMAT) ||
-                  t('no-data')
+                  t('general.no-data')
                 }
               />
               <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.allergies.status',
-                )}
-                value={item.status || t('no-data')}
+                placeholder={t('general.status')}
+                value={item.status || t('general.no-data')}
               />
               <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.allergies.criticality',
-                )}
-                value={item.criticality || t('no-data')}
+                placeholder={t('general.criticality')}
+                value={item.criticality || t('general.no-data')}
               />
               <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.allergies.severity',
-                )}
-                value={item.severity || t('no-data')}
+                placeholder={t('general.severity')}
+                value={item.severity || t('general.no-data')}
               />
               <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.allergies.certainty',
-                )}
-                value={item.certainty || t('no-data')}
+                placeholder={t('general.certainty')}
+                value={item.certainty || t('general.no-data')}
               />
               <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.allergies.lastOccurence',
-                )}
+                placeholder={t('dates.last-occurrence')}
                 value={
                   item.lastOccurenceDate
                     ? dayjs(item.lastOccurenceDate).format(DATE_FORMAT)
-                    : t('no-data')
+                    : t('general.no-data')
                 }
               />
               <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.allergies.resolutionDate',
-                )}
+                placeholder={t('dates..resolution')}
                 value={
                   item.resolutionDate
                     ? dayjs(item.resolutionDate).format(DATE_FORMAT)
-                    : t('no-data')
+                    : t('general.no-data')
                 }
               />
               <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.allergies.exposureRoute',
-                )}
-                value={item.exposureRoute || t('no-data')}
+                placeholder={t('patientSummary.allergies.exposure-route')}
+                value={item.exposureRoute || t('general.no-data')}
               />
               <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.allergies.category',
-                )}
-                value={item.category || t('no-data')}
+                placeholder={t('patientSummary.allergies.category')}
+                value={item.category || t('general.no-data')}
               />
               <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.allergies.description',
-                )}
-                value={item.description || t('no-data')}
+                placeholder={t('general.description')}
+                value={item.description || t('general.no-data')}
               />
             </ScrollView>
           </InformationCard>

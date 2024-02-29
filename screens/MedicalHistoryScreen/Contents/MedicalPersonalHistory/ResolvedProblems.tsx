@@ -44,37 +44,32 @@ const ResolvedProblems = () => {
         renderItem={({item}) => (
           <InformationCard
             type={'Procedure'}
-            title={item.diagnosis || t('no-data')}
-            TopSubtitle={`${t(
-              'medicalHistory.medicalPersonalHistory.problems.current.onset',
-            )}: ${dayjs(item.onsetDate).format(DATE_FORMAT) || t('no-data')}`}
-            BottomSubtitle={`${t(
-              'medicalHistory.medicalPersonalHistory.problems.resolved.resolution',
-            )}: ${
-              dayjs(item.resolutionDate).format(DATE_FORMAT) || t('no-data')
+            title={item.diagnosis || t('general.no-data')}
+            TopSubtitle={`${t('dates.onset')}: ${
+              dayjs(item.onsetDate).format(DATE_FORMAT) || t('general.no-data')
+            }`}
+            BottomSubtitle={`${t('dates.resolution')}: ${
+              dayjs(item.resolutionDate).format(DATE_FORMAT) ||
+              t('general.no-data')
             }`}>
             <ScrollView>
               <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.problems.current.onset',
-                )}
+                placeholder={t('dates.onset')}
                 value={
-                  dayjs(item.onsetDate).format(DATE_FORMAT) || t('no-data')
+                  dayjs(item.onsetDate).format(DATE_FORMAT) ||
+                  t('general.no-data')
                 }
               />
               <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.problems.resolved.resolution',
-                )}
+                placeholder={t('dates.resolution')}
                 value={
-                  dayjs(item.resolutionDate).format(DATE_FORMAT) || t('no-data')
+                  dayjs(item.resolutionDate).format(DATE_FORMAT) ||
+                  t('general.no-data')
                 }
               />
               <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.problems.resolved.status',
-                )}
-                value={item.status || t('no-data')}
+                placeholder={t('general.status')}
+                value={item.status || t('general.no-data')}
               />
             </ScrollView>
           </InformationCard>

@@ -40,9 +40,9 @@ const ProfileScreen = () => {
       <Text style={[globalStyle.descriptionBlackL3, styles.marginLeft20]}>
         {value
           ? value === ''
-            ? t('profileScreen.no-data')
+            ? t('general.no-data')
             : value
-          : t('profileScreen.no-data')}
+          : t('general.no-data')}
       </Text>
     </View>
   );
@@ -69,43 +69,49 @@ const ProfileScreen = () => {
         </View>
         <View style={styles.sections}>
           <Text style={styles.descriptions}>
-            {t('profileScreen.personal-details')}
+            {t('patientSummary.profile.personal-details')}
           </Text>
-          <InformationBox labelKey="profileScreen.id" value={data?.primaryID} />
           <InformationBox
-            labelKey="profileScreen.id2"
+            labelKey="patientSummary.profile.primary-id"
+            value={data?.primaryID}
+          />
+          <InformationBox
+            labelKey="patientSummary.profile.secondary-id"
             value={data?.secondaryID}
           />
           <InformationBox
-            labelKey="profileScreen.birth-date"
+            labelKey="dates.birth"
             value={
               data?.birthDate ? dayjs(data.birthDate).format(DATE_FORMAT) : null
             }
           />
           <InformationBox
-            labelKey="profileScreen.gender"
+            labelKey="patientSummary.profile.gender"
             value={data?.gender}
           />
           <InformationBox
-            labelKey="profileScreen.communication"
+            labelKey="patientSummary.profile.communication-language"
             value={data?.communicationLanguage}
           />
         </View>
         <View style={styles.sections}>
           <Text style={styles.descriptions}>
-            {t('profileScreen.contact-details')}
+            {t('patientSummary.profile.contact-details')}
           </Text>
-          <InformationBox labelKey="profileScreen.email" value={data?.email} />
           <InformationBox
-            labelKey="profileScreen.telephone"
+            labelKey="patientSummary.profile.email"
+            value={data?.email}
+          />
+          <InformationBox
+            labelKey="patientSummary.profile.mobile-phone"
             value={data?.mobilePhoneNumber}
           />
           <InformationBox
-            labelKey="profileScreen.homeTelephone"
+            labelKey="patientSummary.profile.home-phone"
             value={data?.homePhoneNumber}
           />
           <InformationBox
-            labelKey="profileScreen.address"
+            labelKey="patientSummary.profile.address"
             value={`${data?.address ? data.address + ', ' : ''}${
               data?.postalCode ? data.postalCode + ', ' : ''
             }${data?.city ? data.city + ', ' : ''}${
@@ -116,24 +122,24 @@ const ProfileScreen = () => {
 
         <View style={styles.sections}>
           <Text style={styles.descriptions}>
-            {t('profileScreen.emergency.contact')}
+            {t('patientSummary.profile.emergency.contact')}
           </Text>
           {data?.guardian ? (
             <View>
               <InformationBox
-                labelKey="profileScreen.emergency.name"
+                labelKey="patientSummary.profile.emergency.name"
                 value={`${data?.guardian.givenName} ${data?.guardian.familyName}`}
               />
               <InformationBox
-                labelKey="profileScreen.email"
+                labelKey="patientSummary.profile.email"
                 value={data?.guardian.email}
               />
               <InformationBox
-                labelKey="profileScreen.telephone"
+                labelKey="patientSummary.profile.mobile-phone"
                 value={data?.guardian.phone}
               />
               <InformationBox
-                labelKey="profileScreen.address"
+                labelKey="patientSummary.profile.address"
                 value={`${
                   data?.guardian.address ? data.guardian.address + ', ' : ''
                 }${
@@ -147,7 +153,7 @@ const ProfileScreen = () => {
             </View>
           ) : (
             <Text style={[globalStyle.descriptionBlackL3, styles.marginLeft20]}>
-              {t('profileScreen.no-data')}
+              {t('general.no-data')}
             </Text>
           )}
         </View>

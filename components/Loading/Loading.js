@@ -29,7 +29,7 @@ const Loading = () => {
         style={{transform: [{rotate: spin}]}}
         source={require('../../assets/images/Login/loading.png')}
       />
-      <Text style={styles.loadingText}>{t('Loading...')}</Text>
+      <Text style={styles.loadingText}>{t('general.loading')}</Text>
     </View>
   );
 };

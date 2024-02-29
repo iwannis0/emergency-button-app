@@ -43,73 +43,61 @@ const MedicationSummary = () => {
         renderItem={({item}) => (
           <InformationCard
             type={'Medication'}
-            title={item.ingredient || t('no-data')}
-            risk={item.status || t('no-data')}
+            title={item.ingredient || t('general.no-data')}
+            risk={item.status || t('general.no-data')}
             onset={
               item.startDate
                 ? dayjs(item.startDate).format(DATE_FORMAT)
-                : t('no-data')
+                : t('general.no-data')
             }
-            TopSubtitle={`${t(
-              'medicalHistory.medicalPersonalHistory.medication.strength',
-            )}: ${item.strength || t('no-data')}`}
-            BottomSubtitle={`${t(
-              'medicalHistory.medicalPersonalHistory.medication.endDate',
-            )}: ${
+            TopSubtitle={`${t('patientSummary.medication-summary.strength')}: ${
+              item.strength || t('general.no-data')
+            }`}
+            BottomSubtitle={`${t('dates.end')}: ${
               item.startDate
                 ? dayjs(item.endDate).format(DATE_FORMAT)
-                : t('no-data')
+                : t('general.no-data')
             }`}>
             <ScrollView>
               <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.medication.strength',
-                )}
-                value={item.strength || t('no-data')}
+                placeholder={t('patientSummary.medication-summary.strength')}
+                value={item.strength || t('general.no-data')}
               />
               <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.medication.onset',
-                )}
+                placeholder={t('dates.onset')}
                 value={
-                  dayjs(item.startDate).format(DATE_FORMAT) || t('no-data')
+                  dayjs(item.startDate).format(DATE_FORMAT) ||
+                  t('general.no-data')
                 }
               />
               <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.medication.endDate',
-                )}
-                value={dayjs(item.endDate).format(DATE_FORMAT) || t('no-data')}
+                placeholder={t('dates.end')}
+                value={
+                  dayjs(item.endDate).format(DATE_FORMAT) ||
+                  t('general.no-data')
+                }
+              />
+              <Modalinfo
+                placeholder={t('patientSummary.medication-summary.frequency')}
+                value={item.frequency || t('general.no-data')}
+              />
+              <Modalinfo
+                placeholder={t('patientSummary.medication-summary.dosage')}
+                value={item.dosage || t('general.no-data')}
+              />
+              <Modalinfo
+                placeholder={t('patientSummary.medication-summary.form')}
+                value={`${item.doseForm || t('general.no-data')}`}
+              />
+              <Modalinfo
+                placeholder={t('general.status')}
+                value={item.status || t('general.no-data')}
               />
               <Modalinfo
                 placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.medication.frequency',
+                  'patientSummary.medication-summary.administration',
                 )}
-                value={item.frequency || t('no-data')}
-              />
-              <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.medication.dosage',
-                )}
-                value={item.dosage || t('no-data')}
-              />
-              <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.medication.form',
-                )}
-                value={`${item.doseForm || t('no-data')}`}
-              />
-              <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.medication.status',
-                )}
-                value={item.status || t('no-data')}
-              />
-              <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.medication.administration',
-                )}
-                value={item.routeOfAdministration || t('no-data')}
+                value={item.routeOfAdministration || t('general.no-data')}
               />
             </ScrollView>
           </InformationCard>

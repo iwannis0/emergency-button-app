@@ -43,27 +43,24 @@ const CurrentProblems = () => {
         renderItem={({item}) => (
           <InformationCard
             type={'Procedure'}
-            title={item.diagnosis || t('no-data')}
-            TopSubtitle={`${t(
-              'medicalHistory.medicalPersonalHistory.problems.current.onset',
-            )}: ${dayjs(item.onsetDate).format(DATE_FORMAT) || t('no-data')}`}
-            BottomSubtitle={`${t(
-              'medicalHistory.medicalPersonalHistory.problems.current.severity',
-            )}: ${item.severity || t('no-data')}`}>
+            title={item.diagnosis || t('general.no-data')}
+            TopSubtitle={`${t('dates.onset')}: ${
+              dayjs(item.onsetDate).format(DATE_FORMAT) || t('general.no-data')
+            }`}
+            BottomSubtitle={`${t('general.severity')}: ${
+              item.severity || t('general.no-data')
+            }`}>
             <ScrollView>
               <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.problems.current.onset',
-                )}
+                placeholder={t('dates.onset')}
                 value={
-                  dayjs(item.onsetDate).format(DATE_FORMAT) || t('no-data')
+                  dayjs(item.onsetDate).format(DATE_FORMAT) ||
+                  t('general.no-data')
                 }
               />
               <Modalinfo
-                placeholder={t(
-                  'medicalHistory.medicalPersonalHistory.problems.current.severity',
-                )}
-                value={item.severity || t('no-data')}
+                placeholder={t('general.severity')}
+                value={item.severity || t('general.no-data')}
               />
             </ScrollView>
           </InformationCard>

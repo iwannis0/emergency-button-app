@@ -43,61 +43,62 @@ const Vaccination = () => {
         renderItem={({item}) => (
           <InformationCard
             type={'Immunization'}
-            title={item.vaccine || t('no-data')}
+            title={item.vaccine || t('general.no-data')}
             TopSubtitle={`${t(
-              'medicalHistory.immunization.date',
+              'dates.vaccination',
               // Possible error
             )}: ${
-              dayjs(item.vaccinationDate).format(DATE_FORMAT) || t('no-data')
+              dayjs(item.vaccinationDate).format(DATE_FORMAT) ||
+              t('general.no-data')
             }`}
-            BottomSubtitle={`${t(
-              'medicalHistory.immunization.number-doses',
-            )}: ${item.doseNumber || t('no-data')}`}>
+            BottomSubtitle={`${t('patientSummary.immunization.doses')}: ${
+              item.doseNumber || t('general.no-data')
+            }`}>
             <ScrollView>
               <Modalinfo
-                placeholder={t('medicalHistory.immunization.date')}
+                placeholder={t('dates.vaccination')}
                 value={
                   dayjs(item.vaccinationDate).format(DATE_FORMAT) ||
-                  t('no-data')
+                  t('general.no-data')
                 }
               />
               <Modalinfo
-                placeholder={t('medicalHistory.immunization.brand')}
-                value={item.brand || t('no-data')}
+                placeholder={t('patientSummary.immunization.brand')}
+                value={item.brand || t('general.no-data')}
               />
               <Modalinfo
-                placeholder={t('medicalHistory.immunization.disease')}
-                value={item.disease || t('no-data')}
+                placeholder={t('patientSummary.immunization.disease')}
+                value={item.disease || t('general.no-data')}
               />
               <Modalinfo
-                placeholder={t('medicalHistory.immunization.holder')}
-                value={item.holder || t('no-data')}
+                placeholder={t('patientSummary.immunization.holder')}
+                value={item.holder || t('general.no-data')}
               />
               <Modalinfo
-                placeholder={t('medicalHistory.immunization.doseNumber')}
-                value={item.doseNumber || t('no-data')}
+                placeholder={t('patientSummary.immunization.doses')}
+                value={item.doseNumber || t('general.no-data')}
               />
               <Modalinfo
-                placeholder={t('medicalHistory.immunization.batch')}
-                value={item.batch || t('no-data')}
+                placeholder={t('patientSummary.immunization.batch')}
+                value={item.batch || t('general.no-data')}
               />
               <Modalinfo
                 placeholder={t(
-                  'medicalHistory.immunization.administeringCenter',
+                  'patientSummary.immunization.administering-center',
                 )}
-                value={item.administeringCenter || t('no-data')}
+                value={item.administeringCenter || t('general.no-data')}
               />
               <Modalinfo
-                placeholder={t('medicalHistory.immunization.physician')}
-                value={item.physician || t('no-data')}
+                placeholder={t('general.doctor')}
+                value={item.physician || t('general.no-data')}
               />
               <Modalinfo
-                placeholder={t('medicalHistory.immunization.country')}
-                value={item.country || t('no-data')}
+                placeholder={t('patientSummary.immunization.country')}
+                value={item.country || t('general.no-data')}
               />
               <Modalinfo
-                placeholder={t('medicalHistory.immunization.administered')}
-                value={item.administered || t('no-data')}
+                placeholder={t('patientSummary.immunization.administered')}
+                value={item.administered || t('general.no-data')}
               />
             </ScrollView>
           </InformationCard>

@@ -48,14 +48,14 @@ const TokenManager = () => {
       let description = '';
       let resetKeycloak = true;
       if (alertType === LOGOUT) {
-        description = t('alert-description');
+        description = t('login.token-alert-description');
       } else if (alertType === AUTHENTICATION) {
-        description = t('authentication-description');
+        description = t('login.token-authentication-description');
         resetKeycloak = false;
       }
-      Alert.alert(t('alert-title'), description, [
+      Alert.alert(t('login.token-alert-title'), description, [
         {
-          text: t('alert-continue'),
+          text: t('general.continue'),
           onPress: () => {
             handleLogout(resetUser, resetKeycloak);
             setIsPaused(false);

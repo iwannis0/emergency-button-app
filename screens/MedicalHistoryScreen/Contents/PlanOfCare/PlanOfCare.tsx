@@ -41,17 +41,15 @@ const PlanOfCare = () => {
         renderItem={({item}) => (
           <InformationCard
             type={'PlanOfCare'}
-            title={`${t(
-              'medicalHistory.planOfCare.therapeuticRecommendation.recommendation',
-            )}: ${item.case || t('no-data')}`}
-            TopSubtitle={item.description || t('no-data')}
+            title={`${t('patientSummary.plan-of-care.recommendation')}: ${
+              item.case || t('general.no-data')
+            }`}
+            TopSubtitle={item.description || t('general.no-data')}
             BottomSubtitle={''}>
             <ScrollView style={styles.containerHeight}>
               <Modalinfo
-                placeholder={t(
-                  'medicalHistory.planOfCare.therapeuticRecommendation.recommendation',
-                )}
-                value={item.description || t('no-data')}
+                placeholder={t('patientSummary.plan-of-care.recommendation')}
+                value={item.description || t('general.no-data')}
               />
             </ScrollView>
           </InformationCard>

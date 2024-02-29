@@ -44,35 +44,29 @@ const DeviceAndImplants = () => {
           return (
             <InformationCard
               type={'Procedure'}
-              title={item.name || t('no-data')}
-              TopSubtitle={`${t(
-                'medicalHistory.medicalPersonalHistory.devices.onset',
-              )}: ${
-                dayjs(item.implantDate).format(DATE_FORMAT) || t('no-data')
+              title={item.name || t('general.no-data')}
+              TopSubtitle={`${t('dates.onset')}: ${
+                dayjs(item.implantDate).format(DATE_FORMAT) ||
+                t('general.no-data')
               }`}
-              BottomSubtitle={`${t(
-                'medicalHistory.medicalPersonalHistory.devices.removal',
-              )}: ${
+              BottomSubtitle={`${t('dates.removal')}: ${
                 item.removalDate
-                  ? t('no-data')
+                  ? t('general.no-data')
                   : dayjs(item.removalDate).format(DATE_FORMAT)
               }`}>
               <ScrollView>
                 <Modalinfo
-                  placeholder={t(
-                    'medicalHistory.medicalPersonalHistory.devices.onset',
-                  )}
+                  placeholder={t('dates.onset')}
                   value={
-                    dayjs(item.implantDate).format(DATE_FORMAT) || t('no-data')
+                    dayjs(item.implantDate).format(DATE_FORMAT) ||
+                    t('general.no-data')
                   }
                 />
                 <Modalinfo
-                  placeholder={t(
-                    'medicalHistory.medicalPersonalHistory.devices.removal',
-                  )}
+                  placeholder={t('dates.removal')}
                   value={
                     item.removalDate
-                      ? t('no-data')
+                      ? t('general.no-data')
                       : dayjs(item.removalDate).format(DATE_FORMAT)
                   }
                 />
