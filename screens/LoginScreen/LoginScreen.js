@@ -30,6 +30,7 @@ import {
   isPhoneSecuredCheck,
 } from '../../features/auth/BiometricsManager';
 import CountryFlag from 'react-native-country-flag';
+import {LANGUAGE_ISO_CODE} from '../../common/constants/constants';
 
 const AUTHORIZED = 'Authorized';
 const SUCCESS = 'Success';
@@ -50,15 +51,6 @@ const LoginScreen = () => {
   const [keepLoggedInSwitch, setKeepLoggedInSwitch] = useState(false);
   const [isPhoneSecured, setIsPhoneSecured] = useState(true);
   const [LanguageModalVisible, setLanguageModalVisible] = React.useState(false);
-
-  const isoCode = {
-    English: 'gb',
-    Greek: 'gr',
-    Portuguese: 'pt',
-    Hungarian: 'hu',
-    Slovak: 'si',
-    Czech: 'cz',
-  };
 
   useEffect(() => {
     async function checkBiometricsAndRefresh() {
@@ -149,7 +141,7 @@ const LoginScreen = () => {
           <NavigationButton
             type={'withIcon'}
             countryIso={'gb'}
-            title={t('English')}
+            title={'English'}
             onPress={() => {
               i18n.changeLanguage('en');
               setUserPreferences(currentUserPreferences => ({
@@ -164,7 +156,7 @@ const LoginScreen = () => {
           <NavigationButton
             type={'withIcon'}
             countryIso={'gr'}
-            title={t('Greek')}
+            title={t('Ελληνικά')}
             onPress={() => {
               i18n.changeLanguage('gr');
               setUserPreferences(currentUserPreferences => ({
@@ -179,7 +171,7 @@ const LoginScreen = () => {
           <NavigationButton
             type={'withIcon'}
             countryIso={'pt'}
-            title={t('Portuguese')}
+            title={'Português'}
             onPress={() => {
               i18n.changeLanguage('pt');
               setUserPreferences(currentUserPreferences => ({
@@ -194,7 +186,7 @@ const LoginScreen = () => {
           <NavigationButton
             type={'withIcon'}
             countryIso={'hu'}
-            title={t('Hungarian')}
+            title={'Magyar'}
             onPress={() => {
               i18n.changeLanguage('hu');
               setUserPreferences(currentUserPreferences => ({
@@ -209,7 +201,7 @@ const LoginScreen = () => {
           <NavigationButton
             type={'withIcon'}
             countryIso={'si'}
-            title={t('Slovak')}
+            title={'Slovenský'}
             onPress={() => {
               i18n.changeLanguage('si');
               setUserPreferences(currentUserPreferences => ({
@@ -224,7 +216,7 @@ const LoginScreen = () => {
           <NavigationButton
             type={'withIcon'}
             countryIso={'cz'}
-            title={t('Czech')}
+            title={'Čeština'}
             onPress={() => {
               i18n.changeLanguage('cz');
               setUserPreferences(currentUserPreferences => ({
@@ -246,7 +238,10 @@ const LoginScreen = () => {
         <Text style={globalStyle.descriptionBlackL2}>
           {t('general.change-language')}:{' '}
         </Text>
-        <CountryFlag isoCode={isoCode[userPreferences.language]} size={25} />
+        <CountryFlag
+          isoCode={LANGUAGE_ISO_CODE[userPreferences.language]}
+          size={25}
+        />
       </TouchableOpacity>
       <View style={[styles.ImageContainer, globalStyle.fullyCentered]}>
         <Image

@@ -38,14 +38,14 @@ const SettingsScreen = () => {
       <ScrollView style={globalStyle.marginTop60}>
         {/* Change Language */}
         <ModalComponent
-          title={t('general.language')}
+          title={t('Language')}
           visibility={LanguageModalVisible}
           onClose={() => setLanguageModalVisible(false)}>
           <ScrollView>
             <NavigationButton
               type={'withIcon'}
               countryIso={'gb'}
-              title={t('English')}
+              title={'English'}
               onPress={() => {
                 i18n.changeLanguage('en');
                 setUserPreferences(currentUserPreferences => ({
@@ -60,7 +60,7 @@ const SettingsScreen = () => {
             <NavigationButton
               type={'withIcon'}
               countryIso={'gr'}
-              title={t('Greek')}
+              title={t('Ελληνικά')}
               onPress={() => {
                 i18n.changeLanguage('gr');
                 setUserPreferences(currentUserPreferences => ({
@@ -75,7 +75,7 @@ const SettingsScreen = () => {
             <NavigationButton
               type={'withIcon'}
               countryIso={'pt'}
-              title={t('Portuguese')}
+              title={'Português'}
               onPress={() => {
                 i18n.changeLanguage('pt');
                 setUserPreferences(currentUserPreferences => ({
@@ -90,7 +90,7 @@ const SettingsScreen = () => {
             <NavigationButton
               type={'withIcon'}
               countryIso={'hu'}
-              title={t('Hungarian')}
+              title={'Magyar'}
               onPress={() => {
                 i18n.changeLanguage('hu');
                 setUserPreferences(currentUserPreferences => ({
@@ -105,7 +105,7 @@ const SettingsScreen = () => {
             <NavigationButton
               type={'withIcon'}
               countryIso={'si'}
-              title={t('Slovak')}
+              title={'Slovenský'}
               onPress={() => {
                 i18n.changeLanguage('si');
                 setUserPreferences(currentUserPreferences => ({
@@ -120,7 +120,7 @@ const SettingsScreen = () => {
             <NavigationButton
               type={'withIcon'}
               countryIso={'cz'}
-              title={t('Czech')}
+              title={'Čeština'}
               onPress={() => {
                 i18n.changeLanguage('cz');
                 setUserPreferences(currentUserPreferences => ({

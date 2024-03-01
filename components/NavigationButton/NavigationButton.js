@@ -5,7 +5,6 @@ import styles from './style';
 import CountryFlag from 'react-native-country-flag';
 
 const NavigationButton = props => {
-  console.log(props.countryIso);
   return (
     <View>
       <Pressable onPress={props.onPress}>
