@@ -1,7 +1,6 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
-import {SafeAreaView, ScrollView, Text, View} from 'react-native';
-import i18n from '../../assets/translations/i18next';
+import {SafeAreaView, ScrollView, Text} from 'react-native';
 import styles from './style';
 import globalStyle from '../../assets/styles/globalStyle';
 import NavigationButton from '../../components/NavigationButton/NavigationButton';
@@ -10,6 +9,7 @@ import {useRecoilState, useResetRecoilState} from 'recoil';
 import {userState} from '../../features/recoil/atoms/User/userState';
 import {UserPreferencesState} from '../../features/recoil/atoms/UserPreferences/UserPreferencesState';
 import {signOut} from '../../features/auth/auth';
+import LanguageSelector from '../../components/LanguageSelector/LanguageSelector';
 
 const SettingsScreen = () => {
   const {t} = useTranslation();
@@ -34,46 +34,12 @@ const SettingsScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View />
       <ScrollView style={globalStyle.marginTop60}>
-        {/* Change Language */}
-        <ModalComponent
-          title={t('general.language')}
-          visibility={LanguageModalVisible}
-          onClose={() => setLanguageModalVisible(false)}>
-          <ScrollView>
-            <NavigationButton
-              type={'withIcon'}
-              image={require('../../assets/images/Languages/english.png')}
-              title={t('general.english')}
-              onPress={() => {
-                i18n.changeLanguage('en');
-                setUserPreferences(currentUserPreferences => ({
-                  ...currentUserPreferences,
-                  language: 'English',
-                }));
-                setLanguageModalVisible(false);
-              }}
-              bottomBorderStyle={globalStyle.bottomBorderL3}
-              titleStyle={globalStyle.descriptionBlackL1}
-            />
-            <NavigationButton
-              type={'withIcon'}
-              image={require('../../assets/images/Languages/greek.png')}
-              title={t('general.greek')}
-              onPress={() => {
-                i18n.changeLanguage('gr');
-                setUserPreferences(currentUserPreferences => ({
-                  ...currentUserPreferences,
-                  language: 'Greek',
-                }));
-                setLanguageModalVisible(false);
-              }}
-              titleStyle={globalStyle.descriptionBlackL1}
-            />
-          </ScrollView>
-        </ModalComponent>
-
+        <LanguageSelector
+          isVisible={LanguageModalVisible}
+          onClose={() => setLanguageModalVisible(false)}
+          setUserPreferences={setUserPreferences}
+        />
         <NavigationButton
           type={'withArrow'}
           title={t('general.language')}

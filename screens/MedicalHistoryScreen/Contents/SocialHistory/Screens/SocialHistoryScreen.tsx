@@ -55,11 +55,13 @@ const SocialHistoryScreen = () => {
                 title={item.type || t('general.no-data')}
                 TopSubtitle={`${t('dictionary.from')} ${
                   item.startDate
-                    ? dayjs(item.startDate).format(DATE_FORMAT) +
-                      t('dictionary.until') +
-                      item.endDate
-                      ? dayjs(item.endDate).format(DATE_FORMAT)
-                      : t('dictionary.present')
+                    ? `${dayjs(item.startDate).format(DATE_FORMAT)} ${t(
+                        'dictionary.until',
+                      )} ${
+                        item.endDate
+                          ? dayjs(item.endDate).format(DATE_FORMAT)
+                          : t('dictionary.present')
+                      }`
                     : t('general.no-data')
                 }`}
                 BottomSubtitle={`${item.value} ${item.unit}`}>
