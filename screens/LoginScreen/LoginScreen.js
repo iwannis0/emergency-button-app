@@ -3,7 +3,6 @@ import {
   Alert,
   Image,
   SafeAreaView,
-  ScrollView,
   Switch,
   Text,
   TextInput,
@@ -15,8 +14,6 @@ import i18n from '../../assets/translations/i18next';
 import styles from './style';
 import globalStyle from '../../assets/styles/globalStyle';
 import Loading from '../../components/Loading/Loading';
-import ModalComponent from '../../components/ModalComponent/ModalComponent';
-import NavigationButton from '../../components/NavigationButton/NavigationButton';
 // Values
 import {useRecoilState} from 'recoil';
 import {userState} from '../../features/recoil/atoms/User/userState';
@@ -30,6 +27,7 @@ import {
   isPhoneSecuredCheck,
 } from '../../features/auth/BiometricsManager';
 import CountryFlag from 'react-native-country-flag';
+import LanguageSelector from '../../components/LanguageSelector/LanguageSelector';
 
 const AUTHORIZED = 'Authorized';
 const SUCCESS = 'Success';
@@ -141,102 +139,11 @@ const LoginScreen = () => {
 
   return (
     <SafeAreaView style={[{flex: 1, backgroundColor: '#E0EDF2'}]}>
-      <ModalComponent
-        title={t('Language')}
-        visibility={LanguageModalVisible}
-        onClose={() => setLanguageModalVisible(false)}>
-        <ScrollView>
-          <NavigationButton
-            type={'withIcon'}
-            countryIso={'gb'}
-            title={t('English')}
-            onPress={() => {
-              i18n.changeLanguage('en');
-              setUserPreferences(currentUserPreferences => ({
-                ...currentUserPreferences,
-                language: 'English',
-              }));
-              setLanguageModalVisible(false);
-            }}
-            bottomBorderStyle={globalStyle.bottomBorderL3}
-            titleStyle={globalStyle.descriptionBlackL1}
-          />
-          <NavigationButton
-            type={'withIcon'}
-            countryIso={'gr'}
-            title={t('Greek')}
-            onPress={() => {
-              i18n.changeLanguage('gr');
-              setUserPreferences(currentUserPreferences => ({
-                ...currentUserPreferences,
-                language: 'Greek',
-              }));
-              setLanguageModalVisible(false);
-            }}
-            bottomBorderStyle={globalStyle.bottomBorderL3}
-            titleStyle={globalStyle.descriptionBlackL1}
-          />
-          <NavigationButton
-            type={'withIcon'}
-            countryIso={'pt'}
-            title={t('Portuguese')}
-            onPress={() => {
-              i18n.changeLanguage('pt');
-              setUserPreferences(currentUserPreferences => ({
-                ...currentUserPreferences,
-                language: 'Portuguese',
-              }));
-              setLanguageModalVisible(false);
-            }}
-            bottomBorderStyle={globalStyle.bottomBorderL3}
-            titleStyle={globalStyle.descriptionBlackL1}
-          />
-          <NavigationButton
-            type={'withIcon'}
-            countryIso={'hu'}
-            title={t('Hungarian')}
-            onPress={() => {
-              i18n.changeLanguage('hu');
-              setUserPreferences(currentUserPreferences => ({
-                ...currentUserPreferences,
-                language: 'Hungarian',
-              }));
-              setLanguageModalVisible(false);
-            }}
-            bottomBorderStyle={globalStyle.bottomBorderL3}
-            titleStyle={globalStyle.descriptionBlackL1}
-          />
-          <NavigationButton
-            type={'withIcon'}
-            countryIso={'si'}
-            title={t('Slovak')}
-            onPress={() => {
-              i18n.changeLanguage('si');
-              setUserPreferences(currentUserPreferences => ({
-                ...currentUserPreferences,
-                language: 'Slovak',
-              }));
-              setLanguageModalVisible(false);
-            }}
-            bottomBorderStyle={globalStyle.bottomBorderL3}
-            titleStyle={globalStyle.descriptionBlackL1}
-          />
-          <NavigationButton
-            type={'withIcon'}
-            countryIso={'cz'}
-            title={t('Czech')}
-            onPress={() => {
-              i18n.changeLanguage('cz');
-              setUserPreferences(currentUserPreferences => ({
-                ...currentUserPreferences,
-                language: 'Czech',
-              }));
-              setLanguageModalVisible(false);
-            }}
-            titleStyle={globalStyle.descriptionBlackL1}
-          />
-        </ScrollView>
-      </ModalComponent>
+      <LanguageSelector
+        isVisible={LanguageModalVisible}
+        onClose={() => setLanguageModalVisible(false)}
+        setUserPreferences={setUserPreferences}
+      />
 
       <TouchableOpacity
         style={styles.changeLanguageContainer}
