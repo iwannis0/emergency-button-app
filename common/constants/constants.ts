@@ -7,3 +7,12 @@ export const RISK_COLOURS = {
   HIGH: '#FF9F9F',
   ACTIVE: '#81aaf3',
 };
+
+export const LANGUAGE_ISO_CODE = {
+  English: 'gb',
+  Greek: 'gr',
+  Portuguese: 'pt',
+  Hungarian: 'hu',
+  Slovak: 'si',
+  Czech: 'cz',
+};

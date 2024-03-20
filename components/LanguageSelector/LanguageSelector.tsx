@@ -25,7 +25,7 @@ const LanguageSelector = ({isVisible, onClose, setUserPreferences}) => {
         <NavigationButton
           type={'withIcon'}
           countryIso={'gb'}
-          title={t('English')}
+          title={'English'}
           onPress={() => changeLanguage('en', 'English')}
           bottomBorderStyle={globalStyle.bottomBorderL3}
           titleStyle={globalStyle.descriptionBlackL1}
@@ -33,7 +33,7 @@ const LanguageSelector = ({isVisible, onClose, setUserPreferences}) => {
         <NavigationButton
           type={'withIcon'}
           countryIso={'gr'}
-          title={t('Greek')}
+          title={'Ελληνικά'}
           onPress={() => changeLanguage('gr', 'Greek')}
           bottomBorderStyle={globalStyle.bottomBorderL3}
           titleStyle={globalStyle.descriptionBlackL1}
@@ -41,7 +41,7 @@ const LanguageSelector = ({isVisible, onClose, setUserPreferences}) => {
         <NavigationButton
           type={'withIcon'}
           countryIso={'pt'}
-          title={t('Portuguese')}
+          title={'Português'}
           onPress={() => changeLanguage('pt', 'Portuguese')}
           bottomBorderStyle={globalStyle.bottomBorderL3}
           titleStyle={globalStyle.descriptionBlackL1}
@@ -49,7 +49,7 @@ const LanguageSelector = ({isVisible, onClose, setUserPreferences}) => {
         <NavigationButton
           type={'withIcon'}
           countryIso={'hu'}
-          title={t('Hungarian')}
+          title={'Magyar'}
           onPress={() => changeLanguage('hu', 'Hungarian')}
           bottomBorderStyle={globalStyle.bottomBorderL3}
           titleStyle={globalStyle.descriptionBlackL1}
@@ -57,7 +57,7 @@ const LanguageSelector = ({isVisible, onClose, setUserPreferences}) => {
         <NavigationButton
           type={'withIcon'}
           countryIso={'si'}
-          title={t('Slovak')}
+          title={'Slovenský'}
           onPress={() => changeLanguage('si', 'Slovak')}
           bottomBorderStyle={globalStyle.bottomBorderL3}
           titleStyle={globalStyle.descriptionBlackL1}
@@ -65,7 +65,7 @@ const LanguageSelector = ({isVisible, onClose, setUserPreferences}) => {
         <NavigationButton
           type={'withIcon'}
           countryIso={'cz'}
-          title={t('Czech')}
+          title={'Čeština'}
           onPress={() => changeLanguage('cz', 'Czech')}
           titleStyle={globalStyle.descriptionBlackL1}
         />
