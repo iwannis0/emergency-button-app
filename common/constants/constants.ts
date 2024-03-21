@@ -1,3 +1,11 @@
+export const UI_COLOURS = {
+  primary: '',
+  secondary: '',
+  buttons: '#0C6C79',
+  icons: '',
+  fonts: '#212121',
+};
+
 export const DATE_FORMAT = 'DD MMMM YYYY';
 export const DATE_TIME_FORMAT = 'DD MMMM YYYY, HH:mm';
 export const RISK_COLOURS = {
