@@ -7,7 +7,10 @@ import {userState} from '../../../../features/recoil/atoms/User/userState';
 import {IGynecological} from './interface/IGynecological';
 import {getPregnancyInfo} from './api/gynaecologicalHistoryAPI';
 import dayjs from 'dayjs';
-import {DATE_FORMAT} from '../../../../common/constants/constants';
+import {
+  DATE_FORMAT,
+  SYNCED_TIME_FORMAT,
+} from '../../../../common/constants/constants';
 import {verticalScale} from '../../../../assets/styles/scaling';
 import NoDataSection from '../../../../components/NoDataSection/NoDataSection';
 import Loading from '../../../../components/Loading/Loading';
@@ -18,12 +21,16 @@ import {
   faChildren,
 } from '@fortawesome/free-solid-svg-icons';
 import styles from './styles';
+import NetInfo from '@react-native-community/netinfo';
+import {patientSummaryState} from '../../../../features/recoil/atoms/PatientSummary/PatientSummaryState';
 
 const GynecologicalHistoryScreen = () => {
   const {t} = useTranslation();
   const [user, _] = useRecoilState(userState);
+  const [PatientSummary, __] = useRecoilState(patientSummaryState);
   const [data, setData] = React.useState<IGynecological>();
   const [loading, setLoading] = useState(true);
+  const [synchDate, setSynchDate] = useState<Date>();
 
   const fetchData = async () => {
     try {
@@ -36,8 +43,17 @@ const GynecologicalHistoryScreen = () => {
   };
 
   useEffect(() => {
-    fetchData().then(newData => {
-      setData(newData);
+    NetInfo.fetch().then(state => {
+      if (state.isConnected) {
+        fetchData().then(newData => {
+          setData(newData);
+        });
+        setSynchDate(new Date());
+      } else {
+        setData(PatientSummary.pregnancies);
+        setLoading(false);
+        setSynchDate(PatientSummary.lastSynced);
+      }
     });
   }, []);
 
@@ -53,6 +69,10 @@ const GynecologicalHistoryScreen = () => {
   return (
     <SafeAreaView>
       <View style={[globalStyle.marginTop60, styles.container]}>
+        <Text style={globalStyle.descriptionItalic}>
+          {t('dates.lastSynchronized')}:{' '}
+          {dayjs(synchDate).format(SYNCED_TIME_FORMAT)}
+        </Text>
         <View style={[styles.pregnancyContainer, styles.marginTop]}>
           <View style={styles.imageContainer}>
             <FontAwesomeIcon

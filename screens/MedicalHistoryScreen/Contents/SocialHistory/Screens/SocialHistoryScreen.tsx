@@ -4,6 +4,7 @@ import {
   SafeAreaView,
   ScrollView,
   StyleSheet,
+  Text,
   View,
 } from 'react-native';
 import {useTranslation} from 'react-i18next';
@@ -13,17 +14,24 @@ import {ISocialHistory} from '../interface/ISocialHistory';
 import {getSocialHistory} from '../api/socialHistoryAPI';
 import InformationCard from '../../../../../components/InformationCard/InformationCard';
 import dayjs from 'dayjs';
-import {DATE_FORMAT} from '../../../../../common/constants/constants';
+import {
+  DATE_FORMAT,
+  SYNCED_TIME_FORMAT,
+} from '../../../../../common/constants/constants';
 import Modalinfo from '../../../../../components/Modalinfo/Modalinfo';
 import NoDataSection from '../../../../../components/NoDataSection/NoDataSection';
 import Loading from '../../../../../components/Loading/Loading';
 import globalStyle from '../../../../../assets/styles/globalStyle';
+import NetInfo from '@react-native-community/netinfo';
+import {patientSummaryState} from '../../../../../features/recoil/atoms/PatientSummary/PatientSummaryState';
 
 const SocialHistoryScreen = () => {
   const {t} = useTranslation();
   const [user, _] = useRecoilState(userState);
+  const [PatientSummary, __] = useRecoilState(patientSummaryState);
   const [data, setData] = React.useState<ISocialHistory[]>([]);
   const [loading, setLoading] = useState(true);
+  const [synchDate, setSynchDate] = useState<Date>();
 
   const fetchData = async () => {
     try {
@@ -37,8 +45,17 @@ const SocialHistoryScreen = () => {
   };
 
   useEffect(() => {
-    fetchData().then(newData => {
-      setData(newData);
+    NetInfo.fetch().then(state => {
+      if (state.isConnected) {
+        fetchData().then(newData => {
+          setData(newData);
+        });
+        setSynchDate(new Date());
+      } else {
+        setData(PatientSummary.socialHistory);
+        setLoading(false);
+        setSynchDate(PatientSummary.lastSynced);
+      }
     });
   }, []);
 
@@ -46,6 +63,11 @@ const SocialHistoryScreen = () => {
     <SafeAreaView>
       <View style={styles.containerHeight}>
         <View style={globalStyle.marginTop60}>
+          <Text style={globalStyle.descriptionItalic}>
+            {t('dates.lastSynchronized')}:{' '}
+            {dayjs(synchDate).format(SYNCED_TIME_FORMAT)}
+          </Text>
+
           <FlatList
             keyExtractor={(_, index) => index.toString()}
             data={data}

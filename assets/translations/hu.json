@@ -36,7 +36,8 @@
     "expected-delivery": "Várható Szülés Dátuma",
     "observation": "Megfigyelés Dátuma",
     "outcome": "Születésnapok",
-    "vaccination": "Oltás Dátuma"
+    "vaccination": "Oltás Dátuma",
+    "lastSynchronized": "Utolsó szinkronizálás"
   },
   "patientSummary": {
     "title": "Páciens Összefoglaló",

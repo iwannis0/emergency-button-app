@@ -1,10 +1,10 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AtomEffect} from 'recoil';
+import EncryptedStorage from 'react-native-encrypted-storage';
 
 export function persistAtom<T>(key: string): AtomEffect<T> {
   return ({setSelf, onSet, trigger}) => {
     const loadPersisted = async () => {
-      const savedValue = await AsyncStorage.getItem(key);
+      const savedValue = await EncryptedStorage.getItem(key);
       if (savedValue != null) {
         setSelf(JSON.parse(savedValue));
       }
@@ -16,8 +16,8 @@ export function persistAtom<T>(key: string): AtomEffect<T> {
     // Subscribe to state changes and persist them to localForage
     onSet((newValue, _, isReset) => {
       isReset
-        ? AsyncStorage.removeItem(key)
-        : AsyncStorage.setItem(key, JSON.stringify(newValue));
+        ? EncryptedStorage.removeItem(key)
+        : EncryptedStorage.setItem(key, JSON.stringify(newValue));
     });
   };
 }

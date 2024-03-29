@@ -36,7 +36,8 @@
     "expected-delivery": "Predpokladaný dátum pôrodu",
     "observation": "Dátum pozorovania",
     "outcome": "Rojstni dnevi",
-    "vaccination": "Dátum očkovania"
+    "vaccination": "Dátum očkovania",
+    "lastSynchronized": "Nazadnje sinhronizirano"
   },
   "patientSummary": {
     "title": "Súhrn Pacienta",

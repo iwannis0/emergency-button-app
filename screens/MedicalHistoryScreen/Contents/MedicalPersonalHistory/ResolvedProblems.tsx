@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, ScrollView, StyleSheet, View} from 'react-native';
+import {FlatList, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import InformationCard from '../../../../components/InformationCard/InformationCard';
 import Modalinfo from '../../../../components/Modalinfo/Modalinfo';
@@ -10,14 +10,22 @@ import {userState} from '../../../../features/recoil/atoms/User/userState';
 import Loading from '../../../../components/Loading/Loading';
 
 import dayjs from 'dayjs';
-import {DATE_FORMAT} from '../../../../common/constants/constants';
+import {
+  DATE_FORMAT,
+  SYNCED_TIME_FORMAT,
+} from '../../../../common/constants/constants';
 import NoDataSection from '../../../../components/NoDataSection/NoDataSection';
+import NetInfo from '@react-native-community/netinfo';
+import {patientSummaryState} from '../../../../features/recoil/atoms/PatientSummary/PatientSummaryState';
+import globalStyle from '../../../../assets/styles/globalStyle';
 
 const ResolvedProblems = () => {
   const {t} = useTranslation();
   const [user, _] = useRecoilState(userState);
+  const [PatientSummary, __] = useRecoilState(patientSummaryState);
   const [data, setData] = React.useState<IResolvedProblems[]>([]);
   const [loading, setLoading] = useState(true);
+  const [synchDate, setSynchDate] = useState<Date>();
 
   const fetchData = async () => {
     try {
@@ -31,13 +39,26 @@ const ResolvedProblems = () => {
   };
 
   useEffect(() => {
-    fetchData().then(newData => {
-      setData(newData);
+    NetInfo.fetch().then(state => {
+      if (state.isConnected) {
+        fetchData().then(newData => {
+          setData(newData);
+        });
+        setSynchDate(new Date());
+      } else {
+        setData(PatientSummary.resolvedProblems);
+        setLoading(false);
+        setSynchDate(PatientSummary.lastSynced);
+      }
     });
   }, []);
 
   return (
     <View style={styles.containerHeight}>
+      <Text style={globalStyle.descriptionItalic}>
+        {t('dates.lastSynchronized')}:{' '}
+        {dayjs(synchDate).format(SYNCED_TIME_FORMAT)}
+      </Text>
       <FlatList
         keyExtractor={(_, index) => index.toString()}
         data={data}

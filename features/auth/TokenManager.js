@@ -6,16 +6,18 @@ import {userState} from '../recoil/atoms/User/userState';
 import {UserPreferencesState} from '../recoil/atoms/UserPreferences/UserPreferencesState';
 import {TokensUtils} from 'react-native-keycloak-plugin';
 import {RefreshToken, signOut} from './auth';
+import {patientSummaryState} from '../recoil/atoms/PatientSummary/PatientSummaryState';
 
 const LOGOUT = 'Logout';
 const AUTHENTICATION = 'Authentication';
 const TOKEN_REFRESH_THRESHOLD = 20;
 const TOKEN_REFRESH_INTERVAL = 5000;
 
-async function handleLogout(resetUser, resetKeychain) {
+async function handleLogout(resetUser, resetSummary, resetKeychain) {
   const logoutResponse = await signOut(resetKeychain);
   if (logoutResponse === 'Success') {
     resetUser();
+    resetSummary();
   }
 }
 
@@ -41,6 +43,7 @@ const TokenManager = () => {
   const [isPaused, setIsPaused] = useState(false);
   const [user, setUser] = useRecoilState(userState);
   const resetUser = useResetRecoilState(userState);
+  const resetSummary = useResetRecoilState(patientSummaryState);
   const [userPreferences, _] = useRecoilState(UserPreferencesState);
 
   const showAlert = useCallback(
@@ -57,13 +60,13 @@ const TokenManager = () => {
         {
           text: t('general.continue'),
           onPress: () => {
-            handleLogout(resetUser, resetKeycloak);
+            handleLogout(resetUser, resetSummary, resetKeycloak);
             setIsPaused(false);
           },
         },
       ]);
     },
-    [resetUser, t],
+    [resetUser, resetSummary, t],
   );
 
   useEffect(() => {
@@ -96,7 +99,15 @@ const TokenManager = () => {
         clearInterval(intervalId);
       };
     }
-  }, [userPreferences, isPaused, showAlert, user, setUser, resetUser]);
+  }, [
+    userPreferences,
+    isPaused,
+    showAlert,
+    user,
+    setUser,
+    resetUser,
+    resetSummary,
+  ]);
 };
 
 export default TokenManager;

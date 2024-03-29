@@ -14,10 +14,12 @@ import globalStyle from '../../assets/styles/globalStyle';
 import {useTranslation} from 'react-i18next';
 import {useRecoilState} from 'recoil';
 import {userState} from '../../features/recoil/atoms/User/userState';
+import {patientSummaryState} from '../../features/recoil/atoms/PatientSummary/PatientSummaryState';
 
 const MyHealthScreen = ({navigation}) => {
   const {t} = useTranslation();
   const [user, _] = useRecoilState(userState);
+  const [patientSummary, __] = useRecoilState(patientSummaryState);
 
   return (
     <SafeAreaView style={styles.container}>
