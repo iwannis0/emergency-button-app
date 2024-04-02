@@ -42,7 +42,8 @@
     "expected-delivery": "Expected Delivery Date",
     "observation": "Observation Date",
     "outcome": "Birthdays",
-    "vaccination": "Vaccination Date"
+    "vaccination": "Vaccination Date",
+    "lastSynchronized": "Last Synced"
   },
   "login": {
     "title": "Login",

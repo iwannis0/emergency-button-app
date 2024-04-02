@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -11,16 +11,39 @@ import {useTranslation} from 'react-i18next';
 import NavigationButton from '../../components/NavigationButton/NavigationButton';
 import styles from './style';
 import CountryFlag from 'react-native-country-flag';
-import {useRecoilState} from 'recoil';
+import {useRecoilState, useRecoilValue} from 'recoil';
 import {UserPreferencesState} from '../../features/recoil/atoms/UserPreferences/UserPreferencesState';
 import {LANGUAGE_ISO_CODE} from '../../common/constants/constants';
 import LanguageSelector from '../../components/LanguageSelector/LanguageSelector';
+import {getPatientSummary} from './api/patientSummaryAPI';
+import {userState} from '../../features/recoil/atoms/User/userState';
+import {patientSummaryState} from '../../features/recoil/atoms/PatientSummary/PatientSummaryState';
+import NetInfo from '@react-native-community/netinfo';
 
 const MedicalHistoryScreen = ({navigation}) => {
   const {t} = useTranslation();
+  const user = useRecoilValue(userState);
   const [userPreferences, setUserPreferences] =
     useRecoilState(UserPreferencesState);
   const [LanguageModalVisible, setLanguageModalVisible] = React.useState(false);
+  const [_, setPatientSummary] = useRecoilState(patientSummaryState);
+  const fetchData = async () => {
+    try {
+      return await getPatientSummary(user.token, user.id, 'EN');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    NetInfo.fetch().then(state => {
+      if (state.isConnected) {
+        fetchData().then(newData => {
+          setPatientSummary(newData);
+        });
+      }
+    });
+  }, []);
 
   return (
     <SafeAreaView>

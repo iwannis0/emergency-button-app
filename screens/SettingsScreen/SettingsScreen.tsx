@@ -10,26 +10,26 @@ import {userState} from '../../features/recoil/atoms/User/userState';
 import {UserPreferencesState} from '../../features/recoil/atoms/UserPreferences/UserPreferencesState';
 import {signOut} from '../../features/auth/auth';
 import LanguageSelector from '../../components/LanguageSelector/LanguageSelector';
+import {patientSummaryState} from '../../features/recoil/atoms/PatientSummary/PatientSummaryState';
 
 const SettingsScreen = () => {
   const {t} = useTranslation();
   const [_, setUserPreferences] = useRecoilState(UserPreferencesState);
   const resetUser = useResetRecoilState(userState);
-
+  const resetSummary = useResetRecoilState(patientSummaryState);
   const [LanguageModalVisible, setLanguageModalVisible] = React.useState(false);
   const [TermsModalVisible, setTermsModalVisible] = React.useState(false);
   const [PrivacyModalVisible, setPrivacyModalVisible] = React.useState(false);
   const [AboutModalVisible, setAboutModalVisible] = React.useState(false);
 
   async function handleLogout() {
-    const logoutResponse = await signOut(true);
-    if (logoutResponse === 'Success') {
-      setUserPreferences(currentUserPreferences => ({
-        ...currentUserPreferences,
-        keepLoggedIn: false,
-      }));
-      resetUser();
-    }
+    await signOut(true);
+    setUserPreferences(currentUserPreferences => ({
+      ...currentUserPreferences,
+      keepLoggedIn: false,
+    }));
+    resetUser();
+    resetSummary();
   }
 
   return (

@@ -1,51 +1,45 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {
   FlatList,
   SafeAreaView,
   ScrollView,
   StyleSheet,
+  Text,
   View,
 } from 'react-native';
 import {useTranslation} from 'react-i18next';
-import {useRecoilState} from 'recoil';
-import {userState} from '../../../../../features/recoil/atoms/User/userState';
 import {ISocialHistory} from '../interface/ISocialHistory';
 import {getSocialHistory} from '../api/socialHistoryAPI';
 import InformationCard from '../../../../../components/InformationCard/InformationCard';
 import dayjs from 'dayjs';
-import {DATE_FORMAT} from '../../../../../common/constants/constants';
+import {
+  DATE_FORMAT,
+  SYNCED_TIME_FORMAT,
+} from '../../../../../common/constants/constants';
 import Modalinfo from '../../../../../components/Modalinfo/Modalinfo';
 import NoDataSection from '../../../../../components/NoDataSection/NoDataSection';
 import Loading from '../../../../../components/Loading/Loading';
 import globalStyle from '../../../../../assets/styles/globalStyle';
+import {useSyncedSummary} from '../../../../../common/helpers/useSyncedSummary';
 
 const SocialHistoryScreen = () => {
   const {t} = useTranslation();
-  const [user, _] = useRecoilState(userState);
-  const [data, setData] = React.useState<ISocialHistory[]>([]);
-  const [loading, setLoading] = useState(true);
 
-  const fetchData = async () => {
-    try {
-      return await getSocialHistory(user.token, user.id, 'EN');
-    } catch (error) {
-      console.error(error);
-      return [];
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchData().then(newData => {
-      setData(newData);
-    });
-  }, []);
+  const {data, loading, syncDate} = useSyncedSummary<ISocialHistory[]>(
+    getSocialHistory,
+    'socialHistory',
+    'EN',
+  );
 
   return (
     <SafeAreaView>
       <View style={styles.containerHeight}>
         <View style={globalStyle.marginTop60}>
+          <Text style={globalStyle.descriptionItalic}>
+            {t('dates.lastSynchronized')}:{' '}
+            {dayjs(syncDate).format(SYNCED_TIME_FORMAT)}
+          </Text>
+
           <FlatList
             keyExtractor={(_, index) => index.toString()}
             data={data}

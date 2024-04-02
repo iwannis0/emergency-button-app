@@ -33,6 +33,16 @@ const globalStyle = StyleSheet.create({
     lineHeight: scaleFontSize(20),
     color: '#888888',
   },
+  descriptionItalic: {
+    fontFamily: 'Inter',
+    fontWeight: '400',
+    fontSize: scaleFontSize(14),
+    color: '#888888',
+    fontStyle: 'italic',
+    textAlign: 'right',
+    marginRight: horizontalScale(20),
+    marginBottom: verticalScale(5),
+  },
   subtitleBox: {
     width: 500,
     height: 29,

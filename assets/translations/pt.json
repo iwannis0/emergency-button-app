@@ -36,7 +36,8 @@
     "expected-delivery": "Data Prevista de Parto",
     "observation": "Data de Observação",
     "outcome": "Aniversário",
-    "vaccination": "Data de Vacinação"
+    "vaccination": "Data de Vacinação",
+    "lastSynchronized": "Última sincronização"
   },
   "patientSummary": {
     "title": "Resumo do Paciente",

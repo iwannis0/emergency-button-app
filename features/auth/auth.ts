@@ -91,10 +91,8 @@ const signOut = async (resetKeychain: boolean) => {
     if (resetKeychain) {
       await Keychain.resetGenericPassword();
     }
-    return 'Success';
   } catch (error) {
     console.log('error', error);
-    return 'Failed';
   }
 };
 
