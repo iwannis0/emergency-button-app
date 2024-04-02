@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   ProfileContainer: {
     alignItems: 'center',
     marginTop: verticalScale(30),
-    marginBottom: verticalScale(30),
+    marginBottom: verticalScale(20),
   },
   ImageContainer: {
     flexDirection: 'row',

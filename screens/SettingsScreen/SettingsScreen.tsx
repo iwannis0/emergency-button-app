@@ -23,15 +23,13 @@ const SettingsScreen = () => {
   const [AboutModalVisible, setAboutModalVisible] = React.useState(false);
 
   async function handleLogout() {
-    const logoutResponse = await signOut(true);
-    if (logoutResponse === 'Success') {
-      setUserPreferences(currentUserPreferences => ({
-        ...currentUserPreferences,
-        keepLoggedIn: false,
-      }));
-      resetUser();
-      resetSummary();
-    }
+    await signOut(true);
+    setUserPreferences(currentUserPreferences => ({
+      ...currentUserPreferences,
+      keepLoggedIn: false,
+    }));
+    resetUser();
+    resetSummary();
   }
 
   return (

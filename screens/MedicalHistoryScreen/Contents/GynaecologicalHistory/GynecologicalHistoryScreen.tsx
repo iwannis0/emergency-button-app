@@ -1,9 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {SafeAreaView, Text, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import globalStyle from '../../../../assets/styles/globalStyle';
-import {useRecoilState} from 'recoil';
-import {userState} from '../../../../features/recoil/atoms/User/userState';
 import {IGynecological} from './interface/IGynecological';
 import {getPregnancyInfo} from './api/gynaecologicalHistoryAPI';
 import dayjs from 'dayjs';
@@ -21,41 +19,16 @@ import {
   faChildren,
 } from '@fortawesome/free-solid-svg-icons';
 import styles from './styles';
-import NetInfo from '@react-native-community/netinfo';
-import {patientSummaryState} from '../../../../features/recoil/atoms/PatientSummary/PatientSummaryState';
+import {useSyncedSummary} from '../../../../common/helpers/useSyncedSummary';
 
 const GynecologicalHistoryScreen = () => {
   const {t} = useTranslation();
-  const [user, _] = useRecoilState(userState);
-  const [PatientSummary, __] = useRecoilState(patientSummaryState);
-  const [data, setData] = React.useState<IGynecological>();
-  const [loading, setLoading] = useState(true);
-  const [synchDate, setSynchDate] = useState<Date>();
 
-  const fetchData = async () => {
-    try {
-      return await getPregnancyInfo(user.token, user.id, 'EN');
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    NetInfo.fetch().then(state => {
-      if (state.isConnected) {
-        fetchData().then(newData => {
-          setData(newData);
-        });
-        setSynchDate(new Date());
-      } else {
-        setData(PatientSummary.pregnancies);
-        setLoading(false);
-        setSynchDate(PatientSummary.lastSynced);
-      }
-    });
-  }, []);
+  let {data, loading, syncDate} = useSyncedSummary<IGynecological>(
+    getPregnancyInfo,
+    'pregnancies',
+    'EN',
+  );
 
   if (!data?.availableInformation) {
     return (
@@ -71,7 +44,7 @@ const GynecologicalHistoryScreen = () => {
       <View style={[globalStyle.marginTop60, styles.container]}>
         <Text style={globalStyle.descriptionItalic}>
           {t('dates.lastSynchronized')}:{' '}
-          {dayjs(synchDate).format(SYNCED_TIME_FORMAT)}
+          {dayjs(syncDate).format(SYNCED_TIME_FORMAT)}
         </Text>
         <View style={[styles.pregnancyContainer, styles.marginTop]}>
           <View style={styles.imageContainer}>

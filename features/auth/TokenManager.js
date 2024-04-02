@@ -14,11 +14,9 @@ const TOKEN_REFRESH_THRESHOLD = 20;
 const TOKEN_REFRESH_INTERVAL = 5000;
 
 async function handleLogout(resetUser, resetSummary, resetKeychain) {
-  const logoutResponse = await signOut(resetKeychain);
-  if (logoutResponse === 'Success') {
-    resetUser();
-    resetSummary();
-  }
+  await signOut(resetKeychain);
+  resetUser();
+  resetSummary();
 }
 
 async function refreshableFetch(keepLoggedIn, token) {

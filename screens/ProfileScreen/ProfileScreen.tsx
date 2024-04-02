@@ -1,36 +1,27 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Image, SafeAreaView, Text, View} from 'react-native';
 import globalStyle from '../../assets/styles/globalStyle';
 import styles from './style';
 import {useTranslation} from 'react-i18next';
 import Loading from '../../components/Loading/Loading';
-import {useRecoilState} from 'recoil';
-import {userState} from '../../features/recoil/atoms/User/userState';
 import {ScrollView} from 'react-native-gesture-handler';
-import {DATE_FORMAT} from '../../common/constants/constants';
+import {
+  DATE_FORMAT,
+  SYNCED_TIME_FORMAT,
+} from '../../common/constants/constants';
 import dayjs from 'dayjs';
 import {getPatientInformation} from './api/patientInformationAPI';
 import {IPatientInformation} from './interface/IPatientInformation';
+import {useSyncedSummary} from '../../common/helpers/useSyncedSummary';
 
 const ProfileScreen = () => {
   const {t} = useTranslation();
-  const [user, _] = useRecoilState(userState);
-  const [data, setData] = React.useState<IPatientInformation>();
-  const [loading, setLoading] = useState(true);
 
-  const fetchData = async () => {
-    try {
-      const response = await getPatientInformation(user.token, user.id, 'EN');
-      setLoading(false);
-      return response;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchData().then(setData);
-  }, []);
+  const {data, loading, syncDate} = useSyncedSummary<IPatientInformation>(
+    getPatientInformation,
+    'patientInfo',
+    'EN',
+  );
 
   const InformationBox = ({labelKey, value}) => (
     <View style={styles.informationBox}>
@@ -67,6 +58,10 @@ const ProfileScreen = () => {
             {data?.givenName} {data?.familyName}
           </Text>
         </View>
+        <Text style={globalStyle.descriptionItalic}>
+          {t('dates.lastSynchronized')}:{' '}
+          {dayjs(syncDate).format(SYNCED_TIME_FORMAT)}
+        </Text>
         <View style={styles.sections}>
           <Text style={styles.descriptions}>
             {t('patientSummary.profile.personal-details')}
