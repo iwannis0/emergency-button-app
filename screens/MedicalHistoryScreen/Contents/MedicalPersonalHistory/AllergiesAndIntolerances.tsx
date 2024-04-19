@@ -21,7 +21,6 @@ const AllergiesAndIntolerances = () => {
   const {data, loading, syncDate} = useSyncedSummary<IAllergyType[]>(
     getAllergyIntolerance,
     'allergies',
-    'EN',
   );
 
   return (

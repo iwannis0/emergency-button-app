@@ -14,7 +14,8 @@
     "criticality": "Κρισιμότητα",
     "severity": "Σοβαρότητα",
     "certainty": "Βεβαιότητα",
-    "description": "Περιγραφή"
+    "description": "Περιγραφή",
+    "translate-summary": "Μετάφραση Περίληψης Ασθενούς"
   },
   "dictionary": {
     "from": "Από",

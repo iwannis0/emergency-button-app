@@ -13,6 +13,9 @@
     "hungarian": "Magyar",
     "czech": "Čeština",
     "slovak": "Slovenský",
+    "spanish": "Español",
+    "french": "Français",
+    "dutch": "Nederlands",
     "no-data": "No available data",
     "no-known": "There are no known information",
     "doctor": "General Practitioner",
@@ -20,7 +23,8 @@
     "criticality": "Criticality",
     "severity": "Severity",
     "certainty": "Certainty",
-    "description": "Description"
+    "description": "Description",
+    "translate-summary": "Translate Patient Summary"
   },
   "dictionary": {
     "from": "From",

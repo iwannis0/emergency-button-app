@@ -21,7 +21,6 @@ const MedicationSummary = () => {
   const {data, loading, syncDate} = useSyncedSummary<IMedicationSummary[]>(
     getMedicationSummary,
     'medicationSummaries',
-    'EN',
   );
 
   return (

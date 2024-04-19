@@ -14,7 +14,8 @@
     "criticality": "Kritičnost",
     "severity": "Závažnost",
     "certainty": "Jistota",
-    "description": "Popis"
+    "description": "Popis",
+    "translate-summary": "Přeložte shrnutí pacienta"
   },
   "dictionary": {
     "from": "Od",

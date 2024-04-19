@@ -14,7 +14,8 @@
     "criticality": "Kritikusság",
     "severity": "Súlyosság",
     "certainty": "Bizonyosság",
-    "description": "Leírás"
+    "description": "Leírás",
+    "translate-summary": "Fordítsa le a beteg összefoglalóját"
   },
   "dictionary": {
     "from": "Tól",

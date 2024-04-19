@@ -5,7 +5,7 @@ import {IPatientSummary} from '../../../features/recoil/interfaces/IPatientSumma
 export const getPatientSummary = async (
   token: string,
   patientId: string,
-  translationCode: string,
+  translationCode: string | null,
 ): Promise<IPatientSummary> => {
   const response = await axios.get<IPatientSummary>(
     `${GATEWAY_API_URL}/PatientSummary/GetSummary`,

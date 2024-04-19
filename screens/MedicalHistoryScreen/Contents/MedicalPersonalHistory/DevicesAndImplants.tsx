@@ -21,7 +21,6 @@ const DeviceAndImplants = () => {
   const {data, loading, syncDate} = useSyncedSummary<IDeviceAndImplants[]>(
     getDevices,
     'devices',
-    'EN',
   );
 
   return (

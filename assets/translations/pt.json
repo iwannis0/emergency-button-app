@@ -14,7 +14,8 @@
     "criticality": "Criticidade",
     "severity": "Severidade",
     "certainty": "Certeza",
-    "description": "Descrição"
+    "description": "Descrição",
+    "translate-summary": "Traduzir Resumo do Paciente"
   },
   "dictionary": {
     "from": "De",

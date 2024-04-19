@@ -13,12 +13,16 @@ import styles from './style';
 import CountryFlag from 'react-native-country-flag';
 import {useRecoilState, useRecoilValue} from 'recoil';
 import {UserPreferencesState} from '../../features/recoil/atoms/UserPreferences/UserPreferencesState';
-import {LANGUAGE_ISO_CODE} from '../../common/constants/constants';
+import {
+  LANGUAGE_ISO_CODE,
+  PATHED_TRANSCODES,
+} from '../../common/constants/constants';
 import LanguageSelector from '../../components/LanguageSelector/LanguageSelector';
 import {getPatientSummary} from './api/patientSummaryAPI';
 import {userState} from '../../features/recoil/atoms/User/userState';
 import {patientSummaryState} from '../../features/recoil/atoms/PatientSummary/PatientSummaryState';
 import NetInfo from '@react-native-community/netinfo';
+import Loading from '../../components/Loading/Loading';
 
 const MedicalHistoryScreen = ({navigation}) => {
   const {t} = useTranslation();
@@ -27,9 +31,14 @@ const MedicalHistoryScreen = ({navigation}) => {
     useRecoilState(UserPreferencesState);
   const [LanguageModalVisible, setLanguageModalVisible] = React.useState(false);
   const [_, setPatientSummary] = useRecoilState(patientSummaryState);
+  const [loading, setLoading] = React.useState(true);
   const fetchData = async () => {
     try {
-      return await getPatientSummary(user.token, user.id, 'EN');
+      return await getPatientSummary(
+        user.token,
+        user.id,
+        PATHED_TRANSCODES[userPreferences.language],
+      );
     } catch (error) {
       console.error(error);
     }
@@ -40,6 +49,7 @@ const MedicalHistoryScreen = ({navigation}) => {
       if (state.isConnected) {
         fetchData().then(newData => {
           setPatientSummary(newData);
+          setLoading(false);
         });
       }
     });
@@ -50,6 +60,7 @@ const MedicalHistoryScreen = ({navigation}) => {
       <View style={[globalStyle.marginTop60, globalStyle.backgroundWhite]}>
         <LanguageSelector
           isVisible={LanguageModalVisible}
+          isPatientSummary={true}
           onClose={() => setLanguageModalVisible(false)}
           setUserPreferences={setUserPreferences}
         />
@@ -149,9 +160,10 @@ const MedicalHistoryScreen = ({navigation}) => {
           </Text>
         </View>
         <Text style={[globalStyle.descriptionBlackL2, styles.changeLanguage]}>
-          {t('general.change-language')}
+          {t('general.translate-summary')}
         </Text>
       </TouchableOpacity>
+      {loading && <Loading />}
     </SafeAreaView>
   );
 };

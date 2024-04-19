@@ -21,7 +21,6 @@ const Procedures = () => {
   const {data, loading, syncDate} = useSyncedSummary<IProcedure[]>(
     getProcedures,
     'procedures',
-    'EN',
   );
 
   return (
