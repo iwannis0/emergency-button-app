@@ -21,7 +21,6 @@ const CurrentProblems = () => {
   const {data, loading, syncDate} = useSyncedSummary<ICurrentProblems[]>(
     getCurrentProblems,
     'problems',
-    'EN',
   );
 
   return (

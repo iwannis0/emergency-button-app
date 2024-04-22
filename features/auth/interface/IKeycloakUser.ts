@@ -15,6 +15,7 @@ export interface IKeycloakUser {
   scope: string;
   email_verified: boolean;
   nationalIdentity: string;
+  birthDate: string;
   preferred_username: string;
   fhirResourceId: string[];
 }

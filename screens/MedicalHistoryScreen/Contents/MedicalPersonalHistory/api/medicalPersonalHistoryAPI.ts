@@ -11,7 +11,7 @@ import {GATEWAY_API_URL} from '@env';
 export const getAllergyIntolerance = async (
   token: string,
   patientId: string,
-  translationCode: string,
+  translationCode: string | null,
 ): Promise<IAllergyType[]> => {
   const response = await axios.get<IAllergyType[]>(
     `${GATEWAY_API_URL}/PatientSummary/GetAllergies`,

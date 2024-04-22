@@ -21,7 +21,6 @@ const FunctionalStatus = () => {
   const {data, loading, syncDate} = useSyncedSummary<IFunctionalStatus[]>(
     getFunctionalStatus,
     'functionalStatus',
-    'EN',
   );
 
   return (

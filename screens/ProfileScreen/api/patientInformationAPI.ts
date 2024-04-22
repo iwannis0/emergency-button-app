@@ -5,7 +5,7 @@ import {IPatientInformation} from '../interface/IPatientInformation';
 export const getPatientInformation = async (
   token: string,
   patientId: string,
-  translationCode: string,
+  translationCode: string | null,
 ): Promise<IPatientInformation> => {
   const response = await axios.get<IPatientInformation>(
     `${GATEWAY_API_URL}/PatientSummary/GetPatient`,

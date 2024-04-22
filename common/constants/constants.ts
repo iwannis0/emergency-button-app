@@ -24,4 +24,19 @@ export const LANGUAGE_ISO_CODE = {
   Hungarian: 'hu',
   Slovak: 'si',
   Czech: 'cz',
+  French: 'fr',
+  Spanish: 'es',
+  Dutch: 'nl',
+};
+
+export const PATHED_TRANSCODES = {
+  English: null,
+  Greek: null,
+  Portuguese: 'pt-PT',
+  Hungarian: 'hu-HU',
+  Slovak: 'sl-SI',
+  Czech: 'cz-CZ',
+  French: 'fr-BE',
+  Spanish: 'es-ES',
+  Dutch: 'nl-BE',
 };

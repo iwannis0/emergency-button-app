@@ -14,7 +14,8 @@
     "criticality": "Kritickosť",
     "severity": "Závažnosť",
     "certainty": "Istota",
-    "description": "Popis"
+    "description": "Popis",
+    "translate-summary": "Prevedite povzetek bolnika"
   },
   "dictionary": {
     "from": "Od",

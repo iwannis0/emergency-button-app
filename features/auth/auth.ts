@@ -3,7 +3,6 @@ import Keychain from 'react-native-keychain';
 import jwt_decode from 'jwt-decode';
 import {IKeycloakResponse} from './interface/IKeycloakResponse';
 import {IKeycloakUser} from './interface/IKeycloakUser';
-import {getPatientProfile} from './api/patientLoginServiceAPI';
 import {
   KEYCLOAK_APPSITE_URI,
   KEYCLOAK_AUTH_SERVER_URL,
@@ -12,6 +11,7 @@ import {
   KEYCLOAK_RESOURCE,
   KEYCLOAK_RESPONSE_TYPE,
 } from '@env';
+import {getPatientInformation} from '../../screens/ProfileScreen/api/patientInformationAPI';
 
 const keycloakConfig: any = {
   'auth-server-url': KEYCLOAK_AUTH_SERVER_URL,
@@ -45,19 +45,21 @@ const signIn = async (
         }
 
         if (user.resource_access.fhir.roles.includes('Patients')) {
-          let patientId = user.fhirResourceId
-            ?.find(id => id.includes('Patient/'))
-            ?.split('/')[1];
+          let patientId = user.birthDate + '|' + user.nationalIdentity;
 
           // load the patient profile using IPatient interface
-          return await getPatientProfile(response.access_token, patientId)
+          return await getPatientInformation(
+            response.access_token,
+            patientId,
+            null,
+          )
             .then(res => {
               return {
                 status: 'Authorized',
                 data: {
                   id: patientId,
-                  name: res.data.patient.name?.givenName.at(0),
-                  surname: res.data.patient.name?.familyName,
+                  name: res.givenName,
+                  surname: res.familyName,
                   loggedIn: true,
                   token: response.access_token,
                 },

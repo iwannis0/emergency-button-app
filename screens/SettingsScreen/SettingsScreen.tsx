@@ -36,6 +36,7 @@ const SettingsScreen = () => {
     <SafeAreaView style={styles.container}>
       <ScrollView style={globalStyle.marginTop60}>
         <LanguageSelector
+          isPatientSummary={true}
           isVisible={LanguageModalVisible}
           onClose={() => setLanguageModalVisible(false)}
           setUserPreferences={setUserPreferences}

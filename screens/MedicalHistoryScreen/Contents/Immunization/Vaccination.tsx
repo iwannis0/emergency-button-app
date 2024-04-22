@@ -21,7 +21,6 @@ const Vaccination = () => {
   const {data, loading, syncDate} = useSyncedSummary<IVaccination[]>(
     getVaccination,
     'vaccinations',
-    'EN',
   );
 
   return (

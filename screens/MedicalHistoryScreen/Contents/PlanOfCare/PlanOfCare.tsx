@@ -18,7 +18,6 @@ const PlanOfCare = () => {
   const {data, loading, syncDate} = useSyncedSummary<IPlanOfCare[]>(
     getPlanOfCare,
     'planOfCare',
-    'EN',
   );
 
   return (

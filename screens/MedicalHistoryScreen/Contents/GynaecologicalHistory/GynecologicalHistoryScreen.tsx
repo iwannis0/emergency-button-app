@@ -27,7 +27,6 @@ const GynecologicalHistoryScreen = () => {
   let {data, loading, syncDate} = useSyncedSummary<IGynecological>(
     getPregnancyInfo,
     'pregnancies',
-    'EN',
   );
 
   if (!data?.availableInformation) {
@@ -94,6 +93,7 @@ const GynecologicalHistoryScreen = () => {
           </View>
 
           {data.numberOfChildren > 0 &&
+            data.outcomeDates &&
             data?.outcomeDates.split(',').map((date, index) => (
               <Text style={globalStyle.descriptionBlackL1} key={index}>
                 {dayjs(date).format(DATE_FORMAT)}

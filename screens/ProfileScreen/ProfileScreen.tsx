@@ -20,7 +20,6 @@ const ProfileScreen = () => {
   const {data, loading, syncDate} = useSyncedSummary<IPatientInformation>(
     getPatientInformation,
     'patientInfo',
-    'EN',
   );
 
   const InformationBox = ({labelKey, value}) => (

@@ -28,7 +28,6 @@ const SocialHistoryScreen = () => {
   const {data, loading, syncDate} = useSyncedSummary<ISocialHistory[]>(
     getSocialHistory,
     'socialHistory',
-    'EN',
   );
 
   return (
