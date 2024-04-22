@@ -1,132 +1,132 @@
 {
   "general": {
-    "search": "Recherche...",
-    "loading": "Chargement...",
-    "continue": "Continuer",
-    "back": "Retour",
-    "language": "Langue",
-    "change-language": "Changer de langue",
-    "view-language": "Langue actuellement affichée :",
-    "no-data": "Aucune donnée disponible",
-    "no-known": "Aucune information connue",
-    "doctor": "Docteur",
-    "status": "État clinique",
-    "criticality": "Critique",
-    "severity": "Gravité",
-    "certainty": "Certitude",
-    "description": "Description",
-    "translate-summary": "Traduire le résumé du patient"
+    "search": "Buscar...",
+    "loading": "Cargando...",
+    "continue": "Continuar",
+    "back": "Atrás",
+    "language": "Idioma",
+    "change-language": "Cambiar idioma",
+    "view-language": "Idioma actualmente mostrado es:",
+    "no-data": "No hay datos disponibles",
+    "no-known": "No hay información conocida",
+    "doctor": "Doctor",
+    "status": "Estado clínico",
+    "criticality": "Criticidad",
+    "severity": "Severidad",
+    "certainty": "Certeza",
+    "description": "Descripción",
+    "translate-summary": "Traducir resumen del paciente"
   },
   "dictionary": {
-    "from": "De",
-    "until": "Jusqu'à",
-    "present": "Présent",
-    "about": "À propos de"
+    "from": "Desde",
+    "until": "Hasta",
+    "present": "Presente",
+    "about": "Acerca de"
   },
   "dates": {
-    "birth": "Date de naissance",
-    "arrival": "Date d'arrivée",
-    "departure": "Date de départ",
-    "onset": "Date de début",
-    "last-occurrence": "Date de la dernière occurrence",
-    "resolution": "Date de résolution",
-    "procedure": "Date de la procédure",
-    "assessment": "Date de l'évaluation",
-    "removal": "Date de retrait",
-    "end": "Date de fin",
-    "expected-delivery": "Date prévue de l'accouchement",
-    "observation": "Date d'observation",
-    "outcome": "Anniversaire",
-    "vaccination": "Date de vaccination",
-    "lastSynchronized": "Dernière synchronisation"
+    "birth": "Fecha de nacimiento",
+    "arrival": "Fecha de llegada",
+    "departure": "Fecha de salida",
+    "onset": "Fecha de inicio",
+    "last-occurrence": "Fecha del último evento",
+    "resolution": "Fecha de resolución",
+    "procedure": "Fecha del procedimiento",
+    "assessment": "Fecha de evaluación",
+    "removal": "Fecha de eliminación",
+    "end": "Fecha de finalización",
+    "expected-delivery": "Fecha prevista de parto",
+    "observation": "Fecha de observación",
+    "outcome": "Cumpleaños",
+    "vaccination": "Fecha de vacunación",
+    "lastSynchronized": "Última sincronización"
   },
   "patientSummary": {
-    "title": "Résumé du Patient",
+    "title": "Resumen del Paciente",
     "profile": {
-      "title": "Profil",
-      "personal-details": "Détails Personnels",
-      "primary-id": "Numéro d'Identification Principal",
-      "secondary-id": "Numéro d'Identification Secondaire",
-      "gender": "Genre",
-      "communication-language": "Langue de Communication",
-      "contact-details": "Détails de Contact",
-      "email": "Email",
-      "mobile-phone": "Numéro de Téléphone Mobile",
-      "home-phone": "Numéro de Téléphone Fixe",
-      "address": "Adresse",
+      "title": "Perfil",
+      "personal-details": "Datos Personales",
+      "primary-id": "Número de Identificación Primario",
+      "secondary-id": "Número de Identificación Secundario",
+      "gender": "Género",
+      "communication-language": "Idioma de Comunicación",
+      "contact-details": "Datos de Contacto",
+      "email": "Correo Electrónico",
+      "mobile-phone": "Número de Teléfono Móvil",
+      "home-phone": "Número de Teléfono Fijo",
+      "address": "Dirección",
       "emergency": {
-        "contact": "Contact d'Urgence",
-        "name": "Nom Complet"
+        "contact": "Contacto de Emergencia",
+        "name": "Nombre Completo"
       }
     },
     "alerts": {
-      "title": "Alertes"
+      "title": "Alertas"
     },
     "travel": {
-      "title": "Historique de Voyage"
+      "title": "Historial de Viajes"
     },
     "allergies": {
-      "title": "Allergies",
-      "type": "Type",
-      "substance": "Substance",
-      "manifestation": "Manifestation",
-      "exposure-route": "Voie d'Exposition",
-      "category": "Catégorie"
+      "title": "Alergias",
+      "type": "Tipo",
+      "substance": "Sustancia",
+      "manifestation": "Manifestación",
+      "exposure-route": "Ruta de Exposición",
+      "category": "Categoría"
     },
     "problems": {
-      "title": "Problèmes de Santé",
-      "current": "Problèmes Actuels",
-      "resolved": "Problèmes Résolus",
-      "procedures": "Procédures",
-      "functional-status": "État Fonctionnel",
-      "body-site": "Site Corporel"
+      "title": "Problemas de Salud",
+      "current": "Problemas Actuales",
+      "resolved": "Problemas Resueltos",
+      "procedures": "Procedimientos",
+      "functional-status": "Estado Funcional",
+      "body-site": "Parte del Cuerpo"
     },
     "social-history": {
-      "title": "Histoire Sociale",
-      "frequency": "Fréquence d'Activité"
+      "title": "Historial Social",
+      "frequency": "Frecuencia de Actividad"
     },
     "devices": {
-      "title": "Appareils"
+      "title": "Dispositivos"
     },
     "medication-summary": {
-      "title": "Résumé des Médicaments",
-      "strength": "Puissance du Médicament",
-      "frequency": "Fréquence de Prise",
-      "dosage": "Dosage du Médicament",
-      "form": "Forme du Médicament",
-      "administration": "Méthode d'Administration"
+      "title": "Resumen de Medicación",
+      "strength": "Potencia",
+      "frequency": "Frecuencia de Dosificación",
+      "dosage": "Dosis",
+      "form": "Forma",
+      "administration": "Administración"
     },
     "gynaecological": {
-      "title": "Gynécologique",
-      "abortions": "Nombre d'Avortements",
-      "children": "Nombre d'Enfants"
+      "title": "Ginecológico",
+      "abortions": "Número de Abortos",
+      "children": "Número de Hijos"
     },
     "immunization": {
-      "title": "Vaccination",
-      "doses": "Nombre de Doses",
-      "brand": "Marque",
-      "disease": "Maladie ou Agent Ciblé",
-      "holder": "Titulaire de l'Autorisation de Mise sur le Marché",
-      "batch": "Lot / Numéro de Lot",
-      "administering-center": "Centre d'Administration",
-      "country": "Pays de Vaccination",
-      "administered": "État de la Vaccination"
+      "title": "Inmunización",
+      "doses": "Número de Dosis",
+      "brand": "Marca",
+      "disease": "Enfermedad o Agente Objetivo",
+      "holder": "Titular de la Autorización de Comercialización",
+      "batch": "Lote / Número de Serie",
+      "administering-center": "Centro de Administración",
+      "country": "País de Vacunación",
+      "administered": "Estado de Vacunación"
     },
     "plan-of-care": {
-      "title": "Plan de Soins",
-      "recommendation": "Recommandation Thérapeutique"
+      "title": "Plan de Cuidado",
+      "recommendation": "Recomendación Terapéutica"
     },
     "clinical": {
-      "title": "Examen Clinique"
+      "title": "Examen Clínico"
     },
     "laboratory": {
-      "title": "Laboratoire"
+      "title": "Laboratorio"
     },
     "imaging": {
-      "title": "Méthodes d'Imagerie"
+      "title": "Métodos de Imagen"
     },
     "episodes-care": {
-      "title": "Épisodes de Soins"
+      "title": "Episodios de Cuidado"
     }
   }
 }
