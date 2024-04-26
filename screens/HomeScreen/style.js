@@ -7,10 +7,13 @@ const myHealthDashboardStyle = StyleSheet.create({
     backgroundColor: '#ffffff',
     paddingBottom: verticalScale(20),
   },
-  ImageContainer: {
+  ProfileContainer: {
     position: 'absolute',
     top: 13,
     right: 13,
+  },
+  ImageContainer: {
+    justifyContent: 'center',
   },
   ImageStyle: {
     width: 35,
@@ -18,8 +21,7 @@ const myHealthDashboardStyle = StyleSheet.create({
   },
   ImageInitials: {
     position: 'absolute',
-    top: 7,
-    left: 9,
+    alignSelf: 'center',
     color: '#00827B',
   },
 });

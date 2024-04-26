@@ -56,7 +56,7 @@ const MedicalHistoryScreen = ({navigation}) => {
   }, []);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.pageSize}>
       <View style={[globalStyle.marginTop60, globalStyle.backgroundWhite]}>
         <LanguageSelector
           isVisible={LanguageModalVisible}

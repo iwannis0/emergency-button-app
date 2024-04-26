@@ -24,17 +24,17 @@ const styles = StyleSheet.create({
     marginLeft: horizontalScale(24),
   },
   input: {
-    width: horizontalScale(350),
+    width: horizontalScale(320),
     height: verticalScale(60),
     borderColor: '#D8D8D8',
     borderWidth: scaleFontSize(2),
     marginTop: verticalScale(20),
+    borderRadius: scaleFontSize(10),
     marginLeft: horizontalScale(25),
     paddingLeft: horizontalScale(15),
-    borderRadius: scaleFontSize(10),
   },
   passwordIcon: {
-    right: horizontalScale(45),
+    right: horizontalScale(60),
     top: verticalScale(10),
   },
   forgot: {
