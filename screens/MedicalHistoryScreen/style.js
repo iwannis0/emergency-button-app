@@ -2,17 +2,14 @@ import {StyleSheet} from 'react-native';
 import {horizontalScale, verticalScale} from '../../assets/styles/scaling';
 
 const styles = StyleSheet.create({
-  PersonalHistoryContainer: {
-    width: '90%',
-    marginLeft: horizontalScale(35),
-  },
-  PersonalHistoryTitle: {
-    marginTop: verticalScale(15),
-    marginLeft: horizontalScale(-10),
+  pageSize: {
+    flex: 1,
   },
   changeLanguageContainer: {
-    marginHorizontal: horizontalScale(20),
-    marginTop: verticalScale(130),
+    position: 'absolute',
+    alignSelf: 'center',
+    marginHorizontal: horizontalScale(0),
+    bottom: verticalScale(50),
   },
   changeLanguageText: {
     textAlign: 'center',

@@ -12,17 +12,16 @@ const styles = StyleSheet.create({
     marginBottom: verticalScale(20),
   },
   ImageContainer: {
-    flexDirection: 'row',
+    justifyContent: 'center',
   },
   ImageStyle: {
-    left: horizontalScale(13),
     width: horizontalScale(60),
     height: horizontalScale(60),
   },
   ImageInitials: {
-    right: horizontalScale(38),
-    top: verticalScale(15),
-    fontSize: scaleFontSize(25),
+    position: 'absolute',
+    alignSelf: 'center',
+    fontSize: scaleFontSize(26),
     color: '#00827B',
   },
   Name: {

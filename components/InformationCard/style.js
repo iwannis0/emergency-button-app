@@ -7,8 +7,9 @@ import {
 
 const styles = StyleSheet.create({
   informationCardContainer: {
-    borderRadius: 10,
-    marginHorizontal: 7,
+    paddingBottom: verticalScale(10),
+    borderRadius: scaleFontSize(10),
+    marginHorizontal: horizontalScale(8),
     shadowOffset: {width: 1, height: 4, borderRadius: 20},
     shadowColor: 'rgba(212, 212, 212)',
     shadowOpacity: 0.75,

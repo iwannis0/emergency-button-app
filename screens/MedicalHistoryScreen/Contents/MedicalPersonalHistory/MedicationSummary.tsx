@@ -42,10 +42,8 @@ const MedicationSummary = () => {
                 ? dayjs(item.startDate).format(DATE_FORMAT)
                 : t('general.no-data')
             }
-            TopSubtitle={`${t('patientSummary.medication-summary.strength')}: ${
-              item.strength || t('general.no-data')
-            }`}
-            BottomSubtitle={`${t('dates.end')}: ${
+            TopSubtitle={`${item.doseForm || t('general.no-data')}`}
+            BottomSubtitle={`${
               item.startDate
                 ? dayjs(item.endDate).format(DATE_FORMAT)
                 : t('general.no-data')

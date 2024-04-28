@@ -21,8 +21,9 @@ const MyHealthScreen = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.ImageContainer}>
+      <View style={styles.ProfileContainer}>
         <Pressable
+          style={styles.ImageContainer}
           onPress={() => {
             navigation.navigate('Profile');
           }}>
