@@ -8,7 +8,6 @@ import {
   View,
 } from 'react-native';
 import {useTranslation} from 'react-i18next';
-import {getSummary} from '../../api/Summary';
 import {useRecoilState} from 'recoil';
 import {userState} from '../../../../features/recoil/atoms/User/userState';
 import Loading from '../../../../components/Loading/Loading';
@@ -84,7 +83,7 @@ const ResourceSelection = () => {
 
   const fetchData = async () => {
     try {
-      return await getSummary(user.token, user.id);
+      return require('./MariaIosef.json');
     } catch (error) {
       console.error(error);
     } finally {

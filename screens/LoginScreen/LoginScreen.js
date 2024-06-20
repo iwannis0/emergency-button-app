@@ -153,7 +153,7 @@ const LoginScreen = () => {
         <Text style={globalStyle.descriptionBlackL2}>
           {t('general.change-language')}:{' '}
         </Text>
-        <CountryFlag isoCode={isoCode[userPreferences.language]} size={25} />
+        <CountryFlag isoCode={'en'} size={25} />
       </TouchableOpacity>
       <View style={[styles.ImageContainer, globalStyle.fullyCentered]}>
         <Image
