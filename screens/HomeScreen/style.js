@@ -24,6 +24,23 @@ const myHealthDashboardStyle = StyleSheet.create({
     alignSelf: 'center',
     color: '#00827B',
   },
+  emergencyText: {
+    fontSize: 20,
+    color: 'red',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    margin: 20,
+  },
+  normalText: {
+    fontSize: 18,
+    color: 'green',
+    textAlign: 'center',
+  },
+  locationText: {
+    fontSize: 16,
+    color: 'blue',
+    marginTop: 10,
+  },
 });
 
 export default myHealthDashboardStyle;
