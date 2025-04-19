@@ -22,6 +22,7 @@ import GynecologicalHistoryScreen from '../screens/MedicalHistoryScreen/Contents
 import ImmunizationScreen from '../screens/MedicalHistoryScreen/Contents/Immunization/Screens/ImmunizationScreen';
 import PlanOfCareScreen from '../screens/MedicalHistoryScreen/Contents/PlanOfCare/Screens/PlanOfCareScreen';
 import ShlScreen from '../screens/ShlScreen/ShlScreen';
+import SMSHistoryScreen from "../screens/SMSHistoryScreen";
 
 const ICON_SIZE = scaleFontSize(25);
 const INACTIVE_COLOR = '#A4A4A4';
@@ -47,115 +48,123 @@ export const MyHealthStack = () => {
   const {t} = useTranslation();
 
   return (
-    <stack.Navigator
-      initialRouteName={Routes.Home}
-      screenOptions={{
-        headerShown: true,
-        headerTransparent: true, // Set the background color to transparent
-      }}>
-      <stack.Screen
-        name={Routes.Home}
-        component={HomeScreen}
-        options={{headerShown: true, headerTitle: t('myHealth.title')}}
-      />
-      <stack.Screen
-        name={Routes.Alerts}
-        component={AlertsScreen}
-        options={{
-          headerShown: true,
-          headerTitle: t('patientSummary.alerts.title'),
-        }}
-      />
-      <stack.Screen
-        name={Routes.MedicalHistory}
-        component={MedicalHistoryScreen}
-        options={{headerShown: true, headerTitle: t('patientSummary.title')}}
-      />
-      <stack.Screen
-        name={Routes.AllergiesScreen}
-        component={AllergiesScreen}
-        options={{
-          headerShown: true,
-          headerTitle: t('patientSummary.allergies.title'),
-        }}
-      />
-      <stack.Screen
-        name={Routes.ProblemsScreen}
-        component={ProblemsScreen}
-        options={{
-          headerShown: true,
-          headerTitle: t('patientSummary.problems.current'),
-        }}
-      />
-      <stack.Screen
-        name={Routes.SocialHistoryScreen}
-        component={SocialHistoryScreen}
-        options={{
-          headerShown: true,
-          headerTitle: t('patientSummary.social-history.title'),
-        }}
-      />
-      <stack.Screen
-        name={Routes.DevicesScreen}
-        component={DevicesScreen}
-        options={{
-          headerShown: true,
-          headerTitle: t('patientSummary.devices.title'),
-        }}
-      />
-      <stack.Screen
-        name={Routes.MedicationSummaryScreen}
-        component={MedicationSummaryScreen}
-        options={{
-          headerShown: true,
-          headerTitle: t('patientSummary.medication-summary.title'),
-        }}
-      />
-      <stack.Screen
-        name={Routes.GynecologicalHistoryScreen}
-        component={GynecologicalHistoryScreen}
-        options={{
-          headerShown: true,
-          headerTitle: t('patientSummary.gynaecological.title'),
-        }}
-      />
-      <stack.Screen
-        name={Routes.ImmunizationScreen}
-        component={ImmunizationScreen}
-        options={{
-          headerShown: true,
-          headerTitle: t('patientSummary.immunization.title'),
-        }}
-      />
-      <stack.Screen
-        name={Routes.PlanOfCareScreen}
-        component={PlanOfCareScreen}
-        options={{
-          headerShown: true,
-          headerTitle: t('patientSummary.plan-of-care.title'),
-        }}
-      />
-      <stack.Screen
-        name={Routes.Profile}
-        component={ProfileScreen}
-        options={{headerShown: true, headerTitle: ''}}
-      />
-      <stack.Screen
-        name={Routes.ShlScreen}
-        component={ShlScreen}
-        options={{headerShown: true, headerTitle: 'Smart Health Link'}}
-      />
-    </stack.Navigator>
+      <stack.Navigator
+          initialRouteName={Routes.Home}
+          screenOptions={{
+              headerShown: true,
+              headerTransparent: true, // Set the background color to transparent
+          }}>
+          <stack.Screen
+              name={Routes.Home}
+              component={HomeScreen}
+              options={{headerShown: true, headerTitle: t('myHealth.title')}}
+          />
+          <stack.Screen
+              name="SMSHistory"
+              component={SMSHistoryScreen}
+              options={{
+                  headerShown: true,
+                  headerTitle: "SMS History",
+              }}
+          />
+          <stack.Screen
+              name={Routes.Alerts}
+              component={AlertsScreen}
+              options={{
+                  headerShown: true,
+                  headerTitle: t('patientSummary.alerts.title'),
+              }}
+          />
+          <stack.Screen
+              name={Routes.MedicalHistory}
+              component={MedicalHistoryScreen}
+              options={{headerShown: true, headerTitle: t('patientSummary.title')}}
+          />
+          <stack.Screen
+              name={Routes.AllergiesScreen}
+              component={AllergiesScreen}
+              options={{
+                  headerShown: true,
+                  headerTitle: t('patientSummary.allergies.title'),
+              }}
+          />
+          <stack.Screen
+              name={Routes.ProblemsScreen}
+              component={ProblemsScreen}
+              options={{
+                  headerShown: true,
+                  headerTitle: t('patientSummary.problems.current'),
+              }}
+          />
+          <stack.Screen
+              name={Routes.SocialHistoryScreen}
+              component={SocialHistoryScreen}
+              options={{
+                  headerShown: true,
+                  headerTitle: t('patientSummary.social-history.title'),
+              }}
+          />
+          <stack.Screen
+              name={Routes.DevicesScreen}
+              component={DevicesScreen}
+              options={{
+                  headerShown: true,
+                  headerTitle: t('patientSummary.devices.title'),
+              }}
+          />
+          <stack.Screen
+              name={Routes.MedicationSummaryScreen}
+              component={MedicationSummaryScreen}
+              options={{
+                  headerShown: true,
+                  headerTitle: t('patientSummary.medication-summary.title'),
+              }}
+          />
+          <stack.Screen
+              name={Routes.GynecologicalHistoryScreen}
+              component={GynecologicalHistoryScreen}
+              options={{
+                  headerShown: true,
+                  headerTitle: t('patientSummary.gynaecological.title'),
+              }}
+          />
+          <stack.Screen
+              name={Routes.ImmunizationScreen}
+              component={ImmunizationScreen}
+              options={{
+                  headerShown: true,
+                  headerTitle: t('patientSummary.immunization.title'),
+              }}
+          />
+          <stack.Screen
+              name={Routes.PlanOfCareScreen}
+              component={PlanOfCareScreen}
+              options={{
+                  headerShown: true,
+                  headerTitle: t('patientSummary.plan-of-care.title'),
+              }}
+          />
+          <stack.Screen
+              name={Routes.Profile}
+              component={ProfileScreen}
+              options={{headerShown: true, headerTitle: ''}}
+          />
+          <stack.Screen
+              name={Routes.ShlScreen}
+              component={ShlScreen}
+              options={{headerShown: true, headerTitle: 'Smart Health Link'}}
+          />
+      </stack.Navigator>
   );
 };
 
 export const ServicesStack = () => {
-  const {t} = useTranslation();
-  return (
-    <stack.Navigator
-      initialRouteName={Routes.ServicesScreen}
-      screenOptions={{
-        headerShown: true,
+    const {t} = useTranslation();
+    return (
+        <stack.Navigator
+            initialRouteName={Routes.ServicesScreen}
+            screenOptions={{
+                headerShown: true,
         headerTransparent: true, // Set the background color to transparent
       }}>
       <stack.Screen

@@ -4,9 +4,12 @@ import SmsListener from "react-native-android-sms-listener";
 import MapView, { Marker } from "react-native-maps";
 
 const SMScomponent = () => {
+    // State to store the last received SMS message
     const [message, setMessage] = useState<string | null>(null);
+    // State to store extracted GPS coordinates from SMS
     const [location, setLocation] = useState<{ latitude: number; longitude: number } | null>(null);
 
+    // Function to request necessary permissions for SMS and location
     const requestPermissions = async () => {
         try {
             const granted = await PermissionsAndroid.requestMultiple([
@@ -15,6 +18,7 @@ const SMScomponent = () => {
                 PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
             ]);
 
+            // Check if all required permissions are granted
             if (
                 granted["android.permission.RECEIVE_SMS"] !== PermissionsAndroid.RESULTS.GRANTED ||
                 granted["android.permission.READ_SMS"] !== PermissionsAndroid.RESULTS.GRANTED ||
@@ -29,34 +33,39 @@ const SMScomponent = () => {
         }
     };
 
-
     useEffect(() => {
-        requestPermissions();
+        requestPermissions(); // Request permissions when component mounts
 
-        // Start listening for SMS
+        // Start listening for incoming SMS messages
         const subscription = SmsListener.addListener((message) => {
             console.log("📩 Received SMS: ", message.body);
 
-            try {
-                const locationMatch = message.body.match(/Lon:([-?\d.]+) Lat:([-?\d.]+)/);
+            // Ignore SMS messages from GH5200 devices
+            if (message.body.includes("GH5200")) {
+                console.log("❌ Ignored SMS from GH5200.");
+                return;
+            }
 
+            try {
+                // Extract GPS coordinates from SMS content
+                const locationMatch = message.body.match(/Lon:([-?\d.]+) Lat:([-?\d.]+)/);
 
                 if (locationMatch) {
                     setLocation({
-                        latitude: parseFloat(locationMatch[2]) || 0, // Prevent crash by using 0 if undefined
-                        longitude: parseFloat(locationMatch[1]) || 0,
+                        latitude: parseFloat(locationMatch[2]) || 0, // Ensure valid latitude
+                        longitude: parseFloat(locationMatch[1]) || 0, // Ensure valid longitude
                     });
                 } else {
                     console.warn("⚠️ No valid location found in SMS!");
                 }
 
-                setMessage(message.body);
+                setMessage(message.body); // Store full message content
             } catch (error) {
                 console.error("❌ Error processing SMS:", error);
             }
         });
 
-
+        // Cleanup subscription on unmount
         return () => {
             subscription.remove();
         };
@@ -66,11 +75,13 @@ const SMScomponent = () => {
         <ScrollView contentContainerStyle={styles.container}>
             <Text style={styles.header}>🚨TMT250 Emergency Alert🚨</Text>
 
+            {/* Display last received SMS message */}
             <View style={styles.infoBox}>
                 <Text style={styles.label}>📩 Last SMS:</Text>
                 <Text style={styles.text}>{message || "Waiting for SMS..."}</Text>
             </View>
 
+            {/* Display emergency location on a map if available */}
             {location && (
                 <MapView
                     style={styles.map}

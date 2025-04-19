@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Image,
     Pressable,
@@ -8,48 +8,40 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import NavigationButton from '../../components/NavigationButton/NavigationButton';
 import styles from './style';
 import globalStyle from '../../assets/styles/globalStyle';
 import {useTranslation} from 'react-i18next';
 import {useRecoilState} from 'recoil';
 import {userState} from '../../features/recoil/atoms/User/userState';
-import EmergencyButton from '../../components/Emergencybutton/EmergencyButton'; // Import EmergencyButton
+import EmergencyButton from '../../components/Emergencybutton/EmergencyButton';
 import EmergencyMessageButton from '../../components/Emergencybutton/EmergencyMessageButton';
-import BluetoothComponent from "../../services/BluetoothComponent";
 import SMScomponent from "../TMT250Screen/SMScomponent";
-import BluetoothService from "../../services/BluetoothService";
-
-// interface EmergencyDetails {
-//     deviceId: string;
-//     timestamp: string;
-//     location: {
-//         latitude: number | null;
-//         longitude: number | null;
-//     } | null;
-//     speed: string | 'N/A';
-//     direction: string | 'N/A';
-//     batteryStatus: string | 'N/A';
-//     geofenceAlert: string | 'None';
-// }
+import SMScomponent1 from "../TMT250Screen/SMScomponet1";
+import SetNumberButton from "../../components/Emergencybutton/SetNumberButton";
 
 const MyHealthScreen = ({navigation}) => {
     const {t} = useTranslation();
     const [user, _] = useRecoilState(userState);
+    const [phoneNumber, setPhoneNumber] = useState("");
 
-    // //Handler for device connection and emergency details
-    // const handleDeviceConnected = (emergencyDetails: EmergencyDetails) => {
-    //     // Navigate to EmergencyDetailsScreen with the provided emergency details
-    //     navigation.navigate('EmergencyDetailsScreen', { emergencyDetails });
-    // };
+    // Load the saved phone number when the component mounts
+    useEffect(() => {
+        const loadPhoneNumber = async () => {
+            const savedNumber = await AsyncStorage.getItem("emergencyPhoneNumber");
+            if (savedNumber) {
+                setPhoneNumber(savedNumber);
+            }
+        };
+        loadPhoneNumber();
+    }, []);
 
-    // const bluetoothService = new BluetoothService();
-    // bluetoothService.requestPermissions().then(r => {
-    //     bluetoothService.connect("TMT250_0014525_LE").then(r => {
-    //         console.log("TEST");
-    //     });
-    //
-    // });
+    // Function to update the phone number when the user sets a new one
+    const updatePhoneNumber = async (newNumber) => {
+        await AsyncStorage.setItem("emergencyPhoneNumber", newNumber);
+        setPhoneNumber(newNumber); // Update the state immediately
+    };
 
     return (
         <SafeAreaView style={styles.container}>
@@ -128,14 +120,26 @@ const MyHealthScreen = ({navigation}) => {
                     onPress={() => {
                         navigation.navigate('Episodes of Care and Visits');
                     }}
+                    bottomBorderStyle={globalStyle.bottomBorderL3}
+                    titleStyle={globalStyle.descriptionBlackL1}
+                />
+                <NavigationButton
+                    type={'withIcon'}
+                    title={'View SMS Messages'}
+                    image={require('../../assets/images/forNavigation/history-of-calls.png')}
+                    onPress={() => {
+                        console.log("Navigating to SMS History...");
+                        navigation.navigate('SMSHistory'); // Ensure this matches your navigator name
+                    }}
                     titleStyle={globalStyle.descriptionBlackL1}
                 />
 
-                <EmergencyButton />
-                <EmergencyMessageButton />
+
+                <EmergencyButton phoneNumber={phoneNumber} />
+                <EmergencyMessageButton phoneNumber={phoneNumber}/>
                 <SMScomponent />
-                {/* Bluetooth connection for TMT250 */}
-                {/*<BluetoothComponent onDeviceConnected={handleDeviceConnected} />*/}
+                <SMScomponent1 />
+                <SetNumberButton onNumberSet={updatePhoneNumber} />
             </ScrollView>
 
             <View style={globalStyle.fullyCentered}>
