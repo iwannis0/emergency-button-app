@@ -23,6 +23,7 @@ import ImmunizationScreen from '../screens/MedicalHistoryScreen/Contents/Immuniz
 import PlanOfCareScreen from '../screens/MedicalHistoryScreen/Contents/PlanOfCare/Screens/PlanOfCareScreen';
 import ShlScreen from '../screens/ShlScreen/ShlScreen';
 import SMSHistoryScreen from "../screens/SMSHistoryScreen";
+import MedicalIDScreen from '../services/MedicalIDScreen';
 
 const ICON_SIZE = scaleFontSize(25);
 const INACTIVE_COLOR = '#A4A4A4';
@@ -65,6 +66,14 @@ export const MyHealthStack = () => {
               options={{
                   headerShown: true,
                   headerTitle: "SMS History",
+              }}
+          />
+          <stack.Screen
+              name="MedicalID"
+              component={MedicalIDScreen}
+              options={{
+                  headerShown: true,
+                  headerTitle: "Medical ID",
               }}
           />
           <stack.Screen

@@ -129,8 +129,20 @@ const MyHealthScreen = ({navigation}) => {
                     image={require('../../assets/images/forNavigation/history-of-calls.png')}
                     onPress={() => {
                         console.log("Navigating to SMS History...");
-                        navigation.navigate('SMSHistory'); // Ensure this matches your navigator name
+                        navigation.navigate('SMSHistory');
                     }}
+                    bottomBorderStyle={globalStyle.bottomBorderL3}
+                    titleStyle={globalStyle.descriptionBlackL1}
+                />
+                <NavigationButton
+                    type={'withIcon'}
+                    title={'View Medical ID'}
+                    image={require('../../assets/images/forNavigation/medical_id.png')}
+                    onPress={() => {
+                        console.log("Navigating to Medical ID...");
+                        navigation.navigate('MedicalID');
+                    }}
+                    bottomBorderStyle={globalStyle.bottomBorderL3}
                     titleStyle={globalStyle.descriptionBlackL1}
                 />
 
