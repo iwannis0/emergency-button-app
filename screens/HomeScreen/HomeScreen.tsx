@@ -18,7 +18,7 @@ import {userState} from '../../features/recoil/atoms/User/userState';
 import EmergencyButton from '../../components/Emergencybutton/EmergencyButton';
 import EmergencyMessageButton from '../../components/Emergencybutton/EmergencyMessageButton';
 import SMScomponent from "../TMT250Screen/SMScomponent";
-import SMScomponent1 from "../TMT250Screen/SMScomponet1";
+import SMScomponent1 from "../TMT250Screen/SMScomponent1";
 import SetNumberButton from "../../components/Emergencybutton/SetNumberButton";
 
 const MyHealthScreen = ({navigation}) => {

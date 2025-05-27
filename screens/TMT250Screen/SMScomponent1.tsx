@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, PermissionsAndroid, Alert, StyleSheet, ScrollView } from "react-native";
 import SmsListener from "react-native-android-sms-listener";
 import MapView, { Marker } from "react-native-maps";
+import { Linking } from "react-native";
 
 // Import SendIntentAndroid for handling SMS intents
 const SendIntentAndroid = require('react-native-send-intent');
@@ -106,13 +107,23 @@ const SMScomponent1 = () => {
                 <MapView
                     style={styles.map}
                     initialRegion={{
-                        latitude: location.latitude || 0,
-                        longitude: location.longitude || 0,
+                        latitude: location.latitude,
+                        longitude: location.longitude,
                         latitudeDelta: 0.01,
                         longitudeDelta: 0.01,
                     }}
                 >
-                    <Marker coordinate={location} title="Emergency Location" />
+                    <Marker
+                        coordinate={location}
+                        title="Emergency Location"
+                        description="Tap for directions"
+                        onPress={() => {
+                            const url = `https://www.google.com/maps/dir/?api=1&destination=${location.latitude},${location.longitude}`;
+                            Linking.openURL(url).catch(err =>
+                                Alert.alert("Error", "Unable to open Google Maps.")
+                            );
+                        }}
+                    />
                 </MapView>
             )}
         </ScrollView>
