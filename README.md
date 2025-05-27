@@ -28,7 +28,7 @@ This is a **React Native** mobile application designed to assist **elderly users
 ## 📦 Installation
 
 ```bash
-git clone https://github.com/<your-username>/emergency-button-app.git
+git clone https://github.com/iwannis0/emergency-button-app.git
 cd emergency-button-app
 npm install
 npx expo start
